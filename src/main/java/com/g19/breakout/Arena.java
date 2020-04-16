@@ -13,11 +13,11 @@ public class Arena {
     private List<Tile> tiles;
 
 
-    public Arena(int height, int width) {
+    public Arena(int width, int height) {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBar(new Position(10, 100));
+        playerBar = new PlayerBar(new Position(40, 40));
 
     }
 

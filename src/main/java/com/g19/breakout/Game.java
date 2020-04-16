@@ -1,7 +1,11 @@
 package com.g19.breakout;
 
+import java.io.IOException;
+
 public class Game {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    public static void main(String[] args) throws IOException {
+        Arena arena = new Arena(80, 50);
+        View view = new View(arena);
+        view.draw();
     }
 }
