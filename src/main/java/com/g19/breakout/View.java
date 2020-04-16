@@ -51,7 +51,7 @@ public class View {
         graphics.setForegroundColor(TextColor.Factory.fromString(playerBarColor));
 
         Position playerBarPosition = playerBar.getPosition();
-        graphics.putString(playerBarPosition.getX(), playerBarPosition.getY(), "---");
+        graphics.putString(playerBarPosition.getX(), playerBarPosition.getY(), "------");
     }
 
     private void drawBackground(TextGraphics graphics){
@@ -60,5 +60,9 @@ public class View {
                 new TerminalPosition(0,0),
                 new TerminalSize(arena.getWidth(), arena.getHeight()),
                 ' ');
+    }
+
+    public TerminalScreen getScreen() {
+        return screen;
     }
 }

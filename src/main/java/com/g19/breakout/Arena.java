@@ -32,4 +32,14 @@ public class Arena {
     public PlayerBar getPlayerBar() {
         return playerBar;
     }
+
+    public void movePlayerBar(Position position){
+        if (canMove(position)){
+            playerBar.setPosition(position);
+        }
+    }
+
+    public boolean canMove(Position position){
+        return position.getX() > 0 && position.getX() < width - 6;
+    }
 }
