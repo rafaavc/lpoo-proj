@@ -13,7 +13,7 @@ repositories {
 }
 
 application {
-    mainClassName = 'Game'
+    mainClassName = 'com.g19.breakout.Game'
 }
 
 dependencies {

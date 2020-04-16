@@ -1,6 +1,5 @@
+package com.g19.breakout;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class GameTest {
     @Test
