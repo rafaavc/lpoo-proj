@@ -13,4 +13,8 @@ public class Tile extends Element {
         life--;
         return life == 0;
     }
+
+    public int getLife() {
+        return life;
+    }
 }
