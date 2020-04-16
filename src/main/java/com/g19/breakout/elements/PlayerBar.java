@@ -1,7 +1,7 @@
 package com.g19.breakout.elements;
 
 public class PlayerBar extends Element {
-    PlayerBar(Position position) {
+    public PlayerBar(Position position) {
         super(position);
     }
 

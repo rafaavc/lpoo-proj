@@ -1,5 +1,6 @@
 package com.g19.breakout;
 
+import com.g19.breakout.elements.PlayerBar;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.elements.Tile;
 import org.junit.Test;
@@ -17,5 +18,12 @@ public class ModelTests {
         t1.hit();
         assertEquals(9, t1.getLife());
         assertEquals(new Position(5, 5), t1.getPosition());
+    }
+
+    @Test
+    public void testPlayerBar() {
+        PlayerBar pb = new PlayerBar(new Position(50, 50));
+        pb.moveRight();
+        assertEquals(new Position(51, 50), pb.getPosition());
     }
 }
