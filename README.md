@@ -12,14 +12,14 @@ TO-DO
 
 ## Planed Features
 
-- [] Draw the arena
-- [] Add the players bar
-- [] Move the bar
-- [] Add the ball
-- [] Move the ball and its colisions
-- [] Add the tiles
-- [] Add colisions with tiles
-- [] Add scoreboard
+- [ ] Draw the arena
+- [ ] Add the players bar
+- [ ] Move the bar
+- [ ] Add the ball
+- [ ] Move the ball and its colisions
+- [ ] Add the tiles
+- [ ] Add colisions with tiles
+- [ ] Add scoreboard
 
 ## Design
 
