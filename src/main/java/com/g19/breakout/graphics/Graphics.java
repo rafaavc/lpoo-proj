@@ -10,7 +10,9 @@ public interface Graphics {
     void startDrawing();
     void stopDrawing() throws IOException;
     void drawString(Position pos, String text, String foreColor);
+    void drawCenteredString(Position pos, String text, String foreColor);
     void drawString(Position pos, String text, String foreColor, String backColor);
+    void drawCenteredString(Position pos, String text, String foreColor, String backColor);
     void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor);
     KeyStroke readInput() throws IOException;
 }

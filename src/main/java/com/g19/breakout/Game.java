@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Game {
     public static void main(String[] args) throws IOException {
-        Arena arena = new Arena(80, 50);
+        Arena arena = new Arena(120, 40);
         View view = new View(arena, new LanternaAdapter());
         Controller controller = new Controller(arena);
         view.draw();

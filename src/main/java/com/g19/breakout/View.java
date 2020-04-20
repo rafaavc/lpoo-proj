@@ -30,7 +30,7 @@ public class View {
     }
 
     private void drawPlayerBar(PlayerBar playerBar){
-        graphics.drawString(playerBar.getPosition(), "------", playerBarColor);
+        graphics.drawCenteredString(playerBar.getPosition(), "------", playerBarColor);
     }
 
     private void drawBackground(){
