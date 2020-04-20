@@ -17,8 +17,7 @@ public class Controller {
     }
 
     public boolean getNextCommand(View view) throws IOException {
-        TerminalScreen screen = view.getScreen();
-        KeyStroke key = screen.readInput();
+        KeyStroke key = view.readInput();
 
         if (key.getKeyType() == KeyType.EOF) return false;
 
