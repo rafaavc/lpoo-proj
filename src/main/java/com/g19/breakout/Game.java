@@ -6,13 +6,9 @@ import java.io.IOException;
 
 public class Game {
     public static void main(String[] args) throws IOException {
-        Arena arena = new Arena(120, 40);
-        View view = new View(arena, new LanternaAdapter());
-        Controller controller = new Controller(arena);
-        view.draw();
-        while (controller.getNextCommand(view)){
-            view.draw();
-        }
-
+        ArenaModel arena = new ArenaModel(120, 40);
+        ArenaView view = new ArenaView(arena, new LanternaAdapter());
+        ArenaController controller = new ArenaController(arena, view);
+        controller.start();
     }
 }

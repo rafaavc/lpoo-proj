@@ -4,7 +4,7 @@ import com.g19.breakout.elements.*;
 
 import java.util.List;
 
-public class Arena {
+public class ArenaModel {
     private int height;
     private int width;
 
@@ -13,7 +13,7 @@ public class Arena {
     private List<Tile> tiles;
 
 
-    public Arena(int width, int height) {
+    public ArenaModel(int width, int height) {
         this.height = height;
         this.width = width;
 
@@ -40,6 +40,6 @@ public class Arena {
     }
 
     public boolean canMove(Position position){
-        return position.getX() > 0 && position.getX() < width - 6;
+        return position.getX() > 3 && position.getX() < width - 3;
     }
 }
