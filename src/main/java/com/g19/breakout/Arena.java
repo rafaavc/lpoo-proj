@@ -17,7 +17,7 @@ public class Arena {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBar(new Position(40, 40));
+        playerBar = new PlayerBar(new Position(width/2, height-8));
 
     }
 
