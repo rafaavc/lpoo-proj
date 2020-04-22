@@ -19,13 +19,13 @@ public class ArenaView {
     }
 
     public void draw(ArenaView view, ArenaModel arena) throws IOException {
-        graphics.startDrawing();
+        view.graphics.startDrawing();
 
         view.drawBackground(arena);
         view.drawPlayerBar(arena.getPlayerBar());
         view.drawBall(arena.getBall());
 
-        graphics.stopDrawing();
+        view.graphics.stopDrawing();
     }
 
 

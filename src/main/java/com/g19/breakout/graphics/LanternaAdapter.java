@@ -33,7 +33,7 @@ public class LanternaAdapter implements Graphics {
     }
 
     public void startDrawing() {
-        screen.clear();
+        //screen.clear();
         textGraphics = screen.newTextGraphics();
     }
 

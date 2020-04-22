@@ -9,6 +9,6 @@ public class Game {
         ArenaModel arena = new ArenaModel(120, 40);
         ArenaView view = new ArenaView(arena, new LanternaAdapter());
         ArenaController controller = new ArenaController(arena, view);
-        controller.start();
+        controller.start(controller);
     }
 }
