@@ -52,13 +52,13 @@ public class ArenaController {
     }
 
     public void moveBall(Position position) {
-        if (arena.canMoveBall(position)) {
+        if (arena.canMoveElement(position, arena.getBall().getDimensions())) {
             arena.getBall().setPosition(position);
         }
     }
 
     public void movePlayerBar(Position position){
-        if (arena.canMovePlayerBar(position)){
+        if (arena.canMoveElement(position, arena.getPlayerBar().getDimensions())){
             arena.getPlayerBar().setPosition(position);
         }
     }

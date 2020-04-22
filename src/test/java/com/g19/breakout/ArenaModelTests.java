@@ -34,14 +34,10 @@ public class ArenaModelTests {
     }
 
     @Test
-    public void testCanMoveBall() {
-        assertFalse(arena.canMoveBall(new Position(width, 10)));
-        assertTrue(arena.canMoveBall(new Position(width-2, 10)));
-    }
-
-    @Test
-    public void testCanPlayerBar() {
-        assertTrue(arena.canMovePlayerBar(new Position(width-4, 10)));
-        assertFalse(arena.canMovePlayerBar(new Position(width-2, 10)));
+    public void testCanMoveElement() {
+        assertFalse(arena.canMoveElement(new Position(width, 10), arena.getBall().getDimensions()));
+        assertTrue(arena.canMoveElement(new Position(width-2, 10), arena.getBall().getDimensions()));
+        assertTrue(arena.canMoveElement(new Position(width-4, 10), arena.getPlayerBar().getDimensions()));
+        assertFalse(arena.canMoveElement(new Position(width-2, 10), arena.getPlayerBar().getDimensions()));
     }
 }

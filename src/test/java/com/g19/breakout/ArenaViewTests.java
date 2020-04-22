@@ -52,7 +52,7 @@ public class ArenaViewTests {
         Ball ball = Mockito.mock(Ball.class);
 
         view.drawBall(ball);
-        verify(graphics, times(1)).drawCenteredString(ball.getPosition(), ball.getStringRep(), ball.getColor());
+        verify(graphics, times(1)).drawElement(ball);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ArenaViewTests {
         PlayerBar playerBar = Mockito.mock(PlayerBar.class);
 
         view.drawPlayerBar(playerBar);
-        verify(graphics, times(1)).drawCenteredString(playerBar.getPosition(), playerBar.getStringRep(), playerBar.getColor());
+        verify(graphics, times(1)).drawElement(playerBar);
     }
 
     @Test

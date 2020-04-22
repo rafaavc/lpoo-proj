@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -58,7 +59,7 @@ public class ArenaControllerTests {
         Mockito.when(view.readInput()).thenReturn(ArenaController.COMMAND.LEFT);
 
         Position pos = Mockito.mock(Position.class);
-        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBar(pos));
+        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBar(pos, "#ffffff"));
 
         controller.getNextCommand(view);
         verify(view, times(1)).readInput();
@@ -67,7 +68,7 @@ public class ArenaControllerTests {
 
     @Test
     public void testMoveBall() {
-        Mockito.when(arena.canMoveBall(anyObject())).thenReturn(true);
+        Mockito.when(arena.canMoveElement(anyObject(), anyObject())).thenReturn(true);
 
         Ball ball = Mockito.mock(Ball.class);
         Mockito.when(arena.getBall()).thenReturn(ball);
@@ -78,7 +79,7 @@ public class ArenaControllerTests {
 
     @Test
     public void testMovePlayerBar() {
-        Mockito.when(arena.canMovePlayerBar(anyObject())).thenReturn(true);
+        Mockito.when(arena.canMoveElement(anyObject(), anyObject())).thenReturn(true);
 
         PlayerBar pb = Mockito.mock(PlayerBar.class);
         Mockito.when(arena.getPlayerBar()).thenReturn(pb);

@@ -3,8 +3,8 @@ package com.g19.breakout.elements;
 public class Tile extends Element {
     int life;
 
-    public Tile(Position position, int life) {
-        super(position);
+    public Tile(Position position, String stringRep, String color, int life) {
+        super(position, stringRep, color);
         this.life = life;
     }
 

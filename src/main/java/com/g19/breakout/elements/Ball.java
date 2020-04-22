@@ -4,8 +4,8 @@ public class Ball extends Element {
     private Direction direction;
     private double velocity;
 
-    public Ball(Position position) {
-        super(position);
+    public Ball(Position position, String color) {
+        super(position, "██", color);
         this.direction = new Direction(0, -1); // the ball starts by going upwards
         velocity = 10;
     }
@@ -24,13 +24,5 @@ public class Ball extends Element {
 
     public void setVelocity(double velocity) {
         this.velocity = velocity;
-    }
-
-    public String getStringRep() {
-        return "██";
-    }
-
-    public String getColor() {
-        return "#0000ff";
     }
 }
