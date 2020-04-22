@@ -39,12 +39,24 @@ public class ArenaModel {
     }
 
     public void moveBall(Position position) {
-        if (canMoveBall(position)) {
-            ball.setPosition(position);
-        }
+        ball.setPosition(position);
     }
 
-    private boolean canMoveBall(Position position) {
+    public Ball.HIT checkCollisions(Position position) {
+        if (position.getDiscreteY() == -1) return Ball.HIT.TOP;
+        if (position.getDiscreteY() == height) return Ball.HIT.BOTTOM;
+        if (checkHitPlayerBar(position)) return Ball.HIT.PLAYERBAR;
+        checkHitScreenBorder(position);
+        return Ball.HIT.NOTHING;
+    }
+
+    private boolean checkHitPlayerBar(Position position){
+        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
+                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
+                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 3;
+    }
+
+    private boolean checkHitScreenBorder(Position position){
         return position.getDiscreteX() > 0 && position.getDiscreteX() < width
                 && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height;
     }

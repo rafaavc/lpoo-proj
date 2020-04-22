@@ -3,6 +3,7 @@ package com.g19.breakout.elements;
 public class Ball extends Element {
     Direction direction;
     double velocity;
+    public enum HIT {TOP, BOTTOM, LEFT, RIGHT, PLAYERBAR, TILE, NOTHING};
 
     public Ball(Position position) {
         super(position);
@@ -16,5 +17,9 @@ public class Ball extends Element {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }

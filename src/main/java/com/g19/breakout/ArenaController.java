@@ -2,6 +2,7 @@ package com.g19.breakout;
 
 import com.g19.breakout.elements.Ball;
 import com.g19.breakout.elements.Chronometer;
+import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
 
 import java.io.IOException;
@@ -35,6 +36,15 @@ public class ArenaController {
         Position nextBallPosition = ball.getDirection().getNextPosition(
                 ball.getPosition(),
                 velocity);
+
+        Ball.HIT hit = arena.checkCollisions(nextBallPosition);
+        if (hit == Ball.HIT.PLAYERBAR || hit == Ball.HIT.TOP) {
+            ball.setDirection(ball.getDirection().hitTopOrBottom());
+        } else if (hit == Ball.HIT.BOTTOM){
+            ball.setDirection(new Direction(0, 0));
+        }
+
+        nextBallPosition = ball.getDirection().getNextPosition(ball.getPosition(), velocity);
 
         arena.moveBall(nextBallPosition);
     }
