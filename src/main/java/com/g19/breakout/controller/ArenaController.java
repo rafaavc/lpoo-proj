@@ -1,5 +1,6 @@
 package com.g19.breakout.controller;
 
+import com.g19.breakout.elements.Direction;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
@@ -37,6 +38,34 @@ public class ArenaController {
         Position nextBallPosition = ball.getDirection().getNextPosition(
                 ball.getPosition(),
                 velocity);
+
+        BallModel.HIT hit = arena.checkCollisions(nextBallPosition);
+
+        switch(hit){
+            case TOP:
+                ball.setDirection(ball.getDirection().hitTopOrBottom());
+                break;
+            case PLAYERBARMIDDLE:
+                ball.setDirection(new Direction(0, -1));
+                break;
+            case BOTTOM:
+                ball.setDirection(new Direction(0, 0));
+                break;
+            case PLAYERBARLEFT:
+                ball.setDirection(new Direction(-1, -1));
+                break;
+            case PLAYERBARRIGHT:
+                ball.setDirection(new Direction(1, -1));
+                break;
+            case RIGHT:
+            case LEFT:
+                ball.setDirection(ball.getDirection().hitLeftOrRight());
+                break;
+            default:
+                break;
+        }
+
+        nextBallPosition = ball.getDirection().getNextPosition(ball.getPosition(), velocity);
 
         moveBall(nextBallPosition);
     }
