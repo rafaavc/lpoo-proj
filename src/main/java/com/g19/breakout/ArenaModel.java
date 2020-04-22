@@ -5,8 +5,7 @@ import com.g19.breakout.elements.*;
 import java.util.List;
 
 public class ArenaModel {
-    private int height;
-    private int width;
+    private int height, width;
 
     private PlayerBar playerBar;
     private Ball ball;

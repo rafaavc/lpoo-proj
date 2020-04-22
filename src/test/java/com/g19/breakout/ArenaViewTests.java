@@ -14,7 +14,7 @@ import java.io.IOException;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class ViewTests {
+public class ArenaViewTests {
     private ArenaModel arena;
     private Graphics graphics;
     private ArenaView view;
@@ -43,7 +43,6 @@ public class ViewTests {
         verify(view1, times(1)).drawPlayerBar(arena.getPlayerBar());
         verify(view1, times(1)).drawBall(arena.getBall());
         verify(graphics, times(1)).stopDrawing();
-
     }
 
 

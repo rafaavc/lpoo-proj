@@ -11,7 +11,7 @@ import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class ControllerTests {
+public class ArenaControllerTests {
     ArenaController controller;
     ArenaView view;
     ArenaModel arena;
