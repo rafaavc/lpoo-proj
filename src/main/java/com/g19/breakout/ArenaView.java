@@ -12,19 +12,18 @@ public class ArenaView {
     private final Graphics graphics;
     //private TerminalScreen screen;
     private final String backgroundColor = "#000000";
-    private final String playerBarColor = "#FFFFFF";
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
         this.graphics = graphics;
         graphics.init(arena.getWidth(), arena.getHeight());
     }
 
-    public void draw(ArenaModel arena) throws IOException {
+    public void draw(ArenaView view, ArenaModel arena) throws IOException {
         graphics.startDrawing();
 
-        drawBackground(arena);
-        drawPlayerBar(arena.getPlayerBar());
-        drawBall(arena.getBall());
+        view.drawBackground(arena);
+        view.drawPlayerBar(arena.getPlayerBar());
+        view.drawBall(arena.getBall());
 
         graphics.stopDrawing();
     }
@@ -35,18 +34,18 @@ public class ArenaView {
     }
 
     void drawPlayerBar(PlayerBar playerBar) {
-        graphics.drawCenteredString(playerBar.getPosition(), "██████", playerBarColor);
+        graphics.drawCenteredString(playerBar.getPosition(), playerBar.getStringRep(), playerBar.getColor());
     }
 
     void drawBackground(ArenaModel arena) {
-        graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', backgroundColor);
+        graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
     public ArenaController.COMMAND readInput() throws IOException {
         return graphics.readInput();
     }
 
-    public Graphics getGraphics() {
-        return graphics;
+    public String getBGColor() {
+        return backgroundColor;
     }
 }

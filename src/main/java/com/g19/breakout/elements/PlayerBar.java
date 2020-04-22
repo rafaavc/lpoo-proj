@@ -5,11 +5,11 @@ public class PlayerBar extends Element {
         super(position);
     }
 
-    public void moveRight() {
-        this.setPosition(this.getPosition().right());
+    public String getStringRep() {
+        return "██████";
     }
 
-    public void moveLeft() {
-        this.setPosition(this.getPosition().left());
+    public String getColor() {
+        return "#ffffff";
     }
 }
