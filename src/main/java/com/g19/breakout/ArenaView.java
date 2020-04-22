@@ -29,19 +29,24 @@ public class ArenaView {
         graphics.stopDrawing();
     }
 
-    private void drawBall(Ball ball) {
-        graphics.drawCenteredString(ball.getPosition(), "██", "#0000ff");
+
+    void drawBall(Ball ball) {
+        graphics.drawCenteredString(ball.getPosition(), ball.getStringRep(), ball.getColor());
     }
 
-    private void drawPlayerBar(PlayerBar playerBar) {
+    void drawPlayerBar(PlayerBar playerBar) {
         graphics.drawCenteredString(playerBar.getPosition(), "██████", playerBarColor);
     }
 
-    private void drawBackground(ArenaModel arena) {
+    void drawBackground(ArenaModel arena) {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', backgroundColor);
     }
 
     public ArenaController.COMMAND readInput() throws IOException {
         return graphics.readInput();
+    }
+
+    public Graphics getGraphics() {
+        return graphics;
     }
 }
