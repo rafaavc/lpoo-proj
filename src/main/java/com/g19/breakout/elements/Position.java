@@ -2,28 +2,9 @@ package com.g19.breakout.elements;
 
 import java.util.Objects;
 
-public class Position {
-    private final double x, y;
-
+public class Position extends XYValues {
     public Position(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public int getDiscreteX() {
-        return (int) Math.round(x);
-    }
-
-    public int getDiscreteY() {
-        return (int) Math.round(y);
+        super(x, y);
     }
 
     public Position left() {
@@ -40,19 +21,5 @@ public class Position {
 
     public Position down() {
         return new Position(x, y+1);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return x == position.x &&
-                y == position.y;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
     }
 }
