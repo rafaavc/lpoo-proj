@@ -55,15 +55,10 @@ public class ArenaController {
     }
 
     public boolean getNextCommand(ArenaView view) throws IOException {
-        COMMAND cmd = view.readInput();
-        if (cmd == COMMAND.EOF) return false;
-
+        Command cmd = view.readInput();
         Position playerBarPosition = arena.getPlayerBar().getPosition();
 
-        if (cmd == COMMAND.RIGHT) movePlayerBar(playerBarPosition.right());
-        else if (cmd == COMMAND.LEFT) movePlayerBar(playerBarPosition.left());
-
-        return true;
+        return cmd.execute(this, playerBarPosition);
     }
 
     public void moveBall(Position position) {

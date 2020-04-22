@@ -1,6 +1,7 @@
 package com.g19.breakout.view;
 
 import com.g19.breakout.controller.ArenaController;
+import com.g19.breakout.controller.Command;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.elements.*;
 import com.g19.breakout.graphics.Graphics;
@@ -42,7 +43,7 @@ public class ArenaView {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
-    public ArenaController.COMMAND readInput() throws IOException {
+    public Command readInput() throws IOException {
         return graphics.readInput();
     }
 
