@@ -42,13 +42,6 @@ public class ArenaView {
     }
 
     public ArenaController.COMMAND readInput() throws IOException {
-        KeyStroke key = graphics.readInput();
-        if (key != null) {
-            KeyType keyType = key.getKeyType();
-            if (keyType == KeyType.ArrowLeft) return ArenaController.COMMAND.LEFT;
-            if (keyType == KeyType.ArrowRight) return ArenaController.COMMAND.RIGHT;
-            if (keyType == KeyType.EOF) return ArenaController.COMMAND.EOF;
-        }
-        return ArenaController.COMMAND.NONE;
+        return graphics.readInput();
     }
 }
