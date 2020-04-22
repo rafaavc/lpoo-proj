@@ -16,13 +16,18 @@ TO-DO
 ## Planed Features
 
 - [ ] Draw the arena
-- [ ] Add the players bar
-- [ ] Move the bar
-- [ ] Add the ball
-- [ ] Move the ball and its colisions
+- [x] Add the players bar
+- [x] Move the bar
+- [x] Add the ball
+- [x] Move the ball 
+- [x] Add ball colisions and bounces
 - [ ] Add the tiles
 - [ ] Add colisions with tiles
 - [ ] Add scoreboard
+
+(these are just more ideas)
+- [ ] Add shots coming from above to hurt the player
+- [ ] Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
 
 ## Design
 

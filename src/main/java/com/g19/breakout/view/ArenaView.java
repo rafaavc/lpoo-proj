@@ -1,16 +1,17 @@
-package com.g19.breakout;
+package com.g19.breakout.view;
 
+import com.g19.breakout.controller.ArenaController;
+import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.elements.*;
 import com.g19.breakout.graphics.Graphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
+import com.g19.breakout.model.BallModel;
+import com.g19.breakout.model.PlayerBarModel;
 
 import java.io.IOException;
 
 
 public class ArenaView {
     private final Graphics graphics;
-    //private TerminalScreen screen;
     private final String backgroundColor = "#000000";
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
@@ -18,26 +19,26 @@ public class ArenaView {
         graphics.init(arena.getWidth(), arena.getHeight());
     }
 
-    public void draw(ArenaView view, ArenaModel arena) throws IOException {
+    public void draw(ArenaModel arena) throws IOException {
         graphics.startDrawing();
 
-        view.drawBackground(arena);
-        view.drawPlayerBar(arena.getPlayerBar());
-        view.drawBall(arena.getBall());
+        drawBackground(arena);
+        drawPlayerBar(arena.getPlayerBar());
+        drawBall(arena.getBall());
 
         graphics.stopDrawing();
     }
 
 
-    void drawBall(Ball ball) {
-        graphics.drawCenteredString(ball.getPosition(), ball.getStringRep(), ball.getColor());
+    public void drawBall(BallModel ball) {
+        graphics.drawElement(ball);
     }
 
-    void drawPlayerBar(PlayerBar playerBar) {
-        graphics.drawCenteredString(playerBar.getPosition(), playerBar.getStringRep(), playerBar.getColor());
+    public void drawPlayerBar(PlayerBarModel playerBar) {
+        graphics.drawElement(playerBar);
     }
 
-    void drawBackground(ArenaModel arena) {
+    public void drawBackground(ArenaModel arena) {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
