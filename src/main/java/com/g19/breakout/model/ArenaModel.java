@@ -1,6 +1,8 @@
 package com.g19.breakout.model;
 
+import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.*;
+import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
 
 import java.util.List;
 
@@ -37,16 +39,14 @@ public class ArenaModel {
         return ball;
     }
 
-    public BallModel.HIT checkCollisions(Position position) {
-        if (position.getDiscreteY() == -1) return BallModel.HIT.TOP;
-        if (position.getDiscreteY() == height) return BallModel.HIT.BOTTOM;
-        if (checkHitPlayerBarMiddle(position)) return BallModel.HIT.PLAYERBARMIDDLE;
-        if (checkHitPlayerBarRight(position)) return BallModel.HIT.PLAYERBARRIGHT;
-        if (checkHitPlayerBarLeft(position)) return BallModel.HIT.PLAYERBARLEFT;
-        if (position.getDiscreteX() == 1) return BallModel.HIT.LEFT;
-        if (position.getDiscreteX() == width - 1) return BallModel.HIT.RIGHT;
-        checkHitScreenBorder(position);
-        return BallModel.HIT.NOTHING;
+    public BallHit checkCollisions(Position position) {
+        if (position.getDiscreteY() == -1) return new BallHitTop(ball);
+        if (position.getDiscreteY() == height) return new BallHitBottom(ball);
+        if (checkHitPlayerBarMiddle(position)) return new BallHitPlayerBarMiddle(ball);
+        if (checkHitPlayerBarRight(position)) return new BallHitPlayerBarRight(ball);
+        if (checkHitPlayerBarLeft(position)) return new BallHitPlayerBarLeft(ball);
+        if (position.getDiscreteX() == 1 || position.getDiscreteX() == width - 1) return new BallHitSide(ball);
+        return new BallHitNothing(ball);
     }
 
     private boolean checkHitPlayerBarMiddle(Position position){
