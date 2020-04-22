@@ -6,10 +6,18 @@ public class PlayerBar extends Element {
     }
 
     public void moveRight() {
-        this.setPosition(this.getPosition().right());
+        position = new Position(position.getX()+1, position.getY());
     }
 
     public void moveLeft() {
-        this.setPosition(this.getPosition().left());
+        position = new Position(position.getX()-1, position.getY());
+    }
+
+    public String getStringRep() {
+        return "██████";
+    }
+
+    public String getColor() {
+        return "#ffffff";
     }
 }

@@ -1,8 +1,8 @@
 package com.g19.breakout.elements;
 
 public class Ball extends Element {
-    Direction direction;
-    double velocity;
+    private Direction direction;
+    private double velocity;
     public enum HIT {TOP, BOTTOM, LEFT, RIGHT, PLAYERBAR, TILE, NOTHING};
 
     public Ball(Position position) {
@@ -21,5 +21,17 @@ public class Ball extends Element {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
+    }
+
+    public String getStringRep() {
+        return "██";
+    }
+
+    public String getColor() {
+        return "#0000ff";
     }
 }
