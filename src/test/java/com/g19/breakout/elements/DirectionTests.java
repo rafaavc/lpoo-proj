@@ -23,4 +23,13 @@ public class DirectionTests {
 
         assertEquals(direction1, direction2);
     }
+
+    @Test
+    public void directionGetMethods(){
+        Direction direction = new Direction(1, -1);
+
+        assertEquals(Math.sqrt(2)/2, direction.getX(), 0.001);
+        assertEquals(-Math.sqrt(2)/2, direction.getY(), 0.001);
+
+    }
 }
