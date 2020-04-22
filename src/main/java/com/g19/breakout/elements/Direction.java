@@ -27,6 +27,10 @@ public class Direction {
         return new Direction(x, -y);
     }
 
+    public Direction hitLeftOrRight(){
+        return new Direction(-x, y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -45,19 +45,35 @@ public class ArenaModel {
     public Ball.HIT checkCollisions(Position position) {
         if (position.getDiscreteY() == -1) return Ball.HIT.TOP;
         if (position.getDiscreteY() == height) return Ball.HIT.BOTTOM;
-        if (checkHitPlayerBar(position)) return Ball.HIT.PLAYERBAR;
+        if (checkHitPlayerBarMiddle(position)) return Ball.HIT.PLAYERBARMIDDLE;
+        if (checkHitPlayerBarRight(position)) return Ball.HIT.PLAYERBARRIGHT;
+        if (checkHitPlayerBarLeft(position)) return Ball.HIT.PLAYERBARLEFT;
+        if (position.getDiscreteX() == 1) return Ball.HIT.LEFT;
+        if (position.getDiscreteX() == width - 1) return Ball.HIT.RIGHT;
         checkHitScreenBorder(position);
         return Ball.HIT.NOTHING;
     }
 
-    private boolean checkHitPlayerBar(Position position){
+    private boolean checkHitPlayerBarMiddle(Position position){
         return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
-                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
+                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 1 &&
+                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 1;
+    }
+
+    private boolean checkHitPlayerBarRight(Position position){
+        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
+                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() + 2 &&
                 position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 3;
     }
 
+    private boolean checkHitPlayerBarLeft(Position position){
+        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
+                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
+                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() - 2;
+    }
+
     private boolean checkHitScreenBorder(Position position){
-        return position.getDiscreteX() > 0 && position.getDiscreteX() < width
+        return position.getDiscreteX() > 2 && position.getDiscreteX() < width - 2
                 && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height;
     }
 

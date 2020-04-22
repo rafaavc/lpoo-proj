@@ -38,10 +38,27 @@ public class ArenaController {
                 velocity);
 
         Ball.HIT hit = arena.checkCollisions(nextBallPosition);
-        if (hit == Ball.HIT.PLAYERBAR || hit == Ball.HIT.TOP) {
-            ball.setDirection(ball.getDirection().hitTopOrBottom());
-        } else if (hit == Ball.HIT.BOTTOM){
-            ball.setDirection(new Direction(0, 0));
+
+        switch(hit){
+            case TOP:
+            case PLAYERBARMIDDLE:
+                ball.setDirection(ball.getDirection().hitTopOrBottom());
+                break;
+            case BOTTOM:
+                ball.setDirection(new Direction(0, 0));
+                break;
+            case PLAYERBARLEFT:
+                ball.setDirection(new Direction(-1, -1));
+                break;
+            case PLAYERBARRIGHT:
+                ball.setDirection(new Direction(1, -1));
+                break;
+            case RIGHT:
+            case LEFT:
+                ball.setDirection(ball.getDirection().hitLeftOrRight());
+                break;
+            default:
+                break;
         }
 
         nextBallPosition = ball.getDirection().getNextPosition(ball.getPosition(), velocity);
