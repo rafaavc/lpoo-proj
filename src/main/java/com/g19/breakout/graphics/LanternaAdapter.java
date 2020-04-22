@@ -41,7 +41,7 @@ public class LanternaAdapter implements Graphics {
 
     public void drawString(Position pos, String text, String foreColor) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString(foreColor));
-        textGraphics.putString(pos.getX(), pos.getY(), text);
+        textGraphics.putString(pos.getDiscreteX(), pos.getDiscreteY(), text);
     }
 
     public void drawCenteredString(Position pos, String text, String foreColor){
@@ -51,18 +51,18 @@ public class LanternaAdapter implements Graphics {
     public void drawString(Position pos, String text, String foreColor, String backColor) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString(foreColor));
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(backColor));
-        textGraphics.putString(pos.getX(), pos.getY(), text);
+        textGraphics.putString(pos.getDiscreteX(), pos.getDiscreteY(), text);
     }
 
     public void drawCenteredString(Position pos, String text, String foreColor, String backColor){
-        drawString(new Position(pos.getX()-(text.length()/2), pos.getY()), text, foreColor, backColor);
+        drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor, backColor);
     }
 
     public void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor) {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(backColor));
         textGraphics.fillRectangle(
-            new TerminalPosition(leftUpperCorner.getX(),leftUpperCorner.getY()),
-            new TerminalSize(size.getX(), size.getY()),
+            new TerminalPosition(leftUpperCorner.getDiscreteX(),leftUpperCorner.getDiscreteY()),
+            new TerminalSize(size.getDiscreteX(), size.getDiscreteY()),
             fill);
     }
 
