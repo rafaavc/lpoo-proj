@@ -1,11 +1,13 @@
 package com.g19.breakout.graphics;
 
+import com.g19.breakout.ArenaController;
 import com.g19.breakout.elements.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -41,33 +43,40 @@ public class LanternaAdapter implements Graphics {
 
     public void drawString(Position pos, String text, String foreColor) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString(foreColor));
-        textGraphics.putString(pos.getX(), pos.getY(), text);
+        textGraphics.putString(pos.getDiscreteX(), pos.getDiscreteY(), text);
     }
 
     public void drawCenteredString(Position pos, String text, String foreColor){
-        drawString(new Position(pos.getX()-(text.length()/2), pos.getY()), text, foreColor);
+        drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor);
     }
 
     public void drawString(Position pos, String text, String foreColor, String backColor) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString(foreColor));
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(backColor));
-        textGraphics.putString(pos.getX(), pos.getY(), text);
+        textGraphics.putString(pos.getDiscreteX(), pos.getDiscreteY(), text);
     }
 
     public void drawCenteredString(Position pos, String text, String foreColor, String backColor){
-        drawString(new Position(pos.getX()-(text.length()/2), pos.getY()), text, foreColor, backColor);
+        drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor, backColor);
     }
 
     public void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor) {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(backColor));
         textGraphics.fillRectangle(
-            new TerminalPosition(leftUpperCorner.getX(),leftUpperCorner.getY()),
-            new TerminalSize(size.getX(), size.getY()),
+            new TerminalPosition(leftUpperCorner.getDiscreteX(),leftUpperCorner.getDiscreteY()),
+            new TerminalSize(size.getDiscreteX(), size.getDiscreteY()),
             fill);
     }
 
-    public KeyStroke readInput() throws IOException {
-        return screen.readInput();
+    public ArenaController.COMMAND readInput() throws IOException {
+        KeyStroke key = screen.pollInput();
+        if (key != null) {
+            KeyType keyType = key.getKeyType();
+            if (keyType == KeyType.ArrowLeft) return ArenaController.COMMAND.LEFT;
+            if (keyType == KeyType.ArrowRight) return ArenaController.COMMAND.RIGHT;
+            if (keyType == KeyType.EOF) return ArenaController.COMMAND.EOF;
+        }
+        return ArenaController.COMMAND.NONE;
     }
 }
 

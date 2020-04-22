@@ -17,7 +17,8 @@ public class ArenaModel {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBar(new Position(width/2, height-8));
+        playerBar = new PlayerBar(new Position(width/2., height-8));
+        ball = new Ball(new Position(width/2., height-9));
 
     }
 
@@ -33,13 +34,28 @@ public class ArenaModel {
         return playerBar;
     }
 
+    public Ball getBall() {
+        return ball;
+    }
+
+    public void moveBall(Position position) {
+        if (canMoveBall(position)) {
+            ball.setPosition(position);
+        }
+    }
+
+    private boolean canMoveBall(Position position) {
+        return position.getDiscreteX() > 0 && position.getDiscreteX() < width
+                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height;
+    }
+
     public void movePlayerBar(Position position){
-        if (canMove(position)){
+        if (canMovePlayerBar(position)){
             playerBar.setPosition(position);
         }
     }
 
-    public boolean canMove(Position position){
-        return position.getX() > 3 && position.getX() < width - 3;
+    private boolean canMovePlayerBar(Position position){
+        return position.getDiscreteX() > 3 && position.getDiscreteX() < width - 3;
     }
 }
