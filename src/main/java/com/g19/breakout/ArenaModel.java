@@ -38,13 +38,24 @@ public class ArenaModel {
         return ball;
     }
 
+    public void moveBall(Position position) {
+        if (canMoveBall(position)) {
+            ball.setPosition(position);
+        }
+    }
+
+    private boolean canMoveBall(Position position) {
+        return position.getDiscreteX() > 0 && position.getDiscreteX() < width
+                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height;
+    }
+
     public void movePlayerBar(Position position){
-        if (canMove(position)){
+        if (canMovePlayerBar(position)){
             playerBar.setPosition(position);
         }
     }
 
-    public boolean canMove(Position position){
-        return position.getX() > 3 && position.getX() < width - 3;
+    private boolean canMovePlayerBar(Position position){
+        return position.getDiscreteX() > 3 && position.getDiscreteX() < width - 3;
     }
 }

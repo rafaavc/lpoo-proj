@@ -6,8 +6,8 @@ import com.g19.breakout.elements.Position;
 import java.io.IOException;
 
 public class ArenaController {
-    private ArenaModel arena;
-    private ArenaView view;
+    private final ArenaModel arena;
+    private final ArenaView view;
     private Chronometer chrono;
 
     public enum COMMAND {NONE, EOF, RIGHT, LEFT}
@@ -28,10 +28,9 @@ public class ArenaController {
 
     private void update() {
         int elapsedTime = (int) chrono.getElapsedTime();
-        arena.getBall().setPosition(
-            arena.getBall().getDirection()
-                .getNextPosition(arena.getBall().getPosition(), arena.getBall().getVelocity()*elapsedTime/1000)
-        );
+        Position nextBallPosition = arena.getBall().getDirection()
+            .getNextPosition(arena.getBall().getPosition(), arena.getBall().getVelocity()*elapsedTime/1000);
+        arena.moveBall(nextBallPosition);
     }
 
     private boolean getNextCommand(ArenaView view) throws IOException {
