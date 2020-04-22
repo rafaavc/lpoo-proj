@@ -1,8 +1,6 @@
 package com.g19.breakout.elements;
 
-import java.util.Objects;
-
-public class Direction extends XYValues {
+public class Direction extends Dimensions {
     Direction(double x, double y) {
         super(x, y);
         double module = Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)) * 1000)/1000.;

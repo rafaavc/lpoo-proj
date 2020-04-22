@@ -1,8 +1,6 @@
 package com.g19.breakout.elements;
 
-import java.util.Objects;
-
-public class Position extends XYValues {
+public class Position extends Dimensions {
     public Position(double x, double y) {
         super(x, y);
     }

@@ -2,10 +2,10 @@ package com.g19.breakout.elements;
 
 import java.util.Objects;
 
-public class XYValues {
+public class Dimensions {
     protected double x, y;
 
-    public XYValues(double x, double y) {
+    public Dimensions(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -30,9 +30,9 @@ public class XYValues {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        XYValues xyValues = (XYValues) o;
-        return Double.compare(xyValues.x, x) == 0 &&
-                Double.compare(xyValues.y, y) == 0;
+        Dimensions dimensions = (Dimensions) o;
+        return Double.compare(dimensions.x, x) == 0 &&
+                Double.compare(dimensions.y, y) == 0;
     }
 
     @Override
