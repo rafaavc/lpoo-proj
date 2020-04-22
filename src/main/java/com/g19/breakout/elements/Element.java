@@ -1,6 +1,6 @@
 package com.g19.breakout.elements;
 
-abstract class Element {
+public abstract class Element {
     Position position;
     Dimensions dimensions;
     String stringRep, color;

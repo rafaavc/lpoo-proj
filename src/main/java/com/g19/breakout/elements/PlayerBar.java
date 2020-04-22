@@ -1,8 +1,8 @@
 package com.g19.breakout.elements;
 
 public class PlayerBar extends Element {
-    public PlayerBar(Position position, String stringRep, String color) {
-        super(position, stringRep, color);
+    public PlayerBar(Position position, String color) {
+        super(position, "██████", color);
     }
 
     public void moveRight() {

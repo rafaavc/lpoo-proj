@@ -2,8 +2,6 @@ package com.g19.breakout;
 
 import com.g19.breakout.elements.*;
 import com.g19.breakout.graphics.Graphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 
 import java.io.IOException;
 
@@ -29,11 +27,11 @@ public class ArenaView {
 
 
     void drawBall(Ball ball) {
-        graphics.drawCenteredString(ball.getPosition(), ball.getStringRep(), ball.getColor());
+        graphics.drawElement(ball);
     }
 
     void drawPlayerBar(PlayerBar playerBar) {
-        graphics.drawCenteredString(playerBar.getPosition(), playerBar.getStringRep(), playerBar.getColor());
+        graphics.drawElement(playerBar);
     }
 
     void drawBackground(ArenaModel arena) {

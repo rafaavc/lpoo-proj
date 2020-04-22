@@ -1,6 +1,7 @@
 package com.g19.breakout.graphics;
 
 import com.g19.breakout.ArenaController;
+import com.g19.breakout.elements.Element;
 import com.g19.breakout.elements.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -58,6 +59,10 @@ public class LanternaAdapter implements Graphics {
 
     public void drawCenteredString(Position pos, String text, String foreColor, String backColor){
         drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor, backColor);
+    }
+
+    public void drawElement(Element element) {
+        drawCenteredString(element.getPosition(), element.getStringRep(), element.getColor());
     }
 
     public void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor) {

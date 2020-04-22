@@ -16,8 +16,8 @@ public class ArenaModel {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBar(new Position(width/2., height-8), "██████", "#ffffff");
-        ball = new Ball(new Position(width/2., height-9), "██", "#0000ff");
+        playerBar = new PlayerBar(new Position(width/2., height-8), "#ffffff");
+        ball = new Ball(new Position(width/2., height-9), "#0000ff");
 
     }
 
@@ -37,12 +37,8 @@ public class ArenaModel {
         return ball;
     }
 
-    public boolean canMoveBall(Position position) {
-        return position.getDiscreteX() > 0 && position.getDiscreteX() < width
-                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height;
-    }
-
-    public boolean canMovePlayerBar(Position position){
-        return position.getDiscreteX() > 3 && position.getDiscreteX() < width - 3;
+    public boolean canMoveElement(Position position, Dimensions dimension) {
+        return position.getDiscreteX() >= dimension.getDiscreteX()/2 && position.getDiscreteX() <= width - dimension.getDiscreteX()/2
+                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height - dimension.getDiscreteY()/2;
     }
 }
