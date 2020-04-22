@@ -10,9 +10,7 @@ import java.io.IOException;
 
 public class ArenaView {
     private final Graphics graphics;
-    //private TerminalScreen screen;
     private final String backgroundColor = "#000000";
-    private final String playerBarColor = "#FFFFFF";
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
         this.graphics = graphics;
@@ -29,19 +27,24 @@ public class ArenaView {
         graphics.stopDrawing();
     }
 
-    private void drawBall(Ball ball) {
-        graphics.drawCenteredString(ball.getPosition(), "██", "#0000ff");
+
+    void drawBall(Ball ball) {
+        graphics.drawCenteredString(ball.getPosition(), ball.getStringRep(), ball.getColor());
     }
 
-    private void drawPlayerBar(PlayerBar playerBar) {
-        graphics.drawCenteredString(playerBar.getPosition(), "██████", playerBarColor);
+    void drawPlayerBar(PlayerBar playerBar) {
+        graphics.drawCenteredString(playerBar.getPosition(), playerBar.getStringRep(), playerBar.getColor());
     }
 
-    private void drawBackground(ArenaModel arena) {
-        graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', backgroundColor);
+    void drawBackground(ArenaModel arena) {
+        graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
     public ArenaController.COMMAND readInput() throws IOException {
         return graphics.readInput();
+    }
+
+    public String getBGColor() {
+        return backgroundColor;
     }
 }

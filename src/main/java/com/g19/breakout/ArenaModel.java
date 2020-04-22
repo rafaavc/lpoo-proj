@@ -5,8 +5,7 @@ import com.g19.breakout.elements.*;
 import java.util.List;
 
 public class ArenaModel {
-    private int height;
-    private int width;
+    private int height, width;
 
     private PlayerBar playerBar;
     private Ball ball;
@@ -38,24 +37,12 @@ public class ArenaModel {
         return ball;
     }
 
-    public void moveBall(Position position) {
-        if (canMoveBall(position)) {
-            ball.setPosition(position);
-        }
-    }
-
-    private boolean canMoveBall(Position position) {
+    public boolean canMoveBall(Position position) {
         return position.getDiscreteX() > 0 && position.getDiscreteX() < width
                 && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height;
     }
 
-    public void movePlayerBar(Position position){
-        if (canMovePlayerBar(position)){
-            playerBar.setPosition(position);
-        }
-    }
-
-    private boolean canMovePlayerBar(Position position){
+    public boolean canMovePlayerBar(Position position){
         return position.getDiscreteX() > 3 && position.getDiscreteX() < width - 3;
     }
 }
