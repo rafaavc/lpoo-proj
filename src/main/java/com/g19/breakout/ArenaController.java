@@ -1,17 +1,14 @@
 package com.g19.breakout;
 
-import com.g19.breakout.elements.PlayerBar;
+import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
-import java.nio.file.LinkPermission;
 
 public class ArenaController {
     private ArenaModel arena;
     private ArenaView view;
+    private Chronometer chrono;
 
     public enum COMMAND {NONE, EOF, RIGHT, LEFT}
 
@@ -21,6 +18,7 @@ public class ArenaController {
     }
 
     public void start() throws IOException {
+        chrono = new Chronometer();
         do {
             view.draw(arena);
             update();
@@ -29,9 +27,10 @@ public class ArenaController {
     }
 
     private void update() {
+        int elapsedTime = (int) chrono.getElapsedTime();
         arena.getBall().setPosition(
             arena.getBall().getDirection()
-                .getNextPosition(arena.getBall().getPosition(), 0.3)
+                .getNextPosition(arena.getBall().getPosition(), arena.getBall().getVelocity()*elapsedTime/1000)
         );
     }
 
