@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class ArenaView {
     private final Graphics graphics;
-    //private TerminalScreen screen;
     private final String backgroundColor = "#000000";
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
@@ -18,14 +17,14 @@ public class ArenaView {
         graphics.init(arena.getWidth(), arena.getHeight());
     }
 
-    public void draw(ArenaView view, ArenaModel arena) throws IOException {
-        view.graphics.startDrawing();
+    public void draw(ArenaModel arena) throws IOException {
+        graphics.startDrawing();
 
-        view.drawBackground(arena);
-        view.drawPlayerBar(arena.getPlayerBar());
-        view.drawBall(arena.getBall());
+        drawBackground(arena);
+        drawPlayerBar(arena.getPlayerBar());
+        drawBall(arena.getBall());
 
-        view.graphics.stopDrawing();
+        graphics.stopDrawing();
     }
 
 

@@ -17,13 +17,13 @@ public class ArenaController {
         this.view = view;
     }
 
-    public void start(ArenaController controller) throws IOException {
+    public void start() throws IOException {
         Chronometer chrono = new Chronometer();
         do {
-            view.draw(view, arena);
-            controller.update(chrono);
+            view.draw(arena);
+            update(chrono);
         }
-        while ( controller.getNextCommand(view) );
+        while ( getNextCommand(view) );
     }
 
     void update(Chronometer chrono) {
