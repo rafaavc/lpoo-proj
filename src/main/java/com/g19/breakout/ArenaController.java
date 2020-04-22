@@ -21,13 +21,22 @@ public class ArenaController {
     }
 
     public void start() throws IOException {
-        do { view.draw(); }
+        do {
+            view.draw(arena);
+            update();
+        }
         while ( this.getNextCommand(view) );
     }
 
-    public boolean getNextCommand(ArenaView view) throws IOException {
-        COMMAND cmd = view.readInput();
+    private void update() {
+        arena.getBall().setPosition(
+            arena.getBall().getDirection()
+                .getNextPosition(arena.getBall().getPosition(), 0.3)
+        );
+    }
 
+    private boolean getNextCommand(ArenaView view) throws IOException {
+        COMMAND cmd = view.readInput();
         if (cmd == COMMAND.EOF) return false;
 
         Position playerBarPosition = arena.getPlayerBar().getPosition();

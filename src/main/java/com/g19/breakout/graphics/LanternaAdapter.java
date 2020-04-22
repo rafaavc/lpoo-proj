@@ -67,7 +67,7 @@ public class LanternaAdapter implements Graphics {
     }
 
     public KeyStroke readInput() throws IOException {
-        return screen.readInput();
+        return screen.pollInput();
     }
 }
 

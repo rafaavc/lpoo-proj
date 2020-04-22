@@ -17,7 +17,8 @@ public class ArenaModel {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBar(new Position(width/2, height-8));
+        playerBar = new PlayerBar(new Position(width/2., height-8));
+        ball = new Ball(new Position(width/2., height-9));
 
     }
 
@@ -31,6 +32,10 @@ public class ArenaModel {
 
     public PlayerBar getPlayerBar() {
         return playerBar;
+    }
+
+    public Ball getBall() {
+        return ball;
     }
 
     public void movePlayerBar(Position position){
