@@ -1,5 +1,6 @@
 package com.g19.breakout;
 
+import com.g19.breakout.elements.Ball;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
 
@@ -28,8 +29,13 @@ public class ArenaController {
 
     private void update() {
         int elapsedTime = (int) chrono.getElapsedTime();
-        Position nextBallPosition = arena.getBall().getDirection()
-            .getNextPosition(arena.getBall().getPosition(), arena.getBall().getVelocity()*elapsedTime/1000);
+        Ball ball = arena.getBall();
+        double velocity = ball.getVelocity()*elapsedTime/1000;
+
+        Position nextBallPosition = ball.getDirection().getNextPosition(
+                ball.getPosition(),
+                velocity);
+
         arena.moveBall(nextBallPosition);
     }
 
