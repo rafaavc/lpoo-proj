@@ -1,4 +1,4 @@
-package com.g19.breakout;
+package com.g19.breakout.model;
 
 import com.g19.breakout.elements.*;
 
@@ -7,17 +7,17 @@ import java.util.List;
 public class ArenaModel {
     private int height, width;
 
-    private PlayerBar playerBar;
-    private Ball ball;
-    private List<Tile> tiles;
+    private PlayerBarModel playerBar;
+    private BallModel ball;
+    private List<TileModel> tiles;
 
 
     public ArenaModel(int width, int height) {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBar(new Position(width/2., height-8), "#ffffff");
-        ball = new Ball(new Position(width/2., height-9), "#0000ff");
+        playerBar = new PlayerBarModel(new Position(width/2., height-8), "#ffffff");
+        ball = new BallModel(new Position(width/2., height-9), "#0000ff");
 
     }
 
@@ -29,11 +29,11 @@ public class ArenaModel {
         return width;
     }
 
-    public PlayerBar getPlayerBar() {
+    public PlayerBarModel getPlayerBar() {
         return playerBar;
     }
 
-    public Ball getBall() {
+    public BallModel getBall() {
         return ball;
     }
 

@@ -1,10 +1,12 @@
-package com.g19.breakout;
+package com.g19.breakout.view;
 
-import com.g19.breakout.elements.Ball;
-import com.g19.breakout.elements.PlayerBar;
+import com.g19.breakout.model.BallModel;
+import com.g19.breakout.model.PlayerBarModel;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.graphics.Graphics;
 import com.g19.breakout.graphics.LanternaAdapter;
+import com.g19.breakout.model.ArenaModel;
+import com.g19.breakout.view.ArenaView;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -49,7 +51,7 @@ public class ArenaViewTests {
 
     @Test
     public void testDrawBall() {
-        Ball ball = Mockito.mock(Ball.class);
+        BallModel ball = Mockito.mock(BallModel.class);
 
         view.drawBall(ball);
         verify(graphics, times(1)).drawElement(ball);
@@ -57,7 +59,7 @@ public class ArenaViewTests {
 
     @Test
     public void testDrawPlayerBar() {
-        PlayerBar playerBar = Mockito.mock(PlayerBar.class);
+        PlayerBarModel playerBar = Mockito.mock(PlayerBarModel.class);
 
         view.drawPlayerBar(playerBar);
         verify(graphics, times(1)).drawElement(playerBar);

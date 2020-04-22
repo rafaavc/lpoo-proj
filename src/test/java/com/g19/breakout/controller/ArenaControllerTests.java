@@ -1,6 +1,10 @@
-package com.g19.breakout;
+package com.g19.breakout.controller;
 
 import com.g19.breakout.elements.*;
+import com.g19.breakout.model.ArenaModel;
+import com.g19.breakout.model.BallModel;
+import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.view.ArenaView;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -8,7 +12,6 @@ import org.mockito.Mockito;
 import java.io.IOException;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -41,7 +44,7 @@ public class ArenaControllerTests {
         Chronometer crono = Mockito.mock(Chronometer.class);
         Mockito.when(crono.getElapsedTime()).thenReturn((long)1000);
 
-        Ball ball = Mockito.mock(Ball.class);
+        BallModel ball = Mockito.mock(BallModel.class);
         Mockito.when(arena.getBall()).thenReturn(ball);
 
         Mockito.when(ball.getVelocity()).thenReturn(1.);
@@ -59,7 +62,7 @@ public class ArenaControllerTests {
         Mockito.when(view.readInput()).thenReturn(ArenaController.COMMAND.LEFT);
 
         Position pos = Mockito.mock(Position.class);
-        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBar(pos, "#ffffff"));
+        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBarModel(pos, "#ffffff"));
 
         controller.getNextCommand(view);
         verify(view, times(1)).readInput();
@@ -68,9 +71,10 @@ public class ArenaControllerTests {
 
     @Test
     public void testMoveBall() {
-        Mockito.when(arena.canMoveElement(anyObject(), anyObject())).thenReturn(true);
+        Mockito.when(arena.canMoveElement(any(Position.class), any(Dimensions.class))).thenReturn(true);
 
-        Ball ball = Mockito.mock(Ball.class);
+        BallModel ball = Mockito.mock(BallModel.class);
+        Mockito.when(ball.getDimensions()).thenReturn(new Dimensions(2, 1));
         Mockito.when(arena.getBall()).thenReturn(ball);
 
         controller.moveBall(new Position(30, 30));
@@ -79,9 +83,10 @@ public class ArenaControllerTests {
 
     @Test
     public void testMovePlayerBar() {
-        Mockito.when(arena.canMoveElement(anyObject(), anyObject())).thenReturn(true);
+        Mockito.when(arena.canMoveElement(any(Position.class), any(Dimensions.class))).thenReturn(true);
 
-        PlayerBar pb = Mockito.mock(PlayerBar.class);
+        PlayerBarModel pb = Mockito.mock(PlayerBarModel.class);
+        Mockito.when(pb.getDimensions()).thenReturn(new Dimensions(6, 1));
         Mockito.when(arena.getPlayerBar()).thenReturn(pb);
 
         controller.movePlayerBar(new Position(30, 30));

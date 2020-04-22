@@ -1,7 +1,9 @@
-package com.g19.breakout.elements;
+package com.g19.breakout.model;
 
-public class PlayerBar extends Element {
-    public PlayerBar(Position position, String color) {
+import com.g19.breakout.elements.Position;
+
+public class PlayerBarModel extends Element {
+    public PlayerBarModel(Position position, String color) {
         super(position, "██████", color);
     }
 

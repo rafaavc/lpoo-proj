@@ -1,15 +1,17 @@
-package com.g19.breakout.elements;
+package com.g19.breakout.model;
 
+import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.PlayerBarModel;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
-public class PlayerBarTests {
+public class PlayerBarModelTests {
 
     @Test
     public void playerBarConstructor(){
-        PlayerBar playerBar = new PlayerBar(new Position(10, 5), "#ffffff");
+        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 5), "#ffffff");
 
         assertEquals(10, playerBar.getPosition().getDiscreteX());
         assertEquals(5, playerBar.getPosition().getDiscreteY());
@@ -17,7 +19,7 @@ public class PlayerBarTests {
 
     @Test
     public void playerBarMovementRight(){
-        PlayerBar playerBar = new PlayerBar(new Position(10, 10), "#ffffff");
+        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 10), "#ffffff");
 
         Position positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.right()).thenReturn(new Position(11, 10));
@@ -31,7 +33,7 @@ public class PlayerBarTests {
 
     @Test
     public void playerBarMovementLeft(){
-        PlayerBar playerBar = new PlayerBar(new Position(10, 10), "#ffffff");
+        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 10), "#ffffff");
 
         Position positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.right()).thenReturn(new Position(9, 10));

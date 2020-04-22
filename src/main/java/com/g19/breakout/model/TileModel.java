@@ -1,9 +1,11 @@
-package com.g19.breakout.elements;
+package com.g19.breakout.model;
 
-public class Tile extends Element {
+import com.g19.breakout.elements.Position;
+
+public class TileModel extends Element {
     int life;
 
-    public Tile(Position position, String stringRep, String color, int life) {
+    public TileModel(Position position, String stringRep, String color, int life) {
         super(position, stringRep, color);
         this.life = life;
     }

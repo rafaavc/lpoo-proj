@@ -1,11 +1,14 @@
-package com.g19.breakout.elements;
+package com.g19.breakout.model;
+
+import com.g19.breakout.elements.Dimensions;
+import com.g19.breakout.elements.Position;
 
 public abstract class Element {
     Position position;
     Dimensions dimensions;
     String stringRep, color;
 
-    Element(Position position, String stringRep, String color) {
+    public Element(Position position, String stringRep, String color) {
         this.position = position;
         this.stringRep = stringRep;
         this.color = color;

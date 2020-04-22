@@ -1,8 +1,10 @@
-package com.g19.breakout;
+package com.g19.breakout.controller;
 
-import com.g19.breakout.elements.Ball;
+import com.g19.breakout.model.ArenaModel;
+import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.view.ArenaView;
 
 import java.io.IOException;
 
@@ -26,10 +28,10 @@ public class ArenaController {
         while ( getNextCommand(view) );
     }
 
-    void update(Chronometer chrono) {
+    public void update(Chronometer chrono) {
         int elapsedTime = (int) chrono.getElapsedTime();
 
-        Ball ball = arena.getBall();
+        BallModel ball = arena.getBall();
         double velocity = ball.getVelocity()*elapsedTime/1000;
 
         Position nextBallPosition = ball.getDirection().getNextPosition(
@@ -39,7 +41,7 @@ public class ArenaController {
         moveBall(nextBallPosition);
     }
 
-    boolean getNextCommand(ArenaView view) throws IOException {
+    public boolean getNextCommand(ArenaView view) throws IOException {
         COMMAND cmd = view.readInput();
         if (cmd == COMMAND.EOF) return false;
 

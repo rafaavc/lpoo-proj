@@ -1,8 +1,7 @@
-package com.g19.breakout;
+package com.g19.breakout.model;
 
-import com.g19.breakout.elements.PlayerBar;
 import com.g19.breakout.elements.Position;
-import com.g19.breakout.elements.Tile;
+import com.g19.breakout.model.ArenaModel;
 import org.junit.Before;
 import org.junit.Test;
 

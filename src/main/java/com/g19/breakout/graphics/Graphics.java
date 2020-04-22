@@ -1,8 +1,8 @@
 package com.g19.breakout.graphics;
 
-import com.g19.breakout.ArenaController;
+import com.g19.breakout.controller.ArenaController;
 import com.g19.breakout.elements.Position;
-import com.g19.breakout.elements.Element;
+import com.g19.breakout.model.Element;
 import java.io.IOException;
 
 public interface Graphics {

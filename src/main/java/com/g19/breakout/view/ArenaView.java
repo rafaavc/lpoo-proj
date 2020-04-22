@@ -1,7 +1,11 @@
-package com.g19.breakout;
+package com.g19.breakout.view;
 
+import com.g19.breakout.controller.ArenaController;
+import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.elements.*;
 import com.g19.breakout.graphics.Graphics;
+import com.g19.breakout.model.BallModel;
+import com.g19.breakout.model.PlayerBarModel;
 
 import java.io.IOException;
 
@@ -26,15 +30,15 @@ public class ArenaView {
     }
 
 
-    void drawBall(Ball ball) {
+    public void drawBall(BallModel ball) {
         graphics.drawElement(ball);
     }
 
-    void drawPlayerBar(PlayerBar playerBar) {
+    public void drawPlayerBar(PlayerBarModel playerBar) {
         graphics.drawElement(playerBar);
     }
 
-    void drawBackground(ArenaModel arena) {
+    public void drawBackground(ArenaModel arena) {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
