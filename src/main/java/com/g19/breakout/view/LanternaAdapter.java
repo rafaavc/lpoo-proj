@@ -73,7 +73,6 @@ public class LanternaAdapter implements Graphics {
             fill);
     }
 
-<<<<<<< HEAD
     public ArenaView.Keys readInput() throws IOException {
         KeyStroke key = screen.pollInput();
         if (key != null) {
@@ -83,17 +82,6 @@ public class LanternaAdapter implements Graphics {
             if (keyType == KeyType.EOF) return ArenaView.Keys.EOF;
         }
         return ArenaView.Keys.NONE;
-=======
-    public ArenaView.COMMAND readInput() throws IOException {
-        KeyStroke key = screen.pollInput();
-        if (key != null) {
-            KeyType keyType = key.getKeyType();
-            if (keyType == KeyType.ArrowLeft) return ArenaView.COMMAND.LEFT;
-            if (keyType == KeyType.ArrowRight) return ArenaView.COMMAND.RIGHT;
-            if (keyType == KeyType.EOF) return ArenaView.COMMAND.EXIT;
-        }
-        return ArenaView.COMMAND.NONE;
->>>>>>> master
     }
 }
 

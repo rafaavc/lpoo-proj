@@ -7,7 +7,6 @@ import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.view.ArenaView;
-import com.g19.breakout.view.ArenaView.COMMAND;
 
 import java.io.IOException;
 import java.util.List;

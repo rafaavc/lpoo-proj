@@ -4,7 +4,6 @@ import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.view.ArenaView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Transformer {
@@ -57,7 +56,7 @@ public class Transformer {
             case ARROWRIGHT:
                 return new CommandRight();
             case EOF:
-                return new CommandTerminate();
+                return new CommandEXIT();
             case NONE:
             default:
                 return new CommandNone();

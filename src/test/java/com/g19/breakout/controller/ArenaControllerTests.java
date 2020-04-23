@@ -1,11 +1,6 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.ball.BallHit;
-<<<<<<< HEAD
-import com.g19.breakout.controller.ball.BallHitTop;
-=======
-import com.g19.breakout.controller.ball.BallHitNothing;
->>>>>>> master
+import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.*;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
