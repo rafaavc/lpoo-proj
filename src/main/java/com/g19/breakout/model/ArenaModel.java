@@ -47,7 +47,7 @@ public class ArenaModel {
             if (checkHitPlayerBarRight(position)) return new BallHitPlayerBarRight(ball);
             if (checkHitPlayerBarLeft(position)) return new BallHitPlayerBarLeft(ball);
         }
-        if (position.getDiscreteX() == dimensions.getDiscreteY()/2 || position.getDiscreteX() == width - dimensions.getDiscreteY()/2) return new BallHitSide(ball);
+        if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 || position.getDiscreteX() == width - dimensions.getDiscreteX()/2. + 1) return new BallHitSide(ball);
         return new BallHitNothing(ball);
     }
 
