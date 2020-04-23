@@ -8,8 +8,8 @@ import java.util.List;
 public class ArenaModel {
     private int height, width;
 
-    private PlayerBarModel playerBar;
-    private BallModel ball;
+    private final PlayerBarModel playerBar;
+    private final BallModel ball;
     private List<TileModel> tiles;
 
 
@@ -56,9 +56,44 @@ public class ArenaModel {
             if (checkHitPlayerBarLeft(position)) hits.add(BallModel.HIT.PLAYERBARLEFT);
         }
 
+        TileModel tile = checkHitTile(position);
+        if (tile != null) {
+            hits.add(checkTopOrSide(position, tile));
+        }
+
         if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 || position.getDiscreteX() == width - dimensions.getDiscreteX()/2. + 1) hits.add(BallModel.HIT.SIDE);
         if (hits.size() == 0) hits.add(BallModel.HIT.NOTHING);
         return hits;
+    }
+
+    private BallModel.HIT checkTopOrSide(Position pos, TileModel tile) {
+        List<BallModel.HIT> res = new ArrayList<>();
+        Position prevPos = ball.getPosition();
+        Position tilePos = tile.getPosition();
+        int ballHWidth = ball.getDimensions().getDiscreteX()/2;
+        int tileHWidth = tile.getDimensions().getDiscreteX()/2;
+
+        if (prevPos.getDiscreteX() + ballHWidth == tilePos.getDiscreteX() - tileHWidth || prevPos.getDiscreteX() - ballHWidth == tilePos.getDiscreteX() + tileHWidth) return BallModel.HIT.SIDE;
+        return BallModel.HIT.TOP;
+    }
+
+    private TileModel checkHitTile(Position position) {
+        for (TileModel tile : tiles) {
+            Position tilePos = tile.getPosition();
+            int tileHeight = tile.getDimensions().getDiscreteY();
+            int ballHeight = ball.getDimensions().getDiscreteY();
+
+            boolean isInsideY = position.getY() + ballHeight > tilePos.getY() && position.getY() < tilePos.getY() + tileHeight;
+
+            if (isInsideY) {
+                int ballHWidth = ball.getDimensions().getDiscreteX()/2;
+                int tileHWidth = tile.getDimensions().getDiscreteX()/2;
+                if (position.getDiscreteX() + ballHWidth > tilePos.getDiscreteX() - tileHWidth && position.getDiscreteX() - ballHWidth < tilePos.getDiscreteX() + tileHWidth) {
+                    return tile;
+                }
+            }
+        }
+        return null;
     }
 
     private boolean checkHitPlayerBar(Position position) {
