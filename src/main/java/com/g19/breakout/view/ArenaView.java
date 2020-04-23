@@ -13,9 +13,10 @@ public class ArenaView {
     private final Graphics graphics;
     private final String backgroundColor = "#000000";
 
+    public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE};
+
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
         this.graphics = graphics;
-        graphics.init(arena.getWidth(), arena.getHeight());
     }
 
     public void draw(ArenaModel arena) throws IOException {
@@ -41,7 +42,7 @@ public class ArenaView {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
-    public Command readInput() throws IOException {
+    public ArenaView.Keys readInput() throws IOException {
         return graphics.readInput();
     }
 

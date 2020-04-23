@@ -19,8 +19,8 @@ public class LanternaAdapter implements Graphics {
     private TerminalScreen screen;
     private TextGraphics textGraphics;
 
-    public void init(int terminalWith, int terminalHeight) throws IOException {
-        TerminalSize terminalSize = new TerminalSize(terminalWith, terminalHeight);
+    public LanternaAdapter(int terminalWidth, int terminalHeight) throws IOException {
+        TerminalSize terminalSize = new TerminalSize(terminalWidth, terminalHeight);
 
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
         terminalFactory.setInitialTerminalSize(terminalSize);
@@ -73,15 +73,15 @@ public class LanternaAdapter implements Graphics {
             fill);
     }
 
-    public Command readInput() throws IOException {
+    public ArenaView.Keys readInput() throws IOException {
         KeyStroke key = screen.pollInput();
         if (key != null) {
             KeyType keyType = key.getKeyType();
-            if (keyType == KeyType.ArrowLeft) return new CommandLeft();
-            if (keyType == KeyType.ArrowRight) return new CommandRight();
-            if (keyType == KeyType.EOF) return new CommandEOF();
+            if (keyType == KeyType.ArrowLeft) return ArenaView.Keys.ARROWLEFT;
+            if (keyType == KeyType.ArrowRight) return ArenaView.Keys.ARROWRIGHT;
+            if (keyType == KeyType.EOF) return ArenaView.Keys.EOF;
         }
-        return new CommandNone();
+        return ArenaView.Keys.NONE;
     }
 }
 

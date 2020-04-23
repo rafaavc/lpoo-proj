@@ -9,6 +9,7 @@ import com.g19.breakout.elements.Position;
 import com.g19.breakout.view.ArenaView;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ArenaController {
     private final ArenaModel arena;
@@ -49,17 +50,25 @@ public class ArenaController {
 
     private void updateBallDirection(BallModel ball, Position nextBallPosition){
 
-        BallHit ballHit = arena.checkCollisions(nextBallPosition, ball.getDimensions());
+        List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
+
+        BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball);
 
         ballHit.updateDirection();
     }
 
+
+
     public boolean getNextCommand(ArenaView view) throws IOException {
-        Command cmd = view.readInput();
+        ArenaView.Keys key = view.readInput();
+        Command cmd = new Transformer().toCommand(key);
+
         Position playerBarPosition = arena.getPlayerBar().getPosition();
 
         return cmd.execute(this, playerBarPosition);
     }
+
+
 
     public void moveBall(Position position) {
         if (arena.canMoveElement(position, arena.getBall().getDimensions())) {

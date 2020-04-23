@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Game {
     public static void main(String[] args) throws IOException {
         ArenaModel arena = new ArenaModel(120, 40);
-        ArenaView view = new ArenaView(arena, new LanternaAdapter());
+        ArenaView view = new ArenaView(arena, new LanternaAdapter(arena.getWidth(), arena.getHeight()));
         ArenaController controller = new ArenaController(arena, view);
         controller.start();
     }

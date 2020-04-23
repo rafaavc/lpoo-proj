@@ -6,7 +6,7 @@ import com.g19.breakout.elements.Position;
 public class BallModel extends Element {
     private Direction direction;
     private double velocity;
-    public enum HIT {TOP, BOTTOM, LEFT, RIGHT, PLAYERBARMIDDLE, PLAYERBARLEFT, PLAYERBARRIGHT, TILE, NOTHING};
+    public enum HIT {TOP, BOTTOM, SIDE, PLAYERBARMIDDLE, PLAYERBARLEFT, PLAYERBARRIGHT, TILE, NOTHING};
 
     public BallModel(Position position, String color) {
         super(position, "██", color);
