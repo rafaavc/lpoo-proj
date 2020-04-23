@@ -1,8 +1,8 @@
-package com.g19.breakout.view;
+package com.g19.breakout.view.graphics;
 
-import com.g19.breakout.controller.*;
-import com.g19.breakout.model.Element;
+import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.view.ArenaView;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -61,8 +61,8 @@ public class LanternaAdapter implements Graphics {
         drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor, backColor);
     }
 
-    public void drawElement(Element element) {
-        drawCenteredString(element.getPosition(), element.getStringRep(), element.getColor());
+    public void drawElement(ElementModel element, String stringRep, String color) {
+        drawCenteredString(element.getPosition(), stringRep, color);
     }
 
     public void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor) {

@@ -1,42 +1,37 @@
 package com.g19.breakout.view;
 
-import com.g19.breakout.controller.Command;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.elements.*;
-import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.view.graphics.Graphics;
 
 import java.io.IOException;
 
 
 public class ArenaView {
     private final Graphics graphics;
-    private final String backgroundColor = "#000000";
+    private String backgroundColor = "#000000";
+    private final ArenaModel arena;
+    private final BallView ballView;
+    private final PlayerBarView playerBarView;
+
 
     public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE};
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
         this.graphics = graphics;
+        this.arena = arena;
+        this.ballView = new BallView(arena.getBall(), graphics, "#0000ff", '█');
+        this.playerBarView = new PlayerBarView(arena.getPlayerBar(), graphics, "#ffffff", '█');
     }
 
-    public void draw(ArenaModel arena) throws IOException {
+    public void draw() throws IOException {
         graphics.startDrawing();
 
-        /* inject the class iteself into these method to test the following calls? */
         drawBackground(arena);
-        drawPlayerBar(arena.getPlayerBar());
-        drawBall(arena.getBall());
+        playerBarView.draw();
+        ballView.draw();
 
         graphics.stopDrawing();
-    }
-
-
-    public void drawBall(BallModel ball) {
-        graphics.drawElement(ball);
-    }
-
-    public void drawPlayerBar(PlayerBarModel playerBar) {
-        graphics.drawElement(playerBar);
     }
 
     public void drawBackground(ArenaModel arena) {

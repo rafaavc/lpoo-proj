@@ -18,7 +18,7 @@ public class ArenaModel {
         this.width = width;
 
         playerBar = new PlayerBarModel(new Position(width/2., height-8), "#ffffff");
-        ball = new BallModel(new Position(width/2., height-9), "#0000ff");
+        ball = new BallModel(new Position(width/2., height-9), 20);
 
     }
 

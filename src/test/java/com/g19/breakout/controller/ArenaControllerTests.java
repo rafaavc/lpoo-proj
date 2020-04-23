@@ -1,12 +1,15 @@
 package com.g19.breakout.controller;
 
+<<<<<<< HEAD
 import com.g19.breakout.controller.ball.*;
+=======
+import com.g19.breakout.controller.ball.BallHitNothing;
+>>>>>>> master
 import com.g19.breakout.elements.*;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerBarModel;
 import com.g19.breakout.view.ArenaView;
-import com.g19.breakout.view.LanternaAdapter;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
