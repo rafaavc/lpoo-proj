@@ -49,7 +49,7 @@ public class ArenaController {
 
     private void updateBallDirection(BallModel ball, Position nextBallPosition){
 
-        BallHit ballHit = arena.checkCollisions(nextBallPosition);
+        BallHit ballHit = arena.checkCollisions(nextBallPosition, ball.getDimensions());
 
         ballHit.updateDirection();
     }

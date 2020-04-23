@@ -39,37 +39,35 @@ public class ArenaModel {
         return ball;
     }
 
-    public BallHit checkCollisions(Position position) {
+    public BallHit checkCollisions(Position position, Dimensions dimensions) {
         if (position.getDiscreteY() == -1) return new BallHitTop(ball);
-        if (position.getDiscreteY() == height) return new BallHitBottom(ball);
-        if (checkHitPlayerBarMiddle(position)) return new BallHitPlayerBarMiddle(ball);
-        if (checkHitPlayerBarRight(position)) return new BallHitPlayerBarRight(ball);
-        if (checkHitPlayerBarLeft(position)) return new BallHitPlayerBarLeft(ball);
-        if (position.getDiscreteX() == 1 || position.getDiscreteX() == width - 1) return new BallHitSide(ball);
+        if (position.getDiscreteY() == height - dimensions.getDiscreteY() + 1) return new BallHitBottom(ball);
+        if (checkHitPlayerBar(position)) {
+            if (checkHitPlayerBarMiddle(position)) return new BallHitPlayerBarMiddle(ball);
+            if (checkHitPlayerBarRight(position)) return new BallHitPlayerBarRight(ball);
+            if (checkHitPlayerBarLeft(position)) return new BallHitPlayerBarLeft(ball);
+        }
+        if (position.getDiscreteX() == dimensions.getDiscreteY()/2 || position.getDiscreteX() == width - dimensions.getDiscreteY()/2) return new BallHitSide(ball);
         return new BallHitNothing(ball);
     }
 
+    private boolean checkHitPlayerBar(Position position) {
+        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY();
+    }
+
     private boolean checkHitPlayerBarMiddle(Position position){
-        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
-                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 1 &&
+        return position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 1 &&
                 position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 1;
     }
 
     private boolean checkHitPlayerBarRight(Position position){
-        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
-                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() + 2 &&
+        return position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() + 2 &&
                 position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 3;
     }
 
     private boolean checkHitPlayerBarLeft(Position position){
-        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
-                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
+        return position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
                 position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() - 2;
-    }
-
-    private boolean checkHitScreenBorder(Position position){
-        return position.getDiscreteX() > 2 && position.getDiscreteX() < width - 2
-                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height;
     }
 
     public boolean canMoveElement(Position position, Dimensions dimension) {
