@@ -7,8 +7,10 @@ import com.g19.breakout.elements.*;
 import com.g19.breakout.graphics.Graphics;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.model.TileModel;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class ArenaView {
@@ -26,6 +28,7 @@ public class ArenaView {
         drawBackground(arena);
         drawPlayerBar(arena.getPlayerBar());
         drawBall(arena.getBall());
+        drawTiles(arena);
 
         graphics.stopDrawing();
     }
@@ -41,6 +44,13 @@ public class ArenaView {
 
     public void drawBackground(ArenaModel arena) {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
+    }
+
+    public void drawTiles(ArenaModel arena) {
+        List<TileModel> tiles = arena.getTiles();
+        for(TileModel tm : tiles) {
+            graphics.drawElement(tm);
+        }
     }
 
     public Command readInput() throws IOException {

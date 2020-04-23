@@ -1,12 +1,13 @@
 package com.g19.breakout.model;
 
+import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 
 public class TileModel extends Element {
     int life;
 
-    public TileModel(Position position, String stringRep, String color, int life) {
-        super(position, stringRep, color);
+    public TileModel(Position position, String stringRep, String color, int height, int life) {
+        super(position, stringRep, color, new Dimensions(stringRep.length(), height));
         this.life = life;
     }
 

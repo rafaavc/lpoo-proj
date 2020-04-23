@@ -8,11 +8,11 @@ public abstract class Element {
     Dimensions dimensions;
     String stringRep, color;
 
-    public Element(Position position, String stringRep, String color) {
+    public Element(Position position, String stringRep, String color, Dimensions dimensions) {
         this.position = position;
         this.stringRep = stringRep;
         this.color = color;
-        dimensions = new Dimensions(stringRep.length(), 1);
+        this.dimensions = dimensions;
     }
 
     public Position getPosition() {

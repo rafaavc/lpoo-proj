@@ -1,10 +1,11 @@
 package com.g19.breakout.model;
 
+import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 
 public class PlayerBarModel extends Element {
     public PlayerBarModel(Position position, String color) {
-        super(position, "██████", color);
+        super(position, "██████", color, new Dimensions(6, 1));
     }
 
     public void moveRight() {

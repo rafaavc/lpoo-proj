@@ -2,8 +2,8 @@ package com.g19.breakout.model;
 
 import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.*;
-import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaModel {
@@ -20,24 +20,33 @@ public class ArenaModel {
 
         playerBar = new PlayerBarModel(new Position(width/2., height-8), "#ffffff");
         ball = new BallModel(new Position(width/2., height-9), "#0000ff");
-
+        tilesInit(7, 4);
     }
 
-    public int getHeight() {
-        return height;
+    private void tilesInit(int nHorizontal, int nVertical) {
+        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, margin;
+
+        horizontalFreeSpace = width-3;
+        horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;
+        verticalFreeSpaceEach = 3;
+        tileWidth = horizontalFreeSpaceEach-1;
+
+        margin = (width - horizontalFreeSpaceEach*nHorizontal + 1)/2;
+        char c = '█';
+
+        StringBuffer stringRep = new StringBuffer();
+        for (int i = 0; i < horizontalFreeSpaceEach-1; i++) {
+            stringRep.append(c);
+        }
+        tiles = new ArrayList<>();
+        for (int i = 0; i < nHorizontal; i++) {
+            for (int j = 0; j < nVertical; j++) {
+                Position pos = new Position(margin + tileWidth/2 + i*horizontalFreeSpaceEach, margin/2 + j*verticalFreeSpaceEach);
+                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", verticalFreeSpaceEach-1, 4));
+            }
+        }
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public PlayerBarModel getPlayerBar() {
-        return playerBar;
-    }
-
-    public BallModel getBall() {
-        return ball;
-    }
 
     public BallHit checkCollisions(Position position, Dimensions dimensions) {
         if (position.getDiscreteY() == -1) return new BallHitTop(ball);
@@ -73,5 +82,25 @@ public class ArenaModel {
     public boolean canMoveElement(Position position, Dimensions dimension) {
         return position.getDiscreteX() >= dimension.getDiscreteX()/2 && position.getDiscreteX() <= width - dimension.getDiscreteX()/2
                 && position.getDiscreteY() >= 0 && position.getDiscreteY() <= height - dimension.getDiscreteY()/2;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public PlayerBarModel getPlayerBar() {
+        return playerBar;
+    }
+
+    public BallModel getBall() {
+        return ball;
+    }
+
+    public List<TileModel> getTiles() {
+        return tiles;
     }
 }
