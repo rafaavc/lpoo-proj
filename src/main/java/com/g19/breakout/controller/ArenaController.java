@@ -1,5 +1,7 @@
 package com.g19.breakout.controller;
 
+import com.g19.breakout.controller.ball.*;
+import com.g19.breakout.elements.Direction;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
@@ -38,19 +40,25 @@ public class ArenaController {
                 ball.getPosition(),
                 velocity);
 
+        updateBallDirection(ball, nextBallPosition);
+
+        nextBallPosition = ball.getDirection().getNextPosition(ball.getPosition(), velocity);
+
         moveBall(nextBallPosition);
     }
 
-    public boolean getNextCommand(ArenaView view) throws IOException {
-        COMMAND cmd = view.readInput();
-        if (cmd == COMMAND.EOF) return false;
+    private void updateBallDirection(BallModel ball, Position nextBallPosition){
 
+        BallHit ballHit = arena.checkCollisions(nextBallPosition);
+
+        ballHit.updateDirection();
+    }
+
+    public boolean getNextCommand(ArenaView view) throws IOException {
+        Command cmd = view.readInput();
         Position playerBarPosition = arena.getPlayerBar().getPosition();
 
-        if (cmd == COMMAND.RIGHT) movePlayerBar(playerBarPosition.right());
-        else if (cmd == COMMAND.LEFT) movePlayerBar(playerBarPosition.left());
-
-        return true;
+        return cmd.execute(this, playerBarPosition);
     }
 
     public void moveBall(Position position) {

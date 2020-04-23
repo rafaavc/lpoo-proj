@@ -1,6 +1,6 @@
 package com.g19.breakout.graphics;
 
-import com.g19.breakout.controller.ArenaController;
+import com.g19.breakout.controller.*;
 import com.g19.breakout.model.Element;
 import com.g19.breakout.elements.Position;
 import com.googlecode.lanterna.TerminalPosition;
@@ -73,15 +73,15 @@ public class LanternaAdapter implements Graphics {
             fill);
     }
 
-    public ArenaController.COMMAND readInput() throws IOException {
+    public Command readInput() throws IOException {
         KeyStroke key = screen.pollInput();
         if (key != null) {
             KeyType keyType = key.getKeyType();
-            if (keyType == KeyType.ArrowLeft) return ArenaController.COMMAND.LEFT;
-            if (keyType == KeyType.ArrowRight) return ArenaController.COMMAND.RIGHT;
-            if (keyType == KeyType.EOF) return ArenaController.COMMAND.EOF;
+            if (keyType == KeyType.ArrowLeft) return new CommandLeft();
+            if (keyType == KeyType.ArrowRight) return new CommandRight();
+            if (keyType == KeyType.EOF) return new CommandEOF();
         }
-        return ArenaController.COMMAND.NONE;
+        return new CommandNone();
     }
 }
 
