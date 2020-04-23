@@ -1,8 +1,8 @@
-package com.g19.breakout.graphics;
+package com.g19.breakout.view.graphics;
 
-import com.g19.breakout.controller.*;
-import com.g19.breakout.model.Element;
+import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.view.ArenaView;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -18,6 +18,8 @@ import java.io.IOException;
 public class LanternaAdapter implements Graphics {
     private TerminalScreen screen;
     private TextGraphics textGraphics;
+
+    // setScreen() for testing
 
     public void init(int terminalWith, int terminalHeight) throws IOException {
         TerminalSize terminalSize = new TerminalSize(terminalWith, terminalHeight);
@@ -61,10 +63,9 @@ public class LanternaAdapter implements Graphics {
         drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor, backColor);
     }
 
-    public void drawElement(Element element) {
-        for (int i = 0; i < element.getDimensions().getY(); i++) {
-            drawCenteredString(new Position(element.getPosition().getDiscreteX(), element.getPosition().getDiscreteY()+i), element.getStringRep(), element.getColor());
-        }
+
+    public void drawElement(ElementModel element, String stringRep, String color) {
+        drawCenteredString(element.getPosition(), stringRep, color);
     }
 
     public void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor) {
@@ -75,15 +76,15 @@ public class LanternaAdapter implements Graphics {
             fill);
     }
 
-    public Command readInput() throws IOException {
+    public ArenaView.COMMAND readInput() throws IOException {
         KeyStroke key = screen.pollInput();
         if (key != null) {
             KeyType keyType = key.getKeyType();
-            if (keyType == KeyType.ArrowLeft) return new CommandLeft();
-            if (keyType == KeyType.ArrowRight) return new CommandRight();
-            if (keyType == KeyType.EOF) return new CommandEOF();
+            if (keyType == KeyType.ArrowLeft) return ArenaView.COMMAND.LEFT;
+            if (keyType == KeyType.ArrowRight) return ArenaView.COMMAND.RIGHT;
+            if (keyType == KeyType.EOF) return ArenaView.COMMAND.EXIT;
         }
-        return new CommandNone();
+        return ArenaView.COMMAND.NONE;
     }
 }
 

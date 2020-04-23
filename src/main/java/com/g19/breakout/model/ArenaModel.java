@@ -19,8 +19,8 @@ public class ArenaModel {
         this.width = width;
 
         playerBar = new PlayerBarModel(new Position(width/2., height-8), "#ffffff");
-        ball = new BallModel(new Position(width/2., height-9), "#0000ff");
         tilesInit(5, 4);
+        ball = new BallModel(new Position(width/2., height-9), 20);
     }
 
     private void tilesInit(int nHorizontal, int nVertical) {
@@ -44,7 +44,7 @@ public class ArenaModel {
         for (int i = 0; i < nHorizontal; i++) {
             for (int j = 0; j < nVertical; j++) {
                 Position pos = new Position(margin + tileWidth/2 + i*horizontalFreeSpaceEach, margin/2 + j*verticalFreeSpaceEach);
-                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", tileHeight, 4));
+                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", 4));
             }
         }
     }
@@ -64,7 +64,9 @@ public class ArenaModel {
     }
 
     private boolean checkHitPlayerBar(Position position) {
-        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY();
+        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
+                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
+                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 3;
     }
 
     private boolean checkHitPlayerBarMiddle(Position position){

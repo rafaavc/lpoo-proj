@@ -1,13 +1,9 @@
 package com.g19.breakout.view;
 
-import com.g19.breakout.controller.ArenaController;
-import com.g19.breakout.controller.Command;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.elements.*;
-import com.g19.breakout.graphics.Graphics;
-import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerBarModel;
 import com.g19.breakout.model.TileModel;
+import com.g19.breakout.view.graphics.Graphics;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,31 +11,31 @@ import java.util.List;
 
 public class ArenaView {
     private final Graphics graphics;
-    private final String backgroundColor = "#000000";
+    private String backgroundColor = "#000000";
+    private final ArenaModel arena;
+    private final BallView ballView;
+    private final PlayerBarView playerBarView;
+
+
+    public enum COMMAND {NONE, EXIT, RIGHT, LEFT}
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
         this.graphics = graphics;
+        this.arena = arena;
         graphics.init(arena.getWidth(), arena.getHeight());
+        this.ballView = new BallView(arena.getBall(), graphics, "#0000ff", '█');
+        this.playerBarView = new PlayerBarView(arena.getPlayerBar(), graphics, "#ffffff", '█');
     }
 
-    public void draw(ArenaModel arena) throws IOException {
+    public void draw() throws IOException {
         graphics.startDrawing();
 
         drawBackground(arena);
-        drawPlayerBar(arena.getPlayerBar());
         drawTiles(arena);
-        drawBall(arena.getBall());
+        playerBarView.draw();
+        ballView.draw();
 
         graphics.stopDrawing();
-    }
-
-
-    public void drawBall(BallModel ball) {
-        graphics.drawElement(ball);
-    }
-
-    public void drawPlayerBar(PlayerBarModel playerBar) {
-        graphics.drawElement(playerBar);
     }
 
     public void drawBackground(ArenaModel arena) {
@@ -49,11 +45,10 @@ public class ArenaView {
     public void drawTiles(ArenaModel arena) {
         List<TileModel> tiles = arena.getTiles();
         for(TileModel tm : tiles) {
-            graphics.drawElement(tm);
+            graphics.drawElement(tm, "█████", "#ff0000");
         }
     }
-
-    public Command readInput() throws IOException {
+    public COMMAND readInput() throws IOException {
         return graphics.readInput();
     }
 
