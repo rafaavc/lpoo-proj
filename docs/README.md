@@ -46,13 +46,13 @@ So far, we've used the following design patterns in the development of our proje
 
 ## Planed Features
 
-- [ ] Draw the arena
+- [x] Draw the arena
 - [x] Add the players bar
 - [x] Move the bar
 - [x] Add the ball
 - [x] Move the ball 
 - [x] Add ball colisions and bounces
-- [ ] Add the tiles
+- [x] Add the tiles
 - [ ] Add colisions with tiles
 - [ ] Add scoreboard
 
