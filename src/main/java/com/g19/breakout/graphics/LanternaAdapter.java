@@ -62,7 +62,9 @@ public class LanternaAdapter implements Graphics {
     }
 
     public void drawElement(Element element) {
-        drawCenteredString(element.getPosition(), element.getStringRep(), element.getColor());
+        for (int i = 0; i < element.getDimensions().getY(); i++) {
+            drawCenteredString(new Position(element.getPosition().getDiscreteX(), element.getPosition().getDiscreteY()+i), element.getStringRep(), element.getColor());
+        }
     }
 
     public void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor) {

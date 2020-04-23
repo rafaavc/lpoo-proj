@@ -20,29 +20,30 @@ public class ArenaModel {
 
         playerBar = new PlayerBarModel(new Position(width/2., height-8), "#ffffff");
         ball = new BallModel(new Position(width/2., height-9), "#0000ff");
-        tilesInit(7, 4);
+        tilesInit(5, 4);
     }
 
     private void tilesInit(int nHorizontal, int nVertical) {
-        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, margin;
+        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, margin, marginBetweenTiles;
 
         horizontalFreeSpace = width-3;
         horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;
-        verticalFreeSpaceEach = 3;
-        tileWidth = horizontalFreeSpaceEach-1;
+        verticalFreeSpaceEach = 5;
+        marginBetweenTiles = 2;
+        tileWidth = horizontalFreeSpaceEach-marginBetweenTiles;
 
-        margin = (width - horizontalFreeSpaceEach*nHorizontal + 1)/2;
+        margin = (width - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;
         char c = '█';
 
         StringBuffer stringRep = new StringBuffer();
-        for (int i = 0; i < horizontalFreeSpaceEach-1; i++) {
+        for (int i = 0; i < tileWidth; i++) {
             stringRep.append(c);
         }
         tiles = new ArrayList<>();
         for (int i = 0; i < nHorizontal; i++) {
             for (int j = 0; j < nVertical; j++) {
                 Position pos = new Position(margin + tileWidth/2 + i*horizontalFreeSpaceEach, margin/2 + j*verticalFreeSpaceEach);
-                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", verticalFreeSpaceEach-1, 4));
+                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", verticalFreeSpaceEach-marginBetweenTiles, 4));
             }
         }
     }
