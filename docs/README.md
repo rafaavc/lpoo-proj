@@ -13,22 +13,41 @@ This project was developed by Rafael Cristino @rafaavc (up201806680@fe.up.pt) an
 ## Implemented features
 
 ### Draw player's bar 
+
+The player's bar is being drawn close to the bottom of the screen and in the middle of width of the screen.
+
 <img src="PlayerBar.png" height="300">
 
 ### Move player's bar
+
+The player's bar is possible to move within the screen with the left and right arrows to move left and right respectively.
+
 <img src="PlayerBarMoving1.png" height="300">
 <img src="PlayerBarMoving2.png" height="300">
 
 ### Draw ball
+
+The game's ball is being drawn and starts close in the middle of the width of the screen and a bit above the players bar.
+
 <img src="PlayerBar and Ball.png" height="300">
 
 ### Move the ball
+
+The ball will move with time. At the begin it will move up;
+
+
 <img src="BallMoving.png" height="300">
 
 
 ### Add ball colisions and bounces
-<img src="BallCollision.gif" height="300">
 
+The ball will start moving upwards and it will change it's direction according to it's collisions.
+
+If it hits the top of the screen it will start moving down, if it hits the bottom it will stop (game over).
+<br>If it hits the left or right side of the screen it will start going right or left, respectively.
+<br>If it hits the player's bar it can go up, up and left or up and right.
+
+<img src="BallCollision.gif" height="300">
 
 ## Design Patterns
 
