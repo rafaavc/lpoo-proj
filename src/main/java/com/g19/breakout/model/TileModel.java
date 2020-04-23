@@ -3,7 +3,7 @@ package com.g19.breakout.model;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 
-public class TileModel extends Element {
+public class TileModel extends ElementModel {
     int life;
 
     public TileModel(Position position, String stringRep, String color, int life) {

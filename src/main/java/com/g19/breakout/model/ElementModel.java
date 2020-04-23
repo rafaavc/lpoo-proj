@@ -3,11 +3,11 @@ package com.g19.breakout.model;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 
-public abstract class Element {
+public abstract class ElementModel {
     Position position;
     Dimensions dimensions;
 
-    public Element(Position position, Dimensions dimensions) {
+    public ElementModel(Position position, Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
     }

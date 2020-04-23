@@ -15,6 +15,7 @@ public class ArenaView {
     private final ArenaModel arena;
     private final BallView ballView;
 
+
     public enum COMMAND {NONE, EXIT, RIGHT, LEFT}
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {

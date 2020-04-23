@@ -4,7 +4,7 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
 
-public class BallModel extends Element {
+public class BallModel extends ElementModel {
     private Direction direction;
     private double velocity;
 
