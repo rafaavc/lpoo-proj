@@ -1,7 +1,9 @@
-package com.g19.breakout.view;
+package com.g19.breakout.view.graphics;
 
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ElementModel;
+import com.g19.breakout.view.ArenaView;
+
 import java.io.IOException;
 
 public interface Graphics {

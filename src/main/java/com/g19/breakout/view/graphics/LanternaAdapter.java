@@ -1,7 +1,8 @@
-package com.g19.breakout.view;
+package com.g19.breakout.view.graphics;
 
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.view.ArenaView;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;

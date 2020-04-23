@@ -1,10 +1,8 @@
 package com.g19.breakout.view;
 
-import com.g19.breakout.controller.Command;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.elements.*;
-import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.view.graphics.Graphics;
 
 import java.io.IOException;
 
