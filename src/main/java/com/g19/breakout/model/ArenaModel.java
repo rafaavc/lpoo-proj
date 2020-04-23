@@ -24,13 +24,14 @@ public class ArenaModel {
     }
 
     private void tilesInit(int nHorizontal, int nVertical) {
-        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, margin, marginBetweenTiles;
+        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, marginBetweenTiles, margin, tileHeight;
 
         horizontalFreeSpace = width-3;
         horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;
         verticalFreeSpaceEach = 5;
-        marginBetweenTiles = 2;
+        marginBetweenTiles = 4;
         tileWidth = horizontalFreeSpaceEach-marginBetweenTiles;
+        tileHeight = verticalFreeSpaceEach-(marginBetweenTiles/2);
 
         margin = (width - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;
         char c = '█';
@@ -43,7 +44,7 @@ public class ArenaModel {
         for (int i = 0; i < nHorizontal; i++) {
             for (int j = 0; j < nVertical; j++) {
                 Position pos = new Position(margin + tileWidth/2 + i*horizontalFreeSpaceEach, margin/2 + j*verticalFreeSpaceEach);
-                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", verticalFreeSpaceEach-marginBetweenTiles, 4));
+                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", tileHeight, 4));
             }
         }
     }
@@ -57,6 +58,7 @@ public class ArenaModel {
             if (checkHitPlayerBarRight(position)) return new BallHitPlayerBarRight(ball);
             if (checkHitPlayerBarLeft(position)) return new BallHitPlayerBarLeft(ball);
         }
+
         if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 || position.getDiscreteX() == width - dimensions.getDiscreteX()/2. + 1) return new BallHitSide(ball);
         return new BallHitNothing(ball);
     }

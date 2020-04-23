@@ -27,8 +27,8 @@ public class ArenaView {
 
         drawBackground(arena);
         drawPlayerBar(arena.getPlayerBar());
-        drawBall(arena.getBall());
         drawTiles(arena);
+        drawBall(arena.getBall());
 
         graphics.stopDrawing();
     }
