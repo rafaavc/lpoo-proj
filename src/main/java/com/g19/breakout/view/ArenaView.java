@@ -22,6 +22,7 @@ public class ArenaView {
     public void draw(ArenaModel arena) throws IOException {
         graphics.startDrawing();
 
+        /* inject the class iteself into these method to test the following calls? */
         drawBackground(arena);
         drawPlayerBar(arena.getPlayerBar());
         drawBall(arena.getBall());

@@ -1,12 +1,17 @@
 package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.ball.BallHit;
+<<<<<<< HEAD
 import com.g19.breakout.controller.ball.BallHitTop;
+=======
+import com.g19.breakout.controller.ball.BallHitNothing;
+>>>>>>> master
 import com.g19.breakout.elements.*;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerBarModel;
 import com.g19.breakout.view.ArenaView;
+import com.g19.breakout.view.LanternaAdapter;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -41,17 +46,21 @@ public class ArenaControllerTests {
         verify(controller1, times(1)).update(anyObject());
         verify(controller1, times(1)).getNextCommand(view);*/
     }
-/*
+
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws IOException {
+        /*
+        BallModel ball = Mockito.mock(BallModel.class);
+
         Chronometer crono = Mockito.mock(Chronometer.class);
         Mockito.when(crono.getElapsedTime()).thenReturn((long)1000);
 
-        Mockito.when(arena.getBall()).thenReturn(new BallModel(new Position(10, 10), "#000000"));
+        Mockito.when(arena.getBall()).thenReturn(ball);
 
         BallModel ball = Mockito.mock(BallModel.class);
         Mockito.when(ball.getVelocity()).thenReturn(1.);
         Mockito.when(ball.getPosition()).thenReturn(new Position(30,30));
+        Mockito.when(ball.getDimensions()).thenReturn(new Dimensions(2, 1));
 
         Direction dir = Mockito.mock(Direction.class);
         Mockito.when(ball.getDirection()).thenReturn(new Direction(1, 0));
@@ -60,10 +69,12 @@ public class ArenaControllerTests {
         Mockito.when(transformer.toBallHit(new ArrayList<>(), ball)).thenReturn(new BallHitTop(ball));
 
 
-        controller.update(crono);
-        verify(dir, times(1)).getNextPosition(new Position(30,30), 1);
+        Mockito.when(arena.checkCollisions(any(Position.class), any(Dimensions.class))).thenReturn(new BallHitNothing(ball));*/
+        /*need to fix test*/
+        //controller.update(crono);
+        //verify(dir, times(1)).getNextPosition(new Position(30,30), 1);
     }
-*/
+
     @Test
     public void testGetNextCommand() throws IOException {
         Mockito.when(view.readInput()).thenReturn(ArenaView.Keys.ARROWLEFT);
