@@ -15,12 +15,11 @@ public class ArenaView {
     private final PlayerBarView playerBarView;
 
 
-    public enum COMMAND {NONE, EXIT, RIGHT, LEFT}
+    public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE};
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
         this.graphics = graphics;
         this.arena = arena;
-        graphics.init(arena.getWidth(), arena.getHeight());
         this.ballView = new BallView(arena.getBall(), graphics, "#0000ff", '█');
         this.playerBarView = new PlayerBarView(arena.getPlayerBar(), graphics, "#ffffff", '█');
     }
@@ -39,7 +38,7 @@ public class ArenaView {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
-    public COMMAND readInput() throws IOException {
+    public ArenaView.Keys readInput() throws IOException {
         return graphics.readInput();
     }
 

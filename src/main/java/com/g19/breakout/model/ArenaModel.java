@@ -1,8 +1,8 @@
 package com.g19.breakout.model;
 
-import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaModel {
@@ -38,16 +38,19 @@ public class ArenaModel {
         return ball;
     }
 
-    public BallHit checkCollisions(Position position, Dimensions dimensions) {
-        if (position.getDiscreteY() == -1) return new BallHitTop(ball);
-        if (position.getDiscreteY() == height - dimensions.getDiscreteY() + 1) return new BallHitBottom(ball);
+    public List<BallModel.HIT> checkCollisions(Position position, Dimensions dimensions) {
+        List<BallModel.HIT> hits = new ArrayList<>();
+
+        if (position.getDiscreteY() == -1) hits.add(BallModel.HIT.TOP);
+        if (position.getDiscreteY() == height - dimensions.getDiscreteY() + 1) hits.add(BallModel.HIT.BOTTOM);
         if (checkHitPlayerBar(position)) {
-            if (checkHitPlayerBarMiddle(position)) return new BallHitPlayerBarMiddle(ball);
-            if (checkHitPlayerBarRight(position)) return new BallHitPlayerBarRight(ball);
-            if (checkHitPlayerBarLeft(position)) return new BallHitPlayerBarLeft(ball);
+            if (checkHitPlayerBarMiddle(position)) hits.add(BallModel.HIT.PLAYERBARMIDDLE);
+            if (checkHitPlayerBarRight(position)) hits.add(BallModel.HIT.PLAYERBARRIGHT);
+            if (checkHitPlayerBarLeft(position)) hits.add(BallModel.HIT.PLAYERBARLEFT);
         }
-        if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 || position.getDiscreteX() == width - dimensions.getDiscreteX()/2. + 1) return new BallHitSide(ball);
-        return new BallHitNothing(ball);
+        if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 || position.getDiscreteX() == width - dimensions.getDiscreteX()/2. + 1) hits.add(BallModel.HIT.SIDE);
+        if (hits.size() == 0) hits.add(BallModel.HIT.NOTHING);
+        return hits;
     }
 
     private boolean checkHitPlayerBar(Position position) {
