@@ -10,7 +10,7 @@ public class TilesView extends ElementView {
         super(tile, graphics, color, charRep);
     }
 
-    String[] tileColors = {"#ff0000", "#ff0000", "#ff0000", "#ff0000"};
+    String[] tileColors = {"#ff00f0", "#fff000", "#f0f000", "#ff0000", "#0f0ff0", "#00ff00", "#00ff00", "#00ff00", "#00ff00"};
 
     public void draw(List<TileModel> tiles) {
         for (TileModel tile : tiles) {
