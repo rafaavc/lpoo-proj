@@ -16,6 +16,6 @@ public interface Graphics {
     void drawCenteredString(Position pos, String text, String foreColor, String backColor);
     void drawElement(Element element);
     void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor);
-    Command readInput() throws IOException;
+    ArenaView.COMMAND readInput() throws IOException;
 }
 

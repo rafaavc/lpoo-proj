@@ -2,7 +2,6 @@ package com.g19.breakout.model;
 
 import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.*;
-import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
 
 import java.util.List;
 
