@@ -29,6 +29,21 @@ This project was developed by Rafael Cristino @rafaavc (up201806680@fe.up.pt) an
 ### Add ball colisions and bounces
 <img src="BallCollision.gif" height="300">
 
+
+## Design Patterns
+
+So far, we've used the following design patterns in the development of our project:
+
+- Adapter pattern (for the graphics interface with which the view interacts)
+
+<img src="AdapterPatternGraphics.png" height="300">
+
+- Command pattern (for the commands comming from the keyboard input)
+
+- MVC (for the arena and it's various elements; implementation is not yet finished)
+
+
+
 ## Planed Features
 
 - [ ] Draw the arena
