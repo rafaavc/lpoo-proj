@@ -12,32 +12,30 @@ import java.io.IOException;
 public class ArenaView {
     private final Graphics graphics;
     private final String backgroundColor = "#000000";
+    private final ArenaModel arena;
+    private final BallView ballView;
 
     public enum COMMAND {NONE, EXIT, RIGHT, LEFT}
 
     public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
         this.graphics = graphics;
+        this.arena = arena;
         graphics.init(arena.getWidth(), arena.getHeight());
+        this.ballView = new BallView(arena.getBall(), graphics, "#0000ff", '█');
     }
 
-    public void draw(ArenaModel arena) throws IOException {
+    public void draw() throws IOException {
         graphics.startDrawing();
 
-        /* inject the class iteself into these method to test the following calls? */
         drawBackground(arena);
         drawPlayerBar(arena.getPlayerBar());
-        drawBall(arena.getBall());
+        ballView.draw();
 
         graphics.stopDrawing();
     }
 
-
-    public void drawBall(BallModel ball) {
-        graphics.drawElement(ball);
-    }
-
     public void drawPlayerBar(PlayerBarModel playerBar) {
-        graphics.drawElement(playerBar);
+        graphics.drawElement(playerBar, "██████", "#ffffff");
     }
 
     public void drawBackground(ArenaModel arena) {
