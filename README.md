@@ -9,27 +9,3 @@ In this project we are gonna replicate the game Breakout where you are suposed t
 
 This project was developed by Rafael Cristino @rafaavc (up201806680@fe.up.pt) and Xavier Pisco @Xavier-Pisco (up201806314@fe.up.pt) for LPOO 2019/20.
 
-## Implemented features
-
-TO-DO
-
-## Planed Features
-
-- [ ] Draw the arena
-- [x] Add the players bar
-- [x] Move the bar
-- [x] Add the ball
-- [x] Move the ball 
-- [x] Add ball colisions and bounces
-- [ ] Add the tiles
-- [ ] Add colisions with tiles
-- [ ] Add scoreboard
-
-(these are just more ideas)
-- [ ] Add shots coming from above to hurt the player
-- [ ] Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
-
-## Design
-
-TO-DO
-
