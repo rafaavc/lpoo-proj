@@ -52,7 +52,9 @@ public class ArenaModel {
     }
 
     private boolean checkHitPlayerBar(Position position) {
-        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY();
+        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
+                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
+                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 3;
     }
 
     private boolean checkHitPlayerBarMiddle(Position position){
