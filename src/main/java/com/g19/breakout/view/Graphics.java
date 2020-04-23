@@ -1,4 +1,4 @@
-package com.g19.breakout.graphics;
+package com.g19.breakout.view;
 
 import com.g19.breakout.controller.ArenaController;
 import com.g19.breakout.controller.Command;

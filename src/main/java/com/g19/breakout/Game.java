@@ -1,7 +1,7 @@
 package com.g19.breakout;
 
 import com.g19.breakout.controller.ArenaController;
-import com.g19.breakout.graphics.LanternaAdapter;
+import com.g19.breakout.view.LanternaAdapter;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.view.ArenaView;
 
