@@ -8,19 +8,17 @@ public abstract class ElementView {
     String color, stringRep;
     char charRep;
     Graphics graphics;
-    ElementModel model;
 
     ElementView(ElementModel model, Graphics graphics, String color, char charRep) {
         this.color = color;
-        this.model = model;
         this.graphics = graphics;
         this.charRep = charRep;
-        updateStringRep();
+        updateStringRep(model);
     }
 
     // Maybe in the future this could be an observer that is
     // notified when the size of the ball changes and then updates the stringRep
-    void updateStringRep() {
+    void updateStringRep(ElementModel model) {
         StringBuilder strBuffer = new StringBuilder();
         for (int i = 0; i < model.getDimensions().getDiscreteX(); i++) {
             strBuffer.append(charRep);
@@ -28,7 +26,7 @@ public abstract class ElementView {
         this.stringRep = strBuffer.toString();
     }
 
-    void draw() {
+    void drawModel(ElementModel model) {
         for (int i = 0; i < model.getDimensions().getDiscreteY(); i++) {
             Position pos = new Position(
                 model.getPosition().getDiscreteX(),

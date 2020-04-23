@@ -7,4 +7,8 @@ public class PlayerBarView extends ElementView {
     PlayerBarView(PlayerBarModel playerBar, Graphics graphics, String color, char charRep) {
         super(playerBar, graphics, color, charRep);
     }
+
+    public void draw(PlayerBarModel playerBar) {
+        drawModel(playerBar);
+    }
 }

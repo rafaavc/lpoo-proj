@@ -15,6 +15,7 @@ public class ArenaView {
     private final ArenaModel arena;
     private final BallView ballView;
     private final PlayerBarView playerBarView;
+    private final TilesView tilesView;
 
 
     public enum COMMAND {NONE, EXIT, RIGHT, LEFT}
@@ -25,15 +26,16 @@ public class ArenaView {
         graphics.init(arena.getWidth(), arena.getHeight());
         this.ballView = new BallView(arena.getBall(), graphics, "#0000ff", '█');
         this.playerBarView = new PlayerBarView(arena.getPlayerBar(), graphics, "#ffffff", '█');
+        this.tilesView = new TilesView(arena.getTiles().get(0), graphics, "#ff0000", '█');
     }
 
     public void draw() throws IOException {
         graphics.startDrawing();
 
         drawBackground(arena);
-        drawTiles(arena);
-        playerBarView.draw();
-        ballView.draw();
+        tilesView.draw(arena.getTiles());
+        playerBarView.draw(arena.getPlayerBar());
+        ballView.draw(arena.getBall());
 
         graphics.stopDrawing();
     }
@@ -42,12 +44,6 @@ public class ArenaView {
         graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
     }
 
-    public void drawTiles(ArenaModel arena) {
-        List<TileModel> tiles = arena.getTiles();
-        for(TileModel tm : tiles) {
-            graphics.drawElement(tm, "█████", "#ff0000");
-        }
-    }
     public COMMAND readInput() throws IOException {
         return graphics.readInput();
     }

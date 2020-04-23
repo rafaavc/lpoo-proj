@@ -4,8 +4,8 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 
 public class PlayerBarModel extends ElementModel {
-    public PlayerBarModel(Position position, String color) {
-        super(position, new Dimensions(6, 1)/*, "██████", color*/);
+    public PlayerBarModel(Position position) {
+        super(position, new Dimensions(6, 1));
     }
 
     public void moveRight() {

@@ -18,9 +18,9 @@ public class ArenaModel {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBarModel(new Position(width/2., height-8), "#ffffff");
-        tilesInit(5, 4);
+        playerBar = new PlayerBarModel(new Position(width/2., height-8));
         ball = new BallModel(new Position(width/2., height-9), 20);
+        tilesInit(5, 4);
     }
 
     private void tilesInit(int nHorizontal, int nVertical) {
@@ -34,17 +34,13 @@ public class ArenaModel {
         tileHeight = verticalFreeSpaceEach-(marginBetweenTiles/2);
 
         margin = (width - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;
-        char c = '█';
 
-        StringBuffer stringRep = new StringBuffer();
-        for (int i = 0; i < tileWidth; i++) {
-            stringRep.append(c);
-        }
         tiles = new ArrayList<>();
         for (int i = 0; i < nHorizontal; i++) {
             for (int j = 0; j < nVertical; j++) {
                 Position pos = new Position(margin + tileWidth/2 + i*horizontalFreeSpaceEach, margin/2 + j*verticalFreeSpaceEach);
-                tiles.add(new TileModel(pos, stringRep.toString(), "#00ff00", 4));
+                Dimensions dim = new Dimensions(tileWidth, tileHeight);
+                tiles.add(new TileModel(pos, dim, 4));
             }
         }
     }

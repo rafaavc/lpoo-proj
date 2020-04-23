@@ -7,4 +7,8 @@ public class BallView extends ElementView {
     BallView(BallModel ball, Graphics graphics, String color, char charRep) {
         super(ball, graphics, color, charRep);
     }
+
+    public void draw(BallModel ball) {
+        drawModel(ball);
+    }
 }
