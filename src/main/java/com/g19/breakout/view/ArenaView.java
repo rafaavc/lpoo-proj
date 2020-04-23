@@ -11,9 +11,10 @@ import java.io.IOException;
 
 public class ArenaView {
     private final Graphics graphics;
-    private final String backgroundColor = "#000000";
+    private String backgroundColor = "#000000";
     private final ArenaModel arena;
     private final BallView ballView;
+    private final PlayerBarView playerBarView;
 
 
     public enum COMMAND {NONE, EXIT, RIGHT, LEFT}
@@ -23,20 +24,17 @@ public class ArenaView {
         this.arena = arena;
         graphics.init(arena.getWidth(), arena.getHeight());
         this.ballView = new BallView(arena.getBall(), graphics, "#0000ff", '█');
+        this.playerBarView = new PlayerBarView(arena.getPlayerBar(), graphics, "#ffffff", '█');
     }
 
     public void draw() throws IOException {
         graphics.startDrawing();
 
         drawBackground(arena);
-        drawPlayerBar(arena.getPlayerBar());
+        playerBarView.draw();
         ballView.draw();
 
         graphics.stopDrawing();
-    }
-
-    public void drawPlayerBar(PlayerBarModel playerBar) {
-        graphics.drawElement(playerBar, "██████", "#ffffff");
     }
 
     public void drawBackground(ArenaModel arena) {
