@@ -7,7 +7,6 @@ import com.g19.breakout.view.ArenaView;
 import java.io.IOException;
 
 public interface Graphics {
-    void init(int terminalWidth, int terminalHeight) throws IOException;
     void startDrawing();
     void stopDrawing() throws IOException;
     void drawString(Position pos, String text, String foreColor);
@@ -16,6 +15,6 @@ public interface Graphics {
     void drawCenteredString(Position pos, String text, String foreColor, String backColor);
     void drawElement(ElementModel element, String stringRep, String color);
     void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor);
-    ArenaView.COMMAND readInput() throws IOException;
+    ArenaView.Keys readInput() throws IOException;
 }
 
