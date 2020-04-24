@@ -7,6 +7,7 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.ArenaView;
 
 import java.io.IOException;
@@ -50,6 +51,8 @@ public class ArenaController {
         }
 
         moveBall(nextBallPosition);
+
+        arena.getTiles().removeIf(t -> t.getLife() == 0);
     }
 
     private void updateBallDirection(BallModel ball, Position nextBallPosition){

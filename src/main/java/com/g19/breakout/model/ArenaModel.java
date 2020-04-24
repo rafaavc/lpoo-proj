@@ -25,7 +25,7 @@ public class ArenaModel {
     private void tilesInit(int nHorizontal, int nVertical) {
         int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, marginBetweenTiles, margin, tileHeight;
 
-        horizontalFreeSpace = width-3;
+        horizontalFreeSpace = width;
         horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;
         verticalFreeSpaceEach = 5;
         marginBetweenTiles = 4;
@@ -59,6 +59,7 @@ public class ArenaModel {
         TileModel tile = checkHitTile(position);
         if (tile != null) {
             hits.add(checkTopOrSide(position, tile));
+            tile.hit();
         }
 
         if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 || position.getDiscreteX() == width - dimensions.getDiscreteX()/2. + 1) hits.add(BallModel.HIT.SIDE);
@@ -88,7 +89,7 @@ public class ArenaModel {
             if (isInsideY) {
                 int ballHWidth = ball.getDimensions().getDiscreteX()/2;
                 int tileHWidth = tile.getDimensions().getDiscreteX()/2;
-                if (position.getDiscreteX() + ballHWidth > tilePos.getDiscreteX() - tileHWidth && position.getDiscreteX() - ballHWidth < tilePos.getDiscreteX() + tileHWidth) {
+                if (position.getDiscreteX() + ballHWidth > tilePos.getDiscreteX() - tileHWidth && position.getDiscreteX() - ballHWidth < tilePos.getDiscreteX() + tileHWidth)  {
                     return tile;
                 }
             }

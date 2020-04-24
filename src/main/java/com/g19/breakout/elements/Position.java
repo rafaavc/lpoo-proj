@@ -6,11 +6,11 @@ public class Position extends Dimensions {
     }
 
     public Position left() {
-        return new Position(x-1, y);
+        return new Position(x-2, y);
     }
 
     public Position right() {
-        return new Position(x+1, y);
+        return new Position(x+2, y);
     }
 
     public Position up() {
