@@ -34,6 +34,11 @@ public class ArenaModel {
 
         margin = (width - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;
 
+        if (tileWidth%2 != 0) {
+            tileWidth--;
+            margin++;
+        }
+
         tiles = new ArrayList<>();
         for (int i = 0; i < nHorizontal; i++) {
             for (int j = 0; j < nVertical; j++) {
