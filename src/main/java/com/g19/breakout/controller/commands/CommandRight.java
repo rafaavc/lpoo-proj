@@ -6,8 +6,8 @@ import com.g19.breakout.elements.Position;
 public class CommandRight implements Command{
 
     @Override
-    public boolean execute(ArenaController controller, Position playerBarPosition) {
-        controller.movePlayerBar(playerBarPosition.right());
+    public boolean execute(ArenaController controller) {
+        controller.movePlayerBar(controller.getArena().getPlayerBar().getPosition().right());
         return true;
     }
 }

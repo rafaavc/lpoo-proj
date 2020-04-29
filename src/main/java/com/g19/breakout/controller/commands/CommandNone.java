@@ -6,7 +6,7 @@ import com.g19.breakout.elements.Position;
 public class CommandNone implements Command {
 
     @Override
-    public boolean execute(ArenaController controller, Position playerBarPosition) {
+    public boolean execute(ArenaController controller) {
         return true;
     }
 }

@@ -61,6 +61,7 @@ public class LanternaAdapter implements Graphics {
         drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor, backColor);
     }
 
+
     public void drawElement(ElementModel element, String stringRep, String color) {
         drawCenteredString(element.getPosition(), stringRep, color);
     }

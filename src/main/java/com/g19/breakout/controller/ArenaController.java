@@ -7,6 +7,7 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.ArenaView;
 
 import java.io.IOException;
@@ -50,39 +51,37 @@ public class ArenaController {
         }
 
         moveBall(nextBallPosition);
+
+        arena.getTiles().removeIf(t -> t.getLife() == 0);
     }
 
     private void updateBallDirection(BallModel ball, Position nextBallPosition){
-
         List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
 
-        BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball);
+        BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball, arena.getPlayerBar());
 
         ballHit.updateDirection();
     }
 
-
-
     public boolean getNextCommand(ArenaView view) throws IOException {
         ArenaView.Keys key = view.readInput();
         Command cmd = new Transformer().toCommand(key);
-
-        Position playerBarPosition = arena.getPlayerBar().getPosition();
-
-        return cmd.execute(this, playerBarPosition);
+        return cmd.execute(this);
     }
 
-
-
     public void moveBall(Position position) {
-        if (arena.canMoveElement(position, arena.getBall().getDimensions())) {
+        if (arena.isInsideArena(position, arena.getBall().getDimensions())) {
             arena.getBall().setPosition(position);
         }
     }
 
     public void movePlayerBar(Position position){
-        if (arena.canMoveElement(position, arena.getPlayerBar().getDimensions())){
+        if (arena.isInsideArena(position, arena.getPlayerBar().getDimensions())){
             arena.getPlayerBar().setPosition(position);
         }
+    }
+
+    public ArenaModel getArena() {
+        return arena;
     }
 }
