@@ -18,7 +18,10 @@ public class BallHitPlayerBar extends BallHit {
     }
 
     public void updateDirection() {
-        double cos = (ball.getPosition().getX() - playerBar.getPosition().getX())/(playerBar.getDimensions().getDiscreteX()/2.);
+        double xOffset = ball.getPosition().getX() - playerBar.getPosition().getX();
+        double xTotal = (playerBar.getDimensions().getDiscreteX() + ball.getDimensions().getDiscreteX())/2.;
+        double cos = xOffset/xTotal;
+
         double sin = -sqrt(1 - pow(cos, 2)); // cos^2 + sin^2 = 1
         ball.setDirection(new Direction(cos, sin));
         if (ballHit != null) ballHit.updateDirection();
