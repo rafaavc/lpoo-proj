@@ -56,7 +56,6 @@ public class ArenaController {
     }
 
     private void updateBallDirection(BallModel ball, Position nextBallPosition){
-
         List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
 
         BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball, arena.getPlayerBar());
@@ -64,24 +63,20 @@ public class ArenaController {
         ballHit.updateDirection();
     }
 
-
-
     public boolean getNextCommand(ArenaView view) throws IOException {
         ArenaView.Keys key = view.readInput();
         Command cmd = new Transformer().toCommand(key);
         return cmd.execute(this);
     }
 
-
-
     public void moveBall(Position position) {
-        if (arena.canMoveElement(position, arena.getBall().getDimensions())) {
+        if (arena.isInsideArena(position, arena.getBall().getDimensions())) {
             arena.getBall().setPosition(position);
         }
     }
 
     public void movePlayerBar(Position position){
-        if (arena.canMoveElement(position, arena.getPlayerBar().getDimensions())){
+        if (arena.isInsideArena(position, arena.getPlayerBar().getDimensions())){
             arena.getPlayerBar().setPosition(position);
         }
     }
