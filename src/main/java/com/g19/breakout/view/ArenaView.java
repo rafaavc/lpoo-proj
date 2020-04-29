@@ -20,7 +20,7 @@ public class ArenaView {
 
     public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE};
 
-    public ArenaView(ArenaModel arena, Graphics graphics) throws IOException {
+    public ArenaView(ArenaModel arena, Graphics graphics) {
         this.graphics = graphics;
         this.arena = arena;
         this.ballView = new BallView(arena.getBall(), graphics, "#0000ff", '█');
