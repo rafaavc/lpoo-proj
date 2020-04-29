@@ -69,10 +69,7 @@ public class ArenaController {
     public boolean getNextCommand(ArenaView view) throws IOException {
         ArenaView.Keys key = view.readInput();
         Command cmd = new Transformer().toCommand(key);
-
-        Position playerBarPosition = arena.getPlayerBar().getPosition();
-
-        return cmd.execute(this, playerBarPosition);
+        return cmd.execute(this);
     }
 
 
@@ -87,5 +84,9 @@ public class ArenaController {
         if (arena.canMoveElement(position, arena.getPlayerBar().getDimensions())){
             arena.getPlayerBar().setPosition(position);
         }
+    }
+
+    public ArenaModel getArena() {
+        return arena;
     }
 }

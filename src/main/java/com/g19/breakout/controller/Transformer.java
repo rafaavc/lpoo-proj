@@ -17,7 +17,7 @@ public class Transformer {
         for (BallModel.HIT ballModelHit: ballModelHits) {
             switch (ballModelHit) {
                 case TOP:
-                    ballHit = new BallHitTop(ball ,previousBallHit);
+                    ballHit = new BallHitHorizontal(ball ,previousBallHit);
                     previousBallHit = ballHit;
                     break;
                 case BOTTOM:
@@ -29,7 +29,7 @@ public class Transformer {
                     previousBallHit = ballHit;
                     break;
                 case SIDE:
-                    ballHit = new BallHitSide(ball ,previousBallHit);
+                    ballHit = new BallHitVertical(ball ,previousBallHit);
                     previousBallHit = ballHit;
                     break;
                 case NOTHING:

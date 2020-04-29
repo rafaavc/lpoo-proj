@@ -17,8 +17,8 @@ public class ArenaModel {
         this.height = height;
         this.width = width;
 
-        playerBar = new PlayerBarModel(new Position(width/2., height-8));
-        ball = new BallModel(new Position(width/2., height-9), 20);
+        playerBar = new PlayerBarModel(new Position(width/2., height-4));
+        ball = new BallModel(new Position(width/2., height-5), 18);
         tilesInit(5, 4);
     }
 

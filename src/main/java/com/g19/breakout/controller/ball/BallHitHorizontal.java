@@ -2,15 +2,15 @@ package com.g19.breakout.controller.ball;
 
 import com.g19.breakout.model.BallModel;
 
-public class BallHitTop implements BallHit {
+public class BallHitHorizontal implements BallHit {
     private BallModel ball;
     private BallHit ballHit;
 
-    public BallHitTop(BallModel ball){
+    public BallHitHorizontal(BallModel ball){
         this.ball = ball;
     }
 
-    public BallHitTop(BallModel ball, BallHit ballHit) {
+    public BallHitHorizontal(BallModel ball, BallHit ballHit) {
         this.ball = ball;
         this.ballHit = ballHit;
     }
