@@ -3,13 +3,14 @@ package com.g19.breakout.controller;
 import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.controller.commands.*;
 import com.g19.breakout.model.BallModel;
+import com.g19.breakout.model.PlayerBarModel;
 import com.g19.breakout.view.ArenaView;
 
 import java.util.List;
 
 public class Transformer {
 
-    public BallHit toBallHit(List<BallModel.HIT> ballModelHits, BallModel ball){
+    public BallHit toBallHit(List<BallModel.HIT> ballModelHits, BallModel ball, PlayerBarModel playerBar){
         BallHit previousBallHit = null;
         BallHit ballHit = null;
 
@@ -23,16 +24,8 @@ public class Transformer {
                     ballHit = new BallHitBottom(ball ,previousBallHit);
                     previousBallHit = ballHit;
                     break;
-                case PLAYERBARMIDDLE:
-                    ballHit = new BallHitPlayerBarMiddle(ball ,previousBallHit);
-                    previousBallHit = ballHit;
-                    break;
-                case PLAYERBARRIGHT:
-                    ballHit = new BallHitPlayerBarRight(ball ,previousBallHit);
-                    previousBallHit = ballHit;
-                    break;
-                case PLAYERBARLEFT:
-                    ballHit = new BallHitPlayerBarLeft(ball ,previousBallHit);
+                case PLAYERBAR:
+                    ballHit = new BallHitPlayerBar(ball ,previousBallHit, playerBar);
                     previousBallHit = ballHit;
                     break;
                 case SIDE:

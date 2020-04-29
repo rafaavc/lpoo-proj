@@ -55,15 +55,15 @@ public class ArenaModel {
 
         if (position.getDiscreteY() == -1) hits.add(BallModel.HIT.TOP);
         if (position.getDiscreteY() == height - dimensions.getDiscreteY() + 1) hits.add(BallModel.HIT.BOTTOM);
-        if (checkHitPlayerBar(position)) {
+        if (checkHitPlayerBar(position)) hits.add(BallModel.HIT.PLAYERBAR); /*{
             if (checkHitPlayerBarMiddle(position)) hits.add(BallModel.HIT.PLAYERBARMIDDLE);
             if (checkHitPlayerBarRight(position)) hits.add(BallModel.HIT.PLAYERBARRIGHT);
             if (checkHitPlayerBarLeft(position)) hits.add(BallModel.HIT.PLAYERBARLEFT);
-        }
+        }*/
 
         TileModel tile = checkHitTile(position);
         if (tile != null) {
-            hits.add(checkTopOrSide(position, tile));
+            hits.add(checkHitTopOrSideTile(position, tile));
             tile.hit();
         }
 
@@ -72,7 +72,7 @@ public class ArenaModel {
         return hits;
     }
 
-    private BallModel.HIT checkTopOrSide(Position pos, TileModel tile) {
+    private BallModel.HIT checkHitTopOrSideTile(Position pos, TileModel tile) {
         List<BallModel.HIT> res = new ArrayList<>();
         Position prevPos = ball.getPosition();
         Position tilePos = tile.getPosition();

@@ -8,7 +8,7 @@ public class BallModel extends ElementModel {
     private Direction direction;
     private double velocity;
 
-    public enum HIT {TOP, BOTTOM, SIDE, PLAYERBARMIDDLE, PLAYERBARLEFT, PLAYERBARRIGHT, TILE, NOTHING};
+    public enum HIT {TOP, BOTTOM, SIDE, PLAYERBAR, NOTHING};
 
 
     public BallModel(Position position, double startVelocity) {

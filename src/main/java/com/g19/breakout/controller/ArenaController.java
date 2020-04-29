@@ -59,7 +59,7 @@ public class ArenaController {
 
         List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
 
-        BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball);
+        BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball, arena.getPlayerBar());
 
         ballHit.updateDirection();
     }
