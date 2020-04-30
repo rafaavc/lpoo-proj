@@ -75,4 +75,41 @@ public class ArenaModelTests {
         ballModelHits = arena.checkCollisions(nextPosition, dimensions);
         assertEquals(BallModel.HIT.TOP, ballModelHits.get(0));
     }
+
+    @Test
+    public void testCheckHitTile(){
+        Position position = new Position(width / 2., 11);
+
+        TileModel expectedTile = new TileModel(new Position(60, 11), new Dimensions(20., 3.), 4);
+        TileModel actualTile = arena.checkHitTile(position);
+
+        assertEquals(expectedTile.getLife(), actualTile.getLife());
+        assertEquals(expectedTile.getDimensions(), actualTile.getDimensions());
+        assertEquals(expectedTile.getPosition(), actualTile.getPosition());
+    }
+
+    @Test
+    public void testCheckHitTopOrSide(){
+        TileModel tile = Mockito.mock(TileModel.class);
+        Mockito.when(tile.getDimensions()).thenReturn(new Dimensions(1, 1));
+        Mockito.when(tile.getPosition()).thenReturn(new Position(10, 10));
+
+        Position position = new Position(9, 10);
+        arena.getBall().setPosition(position);
+        assertEquals(BallModel.HIT.SIDE, arena.checkHitTopOrSideTile(tile));
+
+        position = new Position(10, 11);
+        arena.getBall().setPosition(position);
+        assertEquals(BallModel.HIT.TOP, arena.checkHitTopOrSideTile(tile));
+    }
+
+    @Test
+    public void testCheckHitPlayerBar(){
+        Position nextPosition = new Position(width / 2., height - 4);
+
+        assertTrue(arena.checkHitPlayerBar(nextPosition));
+
+        nextPosition = new Position(1 ,1);
+        assertFalse(arena.checkHitPlayerBar(nextPosition));
+    }
 }
