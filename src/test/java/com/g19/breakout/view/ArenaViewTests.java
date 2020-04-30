@@ -49,7 +49,7 @@ public class ArenaViewTests {
         verify(view1, times(1)).drawBackground(any(ArenaModel.class));
         verify(graphics, times(1)).startDrawing();
         verify(graphics, times(1)).stopDrawing();
-        verify(tilesViewMock, times(1)).draw(any(List.class));
+        verify(tilesViewMock, times(1)).draw(any());
         verify(playerBarViewMock, times(1)).draw(any(PlayerBarModel.class));
         verify(ballViewMock, times(1)).draw(any(BallModel.class));
     }
