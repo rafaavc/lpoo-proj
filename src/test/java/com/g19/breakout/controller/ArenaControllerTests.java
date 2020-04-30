@@ -1,10 +1,5 @@
 package com.g19.breakout.controller;
 
-<<<<<<< HEAD
-import com.g19.breakout.controller.ball.*;
-=======
-import com.g19.breakout.controller.ball.BallHitNothing;
->>>>>>> master
 import com.g19.breakout.elements.*;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
@@ -15,7 +10,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -78,16 +72,16 @@ public class ArenaControllerTests {
         Mockito.when(view.readInput()).thenReturn(ArenaView.Keys.ARROWLEFT);
 
         Position pos = Mockito.mock(Position.class);
-        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBarModel(pos, "#ffffff"));
+        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBarModel(pos));
 
-        controller.getNextCommand(view);
+        controller.getNextCommand(new Transformer(), view);
         verify(view, times(1)).readInput();
         verify(pos, times(1)).left();
     }
 
     @Test
     public void testMoveBall() {
-        Mockito.when(arena.canMoveElement(any(Position.class), any(Dimensions.class))).thenReturn(true);
+        Mockito.when(arena.isInsideArena(any(Position.class), any(Dimensions.class))).thenReturn(true);
 
         BallModel ball = Mockito.mock(BallModel.class);
         Mockito.when(ball.getDimensions()).thenReturn(new Dimensions(2, 1));
@@ -99,7 +93,7 @@ public class ArenaControllerTests {
 
     @Test
     public void testMovePlayerBar() {
-        Mockito.when(arena.canMoveElement(any(Position.class), any(Dimensions.class))).thenReturn(true);
+        Mockito.when(arena.isInsideArena(any(Position.class), any(Dimensions.class))).thenReturn(true);
 
         PlayerBarModel pb = Mockito.mock(PlayerBarModel.class);
         Mockito.when(pb.getDimensions()).thenReturn(new Dimensions(6, 1));

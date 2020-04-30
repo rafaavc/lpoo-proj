@@ -1,6 +1,8 @@
 package com.g19.breakout;
 
 import com.g19.breakout.controller.ArenaController;
+import com.g19.breakout.controller.Transformer;
+import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.view.ArenaView;
@@ -12,6 +14,6 @@ public class Game {
         ArenaModel arena = new ArenaModel(120, 50);
         ArenaView view = new ArenaView(arena, new LanternaAdapter(arena.getWidth(), arena.getHeight()));
         ArenaController controller = new ArenaController(arena, view);
-        controller.start();
+        controller.start(new Transformer(), new Chronometer());
     }
 }

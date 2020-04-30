@@ -33,16 +33,10 @@ public class ArenaViewTests {
 
     /*@Test
     public void testConstructor() throws IOException {
-        /*
         verify(arena, times(1)).getHeight();
         verify(arena, times(1)).getWidth();
-<<<<<<< HEAD
-        */
-    }
-=======
         verify(graphics, times(1)).init(arena.getWidth(), arena.getHeight());
     }*/
->>>>>>> master
 
     /*@Test
     public void testDraw() throws IOException {
