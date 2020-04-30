@@ -25,33 +25,48 @@ public class ArenaController {
     public void start(Transformer transformer, Chronometer chrono) throws IOException {
         do {
             view.draw();
-            update(transformer, chrono);
+            update(chrono);
         }
         while ( getNextCommand(transformer, view) );
     }
 
-    public void update(Transformer transformer, Chronometer chrono) {
+    public void update(Chronometer chrono) {
         int elapsedTime = (int) chrono.getElapsedTime();
 
+        updateBall(elapsedTime);
+        updateTiles();
+    }
+
+    protected void updateTiles() {
+        arena.getTiles().removeIf(t -> t.getLife() == 0);
+    }
+
+    protected void updateBall(int elapsedTime /*milliseconds*/) {
         BallModel ball = arena.getBall();
-        Direction ballDirection = ball.getDirection();
 
         double velocity = ball.getVelocity()*elapsedTime/1000;
+        Position nextBallPosition = updateBallPosition(velocity);
+
+        moveBall(nextBallPosition);
+    }
+
+    protected Position updateBallPosition(double velocity) {
+        BallModel ball = arena.getBall();
+        Direction ballDirection = ball.getDirection();
 
         Position nextBallPosition = ballDirection.getNextPosition(
                 ball.getPosition(),
                 velocity);
 
-        updateBallDirection(transformer, ball, nextBallPosition);
+        updateBallDirection(new Transformer(), ball, nextBallPosition);
         Direction newBallDirection = ball.getDirection();
 
-        if (!ballDirection.equals(newBallDirection)) {
-            nextBallPosition = ball.getDirection().getNextPosition(ball.getPosition(), velocity);
-        }
+        if (!ballDirection.equals(newBallDirection))
+            nextBallPosition = ball.getDirection().getNextPosition(
+                    ball.getPosition(),
+                    velocity);
 
-        moveBall(nextBallPosition);
-
-        arena.getTiles().removeIf(t -> t.getLife() == 0);
+        return nextBallPosition;
     }
 
     private void updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
