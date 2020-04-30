@@ -25,41 +25,56 @@ public class ArenaController {
     public void start(Transformer transformer, Chronometer chrono) throws IOException {
         do {
             view.draw();
-            update(transformer, chrono);
+            update(chrono);
         }
         while ( getNextCommand(transformer, view) );
     }
 
-    public void update(Transformer transformer, Chronometer chrono) {
+    public void update(Chronometer chrono) {
         int elapsedTime = (int) chrono.getElapsedTime();
 
-        BallModel ball = arena.getBall();
-        Direction ballDirection = ball.getDirection();
+        updateBall(elapsedTime);
+        updateTiles();
+    }
 
-        double velocity = ball.getVelocity()*elapsedTime/1000;
-
-        Position nextBallPosition = ballDirection.getNextPosition(
-                ball.getPosition(),
-                velocity);
-
-        updateBallDirection(transformer, ball, nextBallPosition);
-        Direction newBallDirection = ball.getDirection();
-
-        if (!ballDirection.equals(newBallDirection)) {
-            nextBallPosition = ball.getDirection().getNextPosition(ball.getPosition(), velocity);
-        }
-
-        moveBall(nextBallPosition);
-
+    protected void updateTiles() {
         arena.getTiles().removeIf(t -> t.getLife() == 0);
     }
 
-    private void updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
+    protected void updateBall(int elapsedTime /*milliseconds*/) {
+        BallModel ball = arena.getBall();
+
+        double velocity = ball.getVelocity()*elapsedTime/1000;
+        Position nextBallPosition = updateBallPosition(velocity);
+
+        moveBall(nextBallPosition);
+    }
+
+    protected Position updateBallPosition(double velocity) {
+        BallModel ball = arena.getBall();
+
+        Position nextBallPosition = ball.getDirection().getNextPosition(
+                ball.getPosition(),
+                velocity);
+
+        if (updateBallDirection(new Transformer(), ball, nextBallPosition))
+            nextBallPosition = ball.getDirection().getNextPosition(
+                    ball.getPosition(),
+                    velocity);
+
+        return nextBallPosition;
+    }
+
+    public boolean updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
         List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
 
         BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayerBar());
 
+        Direction ballDirection = ball.getDirection();
         ballHit.updateDirection();
+        Direction newBallDirection = ball.getDirection();
+
+        return !ballDirection.equals(newBallDirection);
     }
 
     public boolean getNextCommand(Transformer transformer, ArenaView view) throws IOException {
