@@ -5,7 +5,7 @@ In this project we are gonna replicate the game Breakout where you are suposed t
 (This link has edit permissions, be careful)
 [UML Document](https://drive.google.com/file/d/1M48P9BENmmRgFDlytl21KWHs9SB5GJh9/view?usp=sharing)
 
-<img src="docs/game.gif" height="300">
+<img src="game.gif" height="300">
 
 This project was developed by Rafael Cristino @rafaavc (up201806680@fe.up.pt) and Xavier Pisco @Xavier-Pisco (up201806314@fe.up.pt) for LPOO 2019/20.
 
