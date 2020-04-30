@@ -14,64 +14,64 @@ import static org.junit.Assert.*;
 
 public class ArenaModelTests {
     ArenaModel arena;
-    int height = 100, width = 120;
+    Dimensions dimensions = new Dimensions(100, 120);
 
     @Before
     public void setup() {
-        arena = new ArenaModel(width, height);
+        arena = new ArenaModel(dimensions);
     }
 
     @Test
     public void testWidthHeight() {
-        assertEquals(arena.getHeight(), height);
-        assertEquals(arena.getWidth(), width);
+        assertEquals(arena.getHeight(), this.dimensions.getDiscreteY());
+        assertEquals(arena.getWidth(), this.dimensions.getDiscreteX());
     }
 
     @Test
     public void testPlayerBar() {
-        assertEquals(arena.getPlayerBar().getPosition(), new Position(width/2., height-4));
+        assertEquals(arena.getPlayerBar().getPosition(), new Position(this.dimensions.getDiscreteX()/2., this.dimensions.getDiscreteY()-4));
     }
 
     @Test
     public void testBall() {
-        assertEquals(arena.getBall().getPosition(), new Position(width/2., height-5));
+        assertEquals(arena.getBall().getPosition(), new Position(this.dimensions.getDiscreteX()/2., this.dimensions.getDiscreteY()-5));
     }
 
     @Test
     public void testIsInsideArena() {
-        assertFalse(arena.isInsideArena(new Position(width, 10), arena.getBall().getDimensions()));
-        assertTrue(arena.isInsideArena(new Position(width-2, 10), arena.getBall().getDimensions()));
-        assertTrue(arena.isInsideArena(new Position(width-4, 10), arena.getPlayerBar().getDimensions()));
-        assertFalse(arena.isInsideArena(new Position(width-2, 10), arena.getPlayerBar().getDimensions()));
+        assertFalse(arena.isInsideArena(new Position(this.dimensions.getDiscreteX(), 10), arena.getBall().getDimensions()));
+        assertTrue(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-2, 10), arena.getBall().getDimensions()));
+        assertTrue(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-4, 10), arena.getPlayerBar().getDimensions()));
+        assertFalse(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-2, 10), arena.getPlayerBar().getDimensions()));
     }
 
     @Test
     public void testCheckCollisions(){
-        Position nextPosition = new Position(width / 2., height - 4);
+        Position nextPosition = new Position(this.dimensions.getDiscreteX() / 2., this.dimensions.getDiscreteY() - 4);
         Dimensions dimensions = new Dimensions(2, 1);
 
         List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.PLAYERBAR, ballModelHits.get(0));
 
-        nextPosition = new Position(width / 2., -1);
+        nextPosition = new Position(this.dimensions.getDiscreteX() / 2., -1);
         ballModelHits = arena.checkCollisions(nextPosition, dimensions);
         assertEquals(BallModel.HIT.TOP, ballModelHits.get(0));
 
-        nextPosition = new Position(width / 2., height);
+        nextPosition = new Position(this.dimensions.getDiscreteX() / 2., this.dimensions.getDiscreteY());
         ballModelHits = arena.checkCollisions(nextPosition, dimensions);
         assertEquals(BallModel.HIT.BOTTOM, ballModelHits.get(0));
 
-        nextPosition = new Position(width, 1);
+        nextPosition = new Position(this.dimensions.getDiscreteX(), 1);
         ballModelHits = arena.checkCollisions(nextPosition, dimensions);
         assertEquals(BallModel.HIT.SIDE, ballModelHits.get(0));
 
-        nextPosition = new Position(width, height);
+        nextPosition = new Position(this.dimensions.getDiscreteX(), this.dimensions.getDiscreteY());
         ballModelHits = arena.checkCollisions(nextPosition, dimensions);
         assertEquals(BallModel.HIT.BOTTOM, ballModelHits.get(0));
         assertEquals(BallModel.HIT.SIDE, ballModelHits.get(1));
 
-        nextPosition = new Position(width / 2., 11);
+        nextPosition = new Position(this.dimensions.getDiscreteX() / 2., 11);
         ballModelHits = arena.checkCollisions(nextPosition, dimensions);
         assertEquals(BallModel.HIT.TOP, ballModelHits.get(0));
     }

@@ -1,5 +1,6 @@
 package com.g19.breakout.view;
 
+import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
@@ -13,7 +14,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -41,7 +41,7 @@ public class ArenaViewTests {
         Mockito.when(factory.createTilesView(any(TileModel.class), any(Graphics.class))).thenReturn(tilesViewMock);
 
 
-        view = new ArenaView(new ArenaModel(100, 100), graphics, factory);
+        view = new ArenaView(new ArenaModel(new Dimensions(100, 100)), graphics, factory);
 
         ArenaView view1 = Mockito.spy(view);
         view1.draw();
@@ -56,7 +56,7 @@ public class ArenaViewTests {
 
     @Test
     public void testDrawBackground() {
-        view = new ArenaView(new ArenaModel(100, 100), graphics, factory);
+        view = new ArenaView(new ArenaModel(new Dimensions(100, 100)), graphics, factory);
 
         ArenaModel arena = Mockito.mock(ArenaModel.class);
         view.drawBackground(arena);
@@ -65,7 +65,7 @@ public class ArenaViewTests {
 
     @Test
     public void testReadInput() throws IOException {
-        view = new ArenaView(new ArenaModel(100, 100), graphics, factory);
+        view = new ArenaView(new ArenaModel(new Dimensions(100, 100)), graphics, factory);
 
         view.readInput();
         verify(graphics, times(1)).readInput();
