@@ -2,6 +2,7 @@ package com.g19.breakout.view;
 
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
+import com.g19.breakout.view.factory.BasicViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 import org.junit.Before;
@@ -28,7 +29,7 @@ public class ArenaViewTests {
     public void setup() throws IOException {
         arena = Mockito.mock(ArenaModel.class);
         graphics = Mockito.mock(LanternaAdapter.class);
-        view = new ArenaView(arena, graphics);
+        view = new ArenaView(arena, graphics, new BasicViewFactory());
     }
 
     /*@Test

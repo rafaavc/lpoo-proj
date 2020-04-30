@@ -6,7 +6,7 @@ import com.g19.breakout.view.graphics.Graphics;
 import java.util.List;
 
 public class TilesView extends ElementView {
-    TilesView(TileModel tile, Graphics graphics, String color, char charRep) {
+    public TilesView(TileModel tile, Graphics graphics, String color, char charRep) {
         super(tile, graphics, color, charRep);
     }
 
