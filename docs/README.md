@@ -1,55 +1,56 @@
 # LPOO_19 - Breakout
 
-In this project we are gonna replicate the game Breakout where you are suposed to not let the ball fall below the screen before you destroy all the blocks on the upper part of the screen by hitting them with the ball.
+In this project we are creating a game that looks a lot like "Breakout". The objective is to not let the ball fall below the screen before destroying all the blocks above (by hitting them with it).
 
-(This link has edit permissions, be careful)
-[UML Document](https://drive.google.com/file/d/1M48P9BENmmRgFDlytl21KWHs9SB5GJh9/view?usp=sharing)
+This is the current state of the project:
 
-<img src="game.gif" height="300">
+<img src="game.gif" height="500">
 
-This project was developed by Rafael Cristino @rafaavc (up201806680@fe.up.pt) and Xavier Pisco @Xavier-Pisco (up201806314@fe.up.pt) for LPOO 2019/20.
+This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) and Xavier Pisco (@Xavier-Pisco, up201806314@fe.up.pt) for LPOO 2019/20.
 
 
 ## Implemented features
 
-### Draw player's bar 
+### Drawing and moving the player's bar 
 
-The player's bar is being drawn close to the bottom of the screen and in the middle of width of the screen.
+The player's bar is being drawn close to the bottom of the screen and in the middle of width of the screen.<br/>
+It can be moved left or right by pressing the left or right arrows on the keyboard.
 
-<img src="PlayerBar.png" height="300">
-
-### Move player's bar
-
-The player's bar is possible to move within the screen with the left and right arrows to move left and right respectively.
-
-<img src="PlayerBarMoving1.png" height="300">
-<img src="PlayerBarMoving2.png" height="300">
-
-### Draw ball
+### Drawing and moving ball with collisions and bounces
 
 The game's ball is being drawn and starts close in the middle of the width of the screen and a bit above the players bar.
 
-<img src="PlayerBar and Ball.png" height="300">
+The ball will move with time. In the begin it will move right up. The ball changes it's direction according to the collisions it suffers.
 
-### Move the ball
+If the ball hits either the top of the screen, the sides of the screen, the player bar or the tiles it will bounce from that surface in the correct angle. However, if the ball hits the bottom of the screen, the game is over.
 
-The ball will move with time. At the begin it will move up;
+### Drawing and checking collisions with tiles
+
+The tile grid is being generated and drawn and the collisions of the ball with the tiles are being checked. The color of the tiles depends on the amount of health they have. When a tile reaches 0 health it is removed.
 
 
-<img src="BallMoving.png" height="300">
+## Planned Features
+
+- [x] Draw the arena
+- [x] Add the players bar
+- [x] Move the bar
+- [x] Draw the ball
+- [x] Move the ball 
+- [x] Add ball colisions and bounces
+- [x] Draw the tiles
+- [x] Add colisions with tiles
+- [ ] Add scoreboard
+- [ ] Add menus
+
+(these are just more ideas)
+- [ ] Add shots coming from above to hurt the player
+- [ ] Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
+- [ ] Add player lives
 
 
-### Add ball colisions and bounces
+## Design
 
-The ball will start moving upwards and it will change it's direction according to it's collisions.
-
-If it hits the top of the screen it will start moving down, if it hits the bottom it will stop (game over).
-<br>If it hits the left or right side of the screen it will start going right or left, respectively.
-<br>If it hits the player's bar it can go up, up and left or up and right.
-
-<img src="BallCollision.gif" height="300">
-
-## Design Patterns
+// This needs to be refactored to be like the template
 
 So far, we've used the following design patterns in the development of our project:
 
@@ -57,29 +58,24 @@ So far, we've used the following design patterns in the development of our proje
 
 <img src="AdapterPatternGraphics.png" height="300">
 
-- Command pattern (for the commands comming from the keyboard input)
+- Command pattern (for the Commands comming from the keyboard input and for the BallHits)
 
 - MVC (for the arena and it's various elements; implementation is not yet finished)
 
+- Factory && Abstract Factory pattern (at the moment for converting enum types to Commands and BallHits and also to create Views)
 
 
-## Planed Features
+## Known code smells and refactoring sugestions
 
-- [x] Draw the arena
-- [x] Add the players bar
-- [x] Move the bar
-- [x] Add the ball
-- [x] Move the ball 
-- [x] Add ball colisions and bounces
-- [x] Add the tiles
-- [ ] Add colisions with tiles
-- [ ] Add scoreboard
+// TODO
 
-(these are just more ideas)
-- [ ] Add shots coming from above to hurt the player
-- [ ] Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
 
-## Design
+## Testing
 
-TO-DO
 
+// TODO
+
+## Self-evaluation
+
+
+// TODO
