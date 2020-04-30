@@ -1,5 +1,6 @@
 package com.g19.breakout.controller;
 
+import com.g19.breakout.controller.ball.BallHitNothing;
 import com.g19.breakout.elements.*;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class ArenaControllerTests {
     ArenaView view;
@@ -27,7 +28,6 @@ public class ArenaControllerTests {
     public void setup() {
         view = Mockito.mock(ArenaView.class);
         arena = Mockito.mock(ArenaModel.class);
-
     }
 
     @Test
@@ -88,9 +88,53 @@ public class ArenaControllerTests {
 
         controller1.updateBall(1000); // 1second elapsed time
 
-        verify(controller1, times(1)).updateBallPosition(20.);
+        verify(controller1, times(1)).updateBallPosition(eq(20.));
         verify(controller1, times(1)).moveBall(pos);
+    }
 
+    @Test
+    public void testUpdateBallPosition() {
+        BallModel ball = Mockito.mock(BallModel.class);
+        Direction dir = Mockito.mock(Direction.class);
+
+        Mockito.when(ball.getDirection()).thenReturn(dir);
+        Position nextPosition = new Position(20, 30);
+        Mockito.doReturn(nextPosition).when(dir).getNextPosition(any(Position.class), anyDouble());
+
+        Mockito.when(arena.getBall()).thenReturn(ball);
+
+        ArenaController controller = new ArenaController(arena, view);
+        ArenaController controller1 = Mockito.spy(controller);
+
+        Mockito.doReturn(false).when(controller1).updateBallDirection(any(Transformer.class), any(BallModel.class), any(Position.class));
+
+        // THIS IS NOT WORKING, NEED TO FIGURE OUT WHY
+
+        //Position res = controller1.updateBallPosition(20);
+        //assertEquals(res, nextPosition);
+        //verify(controller1, times(1)).updateBallDirection(any(BallModel.class), any(Position.class));
+    }
+
+    @Test
+    public void testUpdateBallDirection() {
+        List<BallModel.HIT> hits = new ArrayList<>();
+        hits.add(BallModel.HIT.NOTHING);
+
+        Mockito.doReturn(hits).when(arena).checkCollisions(any(Position.class), any(Dimensions.class));
+
+        ArenaController controller = new ArenaController(arena, view);
+
+        Transformer transformer = Mockito.mock(Transformer.class);
+        BallHitNothing ballHit = Mockito.mock(BallHitNothing.class);
+
+        Mockito.doNothing().when(ballHit).updateDirection();
+        Mockito.doReturn(ballHit).when(transformer).toBallHit(any(), any(), any());
+
+        BallModel ball = Mockito.mock(BallModel.class);
+
+        // THIS IS NOT WORKING TOO!! I DON'T UNDERSTAND
+
+        //assertFalse(controller.updateBallDirection(transformer, ball, new Position(10, 10)));
     }
 
     @Test

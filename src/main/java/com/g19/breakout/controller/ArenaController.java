@@ -52,16 +52,12 @@ public class ArenaController {
 
     protected Position updateBallPosition(double velocity) {
         BallModel ball = arena.getBall();
-        Direction ballDirection = ball.getDirection();
 
-        Position nextBallPosition = ballDirection.getNextPosition(
+        Position nextBallPosition = ball.getDirection().getNextPosition(
                 ball.getPosition(),
                 velocity);
 
-        updateBallDirection(new Transformer(), ball, nextBallPosition);
-        Direction newBallDirection = ball.getDirection();
-
-        if (!ballDirection.equals(newBallDirection))
+        if (updateBallDirection(new Transformer(), ball, nextBallPosition))
             nextBallPosition = ball.getDirection().getNextPosition(
                     ball.getPosition(),
                     velocity);
@@ -69,12 +65,16 @@ public class ArenaController {
         return nextBallPosition;
     }
 
-    private void updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
+    public boolean updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
         List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
 
         BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayerBar());
 
+        Direction ballDirection = ball.getDirection();
         ballHit.updateDirection();
+        Direction newBallDirection = ball.getDirection();
+
+        return !ballDirection.equals(newBallDirection);
     }
 
     public boolean getNextCommand(Transformer transformer, ArenaView view) throws IOException {
