@@ -11,7 +11,7 @@ public class PlayerBarModelTests {
 
     @Test
     public void playerBarConstructor(){
-        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 5), "#ffffff");
+        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 5));
 
         assertEquals(10, playerBar.getPosition().getDiscreteX());
         assertEquals(5, playerBar.getPosition().getDiscreteY());
@@ -19,7 +19,7 @@ public class PlayerBarModelTests {
 
     @Test
     public void playerBarMovementRight(){
-        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 10), "#ffffff");
+        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 10));
 
         Position positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.right()).thenReturn(new Position(11, 10));
@@ -33,7 +33,7 @@ public class PlayerBarModelTests {
 
     @Test
     public void playerBarMovementLeft(){
-        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 10), "#ffffff");
+        PlayerBarModel playerBar = new PlayerBarModel(new Position(10, 10));
 
         Position positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.right()).thenReturn(new Position(9, 10));

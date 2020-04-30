@@ -24,19 +24,19 @@ public class ArenaModelTests {
 
     @Test
     public void testPlayerBar() {
-        assertEquals(arena.getPlayerBar().getPosition(), new Position(width/2., height-8));
+        assertEquals(arena.getPlayerBar().getPosition(), new Position(width/2., height-4));
     }
 
     @Test
     public void testBall() {
-        assertEquals(arena.getBall().getPosition(), new Position(width/2., height-9));
+        assertEquals(arena.getBall().getPosition(), new Position(width/2., height-5));
     }
 
     @Test
-    public void testCanMoveElement() {
-        assertFalse(arena.canMoveElement(new Position(width, 10), arena.getBall().getDimensions()));
-        assertTrue(arena.canMoveElement(new Position(width-2, 10), arena.getBall().getDimensions()));
-        assertTrue(arena.canMoveElement(new Position(width-4, 10), arena.getPlayerBar().getDimensions()));
-        assertFalse(arena.canMoveElement(new Position(width-2, 10), arena.getPlayerBar().getDimensions()));
+    public void testIsInsideArena() {
+        assertFalse(arena.isInsideArena(new Position(width, 10), arena.getBall().getDimensions()));
+        assertTrue(arena.isInsideArena(new Position(width-2, 10), arena.getBall().getDimensions()));
+        assertTrue(arena.isInsideArena(new Position(width-4, 10), arena.getPlayerBar().getDimensions()));
+        assertFalse(arena.isInsideArena(new Position(width-2, 10), arena.getPlayerBar().getDimensions()));
     }
 }
