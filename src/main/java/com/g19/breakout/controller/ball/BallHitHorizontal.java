@@ -3,11 +3,9 @@ package com.g19.breakout.controller.ball;
 import com.g19.breakout.model.BallModel;
 
 public class BallHitHorizontal extends BallHit {
-    private final BallHit ballHit;
 
     public BallHitHorizontal(BallModel ball, BallHit ballHit) {
-        super(ball);
-        this.ballHit = ballHit;
+        super(ball, ballHit);
     }
 
     public void updateDirection() {
