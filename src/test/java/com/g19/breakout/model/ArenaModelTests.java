@@ -33,7 +33,7 @@ public class ArenaModelTests {
     }
 
     @Test
-    public void testCanMoveElement() {
+    public void testIsInsideArena() {
         assertFalse(arena.isInsideArena(new Position(width, 10), arena.getBall().getDimensions()));
         assertTrue(arena.isInsideArena(new Position(width-2, 10), arena.getBall().getDimensions()));
         assertTrue(arena.isInsideArena(new Position(width-4, 10), arena.getPlayerBar().getDimensions()));
