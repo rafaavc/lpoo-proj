@@ -42,7 +42,7 @@ public class ArenaModel {
         tiles = new ArrayList<>();
         for (int i = 0; i < nHorizontal; i++) {
             for (int j = 0; j < nVertical; j++) {
-                Position pos = new Position(margin + tileWidth/2 + i*horizontalFreeSpaceEach, margin/2 + j*verticalFreeSpaceEach);
+                Position pos = new Position(margin + tileWidth/2. + i*horizontalFreeSpaceEach, margin/2. + j*verticalFreeSpaceEach);
                 Dimensions dim = new Dimensions(tileWidth, tileHeight);
                 tiles.add(new TileModel(pos, dim, 2 + nVertical - j));
             }
