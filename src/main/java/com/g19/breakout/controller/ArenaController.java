@@ -22,16 +22,15 @@ public class ArenaController {
         this.view = view;
     }
 
-    public void start() throws IOException {
-        Chronometer chrono = new Chronometer();
+    public void start(Transformer transformer, Chronometer chrono) throws IOException {
         do {
             view.draw();
-            update(chrono);
+            update(transformer, chrono);
         }
-        while ( getNextCommand(view) );
+        while ( getNextCommand(transformer, view) );
     }
 
-    public void update(Chronometer chrono) {
+    public void update(Transformer transformer, Chronometer chrono) {
         int elapsedTime = (int) chrono.getElapsedTime();
 
         BallModel ball = arena.getBall();
@@ -43,7 +42,7 @@ public class ArenaController {
                 ball.getPosition(),
                 velocity);
 
-        updateBallDirection(ball, nextBallPosition);
+        updateBallDirection(transformer, ball, nextBallPosition);
         Direction newBallDirection = ball.getDirection();
 
         if (!ballDirection.equals(newBallDirection)) {
@@ -55,17 +54,17 @@ public class ArenaController {
         arena.getTiles().removeIf(t -> t.getLife() == 0);
     }
 
-    private void updateBallDirection(BallModel ball, Position nextBallPosition){
+    private void updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
         List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
 
-        BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball, arena.getPlayerBar());
+        BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayerBar());
 
         ballHit.updateDirection();
     }
 
-    public boolean getNextCommand(ArenaView view) throws IOException {
+    public boolean getNextCommand(Transformer transformer, ArenaView view) throws IOException {
         ArenaView.Keys key = view.readInput();
-        Command cmd = new Transformer().toCommand(key);
+        Command cmd = transformer.toCommand(key);
         return cmd.execute(this);
     }
 

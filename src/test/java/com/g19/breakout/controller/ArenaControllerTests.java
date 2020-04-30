@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -75,7 +74,7 @@ public class ArenaControllerTests {
         Position pos = Mockito.mock(Position.class);
         Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBarModel(pos));
 
-        controller.getNextCommand(view);
+        controller.getNextCommand(new Transformer(), view);
         verify(view, times(1)).readInput();
         verify(pos, times(1)).left();
     }
