@@ -39,8 +39,8 @@ public class ArenaModelTests {
     @Test
     public void testIsInsideArena() {
         assertFalse(arena.isInsideArena(new Position(this.dimensions.getDiscreteX(), 10), arena.getBall().getDimensions()));
-        assertTrue(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-2, 10), arena.getBall().getDimensions()));
-        assertTrue(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-4, 10), arena.getPlayerBar().getDimensions()));
+        assertTrue(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-arena.getBall().getDimensions().getDiscreteX()/2., 10), arena.getBall().getDimensions()));
+        assertTrue(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-arena.getPlayerBar().getDimensions().getDiscreteX()/2., 10), arena.getPlayerBar().getDimensions()));
         assertFalse(arena.isInsideArena(new Position(this.dimensions.getDiscreteX()-2, 10), arena.getPlayerBar().getDimensions()));
     }
 
