@@ -1,5 +1,6 @@
 package com.g19.breakout.view.graphics;
 
+import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.view.ArenaView;
@@ -19,8 +20,8 @@ public class LanternaAdapter implements Graphics {
     private TerminalScreen screen;
     private TextGraphics textGraphics;
 
-    public LanternaAdapter(int terminalWidth, int terminalHeight) throws IOException {
-        TerminalSize terminalSize = new TerminalSize(terminalWidth, terminalHeight);
+    public LanternaAdapter(Dimensions dimensions) throws IOException {
+        TerminalSize terminalSize = new TerminalSize(dimensions.getDiscreteX(), dimensions.getDiscreteY());
 
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
         terminalFactory.setInitialTerminalSize(terminalSize);

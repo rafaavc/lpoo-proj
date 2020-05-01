@@ -5,9 +5,9 @@ import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.view.graphics.Graphics;
 
 public abstract class ElementView {
-    String color, stringRep;
-    char charRep;
-    Graphics graphics;
+    protected String color, stringRep;
+    protected char charRep;
+    protected Graphics graphics;
 
     ElementView(ElementModel model, Graphics graphics, String color, char charRep) {
         this.color = color;

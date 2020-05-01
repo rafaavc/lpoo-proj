@@ -7,7 +7,6 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
-import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.ArenaView;
 
 import java.io.IOException;
@@ -22,50 +21,64 @@ public class ArenaController {
         this.view = view;
     }
 
-    public void start() throws IOException {
-        Chronometer chrono = new Chronometer();
+    public void start(Transformer transformer, Chronometer chrono) throws IOException {
         do {
             view.draw();
             update(chrono);
         }
-        while ( getNextCommand(view) );
+        while ( getNextCommand(transformer, view) );
     }
 
     public void update(Chronometer chrono) {
         int elapsedTime = (int) chrono.getElapsedTime();
 
-        BallModel ball = arena.getBall();
-        Direction ballDirection = ball.getDirection();
+        updateBall(elapsedTime);
+        updateTiles();
+    }
 
-        double velocity = ball.getVelocity()*elapsedTime/1000;
-
-        Position nextBallPosition = ballDirection.getNextPosition(
-                ball.getPosition(),
-                velocity);
-
-        updateBallDirection(ball, nextBallPosition);
-        Direction newBallDirection = ball.getDirection();
-
-        if (!ballDirection.equals(newBallDirection)) {
-            nextBallPosition = ball.getDirection().getNextPosition(ball.getPosition(), velocity);
-        }
-
-        moveBall(nextBallPosition);
-
+    protected void updateTiles() {
         arena.getTiles().removeIf(t -> t.getLife() == 0);
     }
 
-    private void updateBallDirection(BallModel ball, Position nextBallPosition){
-        List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
+    protected void updateBall(int elapsedTime /*milliseconds*/) {
+        BallModel ball = arena.getBall();
 
-        BallHit ballHit = new Transformer().toBallHit(ballModelHits, ball, arena.getPlayerBar());
+        double velocity = ball.getVelocity()*elapsedTime/1000;
+        Position nextBallPosition = updateBallPosition(velocity);
 
-        ballHit.updateDirection();
+        moveBall(nextBallPosition);
     }
 
-    public boolean getNextCommand(ArenaView view) throws IOException {
+    protected Position updateBallPosition(double velocity) {
+        BallModel ball = arena.getBall();
+
+        Position nextBallPosition = ball.getDirection().getNextPosition(
+                ball.getPosition(),
+                velocity);
+
+        if (updateBallDirection(new Transformer(), ball, nextBallPosition))
+            nextBallPosition = ball.getDirection().getNextPosition(
+                    ball.getPosition(),
+                    velocity);
+
+        return nextBallPosition;
+    }
+
+    public boolean updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
+        List<BallModel.HIT> ballModelHits = arena.checkBallCollisions(nextBallPosition, ball.getDimensions());
+
+        BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayerBar());
+
+        Direction ballDirection = ball.getDirection();
+        ballHit.updateDirection();
+        Direction newBallDirection = ball.getDirection();
+
+        return !ballDirection.equals(newBallDirection);
+    }
+
+    public boolean getNextCommand(Transformer transformer, ArenaView view) throws IOException {
         ArenaView.Keys key = view.readInput();
-        Command cmd = new Transformer().toCommand(key);
+        Command cmd = transformer.toCommand(key);
         return cmd.execute(this);
     }
 

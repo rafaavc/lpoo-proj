@@ -1,5 +1,7 @@
 package com.g19.breakout.elements;
 
+import java.util.Objects;
+
 public class Position extends Dimensions {
     public Position(double x, double y) {
         super(x, y);
@@ -19,5 +21,19 @@ public class Position extends Dimensions {
 
     public Position down() {
         return new Position(x, y+1);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return Double.compare(position.x, x) == 0 &&
+                Double.compare(position.y, y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
