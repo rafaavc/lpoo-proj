@@ -4,7 +4,7 @@ In this project we are creating a game that looks a lot like "Breakout". The obj
 
 This is the current state of the project:
 
-<img src="game.gif" height="500">
+<img src="game.gif" height="500"/>
 
 This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) and Xavier Pisco (@Xavier-Pisco, up201806314@fe.up.pt) for LPOO 2019/20.
 
@@ -50,19 +50,75 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 
 ## Design
 
-// This needs to be refactored to be like the template
+### We want to work in the different components without affecting one another and improve modularity
 
-So far, we've used the following design patterns in the development of our project:
+#### The problem in context
 
-- Adapter pattern (for the graphics interface with which the view interacts)
+#### The pattern
+- MVC (for the arena and it's various elements)
 
-<img src="AdapterPatternGraphics.png" height="300">
+#### Implementation
 
+#### Consequences
+
+### We shouldn't need to interact directly with Lanterna to draw objects in the View
+
+#### The problem in context
+The view shouldn't be interacting with the graphics directly. We don't want to have to worry about the specifics of the graphics library being used at the moment while writing the view of each component, therefore we needed to reccur to abstraction. This is also helpful if we want to have the possibility of changing the graphics library easily, while not having to worry about it in the view.
+
+#### The pattern
+We applied the **Adapter pattern**. (speak about adapter pattern)
+
+#### Implementation
+<img src="AdapterPatternGraphics.png" height="300"/>
+
+The classes can be found in these files:
+- View:
+  -  [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
+  -  [ElementView](../src/main/java/com/g19/breakout/view/ElementView.java)
+  -  [BallView](../src/main/java/com/g19/breakout/view/BallView.java)
+  -  [PlayerBarView](../src/main/java/com/g19/breakout/view/PlayerBarView.java)
+  -  [TilesView](../src/main/java/com/g19/breakout/view/TilesView.java)
+- [Graphics](../src/main/java/com/g19/breakout/view/graphics/Graphics.java)
+- [LanternaAdapter](../src/main/java/com/g19/breakout/view/graphics/LanternaAdapter.java)
+
+#### Consequences
+The use of the Adapter pattern in the current design allows for the following benefits:
+- 1
+- ...
+
+### We want to be able to inject the classes that the ArenaView needs to create
+
+#### The problem in context
+
+#### The pattern
+- Abstract Factory pattern (to create Views)
+
+#### Implementation
+
+#### Consequences
+
+### We want to convert enum types to Commands and BallHits in a simple and clean way
+
+#### The problem in context
+
+#### The pattern
+- Factory pattern - at the moment for converting enum types to Commands and BallHits 
+
+#### Implementation
+
+#### Consequences
+
+### We want our ArenaController to not have to worry about which command was given nor which object the ball hit
+
+#### The problem in context
+
+#### The pattern
 - Command pattern (for the Commands comming from the keyboard input and for the BallHits)
 
-- MVC (for the arena and it's various elements; implementation is not yet finished)
+#### Implementation
 
-- Factory && Abstract Factory pattern (at the moment for converting enum types to Commands and BallHits and also to create Views)
+#### Consequences
 
 
 ## Known code smells and refactoring sugestions
@@ -72,10 +128,11 @@ So far, we've used the following design patterns in the development of our proje
 
 ## Testing
 
+- Screenshot of coverage report.
+- Link to mutation testing report.
 
-// TODO
 
 ## Self-evaluation
 
-
-// TODO
+- Rafael Cristino - 50%
+- Xavier Pisco - 50%
