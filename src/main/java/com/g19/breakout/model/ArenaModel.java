@@ -16,9 +16,10 @@ public class ArenaModel {
     public ArenaModel(Dimensions dimensions) {
         this.dimensions = dimensions;
 
+        // should probably make a factory for this, and make the constructors receive the dimensions as well
         playerBar = new PlayerBarModel(new Position(getWidth()/2., getHeight()-4));
         ball = new BallModel(new Position(getWidth()/2., getHeight()-5), 18);
-        tilesInit(5, 4);
+        tilesInit(5, 4); // for this too
     }
 
     private void tilesInit(int nHorizontal, int nVertical) {
@@ -100,8 +101,8 @@ public class ArenaModel {
 
     protected boolean checkHitPlayerBar(Position position) {
         return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
-                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - 3 &&
-                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + 3;
+                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - playerBar.getDimensions().getDiscreteX()/2 &&
+                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + playerBar.getDimensions().getDiscreteX()/2;
     }
 
     public boolean isInsideArena(Position position, Dimensions dimension) {

@@ -5,7 +5,7 @@ import com.g19.breakout.elements.Position;
 
 public class PlayerBarModel extends ElementModel {
     public PlayerBarModel(Position position) {
-        super(position, new Dimensions(6, 1));
+        super(position, new Dimensions(10, 1));
     }
 
     public void moveRight() {
