@@ -99,7 +99,7 @@ public class ArenaControllerTests {
 
         Mockito.when(ball.getDirection()).thenReturn(dir);
         Position nextPosition = new Position(20, 30);
-        Mockito.doReturn(nextPosition).when(dir).getNextPosition(any(Position.class), anyDouble());
+        Mockito.doReturn(nextPosition).when(dir).getNextPosition(any(), anyDouble());
 
         Mockito.when(arena.getBall()).thenReturn(ball);
 
@@ -108,11 +108,9 @@ public class ArenaControllerTests {
 
         Mockito.doReturn(false).when(controller1).updateBallDirection(any(Transformer.class), any(BallModel.class), any(Position.class));
 
-        // THIS IS NOT WORKING, NEED TO FIGURE OUT WHY
-
-        //Position res = controller1.updateBallPosition(20);
-        //assertEquals(res, nextPosition);
-        //verify(controller1, times(1)).updateBallDirection(any(BallModel.class), any(Position.class));
+        Position res = controller1.updateBallPosition(20);
+        assertEquals(res, nextPosition);
+        verify(controller1, times(1)).updateBallDirection(any(Transformer.class), any(BallModel.class), any(Position.class));
     }
 
     @Test
@@ -120,7 +118,9 @@ public class ArenaControllerTests {
         List<BallModel.HIT> hits = new ArrayList<>();
         hits.add(BallModel.HIT.NOTHING);
 
-        Mockito.doReturn(hits).when(arena).checkCollisions(any(Position.class), any(Dimensions.class));
+        arena = mock(ArenaModel.class);
+
+        Mockito.doReturn(hits).when(arena).checkBallCollisions(any(), any());
 
         ArenaController controller = new ArenaController(arena, view);
 
@@ -131,10 +131,9 @@ public class ArenaControllerTests {
         Mockito.doReturn(ballHit).when(transformer).toBallHit(any(), any(), any());
 
         BallModel ball = Mockito.mock(BallModel.class);
+        Mockito.doReturn(new Direction(1, 1)).when(ball).getDirection();
 
-        // THIS IS NOT WORKING TOO!! I DON'T UNDERSTAND
-
-        //assertFalse(controller.updateBallDirection(transformer, ball, new Position(10, 10)));
+        assertFalse(controller.updateBallDirection(transformer, ball, new Position(10, 10)));
     }
 
     @Test

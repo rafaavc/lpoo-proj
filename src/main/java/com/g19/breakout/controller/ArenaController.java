@@ -7,7 +7,6 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
-import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.ArenaView;
 
 import java.io.IOException;
@@ -66,7 +65,7 @@ public class ArenaController {
     }
 
     public boolean updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
-        List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextBallPosition, ball.getDimensions());
+        List<BallModel.HIT> ballModelHits = arena.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
         BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayerBar());
 

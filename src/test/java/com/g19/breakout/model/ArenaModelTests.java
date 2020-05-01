@@ -45,25 +45,25 @@ public class ArenaModelTests {
     }
 
     @Test
-    public void testCheckCollisions(){
+    public void testCheckBallCollisions(){
         Position nextPosition = new Position(this.dimensions.getDiscreteX() / 2., this.dimensions.getDiscreteY() - 4);
         Dimensions dimensions = new Dimensions(2, 1);
 
         ArenaModel arenaSpy = Mockito.spy(arena);
 
-        List<BallModel.HIT> ballModelHits = arena.checkCollisions(nextPosition, dimensions);
+        List<BallModel.HIT> ballModelHits = arena.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.PLAYERBAR, ballModelHits.get(0));
 
         nextPosition = new Position(this.dimensions.getDiscreteX() / 2., -1);
-        ballModelHits = arenaSpy.checkCollisions(nextPosition, dimensions);
+        ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.TOP, ballModelHits.get(0));
         Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
         Mockito.verify(arenaSpy).checkHitTile(nextPosition);
 
         nextPosition = new Position(this.dimensions.getDiscreteX() / 2., this.dimensions.getDiscreteY());
-        ballModelHits = arenaSpy.checkCollisions(nextPosition, dimensions);
+        ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.BOTTOM, ballModelHits.get(0));
         Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
@@ -72,7 +72,7 @@ public class ArenaModelTests {
 
 
         nextPosition = new Position(this.dimensions.getDiscreteX(), 1);
-        ballModelHits = arenaSpy.checkCollisions(nextPosition, dimensions);
+        ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.SIDE, ballModelHits.get(0));
         Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
@@ -80,7 +80,7 @@ public class ArenaModelTests {
 
 
         nextPosition = new Position(this.dimensions.getDiscreteX(), this.dimensions.getDiscreteY());
-        ballModelHits = arenaSpy.checkCollisions(nextPosition, dimensions);
+        ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.BOTTOM, ballModelHits.get(0));
         assertEquals(BallModel.HIT.SIDE, ballModelHits.get(1));
@@ -89,7 +89,7 @@ public class ArenaModelTests {
 
 
         nextPosition = new Position(this.dimensions.getDiscreteX() / 2., 11);
-        ballModelHits = arenaSpy.checkCollisions(nextPosition, dimensions);
+        ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.TOP, ballModelHits.get(0));
         Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
@@ -113,7 +113,7 @@ public class ArenaModelTests {
     }
 
     @Test
-    public void testCheckHitTopOrSide(){
+    public void testCheckHitTopOrSideTile(){
         TileModel tile = Mockito.mock(TileModel.class);
         Mockito.when(tile.getDimensions()).thenReturn(new Dimensions(1, 1));
         Mockito.when(tile.getPosition()).thenReturn(new Position(10, 10));

@@ -49,7 +49,7 @@ public class ArenaModel {
     }
 
 
-    public List<BallModel.HIT> checkCollisions(Position position, Dimensions dimensions) {
+    public List<BallModel.HIT> checkBallCollisions(Position position, Dimensions dimensions) {
         List<BallModel.HIT> hits = new ArrayList<>();
 
         if (position.getDiscreteY() == -1) hits.add(BallModel.HIT.TOP);
