@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -98,13 +99,17 @@ public class ArenaModelTests {
     @Test
     public void testCheckHitTile(){
         Position position = new Position(this.dimensions.getDiscreteX() / 2., 11);
+        List<TileModel> tiles = new ArrayList<>();
+        TileModel expectedTile = new TileModel(new Position(this.dimensions.getDiscreteX()/2., 8), new Dimensions(10, 4), 5);
+        tiles.add(expectedTile);
+        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2. + 20, 8), new Dimensions(10, 4), 5));
+        arena.setTiles(tiles);
 
-        TileModel expectedTile = new TileModel(new Position(60, 11), new Dimensions(20., 3.), 4);
         TileModel actualTile = arena.checkHitTile(position);
 
-        /*assertEquals(expectedTile.getLife(), actualTile.getLife());
+        assertEquals(expectedTile.getLife(), actualTile.getLife());
         assertEquals(expectedTile.getDimensions(), actualTile.getDimensions());
-        assertEquals(expectedTile.getPosition(), actualTile.getPosition());*/
+        assertEquals(expectedTile.getPosition(), actualTile.getPosition());
     }
 
     @Test

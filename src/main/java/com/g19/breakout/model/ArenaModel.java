@@ -132,4 +132,8 @@ public class ArenaModel {
     public List<TileModel> getTiles() {
         return tiles;
     }
+
+    public void setTiles(List<TileModel> tiles) {
+        this.tiles = tiles;
+    }
 }
