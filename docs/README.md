@@ -84,19 +84,33 @@ The classes can be found in these files:
 
 #### Consequences
 The use of the Adapter pattern in the current design allows for the following benefits:
-- 1
-- ...
+- If we need to use another graphics we just need to create and use another adapter.
+- Neither the model nor the view need to be changed in order to implement a new graphics.
 
 ### We want to be able to inject the classes that the ArenaView needs to create
 
 #### The problem in context
+
+We wan't to maintain the MVC structure while the controller gets information about the view. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes.
 
 #### The pattern
 - Abstract Factory pattern (to create Views)
 
 #### Implementation
 
+<img src="FactoryPatternForCommands.png" height="300">
+
+The classes can be found in these files:
+- View:
+  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java)
+- [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
+- [Commands](../src/main/java/com/g19/breakout/controller/commands)
+
 #### Consequences
+
+By using this design patter in this case:
+- The controller will easily convert the info received from the view into commands.
+- The view won't mess the MVC desing pattern already implemented.
 
 ### We want to convert enum types to Commands and BallHits in a simple and clean way
 
