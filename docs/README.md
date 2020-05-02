@@ -102,7 +102,7 @@ We wan't to maintain the MVC structure while the controller gets information abo
 
 The classes can be found in these files:
 - View:
-  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java)
+  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java#L1)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
 - [Commands](../src/main/java/com/g19/breakout/controller/commands)
 
