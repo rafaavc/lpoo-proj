@@ -2,7 +2,7 @@ package com.g19.breakout.controller.ball;
 
 import com.g19.breakout.model.BallModel;
 
-public abstract class BallHit {
+public abstract class updateBallHit {
     protected final BallModel ball;
     protected final BallHit ballHit;
 

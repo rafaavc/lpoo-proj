@@ -91,37 +91,55 @@ The use of the Adapter pattern in the current design allows for the following be
 
 #### The problem in context
 
-We wan't to maintain the MVC structure while the controller gets information about the view. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes.
 
 #### The pattern
 - Abstract Factory pattern (to create Views)
 
 #### Implementation
 
-<img src="FactoryPatternForCommands.png" height="300">
-
-The classes can be found in these files:
-- View:
-  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java#L1)
-- [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
-- [Commands](../src/main/java/com/g19/breakout/controller/commands)
-
 #### Consequences
 
-By using this design patter in this case:
-- The controller will easily convert the info received from the view into commands.
-- The view won't mess the MVC desing pattern already implemented.
 
 ### We want to convert enum types to Commands and BallHits in a simple and clean way
 
 #### The problem in context
+
+We wan't to maintain the MVC structure while the controller gets information about the view and from the model. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes. From the model we need to know if and what the ball will hit in the next iteration.
 
 #### The pattern
 - Factory pattern - at the moment for converting enum types to Commands and BallHits 
 
 #### Implementation
 
+Implementation for the controller commands received from the view
+
+<img src="FactoryPatternForCommands.png" height="300">
+
+The classes in the diagram can be found in these files:
+- View:
+  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java#L1)
+- [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
+- [Commands](../src/main/java/com/g19/breakout/controller/commands)
+
+
+<br><br>
+
+Implementation for the ball hits received from the model
+
+
+<img src="FactoryPatternForBallHit.png" height="300">
+
+The classes in the diagram can be found in these files:
+- View:
+  -  [BallModel.hit](../src/main/java/com/g19/breakout/model/BallModel.java#L1)
+- [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
+- [BallHits](../src/main/java/com/g19/breakout/controller/ball)
+
 #### Consequences
+
+By using this design patter in this case:
+- The controller will easily convert the info received from the view and the model into classes used by it.
+- Nor the view neither the model will mess the MVC desing pattern already implemented.
 
 ### We want our ArenaController to not have to worry about which command was given nor which object the ball hit
 
