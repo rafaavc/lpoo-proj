@@ -131,7 +131,7 @@ Implementation for the ball hits received from the model
 
 The classes in the diagram can be found in these files:
 - View:
-  -  [BallModel.hit](../src/main/java/com/g19/breakout/model/BallModel.java#L1)
+  -  [BallModel.Hit](../src/main/java/com/g19/breakout/model/BallModel.java#L1)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
 - [BallHits](../src/main/java/com/g19/breakout/controller/ball)
 
@@ -155,8 +155,15 @@ By using this design patter in this case:
 
 ## Known code smells and refactoring sugestions
 
-// TODO
+### Large Class
 
+Our class ArenaModel it's a little bigger than all the other classes and it violates the Single Responsability Principle since it creates the arena and checks all the hits that occur in it. Maybe we can create another class to create the Arena reducing the ArenaModel's size.
+
+### Big Switch Cases
+
+In the Transformer class we have 2 methods and both of them have switch cases, and the one on the toBallHit() method its 22 lines long.
+
+Even though we know that is a code smell, we think that there's no better way to do what this methods do without those switches.
 
 ## Testing
 
