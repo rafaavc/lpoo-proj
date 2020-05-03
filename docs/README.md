@@ -64,10 +64,12 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 - [x] Draw the tiles
 - [x] Add colisions with tiles
 - [ ] Add scoreboard - GUI mockup:
-<img src="ScoreboardMockup.png" height="300"/>
-- [ ] Add menus - GUI mockup:
-<img src="MenusMockup.png" height="300"/>
+<img src="ScoreboardMockup.png" height="270"/>
 
+- [ ] Add menus - GUI mockup:
+<img src="MenusMockup.png" height="270"/>
+
+The idea with the menus would be to have the screen divided into vertical stripes and have the player move the PlayerBar to the stripe with the option he wants and then press ENTER to select the option (But using P to pause). Alternatively, we will substitute this option with keypresses (or maintain the option selection with keypresses simultaneously with the stripes option).
 
 (these are just more ideas that may not be implemented)
 - [ ] Add player lives
