@@ -8,6 +8,8 @@ This is the current state of the project:
 
 This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) and Xavier Pisco (@Xavier-Pisco, up201806314@fe.up.pt) for LPOO 2019/20.
 
+### Quickly jump between topics
+Here we could have links so it is easier to see the whole picture and jump between topics
 
 ## Implemented features
 
@@ -50,7 +52,11 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 
 ## Design
 
-### We want to work in the different components without affecting one another and improve modularity
+In this section we expose some of the problems we had to face and the design patterns we used to solve them.
+
+---
+
+### *We want to work in the different components without affecting one another and improve modularity*
 
 #### The problem in context
 
@@ -60,9 +66,27 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 #### Implementation
 <img src="MVC.png" height="160"/>
 
+The classes can be found in these files:
+- Model
+  - [ArenaModel](../src/main/java/com/g19/breakout/model/ArenaModel.java)
+  - [ArenaModel](../src/main/java/com/g19/breakout/model/ElementModel.java)
+  - [ArenaModel](../src/main/java/com/g19/breakout/model/BallModel.java)
+  - [ArenaModel](../src/main/java/com/g19/breakout/model/PlayerBarModel.java)
+  - [ArenaModel](../src/main/java/com/g19/breakout/model/TileModel.java)
+- View
+  -  [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
+  -  [ElementView](../src/main/java/com/g19/breakout/view/ElementView.java)
+  -  [BallView](../src/main/java/com/g19/breakout/view/BallView.java)
+  -  [PlayerBarView](../src/main/java/com/g19/breakout/view/PlayerBarView.java)
+  -  [TilesView](../src/main/java/com/g19/breakout/view/TilesView.java)
+- Controller
+  - [ArenaController](../src/main/java/com/g19/breakout/controller/ArenaController.java)
+
 #### Consequences
 
-### We shouldn't need to interact directly with Lanterna to draw objects in the View
+---
+
+### *We shouldn't need to interact directly with Lanterna to draw objects in the View*
 
 #### The problem in context
 The view shouldn't be interacting with the graphics directly. We don't want to have to worry about the specifics of the graphics library being used at the moment while writing the view of each component, therefore we needed to reccur to abstraction. This is also helpful if we want to have the possibility of changing the graphics library easily, while not having to worry about it in the view.
@@ -100,8 +124,9 @@ The use of the Adapter pattern in the current design allows for the following be
 
 #### Consequences
 
+---
 
-### We want to convert enum types to Commands and BallHits in a simple and clean way
+### *We want to convert enum types to Commands and BallHits in a simple and clean way*
 
 #### The problem in context
 
@@ -142,7 +167,9 @@ By using this design patter in this case:
 - The controller will easily convert the info received from the view and the model into classes used by it.
 - Nor the view neither the model will mess the MVC desing pattern already implemented.
 
-### We want our ArenaController to not have to worry about which command was given nor which object the ball hit
+---
+
+### *We want our ArenaController to not have to worry about which command was given nor which object the ball hit*
 
 #### The problem in context
 
