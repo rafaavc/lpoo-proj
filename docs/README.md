@@ -245,11 +245,13 @@ The PlayerBarView and the BallView are also lazy classes. Maybe we'll need to de
 
 ## Testing
 
-- Coverage report
+- [Coverage report](./CoverageTestReport)
 
 <img src="CoverageReport.png" height="200">
 
 - [Mutation testing report](./MutationTestReport)
+
+<img src="MutationReport.png" height="250">
 
 
 ## Self-evaluation

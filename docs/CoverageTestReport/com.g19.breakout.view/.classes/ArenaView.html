@@ -1,0 +1,182 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ArenaView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.view</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ArenaView (com.g19.breakout.view)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArenaView</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ArenaView$Keys</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaView$MockitoMock$602581207</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaView$MockitoMock$602581207$auxiliary$BTzZZPD0</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaView$MockitoMock$602581207$auxiliary$EKmNXiPC</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaView$MockitoMock$602581207$auxiliary$MBtPn7sC</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaView$MockitoMock$602581207$auxiliary$SA3kgjhp</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaView$MockitoMock$602581207$auxiliary$SyLpgcRg</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaView$MockitoMock$602581207$auxiliary$Y5X2OwKY</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/ 20)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.view;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.model.ArenaModel;
+<i>4</i>&nbsp;import com.g19.breakout.elements.*;
+<i>5</i>&nbsp;import com.g19.breakout.view.factory.ViewFactory;
+<i>6</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.io.IOException;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class ArenaView {
+<i>12</i>&nbsp;    private final Graphics graphics;
+<b class="fc"><i>13</i>&nbsp;    private String backgroundColor = &quot;#000000&quot;;</b>
+<i>14</i>&nbsp;    private final ArenaModel arena;
+<i>15</i>&nbsp;    private final BallView ballView;
+<i>16</i>&nbsp;    private final PlayerBarView playerBarView;
+<i>17</i>&nbsp;    private final TilesView tilesView;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;
+<b class="fc"><i>20</i>&nbsp;    public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE};</b>
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;    public ArenaView(ArenaModel arena, Graphics graphics, ViewFactory factory) {</b>
+<b class="fc"><i>23</i>&nbsp;        this.graphics = graphics;</b>
+<b class="fc"><i>24</i>&nbsp;        this.arena = arena;</b>
+<b class="fc"><i>25</i>&nbsp;        this.ballView = factory.createBallView(arena.getBall(), graphics);</b>
+<b class="fc"><i>26</i>&nbsp;        this.playerBarView = factory.createPlayerBarView(arena.getPlayerBar(), graphics);</b>
+<b class="fc"><i>27</i>&nbsp;        this.tilesView = factory.createTilesView(arena.getTiles().get(0), graphics);</b>
+<b class="fc"><i>28</i>&nbsp;    }</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public void draw() throws IOException {
+<b class="fc"><i>31</i>&nbsp;        graphics.startDrawing();</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;        drawBackground(arena);</b>
+<b class="fc"><i>34</i>&nbsp;        tilesView.draw(arena.getTiles());</b>
+<b class="fc"><i>35</i>&nbsp;        playerBarView.draw(arena.getPlayerBar());</b>
+<b class="fc"><i>36</i>&nbsp;        ballView.draw(arena.getBall());</b>
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;        graphics.stopDrawing();</b>
+<b class="fc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public void drawBackground(ArenaModel arena) {
+<b class="fc"><i>42</i>&nbsp;        graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), &#39; &#39;, getBGColor());</b>
+<b class="fc"><i>43</i>&nbsp;    }</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public ArenaView.Keys readInput() throws IOException {
+<b class="fc"><i>46</i>&nbsp;        return graphics.readInput();</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public String getBGColor() {
+<b class="fc"><i>50</i>&nbsp;        return backgroundColor;</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 15:57</div>
+</div>
+</body>
+</html>

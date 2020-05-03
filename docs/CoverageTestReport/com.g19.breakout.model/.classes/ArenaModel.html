@@ -1,0 +1,275 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ArenaModel</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ArenaModel (com.g19.breakout.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArenaModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.5%
+  </span>
+  <span class="absValue">
+    (64/ 67)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$02S04Ui9</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$1jXtCSYL</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$5JgFawjo</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$92Ogfpxr</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$97Kjw3Gv</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$CILgwWlU</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$f6xLrwgA</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$ipaeQiNw</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$rhY7xMty</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$SRCbtf9l</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$wdGrk34Y</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$WugOjbXB</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$x9I7vjSY</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaModel$MockitoMock$2002136167$auxiliary$XgPdj0Nh</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.5%
+  </span>
+  <span class="absValue">
+    (64/ 67)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.elements.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class ArenaModel {
+<i>9</i>&nbsp;    private Dimensions dimensions;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    private final PlayerBarModel playerBar;
+<i>12</i>&nbsp;    private final BallModel ball;
+<i>13</i>&nbsp;    private List&lt;TileModel&gt; tiles;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;    public ArenaModel(Dimensions dimensions) {</b>
+<b class="fc"><i>17</i>&nbsp;        this.dimensions = dimensions;</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;        // should probably make a factory for this, and make the constructors receive the dimensions as well
+<b class="fc"><i>20</i>&nbsp;        playerBar = new PlayerBarModel(new Position(getWidth()/2., getHeight()-4));</b>
+<b class="fc"><i>21</i>&nbsp;        ball = new BallModel(new Position(getWidth()/2., getHeight()-5), 18);</b>
+<b class="fc"><i>22</i>&nbsp;        tilesInit(5, 4); // for this too</b>
+<b class="fc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    private void tilesInit(int nHorizontal, int nVertical) {
+<i>26</i>&nbsp;        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, marginBetweenTiles, margin, tileHeight;
+<i>27</i>&nbsp;
+<b class="fc"><i>28</i>&nbsp;        horizontalFreeSpace = getWidth();</b>
+<b class="fc"><i>29</i>&nbsp;        horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;</b>
+<b class="fc"><i>30</i>&nbsp;        verticalFreeSpaceEach = 5;</b>
+<b class="fc"><i>31</i>&nbsp;        marginBetweenTiles = 4;</b>
+<b class="fc"><i>32</i>&nbsp;        tileWidth = horizontalFreeSpaceEach-marginBetweenTiles;</b>
+<b class="fc"><i>33</i>&nbsp;        tileHeight = verticalFreeSpaceEach-(marginBetweenTiles/2);</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        margin = (getWidth() - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;</b>
+<i>36</i>&nbsp;
+<b class="fc"><i>37</i>&nbsp;        if (tileWidth%2 != 0) {</b>
+<b class="nc"><i>38</i>&nbsp;            tileWidth--;</b>
+<b class="nc"><i>39</i>&nbsp;            margin++;</b>
+<i>40</i>&nbsp;        }
+<i>41</i>&nbsp;
+<b class="fc"><i>42</i>&nbsp;        tiles = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>43</i>&nbsp;        for (int i = 0; i &lt; nHorizontal; i++) {</b>
+<b class="fc"><i>44</i>&nbsp;            for (int j = 0; j &lt; nVertical; j++) {</b>
+<b class="fc"><i>45</i>&nbsp;                Position pos = new Position(margin + tileWidth/2. + i*horizontalFreeSpaceEach, margin/2. + j*verticalFreeSpaceEach);</b>
+<b class="fc"><i>46</i>&nbsp;                Dimensions dim = new Dimensions(tileWidth, tileHeight);</b>
+<b class="fc"><i>47</i>&nbsp;                tiles.add(new TileModel(pos, dim, 2 + nVertical - j));</b>
+<i>48</i>&nbsp;            }
+<i>49</i>&nbsp;        }
+<b class="fc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public List&lt;BallModel.HIT&gt; checkBallCollisions(Position position, Dimensions dimensions) {
+<b class="fc"><i>54</i>&nbsp;        List&lt;BallModel.HIT&gt; hits = new ArrayList&lt;&gt;();</b>
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;        if (position.getDiscreteY() == -1) hits.add(BallModel.HIT.TOP);</b>
+<b class="fc"><i>57</i>&nbsp;        if (position.getDiscreteY() == getHeight() - dimensions.getDiscreteY() + 1) hits.add(BallModel.HIT.BOTTOM);</b>
+<b class="fc"><i>58</i>&nbsp;        if (checkHitPlayerBar(position)) hits.add(BallModel.HIT.PLAYERBAR);</b>
+<i>59</i>&nbsp;
+<b class="fc"><i>60</i>&nbsp;        TileModel tile = checkHitTile(position);</b>
+<b class="fc"><i>61</i>&nbsp;        if (tile != null) {</b>
+<b class="fc"><i>62</i>&nbsp;            hits.add(checkHitTopOrSideTile(tile));</b>
+<b class="fc"><i>63</i>&nbsp;            tile.hit();</b>
+<i>64</i>&nbsp;        }
+<i>65</i>&nbsp;
+<b class="fc"><i>66</i>&nbsp;        if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 ||</b>
+<b class="fc"><i>67</i>&nbsp;            position.getDiscreteX() == getWidth() - dimensions.getDiscreteX()/2. + 1) hits.add(BallModel.HIT.SIDE);</b>
+<i>68</i>&nbsp;
+<b class="fc"><i>69</i>&nbsp;        if (hits.size() == 0) hits.add(BallModel.HIT.NOTHING);</b>
+<b class="fc"><i>70</i>&nbsp;        return hits;</b>
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    protected BallModel.HIT checkHitTopOrSideTile(TileModel tile) {
+<b class="fc"><i>74</i>&nbsp;        Position prevPos = ball.getPosition();</b>
+<b class="fc"><i>75</i>&nbsp;        Position tilePos = tile.getPosition();</b>
+<b class="fc"><i>76</i>&nbsp;        int ballHWidth = ball.getDimensions().getDiscreteX()/2;</b>
+<b class="fc"><i>77</i>&nbsp;        int tileHWidth = tile.getDimensions().getDiscreteX()/2;</b>
+<i>78</i>&nbsp;
+<b class="fc"><i>79</i>&nbsp;        if (prevPos.getDiscreteX() + ballHWidth == tilePos.getDiscreteX() - tileHWidth ||</b>
+<b class="fc"><i>80</i>&nbsp;            prevPos.getDiscreteX() - ballHWidth == tilePos.getDiscreteX() + tileHWidth) return BallModel.HIT.SIDE;</b>
+<b class="fc"><i>81</i>&nbsp;        return BallModel.HIT.TOP;</b>
+<i>82</i>&nbsp;    }
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    protected TileModel checkHitTile(Position position) {
+<b class="fc"><i>85</i>&nbsp;        for (TileModel tile : tiles) {</b>
+<b class="fc"><i>86</i>&nbsp;            Position tilePos = tile.getPosition();</b>
+<b class="fc"><i>87</i>&nbsp;            int tileHeight = tile.getDimensions().getDiscreteY();</b>
+<b class="fc"><i>88</i>&nbsp;            int ballHeight = ball.getDimensions().getDiscreteY();</b>
+<i>89</i>&nbsp;
+<b class="fc"><i>90</i>&nbsp;            boolean isInsideY = position.getY() + ballHeight &gt; tilePos.getY() &amp;&amp; position.getY() &lt; tilePos.getY() + tileHeight;</b>
+<i>91</i>&nbsp;
+<b class="fc"><i>92</i>&nbsp;            if (isInsideY) {</b>
+<b class="fc"><i>93</i>&nbsp;                int ballHWidth = ball.getDimensions().getDiscreteX()/2;</b>
+<b class="fc"><i>94</i>&nbsp;                int tileHWidth = tile.getDimensions().getDiscreteX()/2;</b>
+<b class="fc"><i>95</i>&nbsp;                if (position.getDiscreteX() + ballHWidth &gt; tilePos.getDiscreteX() - tileHWidth &amp;&amp;</b>
+<b class="fc"><i>96</i>&nbsp;                    position.getDiscreteX() - ballHWidth &lt; tilePos.getDiscreteX() + tileHWidth)  return tile;</b>
+<i>97</i>&nbsp;            }
+<b class="fc"><i>98</i>&nbsp;        }</b>
+<b class="fc"><i>99</i>&nbsp;        return null;</b>
+<i>100</i>&nbsp;    }
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;    protected boolean checkHitPlayerBar(Position position) {
+<b class="fc"><i>103</i>&nbsp;        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &amp;&amp;</b>
+<b class="fc"><i>104</i>&nbsp;                position.getDiscreteX() &gt;= playerBar.getPosition().getDiscreteX() - playerBar.getDimensions().getDiscreteX()/2 &amp;&amp;</b>
+<b class="fc"><i>105</i>&nbsp;                position.getDiscreteX() &lt;= playerBar.getPosition().getDiscreteX() + playerBar.getDimensions().getDiscreteX()/2;</b>
+<i>106</i>&nbsp;    }
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;    public boolean isInsideArena(Position position, Dimensions dimension) {
+<b class="fc"><i>109</i>&nbsp;        return position.getDiscreteX() &gt;= dimension.getDiscreteX()/2 &amp;&amp; position.getDiscreteX() &lt;= getWidth() - dimension.getDiscreteX()/2</b>
+<b class="fc"><i>110</i>&nbsp;                &amp;&amp; position.getDiscreteY() &gt;= 0 &amp;&amp; position.getDiscreteY() &lt;= getHeight() - dimension.getDiscreteY()/2;</b>
+<i>111</i>&nbsp;    }
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;    public int getHeight() {
+<b class="fc"><i>114</i>&nbsp;        return dimensions.getDiscreteY();</b>
+<i>115</i>&nbsp;    }
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    public int getWidth() {
+<b class="fc"><i>118</i>&nbsp;        return dimensions.getDiscreteX();</b>
+<i>119</i>&nbsp;    }
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    public Dimensions getDimensions() {
+<b class="nc"><i>122</i>&nbsp;        return dimensions;</b>
+<i>123</i>&nbsp;    }
+<i>124</i>&nbsp;
+<i>125</i>&nbsp;    public PlayerBarModel getPlayerBar() {
+<b class="fc"><i>126</i>&nbsp;        return playerBar;</b>
+<i>127</i>&nbsp;    }
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;    public BallModel getBall() {
+<b class="fc"><i>130</i>&nbsp;        return ball;</b>
+<i>131</i>&nbsp;    }
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    public List&lt;TileModel&gt; getTiles() {
+<b class="fc"><i>134</i>&nbsp;        return tiles;</b>
+<i>135</i>&nbsp;    }
+<i>136</i>&nbsp;
+<i>137</i>&nbsp;    public void setTiles(List&lt;TileModel&gt; tiles) {
+<b class="fc"><i>138</i>&nbsp;        this.tiles = tiles;</b>
+<b class="fc"><i>139</i>&nbsp;    }</b>
+<i>140</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 15:57</div>
+</div>
+</body>
+</html>

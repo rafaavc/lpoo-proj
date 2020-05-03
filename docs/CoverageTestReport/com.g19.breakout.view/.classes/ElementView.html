@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ElementView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.view</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ElementView (com.g19.breakout.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ElementView</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/ 17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.view;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.elements.Position;
+<i>4</i>&nbsp;import com.g19.breakout.model.ElementModel;
+<i>5</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public abstract class ElementView {
+<i>8</i>&nbsp;    protected String color, stringRep;
+<i>9</i>&nbsp;    protected char charRep;
+<i>10</i>&nbsp;    protected Graphics graphics;
+<i>11</i>&nbsp;
+<b class="fc"><i>12</i>&nbsp;    ElementView(ElementModel model, Graphics graphics, String color, char charRep) {</b>
+<b class="fc"><i>13</i>&nbsp;        this.color = color;</b>
+<b class="fc"><i>14</i>&nbsp;        this.graphics = graphics;</b>
+<b class="fc"><i>15</i>&nbsp;        this.charRep = charRep;</b>
+<b class="fc"><i>16</i>&nbsp;        updateStringRep(model);</b>
+<b class="fc"><i>17</i>&nbsp;    }</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    // Maybe in the future this could be an observer that is
+<i>20</i>&nbsp;    // notified when the size of the ball changes and then updates the stringRep
+<i>21</i>&nbsp;    void updateStringRep(ElementModel model) {
+<b class="fc"><i>22</i>&nbsp;        StringBuilder strBuffer = new StringBuilder();</b>
+<b class="fc"><i>23</i>&nbsp;        for (int i = 0; i &lt; model.getDimensions().getDiscreteX(); i++) {</b>
+<b class="fc"><i>24</i>&nbsp;            strBuffer.append(charRep);</b>
+<i>25</i>&nbsp;        }
+<b class="fc"><i>26</i>&nbsp;        this.stringRep = strBuffer.toString();</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    void drawModel(ElementModel model) {
+<b class="fc"><i>30</i>&nbsp;        for (int i = 0; i &lt; model.getDimensions().getDiscreteY(); i++) {</b>
+<b class="fc"><i>31</i>&nbsp;            Position pos = new Position(</b>
+<b class="fc"><i>32</i>&nbsp;                model.getPosition().getDiscreteX(),</b>
+<b class="fc"><i>33</i>&nbsp;                model.getPosition().getDiscreteY() + i</b>
+<i>34</i>&nbsp;            );
+<b class="fc"><i>35</i>&nbsp;            graphics.drawCenteredString(pos, stringRep, color);</b>
+<i>36</i>&nbsp;        }
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 15:57</div>
+</div>
+</body>
+</html>

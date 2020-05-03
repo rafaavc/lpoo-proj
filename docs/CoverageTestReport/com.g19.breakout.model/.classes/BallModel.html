@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BallModel</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BallModel (com.g19.breakout.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BallModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">BallModel$HIT</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$1teTE3g9</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$1WCdL6pj</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$4Wwip7G5</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$6PrdCrDf</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$aVdEu3nv</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$Ob0azgQS</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$wnF5DE1J</td>
+  </tr>
+  <tr>
+    <td class="name">BallModel$MockitoMock$1593064685$auxiliary$xzvUtFzS</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.elements.Dimensions;
+<i>4</i>&nbsp;import com.g19.breakout.elements.Direction;
+<i>5</i>&nbsp;import com.g19.breakout.elements.Position;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public class BallModel extends ElementModel {
+<i>8</i>&nbsp;    private Direction direction;
+<i>9</i>&nbsp;    private double velocity;
+<i>10</i>&nbsp;
+<b class="fc"><i>11</i>&nbsp;    public enum HIT {TOP, BOTTOM, SIDE, PLAYERBAR, NOTHING};</b>
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    public BallModel(Position position, double startVelocity) {
+<b class="fc"><i>15</i>&nbsp;        super(position, new Dimensions(2, 1));</b>
+<b class="fc"><i>16</i>&nbsp;        this.direction = new Direction(0, -1); // the ball starts by going upwards</b>
+<b class="fc"><i>17</i>&nbsp;        velocity = startVelocity;</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    public double getVelocity() {
+<b class="fc"><i>21</i>&nbsp;        return velocity;</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    public Direction getDirection() {
+<b class="fc"><i>25</i>&nbsp;        return direction;</b>
+<i>26</i>&nbsp;    }
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    public void setDirection(Direction direction) {
+<b class="fc"><i>29</i>&nbsp;        this.direction = direction;</b>
+<b class="fc"><i>30</i>&nbsp;    }</b>
+<i>31</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 15:57</div>
+</div>
+</body>
+</html>
