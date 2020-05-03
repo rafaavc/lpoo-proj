@@ -58,7 +58,7 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 - MVC (for the arena and it's various elements)
 
 #### Implementation
-<img src="AdapterPatternGraphics.png" height="70%"/>
+<img src="MVC.png" height="160"/>
 
 #### Consequences
 
@@ -71,7 +71,7 @@ The view shouldn't be interacting with the graphics directly. We don't want to h
 We applied the **Adapter pattern**. (speak about adapter pattern)
 
 #### Implementation
-<img src="AdapterPatternGraphics.png" height="70%"/>
+<img src="AdapterPatternGraphics.png" height="130"/>
 
 The classes can be found in these files:
 - View:
