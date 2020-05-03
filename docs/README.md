@@ -69,10 +69,10 @@ In this section we expose some of the problems we had to face and the design pat
 The classes can be found in these files:
 - Model
   - [ArenaModel](../src/main/java/com/g19/breakout/model/ArenaModel.java)
-  - [ArenaModel](../src/main/java/com/g19/breakout/model/ElementModel.java)
-  - [ArenaModel](../src/main/java/com/g19/breakout/model/BallModel.java)
-  - [ArenaModel](../src/main/java/com/g19/breakout/model/PlayerBarModel.java)
-  - [ArenaModel](../src/main/java/com/g19/breakout/model/TileModel.java)
+  - [ElementModel](../src/main/java/com/g19/breakout/model/ElementModel.java)
+  - [BallModel](../src/main/java/com/g19/breakout/model/BallModel.java)
+  - [PlayerBarModel](../src/main/java/com/g19/breakout/model/PlayerBarModel.java)
+  - [TileModel](../src/main/java/com/g19/breakout/model/TileModel.java)
 - View
   -  [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
   -  [ElementView](../src/main/java/com/g19/breakout/view/ElementView.java)
