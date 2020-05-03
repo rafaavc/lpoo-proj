@@ -81,6 +81,8 @@ In this section we expose some of the problems we had to face and the design pat
 
 #### The problem in context
 
+As our architetural patern we decided to use the Model-View-Controller. With it we will have a more readable code since it will separate our code into packages, one for each of the 3 parts.
+
 #### The pattern
 - MVC (for the arena and it's various elements)
 
@@ -104,6 +106,9 @@ The classes can be found in these files:
   - [ArenaController](../src/main/java/com/g19/breakout/controller/ArenaController.java)
 
 #### Consequences
+
+- Helps keeping the 1st SOLID principle.
+- Removes circular dependencies since the model doesn't need to know the existance of the view nor the controller and the view don't use the controller.
 
 ---
 
