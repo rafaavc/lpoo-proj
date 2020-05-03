@@ -156,7 +156,7 @@ We want the ArenaController to execute a command, and update the ball's directio
 <img src="CommandPattern.png" height="300">
 
 Those classes can be found here:
-- [ArenaController](../src/main/java/com/g19/breakout/controller/ArenaController.java)
+- [ArenaController](../src/main/java/com/g19/breakout/controller/ArenaController.java#L60)
 - [BallHits](../src/main/java/com/g19/breakout/controller/ball)
 - [Commands](../src/main/java/com/g19/breakout/controller/commands)
 
