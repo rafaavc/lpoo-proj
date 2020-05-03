@@ -1,0 +1,73 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Graphics</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.view.graphics</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Graphics (com.g19.breakout.view.graphics)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">Graphics$MockitoMock$374769069</td>
+  </tr>
+  <tr>
+    <td class="name">Graphics$MockitoMock$374769069$auxiliary$R1Fr6xsR</td>
+  </tr>
+  <tr>
+    <td class="name">Graphics$MockitoMock$374769069$auxiliary$Vnx7B3GJ</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.view.graphics;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.elements.Position;
+<i>4</i>&nbsp;import com.g19.breakout.model.ElementModel;
+<i>5</i>&nbsp;import com.g19.breakout.view.ArenaView;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.io.IOException;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface Graphics {
+<i>10</i>&nbsp;    void startDrawing();
+<i>11</i>&nbsp;    void stopDrawing() throws IOException;
+<i>12</i>&nbsp;    void drawString(Position pos, String text, String foreColor);
+<i>13</i>&nbsp;    void drawCenteredString(Position pos, String text, String foreColor);
+<i>14</i>&nbsp;    void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor);
+<i>15</i>&nbsp;    ArenaView.Keys readInput() throws IOException;
+<i>16</i>&nbsp;}
+<i>17</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 15:57</div>
+</div>
+</body>
+</html>

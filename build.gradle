@@ -1,9 +1,10 @@
 plugins {
     id 'java'
     id 'application'
+    id 'info.solidsoft.pitest' version '1.4.6'
 }
 
-group 'com.g19'
+group 'com.g19.breakout'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

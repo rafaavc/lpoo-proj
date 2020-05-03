@@ -7,6 +7,7 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.view.ArenaView;
 
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class ArenaController {
         double velocity = ball.getVelocity()*elapsedTime/1000;
         Position nextBallPosition = updateBallPosition(velocity);
 
-        moveBall(nextBallPosition);
+        moveElement(nextBallPosition, this.arena.getBall());
     }
 
     protected Position updateBallPosition(double velocity) {
@@ -82,15 +83,9 @@ public class ArenaController {
         return cmd.execute(this);
     }
 
-    public void moveBall(Position position) {
-        if (arena.isInsideArena(position, arena.getBall().getDimensions())) {
-            arena.getBall().setPosition(position);
-        }
-    }
-
-    public void movePlayerBar(Position position){
-        if (arena.isInsideArena(position, arena.getPlayerBar().getDimensions())){
-            arena.getPlayerBar().setPosition(position);
+    public void moveElement(Position position, ElementModel element) {
+        if (arena.isInsideArena(position, element.getDimensions())) {
+            element.setPosition(position);
         }
     }
 

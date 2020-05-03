@@ -28,8 +28,4 @@ public class BallModel extends ElementModel {
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
-
-    public void setVelocity(double velocity) {
-        this.velocity = velocity;
-    }
 }

@@ -84,12 +84,12 @@ public class ArenaControllerTests {
         ArenaController controller1 = Mockito.spy(controller);
         Position pos = new Position(10, 20);
         Mockito.doReturn(pos).when(controller1).updateBallPosition(anyDouble());
-        Mockito.doNothing().when(controller1).moveBall(any(Position.class));
+        Mockito.doNothing().when(controller1).moveElement(any(Position.class), any(BallModel.class));
 
         controller1.updateBall(1000); // 1second elapsed time
 
         verify(controller1, times(1)).updateBallPosition(eq(20.));
-        verify(controller1, times(1)).moveBall(pos);
+        verify(controller1, times(1)).moveElement(pos, arena.getBall());
     }
 
     @Test
@@ -160,7 +160,7 @@ public class ArenaControllerTests {
         Mockito.when(ball.getDimensions()).thenReturn(new Dimensions(2, 1));
         Mockito.when(arena.getBall()).thenReturn(ball);
 
-        controller.moveBall(new Position(30, 30));
+        controller.moveElement(new Position(30, 30), ball);
         verify(ball, times(1)).setPosition(new Position(30, 30));
     }
 
@@ -174,7 +174,7 @@ public class ArenaControllerTests {
         Mockito.when(pb.getDimensions()).thenReturn(new Dimensions(6, 1));
         Mockito.when(arena.getPlayerBar()).thenReturn(pb);
 
-        controller.movePlayerBar(new Position(30, 30));
+        controller.moveElement(new Position(30, 30), pb);
         verify(pb, times(1)).setPosition(new Position(30, 30));
     }
 }

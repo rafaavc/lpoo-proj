@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Transformer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Transformer (com.g19.breakout.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Transformer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (26/ 26)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Transformer$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Transformer$MockitoMock$845634280</td>
+  </tr>
+  <tr>
+    <td class="name">Transformer$MockitoMock$845634280$auxiliary$hzMkYH6I</td>
+  </tr>
+  <tr>
+    <td class="name">Transformer$MockitoMock$845634280$auxiliary$Hzq7CNQw</td>
+  </tr>
+  <tr>
+    <td class="name">Transformer$MockitoMock$845634280$auxiliary$OwSsAYqD</td>
+  </tr>
+  <tr>
+    <td class="name">Transformer$MockitoMock$845634280$auxiliary$yUk6N09c</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (28/ 28)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.controller.ball.*;
+<i>4</i>&nbsp;import com.g19.breakout.controller.commands.*;
+<i>5</i>&nbsp;import com.g19.breakout.elements.Position;
+<i>6</i>&nbsp;import com.g19.breakout.model.BallModel;
+<i>7</i>&nbsp;import com.g19.breakout.model.PlayerBarModel;
+<i>8</i>&nbsp;import com.g19.breakout.view.ArenaView;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;import java.util.Objects;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;public class Transformer {</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    public BallHit toBallHit(List&lt;BallModel.HIT&gt; ballModelHits, BallModel ball, PlayerBarModel playerBar){
+<b class="fc"><i>16</i>&nbsp;        BallHit previousBallHit = null;</b>
+<b class="fc"><i>17</i>&nbsp;        BallHit ballHit = null;</b>
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;        for (BallModel.HIT ballModelHit: ballModelHits) {</b>
+<b class="fc"><i>20</i>&nbsp;            switch (ballModelHit) {</b>
+<i>21</i>&nbsp;                case TOP:
+<b class="fc"><i>22</i>&nbsp;                    ballHit = new BallHitHorizontal(ball ,previousBallHit);</b>
+<b class="fc"><i>23</i>&nbsp;                    previousBallHit = ballHit;</b>
+<b class="fc"><i>24</i>&nbsp;                    break;</b>
+<i>25</i>&nbsp;                case BOTTOM:
+<b class="fc"><i>26</i>&nbsp;                    ballHit = new BallHitBottom(ball ,previousBallHit);</b>
+<b class="fc"><i>27</i>&nbsp;                    previousBallHit = ballHit;</b>
+<b class="fc"><i>28</i>&nbsp;                    break;</b>
+<i>29</i>&nbsp;                case PLAYERBAR:
+<b class="fc"><i>30</i>&nbsp;                    ballHit = new BallHitPlayerBar(ball ,previousBallHit, playerBar);</b>
+<b class="fc"><i>31</i>&nbsp;                    previousBallHit = ballHit;</b>
+<b class="fc"><i>32</i>&nbsp;                    break;</b>
+<i>33</i>&nbsp;                case SIDE:
+<b class="fc"><i>34</i>&nbsp;                    ballHit = new BallHitVertical(ball ,previousBallHit);</b>
+<b class="fc"><i>35</i>&nbsp;                    previousBallHit = ballHit;</b>
+<b class="fc"><i>36</i>&nbsp;                    break;</b>
+<i>37</i>&nbsp;                case NOTHING:
+<i>38</i>&nbsp;                default:
+<b class="fc"><i>39</i>&nbsp;                    ballHit = new BallHitNothing(ball ,previousBallHit);</b>
+<b class="fc"><i>40</i>&nbsp;                    previousBallHit = ballHit;</b>
+<i>41</i>&nbsp;                    break;
+<i>42</i>&nbsp;            }
+<b class="fc"><i>43</i>&nbsp;        }</b>
+<i>44</i>&nbsp;
+<b class="fc"><i>45</i>&nbsp;        return ballHit;</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    public Command toCommand(ArenaView.Keys key){
+<b class="fc"><i>49</i>&nbsp;        switch (key){</b>
+<i>50</i>&nbsp;            case ARROWLEFT:
+<b class="fc"><i>51</i>&nbsp;                return new CommandLeft();</b>
+<i>52</i>&nbsp;            case ARROWRIGHT:
+<b class="fc"><i>53</i>&nbsp;                return new CommandRight();</b>
+<i>54</i>&nbsp;            case EOF:
+<b class="fc"><i>55</i>&nbsp;                return new CommandEXIT();</b>
+<i>56</i>&nbsp;            case NONE:
+<i>57</i>&nbsp;            default:
+<b class="fc"><i>58</i>&nbsp;                return new CommandNone();</b>
+<i>59</i>&nbsp;        }
+<i>60</i>&nbsp;    }
+<i>61</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 15:57</div>
+</div>
+</body>
+</html>
