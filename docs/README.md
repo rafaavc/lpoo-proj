@@ -118,7 +118,7 @@ Implementation for the controller commands received from the view
 
 The classes in the diagram can be found in these files:
 - View:
-  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java#L1)
+  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java#L20)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
 - [Commands](../src/main/java/com/g19/breakout/controller/commands)
 
@@ -132,7 +132,7 @@ Implementation for the ball hits received from the model
 
 The classes in the diagram can be found in these files:
 - View:
-  -  [BallModel.Hit](../src/main/java/com/g19/breakout/model/BallModel.java#L1)
+  -  [BallModel.HIT](../src/main/java/com/g19/breakout/model/BallModel.java#L11)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
 - [BallHits](../src/main/java/com/g19/breakout/controller/ball)
 
