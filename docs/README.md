@@ -131,7 +131,7 @@ The classes can be found in these files:
 The view shouldn't be interacting with the graphics directly. We don't want to have to worry about the specifics of the graphics library being used at the moment while writing the view of each component, therefore we needed to reccur to abstraction. This is also helpful if we want to have the possibility of changing the graphics library easily, while not having to worry about it in the view.
 
 #### The pattern
-We applied the **Adapter pattern**. (speak about adapter pattern)
+We applied the **Adapter pattern**. This will enable us to have separate classes to deal with the graphics library used, while not having to worry about it while coding other features.
 
 #### Implementation
 <img src="AdapterPatternGraphics.png" height="130"/>
@@ -154,14 +154,26 @@ The use of the Adapter pattern in the current design allows for the following be
 ### *We want to be able to inject the classes that the ArenaView needs to create*
 
 #### The problem in context
-
+The ArenaView was instantiating objects like BallView, PlayerBarView, etc in its constructor. This made it impossible to inject these same classes into ArenaView and violated the Single Responsibility principle for this class (it was creating and drawing the classes). We need something that allows us to solve these issues. 
 
 #### The pattern
-- Abstract Factory pattern (to create Views)
+To solve this problem, we applied the **Abstract Factory** pattern. With this pattern we can use other classes to create the views.
 
 #### Implementation
+<img src="AbstractFactoryPattern.png" height="150"/>
+
+The classes in the diagram can be found in these files:
+- [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
+- [ViewFactory](../src/main/java/com/g19/breakout/view/factory/ViewFactory.java)
+- [BasicViewFactory](../src/main/java/com/g19/breakout/view/factory/BasicViewFactory.java)
 
 #### Consequences
+
+By using this design pattern:
+- We can inject the factory into the ArenaView, therefore there's the possibility of injecting the BallView, PlayerBarView, etc in the tests (which we do).
+- We remove the responsibility of creating those classes from the ArenaView.
+- If we want we can create more implementations of the ViewFactory interface to create the views differently.
+- In the future, if we want to have alternate versions of the views we only need to create a new factory for them and 'abstractify' the views.
 
 ---
 
@@ -201,7 +213,7 @@ The classes in the diagram can be found in these files:
 
 By using this design pattern in this case:
 - The controller will easily convert the info received from the view and the model into classes used by it.
-- Nor the view neither the model will mess the MVC desing pattern already implemented.
+- Neither the view or the model will mess the MVC desing pattern already implemented.
 
 ---
 
@@ -244,6 +256,8 @@ Even though we know that is a code smell, we think that there's no better way to
 ### Lazy Class
 
 The PlayerBarModel class is at the moment a lazy class. To fix this, we'll add more functionality to it like keeping the player score and the lives he has left.
+
+The PlayerBarView and the BallView are also lazy classes. Maybe we'll need to delete them and substitute them for the ElementView class, if we don't find any other uses to put in them.
 
 ## Testing
 
