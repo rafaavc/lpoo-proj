@@ -176,7 +176,7 @@ We wan't to maintain the MVC structure while the controller gets information abo
 
 #### Implementation
 
-Implementation for the controller commands received from the view
+*Implementation for the controller commands received from the view*
 
 <img src="FactoryPatternForCommands.png" height="300">
 
@@ -187,10 +187,7 @@ The classes in the diagram can be found in these files:
 - [Commands](../src/main/java/com/g19/breakout/controller/commands)
 
 
-<br><br>
-
-Implementation for the ball hits received from the model
-
+*Implementation for the ball hits received from the model*
 
 <img src="FactoryPatternForBallHit.png" height="300">
 
@@ -202,7 +199,7 @@ The classes in the diagram can be found in these files:
 
 #### Consequences
 
-By using this design patter in this case:
+By using this design pattern in this case:
 - The controller will easily convert the info received from the view and the model into classes used by it.
 - Nor the view neither the model will mess the MVC desing pattern already implemented.
 
@@ -218,7 +215,6 @@ We want the ArenaController to execute a command, and update the ball's directio
 - Command pattern (for the Commands comming from the keyboard input and for the BallHits)
 
 #### Implementation
-
 
 <img src="CommandPattern.png" height="300">
 
@@ -244,6 +240,10 @@ Our class ArenaModel it's a little bigger than all the other classes and it viol
 In the Transformer class we have 2 methods and both of them have switch cases, and the one on the toBallHit() method its 22 lines long.
 
 Even though we know that is a code smell, we think that there's no better way to do what this methods do without those switches.
+
+### Lazy Class
+
+The PlayerBarModel class is at the moment a lazy class. To fix this, we'll add more functionality to it like keeping the player score and the lives he has left.
 
 ## Testing
 
