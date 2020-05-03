@@ -8,8 +8,47 @@ This is the current state of the project:
 
 This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) and Xavier Pisco (@Xavier-Pisco, up201806314@fe.up.pt) for LPOO 2019/20.
 
-### Quickly jump between topics
-Here we could have links so it is easier to see the whole picture and jump between topics
+## Quickly jump between topics
+
+* [LPOO_19 - Breakout](#lpoo_19---breakout)
+     * [Quickly jump between topics](#quickly-jump-between-topics)
+  * [Implemented features](#implemented-features)
+     * [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
+     * [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
+     * [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
+  * [Planned Features](#planned-features)
+  * [Design](#design)
+     * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
+        * [The problem in context](#the-problem-in-context)
+        * [The pattern](#the-pattern)
+        * [Implementation](#implementation)
+        * [Consequences](#consequences)
+     * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
+        * [The problem in context](#the-problem-in-context-1)
+        * [The pattern](#the-pattern-1)
+        * [Implementation](#implementation-1)
+        * [Consequences](#consequences-1)
+     * [We want to be able to inject the classes that the ArenaView needs to create](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
+        * [The problem in context](#the-problem-in-context-2)
+        * [The pattern](#the-pattern-2)
+        * [Implementation](#implementation-2)
+        * [Consequences](#consequences-2)
+     * [<em>We want to convert enum types to Commands and BallHits in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-and-ballhits-in-a-simple-and-clean-way)
+        * [The problem in context](#the-problem-in-context-3)
+        * [The pattern](#the-pattern-3)
+        * [Implementation](#implementation-3)
+        * [Consequences](#consequences-3)
+     * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
+        * [The problem in context](#the-problem-in-context-4)
+        * [The pattern](#the-pattern-4)
+        * [Implementation](#implementation-4)
+        * [Consequences](#consequences-4)
+  * [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
+     * [Large Class](#large-class)
+     * [Big Switch Cases](#big-switch-cases)
+  * [Testing](#testing)
+  * [Self-evaluation](#self-evaluation)
+
 
 ## Implemented features
 
