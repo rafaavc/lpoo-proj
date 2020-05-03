@@ -11,7 +11,7 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 ## Quickly jump between topics
 
 * [LPOO_19 - Breakout](#lpoo_19---breakout)
-     * [Quickly jump between topics](#quickly-jump-between-topics)
+  * [Quickly jump between topics](#quickly-jump-between-topics)
   * [Implemented features](#implemented-features)
      * [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
      * [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
@@ -19,35 +19,17 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
   * [Planned Features](#planned-features)
   * [Design](#design)
      * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-        * [The problem in context](#the-problem-in-context)
-        * [The pattern](#the-pattern)
-        * [Implementation](#implementation)
-        * [Consequences](#consequences)
      * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-        * [The problem in context](#the-problem-in-context-1)
-        * [The pattern](#the-pattern-1)
-        * [Implementation](#implementation-1)
-        * [Consequences](#consequences-1)
      * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-        * [The problem in context](#the-problem-in-context-2)
-        * [The pattern](#the-pattern-2)
-        * [Implementation](#implementation-2)
-        * [Consequences](#consequences-2)
      * [<em>We want to convert enum types to Commands and BallHits in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-and-ballhits-in-a-simple-and-clean-way)
-        * [The problem in context](#the-problem-in-context-3)
-        * [The pattern](#the-pattern-3)
-        * [Implementation](#implementation-3)
-        * [Consequences](#consequences-3)
      * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-        * [The problem in context](#the-problem-in-context-4)
-        * [The pattern](#the-pattern-4)
-        * [Implementation](#implementation-4)
-        * [Consequences](#consequences-4)
   * [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
      * [Large Class](#large-class)
      * [Big Switch Cases](#big-switch-cases)
+     * [Lazy Class](#lazy-class)
   * [Testing](#testing)
   * [Self-evaluation](#self-evaluation)
+
 
 
 ## Implemented features
@@ -151,6 +133,8 @@ The use of the Adapter pattern in the current design allows for the following be
 - If we need to use another graphics we just need to create and use another adapter.
 - Neither the model nor the view need to be changed in order to implement a new graphics.
 
+---
+
 ### *We want to be able to inject the classes that the ArenaView needs to create*
 
 #### The problem in context
@@ -160,7 +144,7 @@ The ArenaView was instantiating objects like BallView, PlayerBarView, etc in its
 To solve this problem, we applied the **Abstract Factory** pattern. With this pattern we can use other classes to create the views.
 
 #### Implementation
-<img src="AbstractFactoryPattern.png" height="150"/>
+<img src="AbstractFactoryPattern.png" height="170"/>
 
 The classes in the diagram can be found in these files:
 - [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
