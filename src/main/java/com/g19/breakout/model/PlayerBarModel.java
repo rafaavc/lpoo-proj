@@ -8,11 +8,5 @@ public class PlayerBarModel extends ElementModel {
         super(position, new Dimensions(10, 1));
     }
 
-    public void moveRight() {
-        position = new Position(position.getX()+1, position.getY());
-    }
-
-    public void moveLeft() {
-        position = new Position(position.getX()-1, position.getY());
-    }
+    // this will hold the player points and lives left, as well as any other info about the player
 }
