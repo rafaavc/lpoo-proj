@@ -28,7 +28,7 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
         * [The pattern](#the-pattern-1)
         * [Implementation](#implementation-1)
         * [Consequences](#consequences-1)
-     * [We want to be able to inject the classes that the ArenaView needs to create](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
+     * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
         * [The problem in context](#the-problem-in-context-2)
         * [The pattern](#the-pattern-2)
         * [Implementation](#implementation-2)
@@ -151,7 +151,7 @@ The use of the Adapter pattern in the current design allows for the following be
 - If we need to use another graphics we just need to create and use another adapter.
 - Neither the model nor the view need to be changed in order to implement a new graphics.
 
-### We want to be able to inject the classes that the ArenaView needs to create
+### *We want to be able to inject the classes that the ArenaView needs to create*
 
 #### The problem in context
 
