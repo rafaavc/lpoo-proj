@@ -14,11 +14,11 @@ public class Direction extends Dimensions {
         return new Position(startPosition.getX() + velocity*x, startPosition.getY() + velocity*y);
     }
 
-    public Direction hitTopOrBottom(){
+    public Direction hitHorizontal(){
         return new Direction(x, -y);
     }
 
-    public Direction hitLeftOrRight(){
+    public Direction hitVertical(){
         return new Direction(-x, y);
     }
 

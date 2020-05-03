@@ -9,7 +9,7 @@ public class BallHitHorizontal extends BallHit {
     }
 
     public void updateDirection() {
-        ball.setDirection(ball.getDirection().hitTopOrBottom());
+        ball.setDirection(ball.getDirection().hitHorizontal());
         if (ballHit != null) ballHit.updateDirection();
     }
 }

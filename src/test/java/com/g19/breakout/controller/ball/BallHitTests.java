@@ -8,8 +8,6 @@ import com.g19.breakout.model.PlayerBarModel;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.awt.*;
-
 import static org.junit.Assert.assertEquals;
 
 public class BallHitTests {
@@ -29,7 +27,7 @@ public class BallHitTests {
         BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball, null);
 
         Direction direction = Mockito.mock(Direction.class);
-        Mockito.when(direction.hitTopOrBottom()).thenReturn(new Direction(0, 1));
+        Mockito.when(direction.hitHorizontal()).thenReturn(new Direction(0, 1));
 
         ballHitHorizontal.updateDirection();
         assertEquals(ball.getDirection(), new Direction(0, 1));
