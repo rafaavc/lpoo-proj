@@ -8,7 +8,7 @@ import java.util.List;
 public class ArenaModel {
     private Dimensions dimensions;
 
-    private final PlayerBarModel playerBar;
+    private final PlayerModel playerBar;
     private final BallModel ball;
     private List<TileModel> tiles;
 
@@ -17,8 +17,8 @@ public class ArenaModel {
         this.dimensions = dimensions;
 
         // should probably make a factory for this, and make the constructors receive the dimensions as well
-        playerBar = new PlayerBarModel(new Position(getWidth()/2., getHeight()-4));
-        ball = new BallModel(new Position(getWidth()/2., getHeight()-5), 18);
+        playerBar = new PlayerModel(new Position(getWidth()/2., getHeight()-4));
+        ball = new BallModel(new Position(getWidth()/2., getHeight()-5), 30);
         tilesInit(5, 4); // for this too
     }
 
@@ -122,7 +122,7 @@ public class ArenaModel {
         return dimensions;
     }
 
-    public PlayerBarModel getPlayerBar() {
+    public PlayerModel getPlayerBar() {
         return playerBar;
     }
 

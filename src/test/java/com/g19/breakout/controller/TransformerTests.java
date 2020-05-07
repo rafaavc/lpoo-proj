@@ -3,7 +3,7 @@ package com.g19.breakout.controller;
 import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.controller.commands.*;
 import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -29,7 +29,7 @@ public class TransformerTests {
         Transformer transformer = new Transformer();
 
         BallModel ball = Mockito.mock(BallModel.class);
-        PlayerBarModel playerBar = Mockito.mock(PlayerBarModel.class);
+        PlayerModel playerBar = Mockito.mock(PlayerModel.class);
 
         BallHit ballHit = transformer.toBallHit(ballModelHits, ball, playerBar);
         assertEquals(ballHit.getClass(), BallHitNothing.class);

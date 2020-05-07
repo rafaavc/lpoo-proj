@@ -4,7 +4,7 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.model.PlayerModel;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -47,7 +47,7 @@ public class BallHitTests {
         BallModel ball = new BallModel(new Position(1,1), 1);
         ball.setDirection(new Direction(0, 1));
 
-        PlayerBarModel playerBar = Mockito.mock(PlayerBarModel.class);
+        PlayerModel playerBar = Mockito.mock(PlayerModel.class);
         Mockito.when(playerBar.getPosition()).thenReturn(new Position(1, 2));
         Mockito.when(playerBar.getDimensions()).thenReturn(new Dimensions(1, 1));
 

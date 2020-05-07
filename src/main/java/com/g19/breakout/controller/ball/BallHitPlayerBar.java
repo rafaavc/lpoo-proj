@@ -2,15 +2,15 @@ package com.g19.breakout.controller.ball;
 
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.model.PlayerModel;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 public class BallHitPlayerBar extends BallHit {
-    private final PlayerBarModel playerBar;
+    private final PlayerModel playerBar;
 
-    public BallHitPlayerBar(BallModel ball, BallHit ballHit, PlayerBarModel playerBar) {
+    public BallHitPlayerBar(BallModel ball, BallHit ballHit, PlayerModel playerBar) {
         super(ball, ballHit);
         this.playerBar = playerBar;
     }

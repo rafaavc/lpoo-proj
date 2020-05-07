@@ -4,7 +4,7 @@ import com.g19.breakout.controller.ball.BallHitNothing;
 import com.g19.breakout.elements.*;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.ArenaView;
 import org.junit.Before;
@@ -40,7 +40,7 @@ public class ArenaControllerTests {
         controller1.start(new Transformer(), new Chronometer());
 
         verify(controller1, times(1)).update(any(Chronometer.class));
-        verify(view, times(1)).draw();
+        verify(view, times(1)).drawAll(any(ArenaModel.class));
     }
 
     @Test
@@ -143,7 +143,7 @@ public class ArenaControllerTests {
         Mockito.when(view.readInput()).thenReturn(ArenaView.Keys.ARROWLEFT);
 
         Position pos = Mockito.mock(Position.class);
-        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerBarModel(pos));
+        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerModel(pos));
 
         controller.getNextCommand(new Transformer(), view);
         verify(view, times(1)).readInput();
@@ -170,7 +170,7 @@ public class ArenaControllerTests {
 
         Mockito.when(arena.isInsideArena(any(Position.class), any(Dimensions.class))).thenReturn(true);
 
-        PlayerBarModel pb = Mockito.mock(PlayerBarModel.class);
+        PlayerModel pb = Mockito.mock(PlayerModel.class);
         Mockito.when(pb.getDimensions()).thenReturn(new Dimensions(6, 1));
         Mockito.when(arena.getPlayerBar()).thenReturn(pb);
 

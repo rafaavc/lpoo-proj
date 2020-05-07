@@ -3,7 +3,7 @@ package com.g19.breakout.controller.commands;
 import com.g19.breakout.controller.ArenaController;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
-import com.g19.breakout.model.PlayerBarModel;
+import com.g19.breakout.model.PlayerModel;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -22,7 +22,7 @@ public class CommandTests {
         Position position = Mockito.mock(Position.class);
         Mockito.when(position.left()).thenReturn(new Position(1, 1));
 
-        PlayerBarModel playerBar = new PlayerBarModel(position);
+        PlayerModel playerBar = new PlayerModel(position);
 
         ArenaModel arena = Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getPlayerBar()).thenReturn(playerBar);
@@ -40,7 +40,7 @@ public class CommandTests {
         Position position = Mockito.mock(Position.class);
         Mockito.when(position.right()).thenReturn(new Position(3, 1));
 
-        PlayerBarModel playerBar = new PlayerBarModel(position);
+        PlayerModel playerBar = new PlayerModel(position);
 
         ArenaModel arena = Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getPlayerBar()).thenReturn(playerBar);
