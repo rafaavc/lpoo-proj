@@ -7,7 +7,7 @@ public class CommandRight implements Command{
 
     @Override
     public boolean execute(ArenaController controller) {
-        PlayerModel playerBar = controller.getArena().getPlayerBar();
+        PlayerModel playerBar = controller.getArena().getPlayer();
         controller.moveElement(playerBar.getPosition().right(), playerBar);
         return true;
     }

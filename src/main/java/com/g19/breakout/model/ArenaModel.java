@@ -1,52 +1,23 @@
 package com.g19.breakout.model;
 
 import com.g19.breakout.elements.*;
+import com.g19.breakout.model.factory.ArenaModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaModel {
-    private Dimensions dimensions;
+    private final Dimensions dimensions;
 
-    private final PlayerModel playerBar;
+    private final PlayerModel player;
     private final BallModel ball;
     private List<TileModel> tiles;
 
 
-    public ArenaModel(Dimensions dimensions) {
+    public ArenaModel(Dimensions dimensions, ArenaModelFactory factory) {
         this.dimensions = dimensions;
-
-        // should probably make a factory for this, and make the constructors receive the dimensions as well
-        playerBar = new PlayerModel(new Position(getWidth()/2., getHeight()-4));
-        ball = new BallModel(new Position(getWidth()/2., getHeight()-5), 30);
-        tilesInit(5, 4); // for this too
-    }
-
-    private void tilesInit(int nHorizontal, int nVertical) {
-        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, marginBetweenTiles, margin, tileHeight;
-
-        horizontalFreeSpace = getWidth();
-        horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;
-        verticalFreeSpaceEach = 5;
-        marginBetweenTiles = 4;
-        tileWidth = horizontalFreeSpaceEach-marginBetweenTiles;
-        tileHeight = verticalFreeSpaceEach-(marginBetweenTiles/2);
-
-        margin = (getWidth() - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;
-
-        if (tileWidth%2 != 0) {
-            tileWidth--;
-            margin++;
-        }
-
-        tiles = new ArrayList<>();
-        for (int i = 0; i < nHorizontal; i++) {
-            for (int j = 0; j < nVertical; j++) {
-                Position pos = new Position(margin + tileWidth/2. + i*horizontalFreeSpaceEach, margin/2. + j*verticalFreeSpaceEach);
-                Dimensions dim = new Dimensions(tileWidth, tileHeight);
-                tiles.add(new TileModel(pos, dim, 2 + nVertical - j));
-            }
-        }
+        player = factory.createPlayerModel(this);
+        ball = factory.createBallModel(this);
     }
 
 
@@ -100,9 +71,9 @@ public class ArenaModel {
     }
 
     protected boolean checkHitPlayerBar(Position position) {
-        return position.getDiscreteY() == playerBar.getPosition().getDiscreteY() &&
-                position.getDiscreteX() >= playerBar.getPosition().getDiscreteX() - playerBar.getDimensions().getDiscreteX()/2 &&
-                position.getDiscreteX() <= playerBar.getPosition().getDiscreteX() + playerBar.getDimensions().getDiscreteX()/2;
+        return position.getDiscreteY() == player.getPosition().getDiscreteY() &&
+                position.getDiscreteX() >= player.getPosition().getDiscreteX() - player.getDimensions().getDiscreteX()/2 &&
+                position.getDiscreteX() <= player.getPosition().getDiscreteX() + player.getDimensions().getDiscreteX()/2;
     }
 
     public boolean isInsideArena(Position position, Dimensions dimension) {
@@ -122,8 +93,8 @@ public class ArenaModel {
         return dimensions;
     }
 
-    public PlayerModel getPlayerBar() {
-        return playerBar;
+    public PlayerModel getPlayer() {
+        return player;
     }
 
     public BallModel getBall() {

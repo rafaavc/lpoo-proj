@@ -20,12 +20,12 @@ public class ArenaView implements View {
     public ArenaView(Graphics graphics) {
         this.graphics = graphics;
         this.views = new ArrayList<>();
+        views.add(this);
     }
 
     public void drawAll(ArenaModel arena) throws IOException {
         graphics.startDrawing();
 
-        draw(arena);
         for (View v : views) v.draw(arena);
 
         graphics.stopDrawing();

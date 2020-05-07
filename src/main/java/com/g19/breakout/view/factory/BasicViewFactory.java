@@ -14,7 +14,7 @@ public class BasicViewFactory implements ViewFactory {
     public BallView createBallView(BallModel ball, Graphics graphics) {
         return new BallView(ball, graphics, "#0000ff", '█');
     }
-    public PlayerView createPlayerBarView(PlayerModel playerBar, Graphics graphics) {
+    public PlayerView createPlayerView(PlayerModel playerBar, Graphics graphics) {
         return new PlayerView(playerBar, graphics, "#ffffff", '█');
     }
     public TilesView createTilesView(TileModel tile, Graphics graphics) {
@@ -24,7 +24,7 @@ public class BasicViewFactory implements ViewFactory {
         ArenaView view = new ArenaView(graphics);
 
         view.addView(createBallView(arena.getBall(), graphics));
-        view.addView(createPlayerBarView(arena.getPlayerBar(), graphics));
+        view.addView(createPlayerView(arena.getPlayer(), graphics));
         view.addView(createTilesView(arena.getTiles().get(0), graphics));
 
         return view;

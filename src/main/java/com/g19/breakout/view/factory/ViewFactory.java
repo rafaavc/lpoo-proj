@@ -13,7 +13,7 @@ import com.g19.breakout.view.graphics.Graphics;
 
 public interface ViewFactory {
     BallView createBallView(BallModel ball, Graphics graphics);
-    PlayerView createPlayerBarView(PlayerModel playerBar, Graphics graphics);
+    PlayerView createPlayerView(PlayerModel playerBar, Graphics graphics);
     TilesView createTilesView(TileModel tile, Graphics graphics);
     ArenaView createArenaView(ArenaModel arena, Graphics graphics);
 }

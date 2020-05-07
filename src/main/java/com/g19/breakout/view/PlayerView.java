@@ -10,6 +10,6 @@ public class PlayerView extends ElementView implements View {
     }
 
     public void draw(ArenaModel arena) {
-        drawModel(arena.getPlayerBar());
+        drawModel(arena.getPlayer());
     }
 }

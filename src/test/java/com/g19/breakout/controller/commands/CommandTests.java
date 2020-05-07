@@ -25,7 +25,7 @@ public class CommandTests {
         PlayerModel playerBar = new PlayerModel(position);
 
         ArenaModel arena = Mockito.mock(ArenaModel.class);
-        Mockito.when(arena.getPlayerBar()).thenReturn(playerBar);
+        Mockito.when(arena.getPlayer()).thenReturn(playerBar);
 
         Mockito.when(arenaController.getArena()).thenReturn(arena);
 
@@ -43,7 +43,7 @@ public class CommandTests {
         PlayerModel playerBar = new PlayerModel(position);
 
         ArenaModel arena = Mockito.mock(ArenaModel.class);
-        Mockito.when(arena.getPlayerBar()).thenReturn(playerBar);
+        Mockito.when(arena.getPlayer()).thenReturn(playerBar);
 
         Mockito.when(arenaController.getArena()).thenReturn(arena);
 

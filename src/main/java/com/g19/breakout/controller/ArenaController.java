@@ -68,7 +68,7 @@ public class ArenaController {
     public boolean updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
         List<BallModel.HIT> ballModelHits = arena.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
-        BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayerBar());
+        BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayer());
 
         Direction ballDirection = ball.getDirection();
         ballHit.updateDirection();

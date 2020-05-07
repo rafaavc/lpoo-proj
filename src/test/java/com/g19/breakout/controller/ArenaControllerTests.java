@@ -143,7 +143,7 @@ public class ArenaControllerTests {
         Mockito.when(view.readInput()).thenReturn(ArenaView.Keys.ARROWLEFT);
 
         Position pos = Mockito.mock(Position.class);
-        Mockito.when(arena.getPlayerBar()).thenReturn(new PlayerModel(pos));
+        Mockito.when(arena.getPlayer()).thenReturn(new PlayerModel(pos));
 
         controller.getNextCommand(new Transformer(), view);
         verify(view, times(1)).readInput();
@@ -172,7 +172,7 @@ public class ArenaControllerTests {
 
         PlayerModel pb = Mockito.mock(PlayerModel.class);
         Mockito.when(pb.getDimensions()).thenReturn(new Dimensions(6, 1));
-        Mockito.when(arena.getPlayerBar()).thenReturn(pb);
+        Mockito.when(arena.getPlayer()).thenReturn(pb);
 
         controller.moveElement(new Position(30, 30), pb);
         verify(pb, times(1)).setPosition(new Position(30, 30));
