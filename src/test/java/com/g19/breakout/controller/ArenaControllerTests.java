@@ -40,7 +40,7 @@ public class ArenaControllerTests {
         controller1.start(new Transformer(), new Chronometer());
 
         verify(controller1, times(1)).update(any(Chronometer.class));
-        verify(view, times(1)).drawAll(any(ArenaModel.class));
+        verify(view, times(1)).drawArena(any(ArenaModel.class));
     }
 
     @Test

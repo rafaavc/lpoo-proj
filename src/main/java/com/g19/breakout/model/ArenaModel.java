@@ -32,6 +32,7 @@ public class ArenaModel {
         if (tile != null) {
             hits.add(checkHitTopOrSideTile(tile));
             tile.hit();
+            player.addPoints(10);
         }
 
         if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 ||

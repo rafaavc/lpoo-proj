@@ -24,7 +24,7 @@ public class ArenaController {
 
     public void start(Transformer transformer, Chronometer chrono) throws IOException {
         do {
-            view.drawAll(arena);
+            view.drawArena(arena);
             update(chrono);
         }
         while ( getNextCommand(transformer, view) );

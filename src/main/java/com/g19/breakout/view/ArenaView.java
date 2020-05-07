@@ -13,6 +13,7 @@ public class ArenaView implements View {
     private final Graphics graphics;
     private final List<View> views;
     private String backgroundColor = "#000000";
+    private final ScoreboardView scoreboard;
 
 
     public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE};
@@ -21,11 +22,13 @@ public class ArenaView implements View {
         this.graphics = graphics;
         this.views = new ArrayList<>();
         views.add(this);
+        scoreboard = new ScoreboardView(graphics);
     }
 
-    public void drawAll(ArenaModel arena) throws IOException {
+    public void drawArena(ArenaModel arena) throws IOException {
         graphics.startDrawing();
 
+        scoreboard.draw(arena);
         graphics.setOffset(arena.getTopLeftCorner());
         for (View v : views) v.draw(arena);
 
