@@ -8,25 +8,25 @@ import java.util.List;
 
 public class ArenaModel {
     private final Dimensions dimensions;
-
+    private final Position topLeftCorner;
     private final PlayerModel player;
     private final BallModel ball;
     private List<TileModel> tiles;
 
 
-    public ArenaModel(Dimensions dimensions, ArenaModelFactory factory) {
+    public ArenaModel(Position topLeftCorner, Dimensions dimensions, ArenaModelFactory factory) {
         this.dimensions = dimensions;
+        this.topLeftCorner = topLeftCorner;
         player = factory.createPlayerModel(this);
         ball = factory.createBallModel(this);
     }
-
 
     public List<BallModel.HIT> checkBallCollisions(Position position, Dimensions dimensions) {
         List<BallModel.HIT> hits = new ArrayList<>();
 
         if (position.getDiscreteY() == -1) hits.add(BallModel.HIT.TOP);
         if (position.getDiscreteY() == getHeight() - dimensions.getDiscreteY() + 1) hits.add(BallModel.HIT.BOTTOM);
-        if (checkHitPlayerBar(position)) hits.add(BallModel.HIT.PLAYERBAR);
+        if (checkHitPlayer(position)) hits.add(BallModel.HIT.PLAYERBAR);
 
         TileModel tile = checkHitTile(position);
         if (tile != null) {
@@ -70,7 +70,7 @@ public class ArenaModel {
         return null;
     }
 
-    protected boolean checkHitPlayerBar(Position position) {
+    protected boolean checkHitPlayer(Position position) {
         return position.getDiscreteY() == player.getPosition().getDiscreteY() &&
                 position.getDiscreteX() >= player.getPosition().getDiscreteX() - player.getDimensions().getDiscreteX()/2 &&
                 position.getDiscreteX() <= player.getPosition().getDiscreteX() + player.getDimensions().getDiscreteX()/2;
@@ -107,5 +107,9 @@ public class ArenaModel {
 
     public void setTiles(List<TileModel> tiles) {
         this.tiles = tiles;
+    }
+
+    public Position getTopLeftCorner() {
+        return topLeftCorner;
     }
 }

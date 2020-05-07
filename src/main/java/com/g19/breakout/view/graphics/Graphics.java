@@ -12,6 +12,7 @@ public interface Graphics {
     void drawString(Position pos, String text, String foreColor);
     void drawCenteredString(Position pos, String text, String foreColor);
     void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor);
+    void setOffset(Position offset);
     ArenaView.Keys readInput() throws IOException;
 }
 

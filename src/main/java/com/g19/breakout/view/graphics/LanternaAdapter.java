@@ -19,6 +19,7 @@ import java.io.IOException;
 public class LanternaAdapter implements Graphics {
     private TerminalScreen screen;
     private TextGraphics textGraphics;
+    private Position offset;
 
     public LanternaAdapter(Dimensions dimensions) throws IOException {
         TerminalSize terminalSize = new TerminalSize(dimensions.getDiscreteX(), dimensions.getDiscreteY());
@@ -35,7 +36,6 @@ public class LanternaAdapter implements Graphics {
     }
 
     public void startDrawing() {
-        //screen.clear();
         textGraphics = screen.newTextGraphics();
     }
 
@@ -44,6 +44,7 @@ public class LanternaAdapter implements Graphics {
     }
 
     public void drawString(Position pos, String text, String foreColor) {
+        pos = getPositionWithOffset(pos);
         textGraphics.setForegroundColor(TextColor.Factory.fromString(foreColor));
         textGraphics.putString(pos.getDiscreteX(), pos.getDiscreteY(), text);
     }
@@ -53,17 +54,27 @@ public class LanternaAdapter implements Graphics {
     }
 
     public void drawString(Position pos, String text, String foreColor, String backColor) {
+        pos = getPositionWithOffset(pos);
         textGraphics.setForegroundColor(TextColor.Factory.fromString(foreColor));
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(backColor));
         textGraphics.putString(pos.getDiscreteX(), pos.getDiscreteY(), text);
     }
 
     public void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor) {
+        leftUpperCorner = getPositionWithOffset(leftUpperCorner);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(backColor));
         textGraphics.fillRectangle(
             new TerminalPosition(leftUpperCorner.getDiscreteX(),leftUpperCorner.getDiscreteY()),
             new TerminalSize(size.getDiscreteX(), size.getDiscreteY()),
             fill);
+    }
+
+    public void setOffset(Position offset) {
+        this.offset = offset;
+    }
+
+    private Position getPositionWithOffset(Position pos) {
+        return new Position(pos.getDiscreteX() + offset.getDiscreteX(), pos.getDiscreteY() + offset.getDiscreteY());
     }
 
     public ArenaView.Keys readInput() throws IOException {

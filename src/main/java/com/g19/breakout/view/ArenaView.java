@@ -26,6 +26,7 @@ public class ArenaView implements View {
     public void drawAll(ArenaModel arena) throws IOException {
         graphics.startDrawing();
 
+        graphics.setOffset(arena.getTopLeftCorner());
         for (View v : views) v.draw(arena);
 
         graphics.stopDrawing();

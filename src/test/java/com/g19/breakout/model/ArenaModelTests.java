@@ -59,14 +59,14 @@ public class ArenaModelTests {
         ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.TOP, ballModelHits.get(0));
-        Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
+        Mockito.verify(arenaSpy).checkHitPlayer(nextPosition);
         Mockito.verify(arenaSpy).checkHitTile(nextPosition);
 
         nextPosition = new Position(this.dimensions.getDiscreteX() / 2., this.dimensions.getDiscreteY());
         ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.BOTTOM, ballModelHits.get(0));
-        Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
+        Mockito.verify(arenaSpy).checkHitPlayer(nextPosition);
         Mockito.verify(arenaSpy).checkHitTile(nextPosition);
 
 
@@ -75,7 +75,7 @@ public class ArenaModelTests {
         ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.SIDE, ballModelHits.get(0));
-        Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
+        Mockito.verify(arenaSpy).checkHitPlayer(nextPosition);
         Mockito.verify(arenaSpy).checkHitTile(nextPosition);
 
 
@@ -84,7 +84,7 @@ public class ArenaModelTests {
 
         assertEquals(BallModel.HIT.BOTTOM, ballModelHits.get(0));
         assertEquals(BallModel.HIT.SIDE, ballModelHits.get(1));
-        Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
+        Mockito.verify(arenaSpy).checkHitPlayer(nextPosition);
         Mockito.verify(arenaSpy).checkHitTile(nextPosition);
 
 
@@ -92,7 +92,7 @@ public class ArenaModelTests {
         ballModelHits = arenaSpy.checkBallCollisions(nextPosition, dimensions);
 
         assertEquals(BallModel.HIT.TOP, ballModelHits.get(0));
-        Mockito.verify(arenaSpy).checkHitPlayerBar(nextPosition);
+        Mockito.verify(arenaSpy).checkHitPlayer(nextPosition);
         Mockito.verify(arenaSpy).checkHitTile(nextPosition);
     }
 
@@ -131,9 +131,9 @@ public class ArenaModelTests {
     public void testCheckHitPlayerBar(){
         Position nextPosition = new Position(this.dimensions.getDiscreteX() / 2., this.dimensions.getDiscreteY() - 4);
 
-        assertTrue(arena.checkHitPlayerBar(nextPosition));
+        assertTrue(arena.checkHitPlayer(nextPosition));
 
         nextPosition = new Position(1 ,1);
-        assertFalse(arena.checkHitPlayerBar(nextPosition));
+        assertFalse(arena.checkHitPlayer(nextPosition));
     }
 }
