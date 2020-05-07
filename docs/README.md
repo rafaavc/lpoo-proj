@@ -31,8 +31,9 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
   * [Self-evaluation](#self-evaluation)
 
 
-
 ## Implemented features
+
+All of these features are evident in the [gif above](#lpoo_19---breakout).
 
 ### Drawing and moving the player's bar 
 
@@ -62,13 +63,18 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 - [x] Add ball colisions and bounces
 - [x] Draw the tiles
 - [x] Add colisions with tiles
-- [ ] Add scoreboard
-- [ ] Add menus
+- [ ] Add scoreboard - GUI mockup:
+<img src="ScoreboardMockup.png" height="270"/>
 
-(these are just more ideas)
+- [ ] Add menus - GUI mockup:
+<img src="MenusMockup.png" height="270"/>
+
+The idea with the menus would be to have the screen divided into vertical stripes and have the player move the PlayerBar to the stripe with the option he wants and then press ENTER to select the option (But using P to pause). Alternatively, we will substitute this option with keypresses (or maintain the option selection with keypresses simultaneously with the stripes option).
+
+(these are just more ideas that may not be implemented)
+- [ ] Add player lives
 - [ ] Add shots coming from above to hurt the player
 - [ ] Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
-- [ ] Add player lives
 
 
 ## Design
@@ -81,8 +87,10 @@ In this section we expose some of the problems we had to face and the design pat
 
 #### The problem in context
 
+As our architectural patern we decided to use the Model-View-Controller. With it we will have a more readable code since it will separate our code into 3 parts.
+
 #### The pattern
-- MVC (for the arena and it's various elements)
+- MVC - Model View Controller
 
 #### Implementation
 <img src="MVC.png" height="160"/>
@@ -104,6 +112,10 @@ The classes can be found in these files:
   - [ArenaController](../src/main/java/com/g19/breakout/controller/ArenaController.java)
 
 #### Consequences
+
+- Helps keeping the 1st SOLID principle.
+- Shuns circular dependencies since the model doesn't need to know the existance of the view nor the controller and the view doesn't use the controller.
+- Improves the separation of tasks.
 
 ---
 
