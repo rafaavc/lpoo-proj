@@ -14,7 +14,8 @@ public class PauseView implements SuperView {
     public void drawAll() {
         graphics.setOffset(new Position(0, 0));
         graphics.drawRectangle(new Position(0, 0), new Dimensions(120, 50), ' ', "#000000");
-        graphics.drawCenteredString(new Position(60, 20), "Hello", "#ffffff");
+        graphics.drawCenteredString(new Position(60, 20), "Pause", "#ffffff");
+        graphics.drawCenteredString(new Position(60, 22), "Press P to return to the game", "#ffffff");
     }
 
 

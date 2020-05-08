@@ -20,20 +20,13 @@ public class Game {
     public static void main(String[] args) throws IOException {
         Graphics graphics = new LanternaAdapter(new Dimensions(120, 50));
         GameView view = new GameView(graphics);
-        GameController controller = new GameController(view);
+        GameController controller = new GameController(view, new Chronometer());
 
         ArenaModel arena = new BasicArenaModelFactory().createArenaModel(new Position(0, 6), new Dimensions(120, 44));
         ArenaView arenaView = new BasicViewFactory().createArenaView(arena, graphics);
 
-        controller.setState(new PlayingGameState(arena, arenaView, controller));
+        controller.setState(new PlayingGameState(arena, arenaView, controller), new Chronometer());
 
-        controller.start(new Transformer(), new Chronometer());
-        /*ArenaModel arena = new BasicArenaModelFactory().createArenaModel(new Position(0, 6), new Dimensions(120, 44));
-
-        ArenaView view = new BasicViewFactory().createArenaView(arena, new LanternaAdapter(new Dimensions(120, 50)));
-
-        ArenaController controller = new ArenaController(arena, view);
-
-        controller.start(new Transformer(), new Chronometer());*/
+        controller.start(new Transformer());
     }
 }

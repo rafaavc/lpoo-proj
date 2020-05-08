@@ -12,7 +12,7 @@ public class BasicArenaModelFactory implements ArenaModelFactory {
         return new PlayerModel(new Position(arena.getWidth()/2., arena.getHeight()-4));
     }
     public BallModel createBallModel(ArenaModel arena) {
-        return new BallModel(new Position(arena.getWidth() / 2., arena.getHeight() - 5), 30);
+        return new BallModel(new Position(arena.getWidth() / 2., arena.getHeight() - 5), 20);
     }
     public ArenaModel createArenaModel(Position offset, Dimensions dimensions) {
         ArenaModel arena = new ArenaModel(offset, dimensions, this);

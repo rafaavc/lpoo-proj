@@ -26,7 +26,7 @@ public class PauseGameState implements GameState {
 
     }
     public void commandP() {
-        controller.setState(new PlayingGameState(arena, new BasicViewFactory().createArenaView(arena, view.getGraphics()), controller));
+        controller.setState(new PlayingGameState(arena, new BasicViewFactory().createArenaView(arena, view.getGraphics()), controller), new Chronometer());
     }
 
     @Override
