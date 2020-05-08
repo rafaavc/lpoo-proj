@@ -5,6 +5,7 @@ import com.g19.breakout.controller.commands.*;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
+import com.g19.breakout.view.GameView;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class Transformer {
         return ballHit;
     }
 
-    public Command toCommand(ArenaView.Keys key){
+    public Command toCommand(GameView.Keys key){
         switch (key){
             case ARROWLEFT:
                 return new CommandLeft();
@@ -51,6 +52,8 @@ public class Transformer {
                 return new CommandRight();
             case EOF:
                 return new CommandEXIT();
+            case PKEY:
+                return new CommandP();
             case NONE:
             default:
                 return new CommandNone();

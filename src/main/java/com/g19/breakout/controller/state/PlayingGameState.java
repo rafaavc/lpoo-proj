@@ -1,33 +1,29 @@
-package com.g19.breakout.controller;
+package com.g19.breakout.controller.state;
 
-import com.g19.breakout.controller.ball.*;
-import com.g19.breakout.controller.commands.*;
+import com.g19.breakout.controller.GameController;
+import com.g19.breakout.controller.Transformer;
+import com.g19.breakout.controller.ball.BallHit;
+import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Direction;
+import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
-import com.g19.breakout.elements.Chronometer;
-import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ElementModel;
+import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
+import com.g19.breakout.view.PauseView;
 
-import java.io.IOException;
 import java.util.List;
 
-public class ArenaController {
-    private final ArenaModel arena;
-    private final ArenaView view;
+public class PlayingGameState implements GameState {
+    ArenaModel arena;
+    ArenaView view;
+    GameController controller;
 
-    public ArenaController(ArenaModel arena, ArenaView view) {
+    public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller) {
         this.arena = arena;
         this.view = view;
-    }
-
-    public void start(Transformer transformer, Chronometer chrono) throws IOException {
-        do {
-            view.drawArena(arena);
-            update(chrono);
-        }
-        while ( getNextCommand(transformer, view) );
+        this.controller = controller;
     }
 
     public void update(Chronometer chrono) {
@@ -77,19 +73,29 @@ public class ArenaController {
         return !ballDirection.equals(newBallDirection);
     }
 
-    public boolean getNextCommand(Transformer transformer, ArenaView view) throws IOException {
-        ArenaView.Keys key = view.readInput();
-        Command cmd = transformer.toCommand(key);
-        return cmd.execute(this);
-    }
-
     public void moveElement(Position position, ElementModel element) {
         if (arena.isInsideArena(position, element.getDimensions())) {
             element.setPosition(position);
         }
     }
 
-    public ArenaModel getArena() {
-        return arena;
+    public void commandL() {
+        // maybe change to where the playerbar is moved based on velocity, the longer the key is pressed the faster it moves
+        PlayerModel playerBar = arena.getPlayer();
+        moveElement(playerBar.getPosition().left(), playerBar);
+    }
+
+    public void commandR() {
+        PlayerModel playerBar = arena.getPlayer();
+        moveElement(playerBar.getPosition().right(), playerBar);
+    }
+
+    public void commandP() {
+        controller.setState(new PauseGameState(arena, new PauseView(view.getGraphics()), controller));
+    }
+
+    @Override
+    public ArenaView getView() {
+        return view;
     }
 }

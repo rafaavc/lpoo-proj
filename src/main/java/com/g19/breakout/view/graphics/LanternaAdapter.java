@@ -1,9 +1,8 @@
 package com.g19.breakout.view.graphics;
 
 import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.elements.Position;
-import com.g19.breakout.view.ArenaView;
+import com.g19.breakout.view.GameView;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -81,15 +80,16 @@ public class LanternaAdapter implements Graphics {
         return new Position(pos.getDiscreteX() + offset.getDiscreteX(), pos.getDiscreteY() + offset.getDiscreteY());
     }
 
-    public ArenaView.Keys readInput() throws IOException {
+    public GameView.Keys readInput() throws IOException {
         KeyStroke key = screen.pollInput();
         if (key != null) {
             KeyType keyType = key.getKeyType();
-            if (keyType == KeyType.ArrowLeft) return ArenaView.Keys.ARROWLEFT;
-            if (keyType == KeyType.ArrowRight) return ArenaView.Keys.ARROWRIGHT;
-            if (keyType == KeyType.EOF) return ArenaView.Keys.EOF;
+            if (keyType == KeyType.ArrowLeft) return GameView.Keys.ARROWLEFT;
+            if (keyType == KeyType.ArrowRight) return GameView.Keys.ARROWRIGHT;
+            if (keyType == KeyType.EOF) return GameView.Keys.EOF;
+            if (key.getCharacter() == 'P' || key.getCharacter() == 'p') return GameView.Keys.PKEY;
         }
-        return ArenaView.Keys.NONE;
+        return GameView.Keys.NONE;
     }
 }
 

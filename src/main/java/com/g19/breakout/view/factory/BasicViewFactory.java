@@ -1,5 +1,6 @@
 package com.g19.breakout.view.factory;
 
+import com.g19.breakout.controller.GameController;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
@@ -18,7 +19,7 @@ public class BasicViewFactory implements ViewFactory {
         return new TilesView(tile, graphics, "#ff0000", '█');
     }
     public ArenaView createArenaView(ArenaModel arena, Graphics graphics) {
-        ArenaView view = new ArenaView(graphics);
+        ArenaView view = new ArenaView(graphics, arena);
 
         view.addView(createBallView(arena.getBall(), graphics));
         view.addView(createPlayerView(arena.getPlayer(), graphics));

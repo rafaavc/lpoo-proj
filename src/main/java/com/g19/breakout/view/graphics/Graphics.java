@@ -2,8 +2,7 @@ package com.g19.breakout.view.graphics;
 
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
-import com.g19.breakout.model.ElementModel;
-import com.g19.breakout.view.ArenaView;
+import com.g19.breakout.view.GameView;
 
 import java.io.IOException;
 
@@ -16,6 +15,6 @@ public interface Graphics {
     void drawCenteredString(Position pos, String text, String foreColor, String backColor);
     void drawRectangle(Position leftUpperCorner, Dimensions size, char fill, String backColor);
     void setOffset(Position offset);
-    ArenaView.Keys readInput() throws IOException;
+    GameView.Keys readInput() throws IOException;
 }
 
