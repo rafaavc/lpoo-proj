@@ -60,6 +60,10 @@ public class LanternaAdapter implements Graphics {
         textGraphics.putString(pos.getDiscreteX(), pos.getDiscreteY(), text);
     }
 
+    public void drawCenteredString(Position pos, String text, String foreColor, String backColor){
+        drawString(new Position(pos.getX()-(text.length()/2.), pos.getY()), text, foreColor, backColor);
+    }
+
     public void drawRectangle(Position leftUpperCorner, Dimensions size, char fill, String backColor) {
         leftUpperCorner = getPositionWithOffset(leftUpperCorner);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(backColor));

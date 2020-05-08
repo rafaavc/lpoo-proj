@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class Game {
     public static void main(String[] args) throws IOException {
-        ArenaModel arena = new BasicArenaModelFactory().createArenaModel(new Position(0, 6), new Dimensions(120, 45));
+        ArenaModel arena = new BasicArenaModelFactory().createArenaModel(new Position(0, 6), new Dimensions(120, 44));
 
         ArenaView view = new BasicViewFactory().createArenaView(arena, new LanternaAdapter(new Dimensions(120, 50)));
 

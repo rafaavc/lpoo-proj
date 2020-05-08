@@ -12,6 +12,8 @@ public interface Graphics {
     void stopDrawing() throws IOException;
     void drawString(Position pos, String text, String foreColor);
     void drawCenteredString(Position pos, String text, String foreColor);
+    void drawString(Position pos, String text, String foreColor, String backColor);
+    void drawCenteredString(Position pos, String text, String foreColor, String backColor);
     void drawRectangle(Position leftUpperCorner, Dimensions size, char fill, String backColor);
     void setOffset(Position offset);
     ArenaView.Keys readInput() throws IOException;
