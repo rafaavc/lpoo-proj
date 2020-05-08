@@ -2,16 +2,15 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.elements.Chronometer;
-import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.view.PauseView;
-import com.g19.breakout.view.factory.BasicViewFactory;
 
 public class PauseGameState implements GameState {
-    ArenaModel arena;
+    PlayingGameState playingGameState;
     PauseView view;
     GameController controller;
-    PauseGameState(ArenaModel arena, PauseView view, GameController controller) {
-        this.arena = arena;
+
+    PauseGameState(PlayingGameState playingGameState, PauseView view, GameController controller) {
+        this.playingGameState = playingGameState;
         this.controller = controller;
         this.view = view;
     }
@@ -26,7 +25,7 @@ public class PauseGameState implements GameState {
 
     }
     public void commandP() {
-        controller.setState(new PlayingGameState(arena, new BasicViewFactory().createArenaView(arena, view.getGraphics()), controller), new Chronometer());
+        controller.setState(playingGameState, new Chronometer());
     }
 
     @Override
