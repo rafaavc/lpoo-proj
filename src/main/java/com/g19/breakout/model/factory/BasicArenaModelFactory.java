@@ -14,8 +14,8 @@ public class BasicArenaModelFactory implements ArenaModelFactory {
     public BallModel createBallModel(ArenaModel arena) {
         return new BallModel(new Position(arena.getWidth() / 2., arena.getHeight() - 5), 20);
     }
-    public ArenaModel createArenaModel(Position offset, Dimensions dimensions) {
-        ArenaModel arena = new ArenaModel(offset, dimensions, this);
+    public ArenaModel createArenaModel(Dimensions gameDimensions) {
+        ArenaModel arena = new ArenaModel(gameDimensions, this);
         arena.setTiles(TileModel.createTileArray(5, 4, arena));
         return arena;
     }

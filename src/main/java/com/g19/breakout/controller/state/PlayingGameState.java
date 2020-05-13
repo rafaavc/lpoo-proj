@@ -19,11 +19,13 @@ public class PlayingGameState implements GameState {
     ArenaModel arena;
     ArenaView view;
     GameController controller;
+    StateFactory stateFactory;
 
-    public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller) {
+    public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller, StateFactory stateFactory) {
         this.arena = arena;
         this.view = view;
         this.controller = controller;
+        this.stateFactory = stateFactory;
     }
 
     public void update(Chronometer chrono) {
@@ -91,7 +93,7 @@ public class PlayingGameState implements GameState {
     }
 
     public void commandP() {
-        controller.setState(new PauseGameState(this, new PauseView(view.getGraphics()), controller), new Chronometer());
+        controller.setState(this.stateFactory.createPauseGameState(this, controller), new Chronometer());
     }
 
     @Override

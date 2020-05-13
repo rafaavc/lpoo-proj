@@ -14,9 +14,9 @@ public class ArenaModel {
     private List<TileModel> tiles;
 
 
-    public ArenaModel(Position topLeftCorner, Dimensions dimensions, ArenaModelFactory factory) {
-        this.dimensions = dimensions;
-        this.topLeftCorner = topLeftCorner;
+    public ArenaModel(Dimensions gameDimensions, ArenaModelFactory factory) {
+        this.dimensions = new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()-6);
+        this.topLeftCorner = new Position(0, 6);
         player = factory.createPlayerModel(this);
         ball = factory.createBallModel(this);
     }

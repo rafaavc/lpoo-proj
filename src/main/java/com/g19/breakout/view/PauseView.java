@@ -18,9 +18,6 @@ public class PauseView implements SuperView {
         graphics.drawCenteredString(new Position(60, 22), "Press P to return to the game", "#ffffff");
     }
 
-
-
-    @Override
     public Graphics getGraphics() {
         return graphics;
     }

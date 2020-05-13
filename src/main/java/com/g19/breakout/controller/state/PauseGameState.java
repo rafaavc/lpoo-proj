@@ -8,11 +8,13 @@ public class PauseGameState implements GameState {
     PlayingGameState playingGameState;
     PauseView view;
     GameController controller;
+    StateFactory stateFactory;
 
-    PauseGameState(PlayingGameState playingGameState, PauseView view, GameController controller) {
+    PauseGameState(PlayingGameState playingGameState, PauseView view, GameController controller, StateFactory stateFactory) {
         this.playingGameState = playingGameState;
         this.controller = controller;
         this.view = view;
+        this.stateFactory = stateFactory;
     }
 
     public void update(Chronometer chrono) {

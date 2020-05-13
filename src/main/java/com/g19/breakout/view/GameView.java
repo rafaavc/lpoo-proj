@@ -29,4 +29,8 @@ public class GameView {
     public Keys readInput() throws IOException {
         return graphics.readInput();
     }
+
+    public Graphics getGraphics() {
+        return graphics;
+    }
 }

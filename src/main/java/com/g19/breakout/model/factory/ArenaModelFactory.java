@@ -9,5 +9,5 @@ import com.g19.breakout.model.PlayerModel;
 public interface ArenaModelFactory {
     BallModel createBallModel(ArenaModel arena);
     PlayerModel createPlayerModel(ArenaModel arena);
-    ArenaModel createArenaModel(Position offset, Dimensions dimensions);
+    ArenaModel createArenaModel(Dimensions dimensions);
 }

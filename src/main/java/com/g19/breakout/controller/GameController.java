@@ -2,7 +2,9 @@ package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.commands.Command;
 import com.g19.breakout.controller.state.GameState;
+import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.elements.Chronometer;
+import com.g19.breakout.model.GameModel;
 import com.g19.breakout.view.GameView;
 
 import java.io.IOException;
@@ -10,11 +12,15 @@ import java.io.IOException;
 public class GameController {
     GameState state;
     GameView view;
+    GameModel model;
     Chronometer chrono;
 
-    public GameController(GameView view, Chronometer chrono) {
+    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory) {
         this.chrono = chrono;
         this.view = view;
+        this.model = model;
+        this.state = stateFactory.createPlayingGameState(this);
+        view.setView(state.getView());
     }
 
     public void start(Transformer transformer) throws IOException {
@@ -39,5 +45,13 @@ public class GameController {
         this.state = state;
         view.setView(state.getView());
         this.chrono = chrono;
+    }
+
+    public GameModel getModel() {
+        return model;
+    }
+
+    public GameView getView() {
+        return view;
     }
 }
