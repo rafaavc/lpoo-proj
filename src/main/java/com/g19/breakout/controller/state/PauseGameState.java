@@ -14,12 +14,12 @@ public class PauseGameState implements GameState {
     private final PlayerModel playerModel;
     private final MenuController menu;
 
-    PauseGameState(PlayingGameState playingGameState, PauseView view, GameController controller, MenuController menu, StateFactory stateFactory) {
+    PauseGameState(PlayingGameState playingGameState, PlayerModel playerModel, PauseView view, GameController controller, MenuController menu, StateFactory stateFactory) {
         this.playingGameState = playingGameState;
         this.controller = controller;
         this.view = view;
         this.stateFactory = stateFactory;
-        this.playerModel = view.getPlayerModel();
+        this.playerModel = playerModel;
         this.menu = menu;
     }
 

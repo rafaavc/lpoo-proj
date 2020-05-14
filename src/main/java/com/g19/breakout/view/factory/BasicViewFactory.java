@@ -13,7 +13,7 @@ import java.util.List;
 
 public class BasicViewFactory implements ViewFactory {
     public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions, PlayerModel player) {
-        return new PauseView(graphics, gameDimensions, player, new BasicViewFactory());
+        return new PauseView(graphics, gameDimensions, player);
     }
     public MainMenuView createMainMenuView(Graphics graphics) {
         return new MainMenuView(graphics);

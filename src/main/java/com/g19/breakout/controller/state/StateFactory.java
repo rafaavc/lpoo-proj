@@ -42,7 +42,8 @@ public class StateFactory {
         menu.addButton(new CommandQ(), new MenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
 
         pauseView.addView(menu.getView());
+        pauseView.addView(new BasicViewFactory().createPlayerView(playerModel, controller.getView().getGraphics()));
 
-        return new PauseGameState(playingGameState, pauseView, controller, menu, this);
+        return new PauseGameState(playingGameState, playerModel, pauseView, controller, menu, this);
     }
 }
