@@ -29,7 +29,6 @@ public class ArenaModelTests {
 
     @Test
     public void testPlayerBar() {
-        System.out.println(arena.getPlayer().getPosition().getDiscreteX() + " " + arena.getPlayer().getPosition().getDiscreteY());
         assertEquals(arena.getPlayer().getPosition(), new Position(this.dimensions.getDiscreteX()/2., this.dimensions.getDiscreteY()-6-4));
     }
 
