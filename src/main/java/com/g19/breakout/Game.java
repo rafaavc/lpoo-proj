@@ -13,7 +13,7 @@ import com.g19.breakout.view.graphics.LanternaAdapter;
 import java.io.IOException;
 
 public class Game {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         GameModel model = new GameModel(new Dimensions(120, 50));
         Graphics graphics = new LanternaAdapter(model.getDimensions());
         GameView view = new GameView(graphics);

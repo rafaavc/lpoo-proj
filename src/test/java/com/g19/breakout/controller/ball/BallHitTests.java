@@ -15,7 +15,7 @@ public class BallHitTests {
     @Test
     public void testBallHitBottom(){
         BallModel ball = new BallModel(new Position(1, 1), 1);
-        BallHitBottom ballHitBottom = new BallHitBottom(ball, null);
+        BallHitBottom ballHitBottom = new BallHitBottom(ball);
 
         ballHitBottom.updateDirection();
         assertEquals(ball.getDirection(), new Direction(0, 0));
@@ -24,7 +24,7 @@ public class BallHitTests {
     @Test
     public void testBallHitHorizontal(){
         BallModel ball = new BallModel(new Position(1, 1), 1);
-        BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball, null);
+        BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball);
 
         Direction direction = Mockito.mock(Direction.class);
         Mockito.when(direction.hitHorizontal()).thenReturn(new Direction(0, 1));
@@ -36,7 +36,7 @@ public class BallHitTests {
     @Test
     public void testBallHitNothing(){
         BallModel ball = new BallModel(new Position(1,1),1);
-        BallHitNothing ballHitNothing = new BallHitNothing(ball, null);
+        BallHitNothing ballHitNothing = new BallHitNothing(ball);
 
         ballHitNothing.updateDirection();
         assertEquals(ball.getDirection(), new Direction(0, -1));
@@ -52,7 +52,7 @@ public class BallHitTests {
         Mockito.when(playerBar.getDimensions()).thenReturn(new Dimensions(1, 1));
 
 
-        BallHitPlayerBar ballHitPlayerBar = new BallHitPlayerBar(ball, null, playerBar);
+        BallHitPlayerBar ballHitPlayerBar = new BallHitPlayerBar(ball, playerBar);
 
         ballHitPlayerBar.updateDirection();
         assertEquals(new Direction(0, -1), ball.getDirection());
@@ -62,7 +62,7 @@ public class BallHitTests {
     public void testBallHitVertical(){
         BallModel ball = new BallModel(new Position(1, 1), 1);
         ball.setDirection(new Direction(1, 1));
-        BallHitVertical ballHitVertical = new BallHitVertical(ball, null);
+        BallHitVertical ballHitVertical = new BallHitVertical(ball);
 
         ballHitVertical.updateDirection();
         assertEquals(new Direction(-1, 1), ball.getDirection());
@@ -72,8 +72,10 @@ public class BallHitTests {
     public void testMultipleBallHit(){
         BallModel ball = new BallModel(new Position(1,1), 1);
         ball.setDirection(new Direction(1, -1));
-        BallHitVertical ballHitVertical = new BallHitVertical(ball, null);
-        BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball, ballHitVertical);
+        BallHitVertical ballHitVertical = new BallHitVertical(ball);
+
+        BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball);
+        ballHitHorizontal.setBallHit(ballHitVertical);
 
         ballHitHorizontal.updateDirection();
         assertEquals(new Direction(-1,1 ), ball.getDirection());

@@ -10,8 +10,8 @@ import static java.lang.Math.sqrt;
 public class BallHitPlayerBar extends BallHit {
     private final PlayerModel playerBar;
 
-    public BallHitPlayerBar(BallModel ball, BallHit ballHit, PlayerModel playerBar) {
-        super(ball, ballHit);
+    public BallHitPlayerBar(BallModel ball, PlayerModel playerBar) {
+        super(ball);
         this.playerBar = playerBar;
     }
 

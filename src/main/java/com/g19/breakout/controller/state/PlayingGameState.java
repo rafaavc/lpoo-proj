@@ -3,6 +3,7 @@ package com.g19.breakout.controller.state;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.Transformer;
 import com.g19.breakout.controller.ball.BallHit;
+import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
@@ -12,19 +13,19 @@ import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
 
-import java.util.List;
-
 public class PlayingGameState implements GameState {
     private final ArenaModel arena;
     private final ArenaView view;
     private final GameController controller;
     private final StateFactory stateFactory;
+    private final CollisionChecker collisionChecker;
 
     public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller, StateFactory stateFactory) {
         this.arena = arena;
         this.view = view;
         this.controller = controller;
         this.stateFactory = stateFactory;
+        collisionChecker = new CollisionChecker((arena));
     }
 
     public void update(Chronometer chrono) {
@@ -63,9 +64,7 @@ public class PlayingGameState implements GameState {
     }
 
     public boolean updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
-        List<BallModel.HIT> ballModelHits = arena.checkBallCollisions(nextBallPosition, ball.getDimensions());
-
-        BallHit ballHit = transformer.toBallHit(ballModelHits, ball, arena.getPlayer());
+        BallHit ballHit = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
         Direction ballDirection = ball.getDirection();
         ballHit.updateDirection();
@@ -75,7 +74,7 @@ public class PlayingGameState implements GameState {
     }
 
     public void moveElement(Position position, ElementModel element) {
-        if (arena.isInsideArena(position, element.getDimensions())) {
+        if (collisionChecker.isInsideArena(position, element.getDimensions())) {
             element.setPosition(position);
         }
     }
