@@ -1,4 +1,4 @@
-package com.g19.breakout.controller.collisions;
+package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.Dimensions;
@@ -7,9 +7,6 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CollisionChecker {
     private final ArenaModel arena;

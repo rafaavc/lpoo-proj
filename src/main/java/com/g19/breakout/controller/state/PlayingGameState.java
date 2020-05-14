@@ -3,7 +3,7 @@ package com.g19.breakout.controller.state;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.Transformer;
 import com.g19.breakout.controller.ball.BallHit;
-import com.g19.breakout.controller.collisions.CollisionChecker;
+import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
@@ -12,8 +12,6 @@ import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
-
-import java.util.List;
 
 public class PlayingGameState implements GameState {
     private final ArenaModel arena;
