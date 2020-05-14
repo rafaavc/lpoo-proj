@@ -9,5 +9,6 @@ public interface GameState {
     default boolean commandR() { return true; }
     default boolean commandP() { return true; }
     default boolean commandQ() { return true; }
+    default boolean commandENTER() { return true; }
     View getView();
 }
