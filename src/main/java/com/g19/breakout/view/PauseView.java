@@ -2,23 +2,44 @@ package com.g19.breakout.view;
 
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.PlayerModel;
+import com.g19.breakout.view.factory.BasicViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 
-public class PauseView implements SuperView {
+public class PauseView implements View {
     Graphics graphics;
+    Dimensions gameDimensions;
+    PlayerView playerView;
+    PlayerModel playerModel;
 
-    public PauseView(Graphics graphics) {
+    public PauseView(Graphics graphics, Dimensions gameDimensions) {
         this.graphics = graphics;
+        this.gameDimensions = gameDimensions;
     }
 
-    public void drawAll() {
-        graphics.setOffset(new Position(0, 0));
-        graphics.drawRectangle(new Position(0, 0), new Dimensions(120, 50), ' ', "#000000");
-        graphics.drawCenteredString(new Position(60, 20), "Pause", "#ffffff");
-        graphics.drawCenteredString(new Position(60, 22), "Press P to return to the game", "#ffffff");
+    public void setPlayerView(PlayerModel playerModel) {
+        playerView = new BasicViewFactory().createPlayerView(playerModel, graphics);
+        this.playerModel = playerModel;
     }
 
-    public Graphics getGraphics() {
-        return graphics;
+    public void draw() {
+        String backColor = "#000000";
+        Position prevOffset = graphics.setOffset(new Position(0, 0));
+
+        graphics.drawRectangle(new Position(0, 0), gameDimensions, ' ', backColor);
+        graphics.drawRectangle(new Position(0, gameDimensions.getDiscreteY()/2.),
+                new Dimensions(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY()/2.),
+                ' ', "#1da50b");
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/4., 3*gameDimensions.getDiscreteY()/4.),
+                "Resume Game (P)", "#ffffff", "#1da50b");
+        graphics.drawRectangle(new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY()/2.),
+                new Dimensions(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY()/2.),
+                ' ', "#a30d0d");
+        graphics.drawCenteredString(new Position(3*gameDimensions.getDiscreteX()/4., 3*gameDimensions.getDiscreteY()/4.),
+                "Quit Game (Q)", "#ffffff", "#a30d0d");
+        graphics.drawCenteredString(new Position(60, 12), "Game Paused", "#ffffff", backColor);
+        playerView.drawWithoutArena(playerModel);
+
+        graphics.setOffset(prevOffset);
     }
 }

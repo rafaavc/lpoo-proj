@@ -16,11 +16,12 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 
 public class LanternaAdapter implements Graphics {
-    private TerminalScreen screen;
+    private final TerminalScreen screen;
     private TextGraphics textGraphics;
     private Position offset;
 
     public LanternaAdapter(Dimensions dimensions) throws IOException {
+        this.offset = new Position(0, 0);
         TerminalSize terminalSize = new TerminalSize(dimensions.getDiscreteX(), dimensions.getDiscreteY());
 
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
@@ -72,8 +73,10 @@ public class LanternaAdapter implements Graphics {
             fill);
     }
 
-    public void setOffset(Position offset) {
+    public Position setOffset(Position offset) {
+        Position prevOffset = this.offset;
         this.offset = offset;
+        return prevOffset;
     }
 
     private Position getPositionWithOffset(Position pos) {

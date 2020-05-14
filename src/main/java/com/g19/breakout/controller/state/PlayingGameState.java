@@ -11,7 +11,6 @@ import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
-import com.g19.breakout.view.PauseView;
 
 import java.util.List;
 
@@ -96,8 +95,11 @@ public class PlayingGameState implements GameState {
         controller.setState(this.stateFactory.createPauseGameState(this, controller), new Chronometer());
     }
 
-    @Override
     public ArenaView getView() {
         return view;
+    }
+
+    public ArenaModel getArena() {
+        return arena;
     }
 }

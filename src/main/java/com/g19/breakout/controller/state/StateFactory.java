@@ -15,6 +15,9 @@ public class StateFactory {
     }
 
     public PauseGameState createPauseGameState(PlayingGameState playingGameState, GameController controller) {
-        return new PauseGameState(playingGameState, new PauseView(controller.getView().getGraphics()), controller, this);
+        return new PauseGameState(playingGameState,
+            new PauseView(controller.getView().getGraphics(), controller.getModel().getDimensions()),
+            controller,
+            this);
     }
 }

@@ -38,7 +38,7 @@ public class ElementViewTests {
 
     @Test
     public void testDrawModel() {
-        view.drawModel(model);
+        view.drawElementModel(model);
         verify(graphics, times(2)).drawCenteredString(any(Position.class), any(String.class), any(String.class));
     }
 }

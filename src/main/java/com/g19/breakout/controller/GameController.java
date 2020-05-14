@@ -4,6 +4,8 @@ import com.g19.breakout.controller.commands.Command;
 import com.g19.breakout.controller.state.GameState;
 import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.elements.Chronometer;
+import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.GameModel;
 import com.g19.breakout.view.GameView;
 
@@ -29,6 +31,12 @@ public class GameController {
             state.update(chrono);
         }
         while ( getNextCommand(transformer, view) );
+    }
+
+    public void moveElement(Position position, ElementModel element) {
+        if (model.isInsideGame(position, element.getDimensions())) {
+            element.setPosition(position);
+        }
     }
 
     public boolean getNextCommand(Transformer transformer, GameView view) throws IOException {

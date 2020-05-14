@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class GameView {
     Graphics graphics;
-    SuperView view;
+    View view;
 
     public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE, PKEY};
 
@@ -17,12 +17,12 @@ public class GameView {
     public void draw() throws IOException {
         graphics.startDrawing();
 
-        view.drawAll();
+        view.draw();
 
         graphics.stopDrawing();
     }
 
-    public void setView(SuperView view) {
+    public void setView(View view) {
         this.view = view;
     }
 

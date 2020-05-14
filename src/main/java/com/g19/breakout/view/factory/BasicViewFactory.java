@@ -8,6 +8,8 @@ import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.*;
 import com.g19.breakout.view.graphics.Graphics;
 
+import java.util.List;
+
 public class BasicViewFactory implements ViewFactory {
     public BallView createBallView(BallModel ball, Graphics graphics) {
         return new BallView(ball, graphics, "#0000ff", '█');
@@ -15,15 +17,19 @@ public class BasicViewFactory implements ViewFactory {
     public PlayerView createPlayerView(PlayerModel playerBar, Graphics graphics) {
         return new PlayerView(playerBar, graphics, "#ffffff", '█');
     }
-    public TilesView createTilesView(TileModel tile, Graphics graphics) {
-        return new TilesView(tile, graphics, "#ff0000", '█');
+    public TilesView createTilesView(List<TileModel> tiles, Graphics graphics) {
+        return new TilesView(tiles, graphics, "#ff0000", '█');
+    }
+    public ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics) {
+        return new ScoreboardView(graphics, player);
     }
     public ArenaView createArenaView(ArenaModel arena, Graphics graphics) {
         ArenaView view = new ArenaView(graphics, arena);
 
         view.addView(createBallView(arena.getBall(), graphics));
         view.addView(createPlayerView(arena.getPlayer(), graphics));
-        view.addView(createTilesView(arena.getTiles().get(0), graphics));
+        view.addView(createTilesView(arena.getTiles(), graphics));
+        view.addView(createScoreboardView(arena.getPlayer(), graphics));
 
         return view;
     }
