@@ -16,20 +16,21 @@ public class MainMenuGameState implements GameState {
         this.stateFactory = stateFactory;
     }
 
-    public void commandL() {
-
+    public boolean commandL() {
+        return true;
     }
 
-    public void commandR() {
-
+    public boolean commandR() {
+        return true;
     }
 
-    public void commandQ() {
-
+    public boolean commandQ() {
+        return false;
     }
 
-    public void commandP() {
+    public boolean commandP() {
         controller.setState(stateFactory.createPlayingGameState(controller), new Chronometer());
+        return true;
     }
 
     public View getView() {

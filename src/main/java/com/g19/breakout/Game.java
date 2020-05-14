@@ -21,5 +21,6 @@ public class Game {
         GameController controller = new GameController(view, model, new Chronometer(), new StateFactory());
 
         controller.start(new Transformer());
+        graphics.exit();
     }
 }

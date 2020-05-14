@@ -79,19 +79,22 @@ public class PlayingGameState implements GameState {
         }
     }
 
-    public void commandL() {
+    public boolean commandL() {
         // maybe change to where the playerbar is moved based on velocity, the longer the key is pressed the faster it moves
         PlayerModel playerBar = arena.getPlayer();
         moveElement(playerBar.getPosition().left(), playerBar);
+        return true;
     }
 
-    public void commandR() {
+    public boolean commandR() {
         PlayerModel playerBar = arena.getPlayer();
         moveElement(playerBar.getPosition().right(), playerBar);
+        return true;
     }
 
-    public void commandP() {
+    public boolean commandP() {
         controller.setState(this.stateFactory.createPauseGameState(this, controller), new Chronometer());
+        return true;
     }
 
     public ArenaView getView() {
