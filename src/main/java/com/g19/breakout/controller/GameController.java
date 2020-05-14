@@ -12,9 +12,9 @@ import com.g19.breakout.view.GameView;
 import java.io.IOException;
 
 public class GameController {
-    GameState state;
-    GameView view;
-    GameModel model;
+    private GameState state;
+    private final GameView view;
+    private final GameModel model;
     Chronometer chrono;
 
     public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory) {

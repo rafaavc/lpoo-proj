@@ -1,7 +1,10 @@
 package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
+import com.g19.breakout.elements.Dimensions;
+import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
+import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.factory.BasicArenaModelFactory;
 import com.g19.breakout.view.ArenaView;
 import com.g19.breakout.view.PauseView;
@@ -15,9 +18,13 @@ public class StateFactory {
     }
 
     public PauseGameState createPauseGameState(PlayingGameState playingGameState, GameController controller) {
-        return new PauseGameState(playingGameState,
-            new PauseView(controller.getView().getGraphics(), controller.getModel().getDimensions()),
-            controller,
-            this);
+        Dimensions gameDimensions = controller.getModel().getDimensions();
+
+        Position playerPosition = new Position(playingGameState.getArena().getPlayer().getPosition().getDiscreteX(), gameDimensions.getDiscreteY() - 4);
+        PlayerModel playerModel = new BasicArenaModelFactory().createPlayerModel(playerPosition);
+
+        PauseView pauseView = new BasicViewFactory().createPauseView(controller.getView().getGraphics(), gameDimensions, playerModel);
+
+        return new PauseGameState(playingGameState, pauseView, controller, this);
     }
 }

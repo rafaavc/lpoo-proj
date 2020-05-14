@@ -8,11 +8,14 @@ import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
 
 public class BasicArenaModelFactory implements ArenaModelFactory {
-    public PlayerModel createPlayerModel(ArenaModel arena) {
-        return new PlayerModel(new Position(arena.getWidth()/2., arena.getHeight()-4));
+    public PlayerModel createPlayerModel(Dimensions arenaDimensions) {
+        return new PlayerModel(new Position(arenaDimensions.getDiscreteX()/2., arenaDimensions.getDiscreteY()-4));
     }
-    public BallModel createBallModel(ArenaModel arena) {
-        return new BallModel(new Position(arena.getWidth() / 2., arena.getHeight() - 5), 20);
+    public PlayerModel createPlayerModel(Position position) {
+        return new PlayerModel(position);
+    }
+    public BallModel createBallModel(Dimensions arenaDimensions) {
+        return new BallModel(new Position(arenaDimensions.getDiscreteX() / 2., arenaDimensions.getDiscreteY() - 5), 20);
     }
     public ArenaModel createArenaModel(Dimensions gameDimensions) {
         ArenaModel arena = new ArenaModel(gameDimensions, this);

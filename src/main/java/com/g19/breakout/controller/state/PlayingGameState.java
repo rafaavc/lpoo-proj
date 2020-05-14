@@ -15,10 +15,10 @@ import com.g19.breakout.view.ArenaView;
 import java.util.List;
 
 public class PlayingGameState implements GameState {
-    ArenaModel arena;
-    ArenaView view;
-    GameController controller;
-    StateFactory stateFactory;
+    private final ArenaModel arena;
+    private final ArenaView view;
+    private final GameController controller;
+    private final StateFactory stateFactory;
 
     public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller, StateFactory stateFactory) {
         this.arena = arena;

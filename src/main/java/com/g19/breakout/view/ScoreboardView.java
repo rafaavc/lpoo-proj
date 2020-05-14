@@ -6,8 +6,8 @@ import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.graphics.Graphics;
 
 public class ScoreboardView implements View {
-    Graphics graphics;
-    PlayerModel playerModel;
+    private final Graphics graphics;
+    private final PlayerModel playerModel;
     public ScoreboardView(Graphics graphics, PlayerModel player) {
         this.graphics = graphics;
         this.playerModel = player;

@@ -1,6 +1,6 @@
 package com.g19.breakout.view.factory;
 
-import com.g19.breakout.controller.GameController;
+import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
@@ -11,6 +11,9 @@ import com.g19.breakout.view.graphics.Graphics;
 import java.util.List;
 
 public class BasicViewFactory implements ViewFactory {
+    public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions, PlayerModel player) {
+        return new PauseView(graphics, gameDimensions, player, new BasicViewFactory());
+    }
     public BallView createBallView(BallModel ball, Graphics graphics) {
         return new BallView(ball, graphics, "#0000ff", '█');
     }

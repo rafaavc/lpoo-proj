@@ -3,23 +3,18 @@ package com.g19.breakout.view;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.PlayerModel;
-import com.g19.breakout.view.factory.BasicViewFactory;
+import com.g19.breakout.view.factory.ViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 
 public class PauseView implements View {
-    Graphics graphics;
-    Dimensions gameDimensions;
-    PlayerView playerView;
-    PlayerModel playerModel;
+    private final Graphics graphics;
+    private final Dimensions gameDimensions;
+    private final PlayerView playerView;
 
-    public PauseView(Graphics graphics, Dimensions gameDimensions) {
+    public PauseView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel, ViewFactory viewFactory) {
         this.graphics = graphics;
         this.gameDimensions = gameDimensions;
-    }
-
-    public void setPlayerView(PlayerModel playerModel) {
-        playerView = new BasicViewFactory().createPlayerView(playerModel, graphics);
-        this.playerModel = playerModel;
+        playerView = viewFactory.createPlayerView(playerModel, graphics);
     }
 
     public void draw() {
@@ -38,8 +33,12 @@ public class PauseView implements View {
         graphics.drawCenteredString(new Position(3*gameDimensions.getDiscreteX()/4., 3*gameDimensions.getDiscreteY()/4.),
                 "Quit Game (Q)", "#ffffff", "#a30d0d");
         graphics.drawCenteredString(new Position(60, 12), "Game Paused", "#ffffff", backColor);
-        playerView.drawWithoutArena(playerModel);
+        playerView.draw();
 
         graphics.setOffset(prevOffset);
+    }
+
+    public PlayerModel getPlayerModel() {
+        return playerView.getPlayerModel();
     }
 }

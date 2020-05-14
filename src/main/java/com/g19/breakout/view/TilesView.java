@@ -6,7 +6,7 @@ import com.g19.breakout.view.graphics.Graphics;
 import java.util.List;
 
 public class TilesView extends ElementView implements View {
-    List<TileModel> tiles;
+    private final List<TileModel> tiles;
     public TilesView(List<TileModel> tiles, Graphics graphics, String color, char charRep) {
         super(tiles.get(0), graphics, color, charRep);
         this.tiles = tiles;

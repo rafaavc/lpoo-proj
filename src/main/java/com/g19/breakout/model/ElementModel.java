@@ -5,8 +5,8 @@ import com.g19.breakout.elements.Position;
 
 
 public abstract class ElementModel {
-    Position position;
-    Dimensions dimensions;
+    private Position position;
+    private Dimensions dimensions;
 
     public ElementModel(Position position, Dimensions dimensions) {
         this.position = position;
@@ -23,5 +23,9 @@ public abstract class ElementModel {
 
     public Dimensions getDimensions() {
         return dimensions;
+    }
+
+    public void setDimensions(Dimensions dimensions) {
+        this.dimensions = dimensions;
     }
 }

@@ -5,8 +5,8 @@ import com.g19.breakout.view.graphics.Graphics;
 import java.io.IOException;
 
 public class GameView {
-    Graphics graphics;
-    View view;
+    private final Graphics graphics;
+    private View view;
 
     public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE, PKEY};
 

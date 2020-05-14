@@ -7,7 +7,8 @@ import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 
 public interface ArenaModelFactory {
-    BallModel createBallModel(ArenaModel arena);
-    PlayerModel createPlayerModel(ArenaModel arena);
+    BallModel createBallModel(Dimensions arenaDimensions);
+    PlayerModel createPlayerModel(Dimensions arenaDimensions);
     ArenaModel createArenaModel(Dimensions dimensions);
+    public PlayerModel createPlayerModel(Position position);
 }
