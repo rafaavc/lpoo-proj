@@ -29,7 +29,7 @@ public class ArenaControllerTests {
         view = Mockito.mock(ArenaView.class);
         arena = Mockito.mock(ArenaModel.class);
     }
-
+/*
     @Test
     public void testStart() throws IOException {
         ArenaController controller = new ArenaController(arena, view);
@@ -176,5 +176,5 @@ public class ArenaControllerTests {
 
         controller.moveElement(new Position(30, 30), pb);
         verify(pb, times(1)).setPosition(new Position(30, 30));
-    }
+    }*/
 }
