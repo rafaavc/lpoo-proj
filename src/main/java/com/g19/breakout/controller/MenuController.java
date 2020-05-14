@@ -15,7 +15,7 @@ public class MenuController {
     private final Dimensions gameDimensions;
     private final MenuView view;
 
-    MenuController(Dimensions gameDimensions, MenuView menuView) {
+    public MenuController(Dimensions gameDimensions, MenuView menuView) {
         menuButtons = new ArrayList<>();
         this.gameDimensions = gameDimensions;
         this.view = menuView;
