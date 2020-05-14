@@ -8,7 +8,7 @@ public class GameView {
     private final Graphics graphics;
     private View view;
 
-    public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE, PKEY};
+    public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE, PKEY, QKEY};
 
     public GameView(Graphics graphics) {
         this.graphics = graphics;

@@ -31,7 +31,7 @@ public class PauseView implements View {
                 new Dimensions(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY()/2.),
                 ' ', "#a30d0d");
         graphics.drawCenteredString(new Position(3*gameDimensions.getDiscreteX()/4., 3*gameDimensions.getDiscreteY()/4.),
-                "Quit Game (Q)", "#ffffff", "#a30d0d");
+                "Give Up (Q)", "#ffffff", "#a30d0d");
         graphics.drawCenteredString(new Position(60, 12), "Game Paused", "#ffffff", backColor);
         playerView.draw();
 

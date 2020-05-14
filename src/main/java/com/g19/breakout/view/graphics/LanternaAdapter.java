@@ -91,6 +91,7 @@ public class LanternaAdapter implements Graphics {
             if (keyType == KeyType.ArrowRight) return GameView.Keys.ARROWRIGHT;
             if (keyType == KeyType.EOF) return GameView.Keys.EOF;
             if (key.getCharacter() == 'P' || key.getCharacter() == 'p') return GameView.Keys.PKEY;
+            if (key.getCharacter() == 'Q' || key.getCharacter() == 'q') return GameView.Keys.QKEY;
         }
         return GameView.Keys.NONE;
     }

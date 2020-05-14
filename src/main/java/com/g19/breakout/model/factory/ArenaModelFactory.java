@@ -10,5 +10,5 @@ public interface ArenaModelFactory {
     BallModel createBallModel(Dimensions arenaDimensions);
     PlayerModel createPlayerModel(Dimensions arenaDimensions);
     ArenaModel createArenaModel(Dimensions dimensions);
-    public PlayerModel createPlayerModel(Position position);
+    PlayerModel createPlayerModel(Position position);
 }

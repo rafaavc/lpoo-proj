@@ -20,9 +20,6 @@ public class PauseGameState implements GameState {
         this.playerModel = view.getPlayerModel();
     }
 
-    public void update(Chronometer chrono) {
-
-    }
     public void commandL() {
         controller.moveElement(playerModel.getPosition().left(), playerModel);
     }
@@ -33,6 +30,10 @@ public class PauseGameState implements GameState {
 
     public void commandP() {
         controller.setState(playingGameState, new Chronometer());
+    }
+
+    public void commandQ() {
+        controller.setState(stateFactory.createMainMenuGameState(controller), new Chronometer());
     }
 
     public PauseView getView() {

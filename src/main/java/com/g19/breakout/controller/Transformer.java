@@ -54,6 +54,8 @@ public class Transformer {
                 return new CommandEXIT();
             case PKEY:
                 return new CommandP();
+            case QKEY:
+                return new CommandQ();
             case NONE:
             default:
                 return new CommandNone();
