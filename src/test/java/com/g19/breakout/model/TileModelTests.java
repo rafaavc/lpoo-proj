@@ -4,7 +4,7 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class TileModelTests {
 
@@ -12,9 +12,9 @@ public class TileModelTests {
     public void testHit(){
         TileModel tile = new TileModel(new Position(10, 10), new Dimensions(1, 1), 2);
 
-        tile.hit();
+        assertFalse(tile.hit());
         assertEquals(1, tile.getLife());
-        tile.hit();
+        assertTrue(tile.hit());
         assertEquals(0, tile.getLife());
     }
 }

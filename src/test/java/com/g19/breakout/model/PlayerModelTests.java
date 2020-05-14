@@ -14,4 +14,11 @@ public class PlayerModelTests {
         assertEquals(10, playerBar.getPosition().getDiscreteX());
         assertEquals(5, playerBar.getPosition().getDiscreteY());
     }
+
+    @Test
+    public void pointsTest(){
+        PlayerModel player = new PlayerModel(new Position(1, 1));
+        player.addPoints(20);
+        assertEquals(20, player.getPoints());
+    }
 }
