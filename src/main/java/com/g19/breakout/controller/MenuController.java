@@ -6,6 +6,7 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.view.MenuButtonView;
 import com.g19.breakout.view.MenuView;
+import com.g19.breakout.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +38,9 @@ public class MenuController {
         }
 
         return new CommandNone();
+    }
+
+    public View getView() {
+        return view;
     }
 }

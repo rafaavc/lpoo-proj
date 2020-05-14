@@ -2,15 +2,14 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
+import com.g19.breakout.controller.commands.CommandP;
+import com.g19.breakout.controller.commands.CommandQ;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.factory.BasicArenaModelFactory;
-import com.g19.breakout.view.ArenaView;
-import com.g19.breakout.view.MainMenuView;
-import com.g19.breakout.view.MenuView;
-import com.g19.breakout.view.PauseView;
+import com.g19.breakout.view.*;
 import com.g19.breakout.view.factory.BasicViewFactory;
 
 public class StateFactory {
@@ -38,6 +37,11 @@ public class StateFactory {
                 new Position(0, gameDimensions.getDiscreteY()/2.)
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
+
+        menu.addButton(new CommandP(), new MenuButtonView("Resume Game (P)", "#1da50b", controller.getView().getGraphics()));
+        menu.addButton(new CommandQ(), new MenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
+
+        pauseView.addView(menu.getView());
 
         return new PauseGameState(playingGameState, pauseView, controller, menu, this);
     }
