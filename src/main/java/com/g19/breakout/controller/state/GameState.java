@@ -5,9 +5,9 @@ import com.g19.breakout.view.View;
 
 public interface GameState {
     default void update(Chronometer chrono) {}
-    default void commandL() {}
-    default void commandR() {}
-    default void commandP() {}
-    default void commandQ() {}
+    default boolean commandL() { return true; }
+    default boolean commandR() { return true; }
+    default boolean commandP() { return true; }
+    default boolean commandQ() { return true; }
     View getView();
 }

@@ -95,5 +95,9 @@ public class LanternaAdapter implements Graphics {
         }
         return GameView.Keys.NONE;
     }
+
+    public void exit() throws IOException {
+        screen.close();
+    }
 }
 

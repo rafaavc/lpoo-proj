@@ -14,6 +14,7 @@ public interface Graphics {
     void drawString(Position pos, String text, String foreColor, String backColor);
     void drawCenteredString(Position pos, String text, String foreColor, String backColor);
     void drawRectangle(Position leftUpperCorner, Dimensions size, char fill, String backColor);
+    void exit() throws IOException;
     Position setOffset(Position offset);
     GameView.Keys readInput() throws IOException;
 }

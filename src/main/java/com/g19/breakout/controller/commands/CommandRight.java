@@ -6,7 +6,6 @@ public class CommandRight implements Command{
 
     @Override
     public boolean execute(GameController controller) {
-        controller.getState().commandR();
-        return true;
+        return controller.getState().commandR();
     }
 }

@@ -20,20 +20,24 @@ public class PauseGameState implements GameState {
         this.playerModel = view.getPlayerModel();
     }
 
-    public void commandL() {
+    public boolean commandL() {
         controller.moveElement(playerModel.getPosition().left(), playerModel);
+        return true;
     }
 
-    public void commandR() {
+    public boolean commandR() {
         controller.moveElement(playerModel.getPosition().right(), playerModel);
+        return true;
     }
 
-    public void commandP() {
+    public boolean commandP() {
         controller.setState(playingGameState, new Chronometer());
+        return true;
     }
 
-    public void commandQ() {
+    public boolean commandQ() {
         controller.setState(stateFactory.createMainMenuGameState(controller), new Chronometer());
+        return true;
     }
 
     public PauseView getView() {
