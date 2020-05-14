@@ -4,8 +4,8 @@ import com.g19.breakout.model.BallModel;
 
 public class BallHitNothing extends BallHit {
 
-    public BallHitNothing(BallModel ball, BallHit ballHit) {
-        super(ball, ballHit);
+    public BallHitNothing(BallModel ball) {
+        super(ball);
     }
 
     public void updateDirection() {

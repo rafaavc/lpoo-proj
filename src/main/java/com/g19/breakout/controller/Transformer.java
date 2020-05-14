@@ -18,24 +18,24 @@ public class Transformer {
         for (BallModel.HIT ballModelHit: ballModelHits) {
             switch (ballModelHit) {
                 case TOP:
-                    ballHit = new BallHitHorizontal(ball ,previousBallHit);
+                    ballHit = new BallHitHorizontal(ball);
                     previousBallHit = ballHit;
                     break;
                 case BOTTOM:
-                    ballHit = new BallHitBottom(ball ,previousBallHit);
+                    ballHit = new BallHitBottom(ball);
                     previousBallHit = ballHit;
                     break;
                 case PLAYERBAR:
-                    ballHit = new BallHitPlayerBar(ball ,previousBallHit, playerBar);
+                    ballHit = new BallHitPlayerBar(ball, playerBar);
                     previousBallHit = ballHit;
                     break;
                 case SIDE:
-                    ballHit = new BallHitVertical(ball ,previousBallHit);
+                    ballHit = new BallHitVertical(ball);
                     previousBallHit = ballHit;
                     break;
                 case NOTHING:
                 default:
-                    ballHit = new BallHitNothing(ball ,previousBallHit);
+                    ballHit = new BallHitNothing(ball);
                     previousBallHit = ballHit;
                     break;
             }

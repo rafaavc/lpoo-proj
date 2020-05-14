@@ -15,6 +15,7 @@ public class GameController {
     private GameState state;
     private final GameView view;
     private final GameModel model;
+    private final int FPS = 30;
     Chronometer chrono;
 
     public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory) {
@@ -25,10 +26,11 @@ public class GameController {
         view.setView(state.getView());
     }
 
-    public void start(Transformer transformer) throws IOException {
+    public void start(Transformer transformer) throws IOException, InterruptedException {
         do {
             view.draw();
             state.update(chrono);
+            Thread.sleep(1000 / FPS);
         }
         while ( getNextCommand(transformer, view) );
     }
