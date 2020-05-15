@@ -3,7 +3,9 @@ package com.g19.breakout.controller.state;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.model.PlayerModel;
+import com.g19.breakout.model.factory.BasicModelFactory;
 import com.g19.breakout.view.PauseView;
+import com.g19.breakout.view.factory.BasicViewFactory;
 
 public class PauseGameState implements GameState {
     private final PlayingGameState playingGameState;
@@ -43,8 +45,7 @@ public class PauseGameState implements GameState {
     }
 
     public boolean commandENTER() {
-        menu.getCommand(playerModel.getPosition()).execute(controller);
-        return true;
+        return menu.getCommand(playerModel.getPosition()).execute(controller);
     }
 
     public PauseView getView() {

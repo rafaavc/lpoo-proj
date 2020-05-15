@@ -7,7 +7,9 @@ import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.GameModel;
+import com.g19.breakout.model.factory.ModelFactory;
 import com.g19.breakout.view.GameView;
+import com.g19.breakout.view.factory.ViewFactory;
 
 import java.io.IOException;
 
@@ -16,12 +18,16 @@ public class GameController {
     private final GameView view;
     private final GameModel model;
     private final int FPS;
-    Chronometer chrono;
+    private final Chronometer chrono;
+    private final ViewFactory viewFactory;
+    private final ModelFactory modelFactory;
 
-    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, int FPS) {
+    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) {
         this.chrono = chrono;
         this.view = view;
         this.model = model;
+        this.viewFactory = viewFactory;
+        this.modelFactory = modelFactory;
         this.state = stateFactory.createPlayingGameState(this);
         this.FPS = FPS;
         view.setView(state.getView());
@@ -69,5 +75,13 @@ public class GameController {
 
     public GameView getView() {
         return view;
+    }
+
+    public ViewFactory getViewFactory() {
+        return viewFactory;
+    }
+
+    public ModelFactory getModelFactory() {
+        return modelFactory;
     }
 }

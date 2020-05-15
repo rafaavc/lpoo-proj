@@ -9,16 +9,15 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.PlayerModel;
-import com.g19.breakout.model.factory.BasicArenaModelFactory;
 import com.g19.breakout.view.*;
-import com.g19.breakout.view.factory.BasicViewFactory;
+import com.g19.breakout.view.factory.ViewFactory;
 
 public class StateFactory {
-    // TODO change functions in this class to receive the factory classes in the arguments
     public MainMenuGameState createMainMenuGameState(GameController controller) {
         Dimensions gameDimensions = controller.getModel().getDimensions();
-
-        BasicViewFactory viewFactory = new BasicViewFactory();
+        ViewFactory viewFactory = controller.getViewFactory();
+        PlayerModel playerModel = controller.getModelFactory().createPlayerModel(
+                new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY() - 4));
 
         MenuView menuView = viewFactory.createMenuView(
                 new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.),
@@ -30,25 +29,28 @@ public class StateFactory {
         menu.addButton(new CommandL(), viewFactory.createMenuButtonView("Leaderboard (L)", "#e0b20b", controller.getView().getGraphics()));
         menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Quit Game (Q)", "#a30d0d", controller.getView().getGraphics()));
 
-        MainMenuView view = new BasicViewFactory().createMainMenuView(controller.getView().getGraphics(), controller.getModel().getDimensions());
+        MainMenuView view = viewFactory.createMainMenuView(controller.getView().getGraphics(), controller.getModel().getDimensions());
         view.addView(menuView);
+        view.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));
 
-        return new MainMenuGameState(controller, view, this);
+        return new MainMenuGameState(controller, view, menu, playerModel, this);
     }
 
     public PlayingGameState createPlayingGameState(GameController gameController) {
-        ArenaModel arena = new BasicArenaModelFactory().createArenaModel(gameController.getModel().getDimensions());
-        ArenaView arenaView = new BasicViewFactory().createArenaView(arena, gameController.getModel().getDimensions(), gameController.getView().getGraphics());
+        ArenaModel arena = gameController.getModelFactory().createArenaModel(gameController.getModel().getDimensions());
+        ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getModel().getDimensions(), gameController.getView().getGraphics());
         return new PlayingGameState(arena, arenaView, gameController, this);
     }
 
-    public PauseGameState createPauseGameState(PlayingGameState playingGameState, GameController controller) {
+    public PauseGameState createPauseGameState(GameController controller) {
         Dimensions gameDimensions = controller.getModel().getDimensions();
 
-        Position playerPosition = new Position(playingGameState.getArena().getPlayer().getPosition().getDiscreteX(), gameDimensions.getDiscreteY() - 4);
-        PlayerModel playerModel = new BasicArenaModelFactory().createPlayerModel(playerPosition);
+        PlayingGameState playingGameState = (PlayingGameState) controller.getState();
+        ViewFactory viewFactory = controller.getViewFactory();
 
-        BasicViewFactory viewFactory = new BasicViewFactory();
+        Position playerPosition = new Position(playingGameState.getArena().getPlayer().getPosition().getDiscreteX(), gameDimensions.getDiscreteY() - 4);
+        PlayerModel playerModel = controller.getModelFactory().createPlayerModel(playerPosition);
+
         PauseView pauseView = viewFactory.createPauseView(controller.getView().getGraphics(), gameDimensions);
 
         MenuView menuView = viewFactory.createMenuView(

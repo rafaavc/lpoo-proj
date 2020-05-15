@@ -19,6 +19,7 @@ public interface ViewFactory {
     ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics);
     ArenaView createArenaView(ArenaModel arena, Dimensions gameDimensions, Graphics graphics);
     MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions);
+    PauseView createPauseView(Graphics graphics, Dimensions gameDimensions);
     MenuView createMenuView(Dimensions dimensions, Position position);
     MenuButtonView createMenuButtonView(String text, String color, Graphics graphics);
 }

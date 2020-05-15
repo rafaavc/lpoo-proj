@@ -11,7 +11,9 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
+import com.g19.breakout.model.factory.BasicModelFactory;
 import com.g19.breakout.view.ArenaView;
+import com.g19.breakout.view.factory.BasicViewFactory;
 
 public class PlayingGameState implements GameState {
     private final ArenaModel arena;
@@ -91,7 +93,7 @@ public class PlayingGameState implements GameState {
     }
 
     public boolean commandP() {
-        controller.setState(this.stateFactory.createPauseGameState(this, controller));
+        controller.setState(this.stateFactory.createPauseGameState(controller));
         return true;
     }
 
