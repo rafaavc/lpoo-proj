@@ -2,7 +2,6 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
-import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.PauseView;
 

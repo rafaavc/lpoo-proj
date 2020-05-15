@@ -28,7 +28,7 @@ public class MenuButtonView implements View {
         graphics.drawRectangle(position, dimensions, ' ', color);
         Position stringPosition = new Position(
                 dimensions.getDiscreteX()/2. + position.getDiscreteX(),
-                dimensions.getDiscreteY()/2. + position.getDiscreteY()
+                dimensions.getDiscreteY()/3. + position.getDiscreteY()
         );
         graphics.drawCenteredString(stringPosition, text, "#ffffff", color);
     }
