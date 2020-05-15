@@ -28,9 +28,7 @@ public class PlayingGameState implements GameState {
         collisionChecker = new CollisionChecker((arena));
     }
 
-    public void update(Chronometer chrono) {
-        int elapsedTime = (int) chrono.getElapsedTime();
-
+    public void update(int elapsedTime) {
         updateBall(elapsedTime);
         updateTiles();
     }

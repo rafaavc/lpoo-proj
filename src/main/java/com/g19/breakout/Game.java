@@ -18,7 +18,7 @@ public class Game {
         Graphics graphics = new LanternaAdapter(model.getDimensions());
         GameView view = new GameView(graphics);
 
-        GameController controller = new GameController(view, model, new Chronometer(), new StateFactory());
+        GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), 60);
 
         controller.start(new Transformer());
         graphics.exit();
