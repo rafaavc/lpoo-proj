@@ -28,9 +28,8 @@ public class GameController {
         this.model = model;
         this.viewFactory = viewFactory;
         this.modelFactory = modelFactory;
-        this.state = stateFactory.createPlayingGameState(this);
         this.FPS = FPS;
-        view.setView(state.getView());
+        setState(stateFactory.createMainMenuGameState(this));
     }
 
     public void start(Transformer transformer) throws IOException, InterruptedException {

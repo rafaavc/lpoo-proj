@@ -18,7 +18,8 @@ public class MainMenuView extends SuperView<View> implements View {
         Position prevOffset = graphics.setOffset(new Position(0, 0));
 
         graphics.drawRectangle(new Position(0, 0), gameDimensions, ' ', "#000000");
-        graphics.drawString(new Position(10, 10), "Main menu", "#ffffff", "#000000");
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 10), "Welcome to", "#ffffff", "#000000");
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 12), "BREAKOUT", "#ffffff", "#000000");
 
         drawViews();
 
