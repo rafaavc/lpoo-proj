@@ -15,8 +15,4 @@ public class PlayerView extends ElementView implements View {
     public void draw() {
         drawElementModel(playerModel);
     }
-
-    public PlayerModel getPlayerModel() {
-        return playerModel;
-    }
 }
