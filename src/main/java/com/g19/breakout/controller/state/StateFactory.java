@@ -38,7 +38,7 @@ public class StateFactory {
 
     public PlayingGameState createPlayingGameState(GameController gameController) {
         ArenaModel arena = new BasicArenaModelFactory().createArenaModel(gameController.getModel().getDimensions());
-        ArenaView arenaView = new BasicViewFactory().createArenaView(arena, gameController.getView().getGraphics());
+        ArenaView arenaView = new BasicViewFactory().createArenaView(arena, gameController.getModel().getDimensions(), gameController.getView().getGraphics());
         return new PlayingGameState(arena, arenaView, gameController, this);
     }
 
@@ -49,7 +49,7 @@ public class StateFactory {
         PlayerModel playerModel = new BasicArenaModelFactory().createPlayerModel(playerPosition);
 
         BasicViewFactory viewFactory = new BasicViewFactory();
-        PauseView pauseView = viewFactory.createPauseView(controller.getView().getGraphics(), gameDimensions, playerModel);
+        PauseView pauseView = viewFactory.createPauseView(controller.getView().getGraphics(), gameDimensions);
 
         MenuView menuView = viewFactory.createMenuView(
                 new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.),

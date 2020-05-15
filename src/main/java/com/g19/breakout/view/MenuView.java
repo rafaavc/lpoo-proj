@@ -3,22 +3,18 @@ package com.g19.breakout.view;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MenuView implements View {
-    private final List<MenuButtonView> views;
+public class MenuView extends SuperView<MenuButtonView> implements View {
     private final Dimensions dimensions;
     private final Position position;
 
     public MenuView(Dimensions dimensions, Position position) {
-        views = new ArrayList<>();
         this.dimensions = dimensions;
         this.position = position;
     }
 
+    @Override
     public void addView(MenuButtonView view) {
-        views.add(view);
+        super.addView(view);
         updateViews();
     }
 
@@ -33,6 +29,6 @@ public class MenuView implements View {
     }
 
     public void draw() {
-        views.forEach(MenuButtonView::draw);
+        drawViews();
     }
 }

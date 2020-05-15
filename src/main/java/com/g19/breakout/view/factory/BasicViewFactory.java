@@ -12,8 +12,8 @@ import com.g19.breakout.view.graphics.Graphics;
 import java.util.List;
 
 public class BasicViewFactory implements ViewFactory {
-    public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions, PlayerModel player) {
-        return new PauseView(graphics, gameDimensions, player);
+    public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions) {
+        return new PauseView(graphics, gameDimensions);
     }
     public MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions) {
         return new MainMenuView(graphics, gameDimensions);
@@ -36,8 +36,8 @@ public class BasicViewFactory implements ViewFactory {
     public ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics) {
         return new ScoreboardView(graphics, player);
     }
-    public ArenaView createArenaView(ArenaModel arena, Graphics graphics) {
-        ArenaView view = new ArenaView(graphics, arena);
+    public ArenaView createArenaView(ArenaModel arena, Dimensions gameDimensions, Graphics graphics) {
+        ArenaView view = new ArenaView(graphics, arena, gameDimensions);
 
         view.addView(createBallView(arena.getBall(), graphics));
         view.addView(createPlayerView(arena.getPlayer(), graphics));
