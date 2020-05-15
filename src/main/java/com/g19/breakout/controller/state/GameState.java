@@ -1,13 +1,26 @@
 package com.g19.breakout.controller.state;
 
+import com.g19.breakout.controller.GameController;
 import com.g19.breakout.view.View;
 
-public interface GameState {
-    default void update(int elapsedTime) {}
-    default boolean commandL() { return true; }
-    default boolean commandR() { return true; }
-    default boolean commandP() { return true; }
-    default boolean commandQ() { return true; }
-    default boolean commandENTER() { return true; }
-    View getView();
+public abstract class GameState {
+    protected final GameController controller;
+
+    public GameState(GameController controller) {
+        this.controller = controller;
+    }
+
+    public void update(int elapsedTime) {}
+
+    public boolean commandLeft() { return true; }
+
+    public boolean commandRight() { return true; }
+
+    public boolean commandP() { return true; }
+
+    public boolean commandQ() { return true; }
+
+    public boolean commandENTER() { return true; }
+
+    public abstract View getView();
 }

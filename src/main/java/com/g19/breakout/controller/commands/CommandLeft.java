@@ -6,6 +6,6 @@ public class CommandLeft implements Command {
 
     @Override
     public boolean execute(GameController controller) {
-        return controller.getState().commandL();
+        return controller.getState().commandLeft();
     }
 }
