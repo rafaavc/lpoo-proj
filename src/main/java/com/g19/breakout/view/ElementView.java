@@ -26,7 +26,7 @@ public abstract class ElementView {
         this.stringRep = strBuffer.toString();
     }
 
-    void drawModel(ElementModel model) {
+    void drawElementModel(ElementModel model) {
         for (int i = 0; i < model.getDimensions().getDiscreteY(); i++) {
             Position pos = new Position(
                 model.getPosition().getDiscreteX(),

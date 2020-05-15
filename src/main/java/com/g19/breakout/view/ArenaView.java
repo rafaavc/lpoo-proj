@@ -4,43 +4,26 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.elements.*;
 import com.g19.breakout.view.graphics.Graphics;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-
-public class ArenaView implements View {
+public class ArenaView extends SuperView<View> implements View {
     private final Graphics graphics;
-    private final List<View> views;
     private String backgroundColor = "#000000";
+    private final Dimensions gameDimensions;
+    private final ArenaModel arena;
 
-
-    public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE};
-
-    public ArenaView(Graphics graphics) {
+    public ArenaView(Graphics graphics, ArenaModel arena, Dimensions gameDimensions) {
         this.graphics = graphics;
-        this.views = new ArrayList<>();
-        views.add(this);
+        this.gameDimensions = gameDimensions;
+        this.arena = arena;
     }
 
-    public void drawAll(ArenaModel arena) throws IOException {
-        graphics.startDrawing();
+    public void draw() {
+        Position prevOffset = graphics.setOffset(arena.getTopLeftCorner());
 
-        for (View v : views) v.draw(arena);
+        graphics.drawRectangle(new Position(0, 0), gameDimensions, ' ', getBGColor());
+        drawViews();
 
-        graphics.stopDrawing();
-    }
-
-    public void draw(ArenaModel arena){
-        graphics.drawRectangle(new Position(0, 0), new Position(arena.getWidth(), arena.getHeight()), ' ', getBGColor());
-    }
-
-    public void addView(View v) {
-        views.add(v);
-    }
-
-    public ArenaView.Keys readInput() throws IOException {
-        return graphics.readInput();
+        graphics.setOffset(prevOffset);
     }
 
     public String getBGColor() {

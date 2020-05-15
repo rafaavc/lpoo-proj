@@ -1,14 +1,10 @@
 package com.g19.breakout.controller.commands;
 
-import com.g19.breakout.controller.ArenaController;
-import com.g19.breakout.model.PlayerModel;
+import com.g19.breakout.controller.GameController;
 
 public class CommandRight implements Command{
-
     @Override
-    public boolean execute(ArenaController controller) {
-        PlayerModel playerBar = controller.getArena().getPlayer();
-        controller.moveElement(playerBar.getPosition().right(), playerBar);
-        return true;
+    public boolean execute(GameController controller) {
+        return controller.getState().commandRight();
     }
 }
