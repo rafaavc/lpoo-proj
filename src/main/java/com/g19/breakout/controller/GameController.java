@@ -14,13 +14,13 @@ import com.g19.breakout.view.factory.ViewFactory;
 import java.io.IOException;
 
 public class GameController {
-    private GameState state;
+    private final int FPS;
     private final GameView view;
     private final GameModel model;
-    private final int FPS;
     private final Chronometer chrono;
     private final ViewFactory viewFactory;
     private final ModelFactory modelFactory;
+    private GameState state;
 
     public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) {
         this.chrono = chrono;
@@ -33,11 +33,12 @@ public class GameController {
     }
 
     public void start(Transformer transformer) throws IOException, InterruptedException {
+        int frameDuration = 1000 / FPS;
         do {
             chrono.start();
 
             view.draw();
-            state.update(1000 / FPS);
+            state.update(frameDuration);
 
             long sleepAmount = 1000 / FPS - chrono.end();
             if (sleepAmount < 0) sleepAmount = 0;

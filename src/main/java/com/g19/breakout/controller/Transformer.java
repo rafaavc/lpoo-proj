@@ -18,6 +18,8 @@ public class Transformer {
                 return new CommandP();
             case QKEY:
                 return new CommandQ();
+            case LKEY:
+                return new CommandL();
             case ENTER:
                 return new CommandENTER();
             case NONE:

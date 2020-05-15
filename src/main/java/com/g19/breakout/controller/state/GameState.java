@@ -20,6 +20,8 @@ public abstract class GameState {
 
     public boolean commandQ() { return true; }
 
+    public boolean commandL() { return true; }
+
     public boolean commandENTER() { return true; }
 
     public abstract View getView();
