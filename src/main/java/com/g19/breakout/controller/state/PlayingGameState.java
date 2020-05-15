@@ -91,7 +91,7 @@ public class PlayingGameState implements GameState {
     }
 
     public boolean commandP() {
-        controller.setState(this.stateFactory.createPauseGameState(this, controller), new Chronometer());
+        controller.setState(this.stateFactory.createPauseGameState(this, controller));
         return true;
     }
 

@@ -34,12 +34,12 @@ public class PauseGameState implements GameState {
     }
 
     public boolean commandP() {
-        controller.setState(playingGameState, new Chronometer());
+        controller.setState(playingGameState);
         return true;
     }
 
     public boolean commandQ() {
-        controller.setState(stateFactory.createMainMenuGameState(controller), new Chronometer());
+        controller.setState(stateFactory.createMainMenuGameState(controller));
         return true;
     }
 

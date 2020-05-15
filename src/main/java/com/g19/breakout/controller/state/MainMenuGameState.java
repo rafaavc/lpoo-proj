@@ -29,7 +29,7 @@ public class MainMenuGameState implements GameState {
     }
 
     public boolean commandP() {
-        controller.setState(stateFactory.createPlayingGameState(controller), new Chronometer());
+        controller.setState(stateFactory.createPlayingGameState(controller));
         return true;
     }
 

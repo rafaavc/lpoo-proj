@@ -58,10 +58,9 @@ public class GameController {
         return state;
     }
 
-    public void setState(GameState state, Chronometer chrono) {
+    public void setState(GameState state) {
         this.state = state;
         view.setView(state.getView());
-        this.chrono = chrono;
     }
 
     public GameModel getModel() {
