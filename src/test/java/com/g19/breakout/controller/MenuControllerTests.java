@@ -23,6 +23,9 @@ public class MenuControllerTests {
         doNothing().when(menuView).addView(any(MenuButtonView.class));
         MenuButtonView menuButtonView = Mockito.mock(MenuButtonView.class);
 
+
+        assertEquals(CommandNone.class, menuController.getCommand(new Position(50, 30)).getClass());
+
         CommandRight commandRight = new CommandRight();
         menuController.addButton(commandRight, menuButtonView);
         assertEquals(commandRight, menuController.getCommand(new Position(50, 30)));
