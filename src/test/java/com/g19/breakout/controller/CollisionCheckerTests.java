@@ -1,7 +1,6 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.ball.BallHitHorizontal;
-import com.g19.breakout.controller.ball.BallHitVertical;
+import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -16,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 
 public class CollisionCheckerTests {
     Dimensions dimensions = new Dimensions(100, 120);
@@ -101,5 +102,30 @@ public class CollisionCheckerTests {
         position = new Position(15, 130);
         dimensions = new Dimensions(1, 10);
         assertFalse(collisionChecker.isInsideArena(position, dimensions));
+    }
+
+    @Test
+    public void checkBallCollisionsTest(){
+        Position position = new Position(this.dimensions.getDiscreteX() / 2., 11);
+        List<TileModel> tiles = new ArrayList<>();
+        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2., 8), new Dimensions(10, 4), 5));
+        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2. + 20, 8), new Dimensions(10, 4), 5));
+        Mockito.when(arena.getTiles()).thenReturn(tiles);
+
+        PlayerModel player = Mockito.mock(PlayerModel.class);
+        doNothing().when(player).addPoints(any(Integer.class));
+        Mockito.when(arena.getPlayer()).thenReturn(player);
+        Mockito.when(player.getPosition()).thenReturn(new Position(50, 100));
+        Mockito.when(player.getDimensions()).thenReturn(new Dimensions(10, 1));
+        Mockito.when(ball.getPosition()).thenReturn(position);
+
+        BallHit ballHit = collisionChecker.checkBallCollisions(position, new Dimensions(2, 1));
+        assertEquals(BallHitHorizontal.class, ballHit.getBallHit().getClass());
+
+        Mockito.when(ball.getPosition()).thenReturn(new Position(50, 100));
+
+        position = new Position(50, 100);
+        ballHit = collisionChecker.checkBallCollisions(position, new Dimensions(2, 1));
+        assertEquals(BallHitPlayerBar.class, ballHit.getBallHit().getClass());
     }
 }
