@@ -1,22 +1,28 @@
 package com.g19.breakout.view.factory;
 
 import com.g19.breakout.elements.Dimensions;
+import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.*;
 import com.g19.breakout.view.graphics.Graphics;
-import sun.rmi.rmic.Main;
 
 import java.util.List;
 
 public class BasicViewFactory implements ViewFactory {
-    public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions, PlayerModel player) {
-        return new PauseView(graphics, gameDimensions, player, new BasicViewFactory());
+    public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions) {
+        return new PauseView(graphics, gameDimensions);
     }
-    public MainMenuView createMainMenuView(Graphics graphics) {
-        return new MainMenuView(graphics);
+    public MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions) {
+        return new MainMenuView(graphics, gameDimensions);
+    }
+    public MenuView createMenuView(Dimensions dimensions, Position position) {
+        return new MenuView(dimensions, position);
+    }
+    public MenuButtonView createMenuButtonView(String text, String color, Graphics graphics) {
+        return new MenuButtonView(text, color, graphics);
     }
     public BallView createBallView(BallModel ball, Graphics graphics) {
         return new BallView(ball, graphics, "#0000ff", '█');
@@ -30,8 +36,8 @@ public class BasicViewFactory implements ViewFactory {
     public ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics) {
         return new ScoreboardView(graphics, player);
     }
-    public ArenaView createArenaView(ArenaModel arena, Graphics graphics) {
-        ArenaView view = new ArenaView(graphics, arena);
+    public ArenaView createArenaView(ArenaModel arena, Dimensions gameDimensions, Graphics graphics) {
+        ArenaView view = new ArenaView(graphics, arena, gameDimensions);
 
         view.addView(createBallView(arena.getBall(), graphics));
         view.addView(createPlayerView(arena.getPlayer(), graphics));

@@ -13,12 +13,4 @@ public class BallView extends ElementView implements View {
     public void draw() {
         drawElementModel(ballModel);
     }
-
-    public BallModel getBallModel() {
-        return ballModel;
-    }
-
-    public void setBallModel(BallModel ballModel) {
-        this.ballModel = ballModel;
-    }
 }

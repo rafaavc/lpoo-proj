@@ -6,7 +6,9 @@ import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.model.GameModel;
+import com.g19.breakout.model.factory.BasicModelFactory;
 import com.g19.breakout.view.GameView;
+import com.g19.breakout.view.factory.BasicViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 
@@ -18,7 +20,7 @@ public class Game {
         Graphics graphics = new LanternaAdapter(model.getDimensions());
         GameView view = new GameView(graphics);
 
-        GameController controller = new GameController(view, model, new Chronometer(), new StateFactory());
+        GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), new BasicViewFactory(), new BasicModelFactory(), 60);
 
         controller.start(new Transformer());
         graphics.exit();

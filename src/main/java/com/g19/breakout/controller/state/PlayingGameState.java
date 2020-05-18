@@ -1,10 +1,8 @@
 package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
-import com.g19.breakout.controller.Transformer;
 import com.g19.breakout.controller.ball.BallHit;
 import com.g19.breakout.controller.CollisionChecker;
-import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -13,24 +11,22 @@ import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
 
-public class PlayingGameState implements GameState {
+public class PlayingGameState extends GameState {
     private final ArenaModel arena;
     private final ArenaView view;
-    private final GameController controller;
     private final StateFactory stateFactory;
     private final CollisionChecker collisionChecker;
 
     public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller, StateFactory stateFactory) {
+        super(controller);
         this.arena = arena;
         this.view = view;
-        this.controller = controller;
         this.stateFactory = stateFactory;
         collisionChecker = new CollisionChecker((arena));
     }
 
-    public void update(Chronometer chrono) {
-        int elapsedTime = (int) chrono.getElapsedTime();
-
+    @Override
+    public void update(int elapsedTime) {
         updateBall(elapsedTime);
         updateTiles();
     }
@@ -55,7 +51,7 @@ public class PlayingGameState implements GameState {
                 ball.getPosition(),
                 velocity);
 
-        if (updateBallDirection(new Transformer(), ball, nextBallPosition))
+        if (updateBallDirection(ball, nextBallPosition))
             nextBallPosition = ball.getDirection().getNextPosition(
                     ball.getPosition(),
                     velocity);
@@ -63,7 +59,7 @@ public class PlayingGameState implements GameState {
         return nextBallPosition;
     }
 
-    public boolean updateBallDirection(Transformer transformer, BallModel ball, Position nextBallPosition){
+    public boolean updateBallDirection(BallModel ball, Position nextBallPosition){
         BallHit ballHit = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
         Direction ballDirection = ball.getDirection();
@@ -79,21 +75,24 @@ public class PlayingGameState implements GameState {
         }
     }
 
-    public boolean commandL() {
+    @Override
+    public boolean commandLeft() {
         // maybe change to where the playerbar is moved based on velocity, the longer the key is pressed the faster it moves
         PlayerModel playerBar = arena.getPlayer();
         moveElement(playerBar.getPosition().left(), playerBar);
         return true;
     }
 
-    public boolean commandR() {
+    @Override
+    public boolean commandRight() {
         PlayerModel playerBar = arena.getPlayer();
         moveElement(playerBar.getPosition().right(), playerBar);
         return true;
     }
 
+    @Override
     public boolean commandP() {
-        controller.setState(this.stateFactory.createPauseGameState(this, controller), new Chronometer());
+        controller.setState(this.stateFactory.createPauseGameState(controller));
         return true;
     }
 

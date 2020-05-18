@@ -1,9 +1,8 @@
 package com.g19.breakout.model;
 
 import com.g19.breakout.elements.*;
-import com.g19.breakout.model.factory.ArenaModelFactory;
+import com.g19.breakout.model.factory.ModelFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaModel {
@@ -14,7 +13,7 @@ public class ArenaModel {
     private List<TileModel> tiles;
 
 
-    public ArenaModel(Dimensions gameDimensions, ArenaModelFactory factory) {
+    public ArenaModel(Dimensions gameDimensions, ModelFactory factory) {
         this.dimensions = new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()-6);
         this.topLeftCorner = new Position(0, 6);
         player = factory.createPlayerModel(dimensions);

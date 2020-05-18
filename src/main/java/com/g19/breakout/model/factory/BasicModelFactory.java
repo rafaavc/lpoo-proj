@@ -7,7 +7,7 @@ import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
 
-public class BasicArenaModelFactory implements ArenaModelFactory {
+public class BasicModelFactory implements ModelFactory {
     public PlayerModel createPlayerModel(Dimensions arenaDimensions) {
         return new PlayerModel(new Position(arenaDimensions.getDiscreteX()/2., arenaDimensions.getDiscreteY()-4));
     }

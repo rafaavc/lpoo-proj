@@ -1,5 +1,7 @@
 package com.g19.breakout.view.factory;
 
+import com.g19.breakout.elements.Dimensions;
+import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
@@ -15,6 +17,9 @@ public interface ViewFactory {
     PlayerView createPlayerView(PlayerModel playerBar, Graphics graphics);
     TilesView createTilesView(List<TileModel> tiles, Graphics graphics);
     ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics);
-    ArenaView createArenaView(ArenaModel arena, Graphics graphics);
-    MainMenuView createMainMenuView(Graphics graphics);
+    ArenaView createArenaView(ArenaModel arena, Dimensions gameDimensions, Graphics graphics);
+    MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions);
+    PauseView createPauseView(Graphics graphics, Dimensions gameDimensions);
+    MenuView createMenuView(Dimensions dimensions, Position position);
+    MenuButtonView createMenuButtonView(String text, String color, Graphics graphics);
 }
