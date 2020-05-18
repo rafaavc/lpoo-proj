@@ -2,7 +2,6 @@ package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.ball.BallHitHorizontal;
 import com.g19.breakout.controller.ball.BallHitVertical;
-import com.g19.breakout.controller.commands.Command;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -30,11 +29,13 @@ public class CollisionCheckerTests {
         collisionChecker = new CollisionChecker(arena);
         ball = Mockito.mock(BallModel.class);
         Mockito.when(arena.getBall()).thenReturn(ball);
+        Mockito.when(arena.getWidth()).thenReturn(100);
+        Mockito.when(arena.getHeight()).thenReturn(120);
         Mockito.when(ball.getDimensions()).thenReturn(new Dimensions(2, 1));
     }
 
     @Test
-    public void testCheckHitTile(){
+    public void checkHitTileTest(){
 
         Position position = new Position(this.dimensions.getDiscreteX() / 2., 11);
         List<TileModel> tiles = new ArrayList<>();
@@ -52,7 +53,7 @@ public class CollisionCheckerTests {
     }
 
     @Test
-    public void testCheckHitTopOrSideTile(){
+    public void checkHitTopOrSideTest(){
 
         TileModel tile = Mockito.mock(TileModel.class);
         Mockito.when(tile.getDimensions()).thenReturn(new Dimensions(1, 1));
@@ -68,7 +69,7 @@ public class CollisionCheckerTests {
     }
 
     @Test
-    public void testCheckHitPlayerBar(){
+    public void checkHitPlayerBarTest(){
 
         Position nextPosition = new Position(60, 40);
 
@@ -85,5 +86,20 @@ public class CollisionCheckerTests {
 
         nextPosition = new Position(1 ,1);
         assertFalse(collisionChecker.checkHitPlayer(nextPosition));
+    }
+
+    @Test
+    public void isInsideArenaTest(){
+        Position position = new Position(10, 15);
+        Dimensions dimensions = new Dimensions(1, 2);
+        assertTrue(collisionChecker.isInsideArena(position, dimensions));
+
+        position = new Position(100, 15);
+        dimensions = new Dimensions(2, 1);
+        assertFalse(collisionChecker.isInsideArena(position, dimensions));
+
+        position = new Position(15, 130);
+        dimensions = new Dimensions(1, 10);
+        assertFalse(collisionChecker.isInsideArena(position, dimensions));
     }
 }
