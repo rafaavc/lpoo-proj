@@ -1,5 +1,6 @@
 package com.g19.breakout.controller.state;
 
+import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.controller.commands.CommandL;
@@ -39,7 +40,7 @@ public class StateFactory {
     public PlayingGameState createPlayingGameState(GameController gameController) {
         ArenaModel arena = gameController.getModelFactory().createArenaModel(gameController.getModel().getDimensions());
         ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getModel().getDimensions(), gameController.getView().getGraphics());
-        return new PlayingGameState(arena, arenaView, gameController, this);
+        return new PlayingGameState(arena, arenaView, gameController, new CollisionChecker((arena)), this);
     }
 
     public PauseGameState createPauseGameState(GameController controller) {

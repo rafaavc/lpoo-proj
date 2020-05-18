@@ -1,5 +1,7 @@
-package com.g19.breakout.controller;
+package com.g19.breakout.controller.state;
 
+import com.g19.breakout.controller.GameController;
+import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.controller.state.*;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ElementModel;
@@ -63,5 +65,5 @@ public class StateTests {
         assertTrue(pauseGameState.commandQ());
         Mockito.verify(controller, Mockito.times(2)).setState(any(GameState.class));
     }
-    
+
 }
