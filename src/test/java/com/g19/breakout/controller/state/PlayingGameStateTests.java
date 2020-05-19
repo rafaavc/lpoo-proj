@@ -54,15 +54,17 @@ public class PlayingGameStateTests {
 
     @Test
     public void updateTest(){
-        BallModel ball = new BallModel(new Position(10, 10), 10);
+        BallModel ball = new BallModel(new Position(10, 10), 1);
         Mockito.when(arena.getBall()).thenReturn(ball);
 
-        List<TileModel> tiles = new ArrayList<>();
-        /*Mockito.when(arena.getTiles()).thenReturn(tiles);
-        Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(Mockito.mock(BallHitNothing.class));
-        Mockito.when(playingGameState.updateBallDirection(any(BallModel.class), any(Position.class))).thenReturn(true);
+        Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(new BallHitNothing(ball));
 
-        playingGameState.update(30);*/
+        assertEquals(new Position(10, 9), playingGameState.updateBallPosition(1));
+
+        PlayingGameState playingGameStateSpy = Mockito.spy(playingGameState);
+        playingGameStateSpy.updateBall(1000);
+
+        Mockito.verify(playingGameStateSpy, Mockito.times(1)).moveElement(new Position(10, 9), ball);
     }
 
 
