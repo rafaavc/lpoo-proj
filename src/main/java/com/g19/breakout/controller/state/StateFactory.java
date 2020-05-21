@@ -21,8 +21,8 @@ public class StateFactory {
                 new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY() - 4));
 
         MenuView menuView = viewFactory.createMenuView(
-                new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.),
-                new Position(0, gameDimensions.getDiscreteY()/2.)
+                new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/2.),
+                new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.)
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
 
@@ -35,6 +35,26 @@ public class StateFactory {
         view.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));
 
         return new MainMenuGameState(controller, view, menu, playerModel, this);
+    }
+
+    public LeaderboardState createLeaderboardState(GameController gameController) {
+        Dimensions gameDimensions = gameController.getModel().getDimensions();
+        ViewFactory viewFactory = gameController.getViewFactory();
+        PlayerModel playerModel = gameController.getModelFactory().createPlayerModel(
+                new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY() - 4));
+
+        MenuView menuView = viewFactory.createMenuView(
+                new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/5.),
+                new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/5.)
+        );
+        MenuController menu = new MenuController(gameDimensions, menuView);
+        menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Return (Q)", "#a30d0d", gameController.getView().getGraphics()));
+
+        LeaderboardView view = viewFactory.createLeaderboardView(gameController.getView().getGraphics(), gameController.getModel().getDimensions());
+        view.addView(menuView);
+        view.addView(viewFactory.createPlayerView(playerModel, gameController.getView().getGraphics()));
+
+        return new LeaderboardState(gameController, view, menu, playerModel, this);
     }
 
     public PlayingGameState createPlayingGameState(GameController gameController) {
@@ -55,8 +75,8 @@ public class StateFactory {
         PauseView pauseView = viewFactory.createPauseView(controller.getView().getGraphics(), gameDimensions);
 
         MenuView menuView = viewFactory.createMenuView(
-                new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.),
-                new Position(0, gameDimensions.getDiscreteY()/2.)
+                new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/2.),
+                new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.)
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
 

@@ -18,6 +18,10 @@ public class BasicViewFactory implements ViewFactory {
     public MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions) {
         return new MainMenuView(graphics, gameDimensions);
     }
+    public LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions) {
+        return new LeaderboardView(graphics, gameDimensions);
+    }
+
     public MenuView createMenuView(Dimensions dimensions, Position position) {
         return new MenuView(dimensions, position);
     }

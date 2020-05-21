@@ -22,6 +22,12 @@ public class MainMenuGameState extends MenuGameState {
     }
 
     @Override
+    public boolean commandL() {
+        controller.setState(stateFactory.createLeaderboardState(controller));
+        return true;
+    }
+
+    @Override
     public boolean commandP() {
         controller.setState(stateFactory.createPlayingGameState(controller));
         return true;
