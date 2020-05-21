@@ -17,4 +17,8 @@ public class PlayerModel extends ElementModel {
     public int getPoints() {
         return points;
     }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
 }

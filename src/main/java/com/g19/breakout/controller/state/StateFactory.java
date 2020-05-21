@@ -37,7 +37,7 @@ public class StateFactory {
         return new MainMenuGameState(controller, view, menu, playerModel, this);
     }
 
-    public LeaderboardState createLeaderboardState(GameController gameController) {
+    public LeaderboardGameState createLeaderboardState(GameController gameController) {
         Dimensions gameDimensions = gameController.getModel().getDimensions();
         ViewFactory viewFactory = gameController.getViewFactory();
         PlayerModel playerModel = gameController.getModelFactory().createPlayerModel(
@@ -54,7 +54,7 @@ public class StateFactory {
         view.addView(menuView);
         view.addView(viewFactory.createPlayerView(playerModel, gameController.getView().getGraphics()));
 
-        return new LeaderboardState(gameController, view, menu, playerModel, this);
+        return new LeaderboardGameState(gameController, view, menu, playerModel, this);
     }
 
     public PlayingGameState createPlayingGameState(GameController gameController) {
@@ -87,5 +87,32 @@ public class StateFactory {
         pauseView.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));
 
         return new PauseGameState(playingGameState, playerModel, pauseView, controller, menu, this);
+    }
+
+    public GameOverGameState createGameOverGameState(GameController controller) {
+        Dimensions gameDimensions = controller.getModel().getDimensions();
+
+        PlayingGameState playingGameState = (PlayingGameState) controller.getState();
+        ViewFactory viewFactory = controller.getViewFactory();
+
+        Position playerPosition = new Position(playingGameState.getArena().getPlayer().getPosition().getDiscreteX(), gameDimensions.getDiscreteY() - 4);
+        PlayerModel playerModel = controller.getModelFactory().createPlayerModel(playerPosition);
+        playerModel.setPoints(playingGameState.getArena().getPlayer().getPoints());
+
+        GameOverView gameOverView = viewFactory.createGameOverView(controller.getView().getGraphics(), gameDimensions, playerModel);
+
+        MenuView menuView = viewFactory.createMenuView(
+                new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/2.),
+                new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.)
+        );
+        MenuController menu = new MenuController(gameDimensions, menuView);
+
+        menu.addButton(new CommandP(), viewFactory.createMenuButtonView("Resume Game (P)", "#1da50b", controller.getView().getGraphics()));
+        menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
+
+        gameOverView.addView(menu.getView());
+        gameOverView.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));
+
+        return new GameOverGameState(playerModel, gameOverView, controller, menu, this);
     }
 }
