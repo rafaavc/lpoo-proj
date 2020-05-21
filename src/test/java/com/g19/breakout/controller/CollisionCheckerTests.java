@@ -7,7 +7,9 @@ import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
+import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
+import net.jqwik.api.lifecycle.BeforeProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,6 +28,7 @@ public class CollisionCheckerTests {
     CollisionChecker collisionChecker;
 
     @BeforeEach
+    @BeforeProperty
     public void setup() {
         arena = Mockito.mock(ArenaModel.class);
         collisionChecker = new CollisionChecker(arena);
@@ -108,6 +111,14 @@ public class CollisionCheckerTests {
     }*/
 
     @Property
+    public void isInsideArenaTest(@ForAll int x, @ForAll int y){
+        Dimensions newDimensions = new Dimensions(1, 1);
+        Position position = new Position(x, y);
+        assert(x >= 0 || !collisionChecker.isInsideArena(position, newDimensions));
+        assert(y >= 0 || !collisionChecker.isInsideArena(position, newDimensions));
+        assert(x < arena.getWidth() || !collisionChecker.isInsideArena(position, newDimensions));
+        assert(y < arena.getHeight() || !collisionChecker.isInsideArena(position, newDimensions));
+    }
 
 
     @Test
