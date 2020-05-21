@@ -46,6 +46,8 @@ public class GameController {
             Thread.sleep(sleepAmount);
         }
         while ( getNextCommand(transformer) );
+
+        view.exit();
     }
 
     public void moveElement(Position position, ElementModel element) {

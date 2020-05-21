@@ -23,6 +23,5 @@ public class Game {
         GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), new BasicViewFactory(), new BasicModelFactory(), 60);
 
         controller.start(new Transformer());
-        graphics.exit();
     }
 }
