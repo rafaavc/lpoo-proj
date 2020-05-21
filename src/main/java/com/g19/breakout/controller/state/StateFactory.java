@@ -50,7 +50,7 @@ public class StateFactory {
         MenuController menu = new MenuController(gameDimensions, menuView);
         menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Return (Q)", "#a30d0d", gameController.getView().getGraphics()));
 
-        LeaderboardView view = viewFactory.createLeaderboardView(gameController.getView().getGraphics(), gameController.getModel().getDimensions());
+        LeaderboardView view = viewFactory.createLeaderboardView(gameController.getView().getGraphics(), gameController.getModel().getDimensions(), gameController.getModel().getLeaderboard());
         view.addView(menuView);
         view.addView(viewFactory.createPlayerView(playerModel, gameController.getView().getGraphics()));
 

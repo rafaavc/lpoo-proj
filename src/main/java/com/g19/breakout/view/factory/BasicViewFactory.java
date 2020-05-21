@@ -8,8 +8,10 @@ import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.*;
 import com.g19.breakout.view.graphics.Graphics;
+import com.sun.tools.javac.util.Pair;
 
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class BasicViewFactory implements ViewFactory {
     public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions) {
@@ -18,8 +20,8 @@ public class BasicViewFactory implements ViewFactory {
     public MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions) {
         return new MainMenuView(graphics, gameDimensions);
     }
-    public LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions) {
-        return new LeaderboardView(graphics, gameDimensions);
+    public LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions, PriorityQueue<Pair<String, Integer>> lb) {
+        return new LeaderboardView(graphics, gameDimensions, lb);
     }
 
     public MenuView createMenuView(Dimensions dimensions, Position position) {

@@ -22,7 +22,7 @@ public class GameController {
     private final ModelFactory modelFactory;
     private GameState state;
 
-    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) {
+    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) throws IOException {
         this.chrono = chrono;
         this.view = view;
         this.model = model;
@@ -30,6 +30,11 @@ public class GameController {
         this.modelFactory = modelFactory;
         this.FPS = FPS;
         setState(stateFactory.createMainMenuGameState(this));
+        setLeaderboard(new FileManager());
+    }
+
+    public void setLeaderboard(FileManager fm) throws IOException {
+        model.setLeaderboard(fm.getLeaderboard());
     }
 
     public void start(Transformer transformer) throws IOException, InterruptedException {
