@@ -13,14 +13,14 @@ import com.g19.breakout.model.factory.ModelFactory;
 import com.g19.breakout.view.GameView;
 import com.g19.breakout.view.View;
 import com.g19.breakout.view.factory.ViewFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 public class GameControllerTests {
@@ -32,7 +32,7 @@ public class GameControllerTests {
     ModelFactory modelFactory = Mockito.mock(ModelFactory.class);
     GameController gameController;
 
-    @Before
+    @BeforeEach
     public void setup(){
         Mockito.doNothing().when(view).setView(any(View.class));
         MainMenuGameState mainMenuGameState = Mockito.mock(MainMenuGameState.class);

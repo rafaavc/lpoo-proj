@@ -3,10 +3,10 @@ package com.g19.breakout.model;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.factory.BasicModelFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModelFactoryTests {
     BasicModelFactory basicModelFactory = new BasicModelFactory();

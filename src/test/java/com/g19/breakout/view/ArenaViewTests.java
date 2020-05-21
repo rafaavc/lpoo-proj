@@ -9,8 +9,8 @@ import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.factory.ViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class ArenaViewTests {
     private ArenaView view;
     private ViewFactory factory;
 
-    @Before
+    @BeforeEach
     public void setup() {
         graphics = Mockito.mock(LanternaAdapter.class);
         factory = Mockito.mock(ViewFactory.class);

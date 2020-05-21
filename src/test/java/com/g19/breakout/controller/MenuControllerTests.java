@@ -7,10 +7,10 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.view.MenuButtonView;
 import com.g19.breakout.view.MenuView;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 

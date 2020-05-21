@@ -1,9 +1,9 @@
 package com.g19.breakout.model;
 
 import com.g19.breakout.elements.Position;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerModelTests {
 

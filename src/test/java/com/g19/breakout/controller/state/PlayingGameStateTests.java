@@ -4,27 +4,18 @@ import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.ball.BallHitHorizontal;
 import com.g19.breakout.controller.ball.BallHitNothing;
-import com.g19.breakout.controller.state.GameState;
-import com.g19.breakout.controller.state.PauseGameState;
-import com.g19.breakout.controller.state.PlayingGameState;
-import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
-import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.ArenaView;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 public class PlayingGameStateTests {
@@ -35,7 +26,7 @@ public class PlayingGameStateTests {
     CollisionChecker collisionChecker = Mockito.mock(CollisionChecker.class);
     PlayingGameState playingGameState;
 
-    @Before
+    @BeforeEach
     public void setup(){
         playingGameState = new PlayingGameState(arena, view, controller, collisionChecker, stateFactory);
     }

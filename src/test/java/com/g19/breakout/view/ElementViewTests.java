@@ -4,13 +4,13 @@ import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.view.graphics.Graphics;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -20,7 +20,7 @@ public class ElementViewTests {
     private ElementView view;
     private Graphics graphics;
 
-    @Before
+    @BeforeEach
     public void setup() throws IOException {
         model = Mockito.mock(BallModel.class);
         graphics = Mockito.mock(Graphics.class);

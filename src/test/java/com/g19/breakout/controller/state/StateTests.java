@@ -8,11 +8,11 @@ import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.MainMenuView;
 import com.g19.breakout.view.PauseView;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 public class StateTests {

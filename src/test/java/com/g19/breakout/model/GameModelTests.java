@@ -2,9 +2,9 @@ package com.g19.breakout.model;
 
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameModelTests {
 
