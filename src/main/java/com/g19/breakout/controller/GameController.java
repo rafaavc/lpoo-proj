@@ -45,7 +45,9 @@ public class GameController {
 
             Thread.sleep(sleepAmount);
         }
-        while ( getNextCommand(transformer, view) );
+        while ( getNextCommand(transformer) );
+
+        view.exit();
     }
 
     public void moveElement(Position position, ElementModel element) {
@@ -54,7 +56,7 @@ public class GameController {
         }
     }
 
-    public boolean getNextCommand(Transformer transformer, GameView view) throws IOException {
+    public boolean getNextCommand(Transformer transformer) throws IOException {
         GameView.Keys key = view.readInput();
         Command cmd = transformer.toCommand(key);
         return cmd.execute(this);

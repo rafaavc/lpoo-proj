@@ -1,9 +1,9 @@
 package com.g19.breakout.elements;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PositionTests {
     Position initial = new Position(10, 5);

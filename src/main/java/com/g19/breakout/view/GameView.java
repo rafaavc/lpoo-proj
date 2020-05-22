@@ -33,4 +33,8 @@ public class GameView {
     public Graphics getGraphics() {
         return graphics;
     }
+
+    public void exit() throws IOException {
+        graphics.exit();
+    }
 }

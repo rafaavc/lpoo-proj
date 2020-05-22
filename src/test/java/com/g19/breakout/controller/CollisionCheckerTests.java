@@ -1,22 +1,25 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.ball.BallHitHorizontal;
-import com.g19.breakout.controller.ball.BallHitVertical;
-import com.g19.breakout.controller.commands.Command;
+import com.g19.breakout.controller.ball.*;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
-import org.junit.Before;
-import org.junit.Test;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import net.jqwik.api.lifecycle.BeforeProperty;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 
 public class CollisionCheckerTests {
     Dimensions dimensions = new Dimensions(100, 120);
@@ -24,17 +27,20 @@ public class CollisionCheckerTests {
     BallModel ball;
     CollisionChecker collisionChecker;
 
-    @Before
+    @BeforeEach
+    @BeforeProperty
     public void setup() {
         arena = Mockito.mock(ArenaModel.class);
         collisionChecker = new CollisionChecker(arena);
         ball = Mockito.mock(BallModel.class);
         Mockito.when(arena.getBall()).thenReturn(ball);
+        Mockito.when(arena.getWidth()).thenReturn(100);
+        Mockito.when(arena.getHeight()).thenReturn(120);
         Mockito.when(ball.getDimensions()).thenReturn(new Dimensions(2, 1));
     }
 
     @Test
-    public void testCheckHitTile(){
+    public void checkHitTileTest(){
 
         Position position = new Position(this.dimensions.getDiscreteX() / 2., 11);
         List<TileModel> tiles = new ArrayList<>();
@@ -52,7 +58,7 @@ public class CollisionCheckerTests {
     }
 
     @Test
-    public void testCheckHitTopOrSideTile(){
+    public void checkHitTopOrSideTest(){
 
         TileModel tile = Mockito.mock(TileModel.class);
         Mockito.when(tile.getDimensions()).thenReturn(new Dimensions(1, 1));
@@ -68,7 +74,7 @@ public class CollisionCheckerTests {
     }
 
     @Test
-    public void testCheckHitPlayerBar(){
+    public void checkHitPlayerBarTest(){
 
         Position nextPosition = new Position(60, 40);
 
@@ -85,5 +91,58 @@ public class CollisionCheckerTests {
 
         nextPosition = new Position(1 ,1);
         assertFalse(collisionChecker.checkHitPlayer(nextPosition));
+    }
+/*
+    @Test
+    public void isInsideArenaTest(){
+
+        Position position = new Position(10, 15);
+        Dimensions dimensions = new Dimensions(1, 2);
+        assertTrue(collisionChecker.isInsideArena(position, dimensions));
+
+        position = new Position(100, 15);
+        dimensions = new Dimensions(2, 1);
+        assertFalse(collisionChecker.isInsideArena(position, dimensions));
+
+        position = new Position(15, 130);
+        dimensions = new Dimensions(1, 10);
+        assertFalse(collisionChecker.isInsideArena(position, dimensions));
+
+    }*/
+
+    @Property
+    public void isInsideArenaTest(@ForAll int x, @ForAll int y){
+        Dimensions newDimensions = new Dimensions(1, 1);
+        Position position = new Position(x, y);
+        assert(x >= 0 || !collisionChecker.isInsideArena(position, newDimensions));
+        assert(y >= 0 || !collisionChecker.isInsideArena(position, newDimensions));
+        assert(x < arena.getWidth() || !collisionChecker.isInsideArena(position, newDimensions));
+        assert(y < arena.getHeight() || !collisionChecker.isInsideArena(position, newDimensions));
+    }
+
+
+    @Test
+    public void checkBallCollisionsTest(){
+        Position position = new Position(this.dimensions.getDiscreteX() / 2., 11);
+        List<TileModel> tiles = new ArrayList<>();
+        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2., 8), new Dimensions(10, 4), 5));
+        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2. + 20, 8), new Dimensions(10, 4), 5));
+        Mockito.when(arena.getTiles()).thenReturn(tiles);
+
+        PlayerModel player = Mockito.mock(PlayerModel.class);
+        doNothing().when(player).addPoints(any(Integer.class));
+        Mockito.when(arena.getPlayer()).thenReturn(player);
+        Mockito.when(player.getPosition()).thenReturn(new Position(50, 100));
+        Mockito.when(player.getDimensions()).thenReturn(new Dimensions(10, 1));
+        Mockito.when(ball.getPosition()).thenReturn(position);
+
+        BallHit ballHit = collisionChecker.checkBallCollisions(position, new Dimensions(2, 1));
+        assertEquals(BallHitHorizontal.class, ballHit.getBallHit().getClass());
+
+        Mockito.when(ball.getPosition()).thenReturn(new Position(50, 100));
+
+        position = new Position(50, 100);
+        ballHit = collisionChecker.checkBallCollisions(position, new Dimensions(2, 1));
+        assertEquals(BallHitPlayerBar.class, ballHit.getBallHit().getClass());
     }
 }
