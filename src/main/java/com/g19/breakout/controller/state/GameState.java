@@ -5,12 +5,22 @@ import com.g19.breakout.view.View;
 
 public abstract class GameState {
     protected final GameController controller;
+    protected boolean readingText;
+    protected StringBuilder textReader;
 
     public GameState(GameController controller) {
         this.controller = controller;
+        readingText = false;
+        textReader = null;
     }
 
     public void update(int elapsedTime) {}
+
+    public StringBuilder getTextReader() {
+        return textReader;
+    }
+
+    public boolean isReadingText() { return readingText; }
 
     public boolean commandLeft() { return true; }
 

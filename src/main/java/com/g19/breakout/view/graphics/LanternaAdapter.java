@@ -100,6 +100,20 @@ public class LanternaAdapter implements Graphics {
         return GameView.Keys.NONE;
     }
 
+    public GameView.Keys readTextInput(StringBuilder sb) throws IOException {
+        KeyStroke key = screen.pollInput();
+        if (key != null) {
+            KeyType keyType = key.getKeyType();
+            if (keyType == KeyType.EOF) return GameView.Keys.EOF;
+            if (keyType == KeyType.Enter) return GameView.Keys.ENTER;
+            if (keyType == KeyType.Backspace && sb.length() > 0) sb.deleteCharAt(sb.length()-1);
+            if (keyType == KeyType.Character) {
+                sb.append(key.getCharacter());
+            }
+        }
+        return GameView.Keys.NONE;
+    }
+
     public void exit() throws IOException {
         screen.close();
     }

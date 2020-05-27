@@ -2,19 +2,32 @@ package com.g19.breakout.model;
 
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TileModelTests {
 
     @Test
-    public void testHit(){
+    public void hitTest(){
         TileModel tile = new TileModel(new Position(10, 10), new Dimensions(1, 1), 2);
 
-        tile.hit();
+        assertFalse(tile.hit());
         assertEquals(1, tile.getLife());
-        tile.hit();
+        assertTrue(tile.hit());
         assertEquals(0, tile.getLife());
+    }
+
+    @Test
+    public void createTileArrayTest(){
+        ArenaModel arena = Mockito.mock(ArenaModel.class);
+        Mockito.when(arena.getWidth()).thenReturn(50);
+
+        List<TileModel> tiles = TileModel.createTileArray(5, 5, arena);
+        assertEquals(25, tiles.size());
+        assertEquals(new Position(5, 1), tiles.get(0).getPosition());
     }
 }

@@ -11,7 +11,7 @@ public class PauseGameState extends MenuGameState {
     private final PauseView view;
     private final StateFactory stateFactory;
 
-    PauseGameState(PlayingGameState playingGameState, PlayerModel playerModel, PauseView view, GameController controller, MenuController menu, StateFactory stateFactory) {
+    public PauseGameState(PlayingGameState playingGameState, PlayerModel playerModel, PauseView view, GameController controller, MenuController menu, StateFactory stateFactory) {
         super(controller, playerModel, menu);
         this.playingGameState = playingGameState;
         this.view = view;

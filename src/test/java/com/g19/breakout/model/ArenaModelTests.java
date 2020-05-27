@@ -3,16 +3,16 @@ package com.g19.breakout.model;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.factory.BasicModelFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ArenaModelTests {
     ArenaModel arena;
     Dimensions dimensions = new Dimensions(100, 120);
 
-    @Before
+    @BeforeEach
     public void setup() {
         arena = new ArenaModel(dimensions, new BasicModelFactory());
     }
@@ -25,7 +25,6 @@ public class ArenaModelTests {
 
     @Test
     public void testPlayerBar() {
-        System.out.println(arena.getPlayer().getPosition().getDiscreteX() + " " + arena.getPlayer().getPosition().getDiscreteY());
         assertEquals(arena.getPlayer().getPosition(), new Position(this.dimensions.getDiscreteX()/2., this.dimensions.getDiscreteY()-6-4));
     }
 

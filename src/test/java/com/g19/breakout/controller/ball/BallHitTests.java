@@ -5,10 +5,10 @@ import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BallHitTests {
 

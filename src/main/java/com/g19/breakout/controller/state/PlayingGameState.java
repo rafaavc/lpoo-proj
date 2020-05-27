@@ -17,18 +17,19 @@ public class PlayingGameState extends GameState {
     private final StateFactory stateFactory;
     private final CollisionChecker collisionChecker;
 
-    public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller, StateFactory stateFactory) {
+    public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller, CollisionChecker collisionChecker, StateFactory stateFactory) {
         super(controller);
         this.arena = arena;
         this.view = view;
         this.stateFactory = stateFactory;
-        collisionChecker = new CollisionChecker((arena));
+        this.collisionChecker = collisionChecker;
     }
 
     @Override
     public void update(int elapsedTime) {
         updateBall(elapsedTime);
         updateTiles();
+        if (arena.getBall().getDirection().equals(new Direction(0, 0))) gameOver();
     }
 
     protected void updateTiles() {
@@ -73,6 +74,10 @@ public class PlayingGameState extends GameState {
         if (collisionChecker.isInsideArena(position, element.getDimensions())) {
             element.setPosition(position);
         }
+    }
+
+    public void gameOver() {
+        controller.setState(stateFactory.createGameOverGameState(controller));
     }
 
     @Override

@@ -29,11 +29,13 @@ public class MenuController {
 
     public Command getCommand(Position position) {
         int buttonCount = menuButtons.size();
-        int buttonWidth = gameDimensions.getDiscreteX() / buttonCount;
+        if (buttonCount > 0) {
+            int buttonWidth = gameDimensions.getDiscreteX() / buttonCount;
 
-        for (int i = 0; i < buttonCount; i++) {
-            if (position.getDiscreteX() > i*buttonWidth && position.getDiscreteX() < (i+1)*buttonWidth) {
-                return menuButtons.get(i);
+            for (int i = 0; i < buttonCount; i++) {
+                if (position.getDiscreteX() > i * buttonWidth && position.getDiscreteX() < (i + 1) * buttonWidth) {
+                    return menuButtons.get(i);
+                }
             }
         }
 
