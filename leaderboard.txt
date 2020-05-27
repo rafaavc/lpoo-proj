@@ -1,4 +1,8 @@
+Rafael;400
 heyhye;100
 hekasld;50
+Test;10
 Rafael;10
 teste;10
+aposkdpaoksd;10
+mais um teste!!;10

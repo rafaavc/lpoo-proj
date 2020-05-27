@@ -95,9 +95,11 @@ public class StateFactory {
         PlayingGameState playingGameState = (PlayingGameState) controller.getState();
         ViewFactory viewFactory = controller.getViewFactory();
 
-        Position playerPosition = new Position(playingGameState.getArena().getPlayer().getPosition().getDiscreteX(), gameDimensions.getDiscreteY() - 4);
-        PlayerModel playerModel = controller.getModelFactory().createPlayerModel(playerPosition);
-        playerModel.setPoints(playingGameState.getArena().getPlayer().getPoints());
+
+        PlayerModel playerModel = playingGameState.getArena().getPlayer();
+        Position playerPosition = new Position(playerModel.getPosition().getDiscreteX(), gameDimensions.getDiscreteY() - 4);
+        playerModel.setPosition(playerPosition);
+
 
         GameOverView gameOverView = viewFactory.createGameOverView(controller.getView().getGraphics(), gameDimensions, playerModel);
 

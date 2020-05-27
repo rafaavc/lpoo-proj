@@ -26,9 +26,12 @@ public class GameOverView extends SuperView<View> implements View {
         String score = "Total score: " + playerModel.getPoints() + " points";
         graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 10), score, "#ffffff", backColor);
 
-        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 13), "Insert your name, press ENTER when you're done", "#ffffff", backColor);
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 13), "Insert your name, press ENTER when you're done.", "#ffffff", backColor);
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 14), "If you press enter without writing anything, the score won't be saved.", "#ffffff", backColor);
 
-        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 15), playerModel.getName().equals("") ? "_" : playerModel.getName(), "#ffffff", backColor);
+        String inputDecorator = playerModel.getNameInputFinished() ? "" : "_";
+        String textInput = playerModel.getName().equals("") ? inputDecorator : playerModel.getName() + inputDecorator;
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 16), textInput, "#ffffff", backColor);
 
         drawViews();
 
