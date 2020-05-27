@@ -7,6 +7,9 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.gui2.TextBox;
+import com.googlecode.lanterna.gui2.TextGUI;
+import com.googlecode.lanterna.gui2.TextGUIGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -73,6 +76,15 @@ public class LanternaAdapter implements Graphics {
             fill);
     }
 
+    public void getStringInput(Dimensions size) throws IOException {
+        TerminalSize textBoxSize = new TerminalSize(size.getDiscreteX(), size.getDiscreteY());
+        TextBox textBox = new TextBox(textBoxSize, TextBox.Style.SINGLE_LINE);
+        textBox.setText("test");
+        System.out.println(textBox.getText());
+        TextBox.TextBoxRenderer r = new TextBox.DefaultTextBoxRenderer();
+        //r.drawComponent(textGraphics, textBox);
+    }
+
     public Position setOffset(Position offset) {
         Position prevOffset = this.offset;
         this.offset = offset;
@@ -95,6 +107,20 @@ public class LanternaAdapter implements Graphics {
                 if (key.getCharacter() == 'P' || key.getCharacter() == 'p') return GameView.Keys.PKEY;
                 if (key.getCharacter() == 'Q' || key.getCharacter() == 'q') return GameView.Keys.QKEY;
                 if (key.getCharacter() == 'L' || key.getCharacter() == 'l') return GameView.Keys.LKEY;
+            }
+        }
+        return GameView.Keys.NONE;
+    }
+
+    public GameView.Keys readTextInput(StringBuilder sb) throws IOException {
+        KeyStroke key = screen.pollInput();
+        if (key != null) {
+            KeyType keyType = key.getKeyType();
+            if (keyType == KeyType.EOF) return GameView.Keys.EOF;
+            if (keyType == KeyType.Enter) return GameView.Keys.ENTER;
+            if (keyType == KeyType.Backspace && sb.length() > 0) sb.deleteCharAt(sb.length()-1);
+            if (keyType == KeyType.Character) {
+                sb.append(key.getCharacter());
             }
         }
         return GameView.Keys.NONE;

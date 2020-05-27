@@ -107,7 +107,7 @@ public class StateFactory {
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
 
-        menu.addButton(new CommandP(), viewFactory.createMenuButtonView("Resume Game (P)", "#1da50b", controller.getView().getGraphics()));
+        menu.addButton(new CommandP(), viewFactory.createMenuButtonView("Play Again (P)", "#1da50b", controller.getView().getGraphics()));
         menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
 
         gameOverView.addView(menu.getView());

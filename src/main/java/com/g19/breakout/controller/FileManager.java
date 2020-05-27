@@ -19,6 +19,7 @@ public class FileManager {
         for (String line; (line = br.readLine()) != null; )
             lines.add(line);
 
+        br.close();
         return lines;
     }
 
@@ -40,5 +41,15 @@ public class FileManager {
         }
 
         return q;
+    }
+
+    public void writeLeaderboard(PriorityQueue<Pair<String, Integer>> leaderboard) throws IOException {
+        BufferedWriter br = new BufferedWriter(new FileWriter(new File("leaderboard.txt")));
+
+        for (Pair<String, Integer> pair : leaderboard) {
+            br.write(pair.fst + ';' + pair.snd.toString() + '\n');
+        }
+
+        br.close();
     }
 }
