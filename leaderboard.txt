@@ -1,12 +1,13 @@
 Rafael;1390
 Rafael;400
+your name;298
 Rafael;280
 testsAreLife;228
 heyhye;100
 hekasld;50
 testing;50
-Test;10
 aposkdpaoksd;10
-Rafael;10
-teste;10
 mais um teste!!;10
+Rafael;10
+Test;10
+teste;10

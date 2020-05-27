@@ -7,6 +7,7 @@ public class PlayerModel extends ElementModel {
     private int points;
     private String name;
     private boolean nameInputFinished;
+
     public PlayerModel(Position position) {
         super(position, new Dimensions(10, 1));
         points = 0;

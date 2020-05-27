@@ -18,7 +18,6 @@ public class GameOverView extends SuperView<View> {
     }
 
     public void drawSelf() {
-
         graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 6), "Game Over", "#ffffff", backgroundColor);
 
         String score = "Total score: " + playerModel.getPoints() + " points";

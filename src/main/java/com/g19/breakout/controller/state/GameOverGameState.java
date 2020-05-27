@@ -30,18 +30,13 @@ public class GameOverGameState extends MenuGameState {
     public boolean commandENTER() {
         if (!readingText) return super.commandENTER();
 
-        if (textReader.length() == 0) {
-            readingText = false;
-
-            playerModel.setNameInputFinished(true);
-            return true;
-        }
-
         readingText = false;
+        playerModel.setNameInputFinished(true);
+
+        if (textReader.length() == 0) return true;
+
         playerModel.setName(textReader.toString());
         controller.getModel().addScore(new Pair<>(playerModel.getName(), playerModel.getPoints()));
-
-        playerModel.setNameInputFinished(true);
 
         return true;
     }
