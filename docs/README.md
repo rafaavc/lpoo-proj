@@ -112,9 +112,8 @@ As our architectural patern we decided to use the Model-View-Controller. With it
 #### Implementation
 <img src="MVC.png" height="160"/>
 
-The classes can be found in these files:
+The classes can be found in these packages:
 - [Model](../src/main/java/com/g19/breakout/model)
-  
 - [View](../src/main/java/com/g19/breakout/view)
 - [Controller](../src/main/java/com/g19/breakout/controller)
 
@@ -135,17 +134,17 @@ The view shouldn't be interacting with the graphics directly. We don't want to h
 We applied the **Adapter pattern**. This will enable us to have separate classes to deal with the graphics library used, while not having to worry about it while coding other features.
 
 #### Implementation
-<img src="AdapterPatternGraphics.png" height="130"/>
+<img src="AdapterPatternGraphics.png" height="200"/>
 
 The classes can be found in these files:
 - View:
-  -  [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
-  -  [ElementView](../src/main/java/com/g19/breakout/view/ElementView.java)
-  -  [BallView](../src/main/java/com/g19/breakout/view/BallView.java)
-  -  [PlayerBarView](../src/main/java/com/g19/breakout/view/PlayerBarView.java)
-  -  [TilesView](../src/main/java/com/g19/breakout/view/TilesView.java)
+  - [View Interface](../src/main/java/com/g19/breakout/view/View.java)
+  - [ElementView](../src/main/java/com/g19/breakout/view/ElementView.java)
+  - [PlayerView](../src/main/java/com/g19/breakout/view/PlayerView.java)
 - [Graphics](../src/main/java/com/g19/breakout/view/graphics/Graphics.java)
 - [LanternaAdapter](../src/main/java/com/g19/breakout/view/graphics/LanternaAdapter.java)
+
+This files are an example of the pattern, it is used in every [view](../src/main/java/com/g19/breakout/view/View.java) implementation.
 
 #### Consequences
 The use of the Adapter pattern in the current design allows for the following benefits:
