@@ -86,7 +86,7 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 - [x] Add scoreboard
 - [x] Add menus
 - [x] Add leaderboard
-- [ ] Add scores to leaderboard after ending game
+- [x] Add scores to leaderboard after ending game
 
 (these are just more ideas that may not be implemented)
 - [ ] Add player lives
