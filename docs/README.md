@@ -165,6 +165,7 @@ To solve this problem, we applied the **Abstract Factory** pattern. With this pa
 <img src="AbstractFactoryPattern.png" height="170"/>
 
 The classes in the diagram can be found in these files:
+- [StateFactory](../src/main/java/com/g19/breakout/controller/state/StateFactory.java)
 - [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
 - [ViewFactory](../src/main/java/com/g19/breakout/view/factory/ViewFactory.java)
 - [BasicViewFactory](../src/main/java/com/g19/breakout/view/factory/BasicViewFactory.java)
@@ -196,20 +197,10 @@ We wan't to maintain the MVC structure while the controller gets information abo
 
 The classes in the diagram can be found in these files:
 - View:
-  -  [ArenaView.Keys](../src/main/java/com/g19/breakout/view/ArenaView.java#L20)
+  -  [GameView.Keys](../src/main/java/com/g19/breakout/view/GameView.java#L11)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
 - [Commands](../src/main/java/com/g19/breakout/controller/commands)
 
-
-*Implementation for the ball hits received from the model*
-
-<img src="FactoryPatternForBallHit.png" height="300">
-
-The classes in the diagram can be found in these files:
-- View:
-  -  [BallModel.HIT](../src/main/java/com/g19/breakout/model/BallModel.java#L11)
-- [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
-- [BallHits](../src/main/java/com/g19/breakout/controller/ball)
 
 #### Consequences
 
