@@ -29,6 +29,7 @@ public class PlayingGameState extends GameState {
     public void update(int elapsedTime) {
         updateBall(elapsedTime);
         updateTiles();
+        if (arena.getBall().getDirection().equals(new Direction(0, 0))) gameOver();
     }
 
     protected void updateTiles() {
@@ -73,6 +74,10 @@ public class PlayingGameState extends GameState {
         if (collisionChecker.isInsideArena(position, element.getDimensions())) {
             element.setPosition(position);
         }
+    }
+
+    public void gameOver() {
+        controller.setState(stateFactory.createGameOverGameState(controller));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.g19.breakout;
 
+import com.g19.breakout.controller.FileManager;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.Transformer;
 import com.g19.breakout.controller.state.StateFactory;
@@ -22,6 +23,6 @@ public class Game {
 
         GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), new BasicViewFactory(), new BasicModelFactory(), 60);
 
-        controller.start(new Transformer());
+        controller.start(new Transformer(), new FileManager());
     }
 }

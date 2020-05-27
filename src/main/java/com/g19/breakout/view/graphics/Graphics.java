@@ -17,5 +17,6 @@ public interface Graphics {
     void exit() throws IOException;
     Position setOffset(Position offset);
     GameView.Keys readInput() throws IOException;
+    GameView.Keys readTextInput(StringBuilder sb) throws IOException;
 }
 

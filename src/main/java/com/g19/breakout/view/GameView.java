@@ -30,6 +30,10 @@ public class GameView {
         return graphics.readInput();
     }
 
+    public Keys readTextInput(StringBuilder sb) throws IOException {
+        return graphics.readTextInput(sb);
+    }
+
     public Graphics getGraphics() {
         return graphics;
     }

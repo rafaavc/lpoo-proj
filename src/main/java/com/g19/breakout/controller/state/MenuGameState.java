@@ -5,7 +5,7 @@ import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.model.PlayerModel;
 
 public abstract class MenuGameState extends GameState {
-    private final PlayerModel playerModel;
+    protected final PlayerModel playerModel;
     private final MenuController menu;
 
     public MenuGameState(GameController controller, PlayerModel playerModel, MenuController menu) {

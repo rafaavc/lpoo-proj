@@ -22,7 +22,7 @@ public class GameController {
     private final ModelFactory modelFactory;
     private GameState state;
 
-    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) {
+    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) throws IOException {
         this.chrono = chrono;
         this.view = view;
         this.model = model;
@@ -30,9 +30,14 @@ public class GameController {
         this.modelFactory = modelFactory;
         this.FPS = FPS;
         setState(stateFactory.createMainMenuGameState(this));
+        setLeaderboard(new FileManager());
     }
 
-    public void start(Transformer transformer) throws IOException, InterruptedException {
+    public void setLeaderboard(FileManager fm) throws IOException {
+        model.setLeaderboard(fm.getLeaderboard());
+    }
+
+    public void start(Transformer transformer, FileManager fileManager) throws IOException, InterruptedException {
         int frameDuration = 1000 / FPS;
         do {
             chrono.start();
@@ -48,6 +53,7 @@ public class GameController {
         while ( getNextCommand(transformer) );
 
         view.exit();
+        fileManager.writeLeaderboard(model.getLeaderboard());
     }
 
     public void moveElement(Position position, ElementModel element) {
@@ -57,7 +63,12 @@ public class GameController {
     }
 
     public boolean getNextCommand(Transformer transformer) throws IOException {
-        GameView.Keys key = view.readInput();
+        GameView.Keys key;
+        if (state.isReadingText()) {
+            key = view.readTextInput(state.getTextReader());
+        } else {
+            key = view.readInput();
+        }
         Command cmd = transformer.toCommand(key);
         return cmd.execute(this);
     }
