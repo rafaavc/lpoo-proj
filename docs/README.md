@@ -113,20 +113,10 @@ As our architectural patern we decided to use the Model-View-Controller. With it
 <img src="MVC.png" height="160"/>
 
 The classes can be found in these files:
-- Model
-  - [ArenaModel](../src/main/java/com/g19/breakout/model/ArenaModel.java)
-  - [ElementModel](../src/main/java/com/g19/breakout/model/ElementModel.java)
-  - [BallModel](../src/main/java/com/g19/breakout/model/BallModel.java)
-  - [PlayerBarModel](../src/main/java/com/g19/breakout/model/PlayerBarModel.java)
-  - [TileModel](../src/main/java/com/g19/breakout/model/TileModel.java)
-- View
-  -  [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
-  -  [ElementView](../src/main/java/com/g19/breakout/view/ElementView.java)
-  -  [BallView](../src/main/java/com/g19/breakout/view/BallView.java)
-  -  [PlayerBarView](../src/main/java/com/g19/breakout/view/PlayerBarView.java)
-  -  [TilesView](../src/main/java/com/g19/breakout/view/TilesView.java)
-- Controller
-  - [ArenaController](../src/main/java/com/g19/breakout/controller/ArenaController.java)
+- [Model](../src/main/java/com/g19/breakout/model)
+  
+- [View](../src/main/java/com/g19/breakout/view)
+- [Controller](../src/main/java/com/g19/breakout/controller)
 
 #### Consequences
 
