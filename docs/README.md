@@ -10,25 +10,45 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 ## Quickly jump between topics
 
-* [LPOO_19 - Breakout](#lpoo_19---breakout)
-  * [Quickly jump between topics](#quickly-jump-between-topics)
-  * [Implemented features](#implemented-features)
-     * [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
-     * [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
-     * [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
-  * [Planned Features](#planned-features)
-  * [Design](#design)
-     * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-     * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-     * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-     * [<em>We want to convert enum types to Commands and BallHits in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-and-ballhits-in-a-simple-and-clean-way)
-     * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-  * [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
-     * [Large Class](#large-class)
-     * [Big Switch Cases](#big-switch-cases)
-     * [Lazy Class](#lazy-class)
-  * [Testing](#testing)
-  * [Self-evaluation](#self-evaluation)
+- [LPOO_19 - Breakout](#lpoo_19---breakout)
+  - [Quickly jump between topics](#quickly-jump-between-topics)
+  - [Implemented features](#implemented-features)
+    - [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
+    - [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
+    - [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
+  - [Planned Features](#planned-features)
+  - [Design](#design)
+    - [*We want to work in the different components without affecting one another and improve modularity*](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
+      - [The problem in context](#the-problem-in-context)
+      - [The pattern](#the-pattern)
+      - [Implementation](#implementation)
+      - [Consequences](#consequences)
+    - [*We shouldn't need to interact directly with Lanterna to draw objects in the View*](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
+      - [The problem in context](#the-problem-in-context-1)
+      - [The pattern](#the-pattern-1)
+      - [Implementation](#implementation-1)
+      - [Consequences](#consequences-1)
+    - [*We want to be able to inject the classes that the ArenaView needs to create*](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
+      - [The problem in context](#the-problem-in-context-2)
+      - [The pattern](#the-pattern-2)
+      - [Implementation](#implementation-2)
+      - [Consequences](#consequences-2)
+    - [*We want to convert enum types to Commands and BallHits in a simple and clean way*](#we-want-to-convert-enum-types-to-commands-and-ballhits-in-a-simple-and-clean-way)
+      - [The problem in context](#the-problem-in-context-3)
+      - [The pattern](#the-pattern-3)
+      - [Implementation](#implementation-3)
+      - [Consequences](#consequences-3)
+    - [*We want our ArenaController to not have to worry about which command was given nor which object the ball hit*](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
+      - [The problem in context](#the-problem-in-context-4)
+      - [The pattern](#the-pattern-4)
+      - [Implementation](#implementation-4)
+      - [Consequences](#consequences-4)
+  - [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
+    - [Large Class](#large-class)
+    - [Big Switch Cases](#big-switch-cases)
+    - [Lazy Class](#lazy-class)
+  - [Testing](#testing)
+  - [Self-evaluation](#self-evaluation)
 
 
 ## Implemented features
@@ -63,13 +83,10 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 - [x] Add ball colisions and bounces
 - [x] Draw the tiles
 - [x] Add colisions with tiles
-- [ ] Add scoreboard - GUI mockup:
-<img src="ScoreboardMockup.png" height="270"/>
-
-- [ ] Add menus - GUI mockup:
-<img src="MenusMockup.png" height="270"/>
-
-The idea with the menus would be to have the screen divided into vertical stripes and have the player move the PlayerBar to the stripe with the option he wants and then press ENTER to select the option (But using P to pause). Alternatively, we will substitute this option with keypresses (or maintain the option selection with keypresses simultaneously with the stripes option).
+- [x] Add scoreboard
+- [x] Add menus
+- [x] Add leaderboard
+- [ ] Add scores to leaderboard after ending game
 
 (these are just more ideas that may not be implemented)
 - [ ] Add player lives
