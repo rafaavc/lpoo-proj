@@ -7,9 +7,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.gui2.TextBox;
-import com.googlecode.lanterna.gui2.TextGUI;
-import com.googlecode.lanterna.gui2.TextGUIGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -74,15 +71,6 @@ public class LanternaAdapter implements Graphics {
             new TerminalPosition(leftUpperCorner.getDiscreteX(),leftUpperCorner.getDiscreteY()),
             new TerminalSize(size.getDiscreteX(), size.getDiscreteY()),
             fill);
-    }
-
-    public void getStringInput(Dimensions size) throws IOException {
-        TerminalSize textBoxSize = new TerminalSize(size.getDiscreteX(), size.getDiscreteY());
-        TextBox textBox = new TextBox(textBoxSize, TextBox.Style.SINGLE_LINE);
-        textBox.setText("test");
-        System.out.println(textBox.getText());
-        TextBox.TextBoxRenderer r = new TextBox.DefaultTextBoxRenderer();
-        //r.drawComponent(textGraphics, textBox);
     }
 
     public Position setOffset(Position offset) {
