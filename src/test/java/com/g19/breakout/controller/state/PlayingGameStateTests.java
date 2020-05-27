@@ -64,7 +64,7 @@ public class PlayingGameStateTests {
         PlayerModel playerModel = new PlayerModel(new Position(30, 10));
         Mockito.when(arena.getPlayer()).thenReturn(playerModel);
 
-        Mockito.when(collisionChecker.isInsideArena(any(Position.class), any(Dimensions.class))).thenReturn(true);
+        Mockito.when(arena.isInsideArena(any(Position.class), any(Dimensions.class))).thenReturn(true);
 
         assertTrue(playingGameState.commandLeft());
         assertEquals(new Position(29, 10), arena.getPlayer().getPosition());

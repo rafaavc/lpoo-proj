@@ -6,6 +6,7 @@ import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.controller.commands.CommandL;
 import com.g19.breakout.controller.commands.CommandP;
 import com.g19.breakout.controller.commands.CommandQ;
+import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -60,7 +61,7 @@ public class StateFactory {
     public PlayingGameState createPlayingGameState(GameController gameController) {
         ArenaModel arena = gameController.getModelFactory().createArenaModel(gameController.getModel().getDimensions());
         ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getModel().getDimensions(), gameController.getView().getGraphics());
-        return new PlayingGameState(arena, arenaView, gameController, new CollisionChecker((arena)), this);
+        return new PlayingGameState(arena, arenaView, gameController, new CollisionChecker(arena, new Chronometer()), this);
     }
 
     public PauseGameState createPauseGameState(GameController controller) {

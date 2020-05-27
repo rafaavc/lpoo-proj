@@ -45,7 +45,7 @@ public class GameController {
             view.draw();
             state.update(frameDuration);
 
-            long sleepAmount = 1000 / FPS - chrono.end();
+            long sleepAmount = frameDuration - chrono.end();
             if (sleepAmount < 0) sleepAmount = 0;
 
             Thread.sleep(sleepAmount);
