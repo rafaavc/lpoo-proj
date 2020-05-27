@@ -22,6 +22,7 @@ public class StateFactory {
                 new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY() - 4));
 
         MenuView menuView = viewFactory.createMenuView(
+                controller.getView().getGraphics(),
                 new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/2.),
                 new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.)
         );
@@ -45,6 +46,7 @@ public class StateFactory {
                 new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY() - 4));
 
         MenuView menuView = viewFactory.createMenuView(
+                gameController.getView().getGraphics(),
                 new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/5.),
                 new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/5.)
         );
@@ -60,7 +62,7 @@ public class StateFactory {
 
     public PlayingGameState createPlayingGameState(GameController gameController) {
         ArenaModel arena = gameController.getModelFactory().createArenaModel(gameController.getModel().getDimensions());
-        ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getModel().getDimensions(), gameController.getView().getGraphics());
+        ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getView().getGraphics());
         return new PlayingGameState(arena, arenaView, gameController, new CollisionChecker(arena, new Chronometer()), this);
     }
 
@@ -76,6 +78,7 @@ public class StateFactory {
         PauseView pauseView = viewFactory.createPauseView(controller.getView().getGraphics(), gameDimensions);
 
         MenuView menuView = viewFactory.createMenuView(
+                controller.getView().getGraphics(),
                 new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/2.),
                 new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.)
         );
@@ -105,6 +108,7 @@ public class StateFactory {
         GameOverView gameOverView = viewFactory.createGameOverView(controller.getView().getGraphics(), gameDimensions, playerModel);
 
         MenuView menuView = viewFactory.createMenuView(
+                controller.getView().getGraphics(),
                 new Dimensions(gameDimensions.getDiscreteX(), gameDimensions.getDiscreteY()/2.),
                 new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/2.)
         );

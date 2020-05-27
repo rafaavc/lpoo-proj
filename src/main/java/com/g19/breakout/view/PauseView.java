@@ -5,24 +5,19 @@ import com.g19.breakout.elements.Position;
 import com.g19.breakout.view.graphics.Graphics;
 
 
-public class PauseView extends SuperView<View> implements View {
+public class PauseView extends SuperView<View> {
     private final Graphics graphics;
     private final Dimensions gameDimensions;
+    private final String backgroundColor;
 
-    public PauseView(Graphics graphics, Dimensions gameDimensions) {
+    public PauseView(Graphics graphics, Dimensions gameDimensions, String backgroundColor) {
+        super(graphics, new Position(0, 0));
         this.graphics = graphics;
         this.gameDimensions = gameDimensions;
+        this.backgroundColor = backgroundColor;
     }
 
-    public void draw() {
-        String backColor = "#000000";
-        Position prevOffset = graphics.setOffset(new Position(0, 0));
-
-        graphics.drawRectangle(new Position(0, 0), gameDimensions, ' ', backColor);
-        graphics.drawCenteredString(new Position(60, 12), "Game Paused", "#ffffff", backColor);
-
-        drawViews();
-
-        graphics.setOffset(prevOffset);
+    public void drawSelf() {
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 12), "Game Paused", "#ffffff", backgroundColor);
     }
 }

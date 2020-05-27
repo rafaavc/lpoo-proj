@@ -2,10 +2,7 @@ package com.g19.breakout.view.factory;
 
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
-import com.g19.breakout.model.ArenaModel;
-import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerModel;
-import com.g19.breakout.model.TileModel;
+import com.g19.breakout.model.*;
 import com.g19.breakout.view.*;
 import com.g19.breakout.view.graphics.Graphics;
 import com.sun.tools.javac.util.Pair;
@@ -14,20 +11,25 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class BasicViewFactory implements ViewFactory {
+    private final String backgroundColor = "#0f0f0f";
+
     public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions) {
-        return new PauseView(graphics, gameDimensions);
+        return new PauseView(graphics, gameDimensions, backgroundColor);
     }
     public MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions) {
-        return new MainMenuView(graphics, gameDimensions);
+        return new MainMenuView(graphics, gameDimensions, backgroundColor);
+    }
+    public BackgroundView createBackgroundView(Graphics graphics, Dimensions gameDimensions, BackgroundModel backgroundModel) {
+        return new BackgroundView(graphics, gameDimensions, backgroundModel, backgroundColor);
     }
     public LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions, PriorityQueue<Pair<String, Integer>> lb) {
-        return new LeaderboardView(graphics, gameDimensions, lb);
+        return new LeaderboardView(graphics, gameDimensions, lb, backgroundColor);
     }
     public GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel) {
-        return new GameOverView(graphics, gameDimensions, playerModel);
+        return new GameOverView(graphics, gameDimensions, playerModel, backgroundColor);
     }
-    public MenuView createMenuView(Dimensions dimensions, Position position) {
-        return new MenuView(dimensions, position);
+    public MenuView createMenuView(Graphics graphics, Dimensions dimensions, Position position) {
+        return new MenuView(graphics, dimensions, position);
     }
     public MenuButtonView createMenuButtonView(String text, String color, Graphics graphics) {
         return new MenuButtonView(text, color, graphics);
@@ -44,8 +46,8 @@ public class BasicViewFactory implements ViewFactory {
     public ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics) {
         return new ScoreboardView(graphics, player);
     }
-    public ArenaView createArenaView(ArenaModel arena, Dimensions gameDimensions, Graphics graphics) {
-        ArenaView view = new ArenaView(graphics, arena, gameDimensions);
+    public ArenaView createArenaView(ArenaModel arena, Graphics graphics) {
+        ArenaView view = new ArenaView(graphics, arena);
 
         view.addView(createBallView(arena.getBall(), graphics));
         view.addView(createPlayerView(arena.getPlayer(), graphics));
