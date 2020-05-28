@@ -28,16 +28,9 @@ public class FileManager {
         PriorityQueue<Pair<String, Integer>> q = new PriorityQueue<>(cmp);
 
         List<String> lines = getFileContent("leaderboard.txt");
-        for (String l : lines) {
-            StringBuilder sb = new StringBuilder(l);
-            int i = sb.indexOf(";");
 
-            String s = sb.substring(0, i);
-            String n = sb.substring(i+1);
-
-            Integer points = Integer.valueOf(n);
-
-            q.add(new Pair<>(s, points));
+        for (int i = 0; i < lines.size(); i += 2) {
+            q.add(new Pair<>(lines.get(i), Integer.valueOf(lines.get(i+1))));
         }
 
         return q;
@@ -47,7 +40,8 @@ public class FileManager {
         BufferedWriter br = new BufferedWriter(new FileWriter(new File("leaderboard.txt")));
 
         for (Pair<String, Integer> pair : leaderboard) {
-            br.write(pair.fst + ';' + pair.snd.toString() + '\n');
+            br.write(pair.fst + '\n');
+            br.write(pair.snd.toString() + '\n');
         }
 
         br.close();

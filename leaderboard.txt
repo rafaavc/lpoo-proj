@@ -1,16 +1,32 @@
-Rafael;1491
-Rafael;1390
-Rafael;400
-your name;298
-Rafael;280
-textinput;248
-testsAreLife;228
-heyhye;100
-testing;50
-hekasld;50
-aposkdpaoksd;10
-Tests;10
-Rafael;10
-mais um teste!!;10
-teste;10
-Test;10
+Rafael
+1491
+Rafael
+1390
+Rafael
+400
+your name
+298
+Rafael
+280
+textinput
+248
+testsAreLife
+228
+heyhye
+100
+testing
+50
+hekasld
+50
+Tests
+10
+teste
+10
+Rafael
+10
+mais um teste!!
+10
+aposkdpaoksd
+10
+Test
+10
