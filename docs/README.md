@@ -33,7 +33,7 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
       - [The pattern](#the-pattern-2)
       - [Implementation](#implementation-2)
       - [Consequences](#consequences-2)
-    - [*We want to convert enum types to Commands and BallHits in a simple and clean way*](#we-want-to-convert-enum-types-to-commands-and-ballhits-in-a-simple-and-clean-way)
+    - [*We want to convert enum types to Commands in a simple and clean way*](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
       - [The problem in context](#the-problem-in-context-3)
       - [The pattern](#the-pattern-3)
       - [Implementation](#implementation-3)
@@ -43,6 +43,10 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
       - [The pattern](#the-pattern-4)
       - [Implementation](#implementation-4)
       - [Consequences](#consequences-4)
+    - [*We need to create states to change between menus*](#we-need-to-create-states-to-change-between-menus)
+    - [The problem in context](#the-problem-in-context-5)
+    - [The pattern](#the-pattern-5)
+    - [Implementation](#implementation-5)
   - [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
     - [Large Class](#large-class)
     - [Big Switch Cases](#big-switch-cases)
@@ -180,11 +184,11 @@ By using this design pattern:
 
 ---
 
-### *We want to convert enum types to Commands and BallHits in a simple and clean way*
+### *We want to convert enum types to Commands in a simple and clean way*
 
 #### The problem in context
 
-We wan't to maintain the MVC structure while the controller gets information about the view and from the model. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes. From the model we need to know if and what the ball will hit in the next iteration.
+We wan't to maintain the MVC structure while the controller gets information about the view. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes.
 
 #### The pattern
 - Factory pattern - at the moment for converting enum types to Commands and BallHits 
@@ -233,6 +237,26 @@ Those classes can be found here:
 By using this patter the ArenaController doesn't need to know which type of command it has, it know it has a command and tells it to execute and, depending on the class implementation of the command it will execute in a diferent way.
 
 The same can be said to the BallHit abstract class, where it saves some attributes and has a constructor for all of its subclasses and has an abstract method to update the ball's direction.
+
+---
+
+### *We need to create states to change between menus*
+
+### The problem in context
+
+We have some menus and we need them to implemente the same functions and change between them, one at a time.
+
+### The pattern
+
+We used the **State pattern** to solve that problem by having a interface and one class for each menu that implement that interface and that can easily change between them.
+
+### Implementation
+
+Those classes can be found here:
+- [States](../src/main/java/com/g19/breakout/controller/state)
+- [GameController](../src/main/java/com/g19/breakout/controller/GameController.java)
+
+---
 
 ## Known code smells and refactoring sugestions
 
