@@ -28,9 +28,9 @@ public class StateFactory {
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
 
-        menu.addButton(new CommandP(), viewFactory.createMenuButtonView("Start Game (P)", "#1da50b", controller.getView().getGraphics()));
-        menu.addButton(new CommandL(), viewFactory.createMenuButtonView("Leaderboard (L)", "#e0b20b", controller.getView().getGraphics()));
-        menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Quit Game (Q)", "#a30d0d", controller.getView().getGraphics()));
+        menu.addButton(new CommandP(controller), viewFactory.createMenuButtonView("Start Game (P)", "#1da50b", controller.getView().getGraphics()));
+        menu.addButton(new CommandL(controller), viewFactory.createMenuButtonView("Leaderboard (L)", "#e0b20b", controller.getView().getGraphics()));
+        menu.addButton(new CommandQ(controller), viewFactory.createMenuButtonView("Quit Game (Q)", "#a30d0d", controller.getView().getGraphics()));
 
         MainMenuView view = viewFactory.createMainMenuView(controller.getView().getGraphics(), controller.getModel().getDimensions());
         view.addView(menuView);
@@ -51,7 +51,7 @@ public class StateFactory {
                 new Position(0, gameDimensions.getDiscreteY() - gameDimensions.getDiscreteY()/5.)
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
-        menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Return (Q)", "#a30d0d", gameController.getView().getGraphics()));
+        menu.addButton(new CommandQ(gameController), viewFactory.createMenuButtonView("Return (Q)", "#a30d0d", gameController.getView().getGraphics()));
 
         LeaderboardView view = viewFactory.createLeaderboardView(gameController.getView().getGraphics(), gameController.getModel().getDimensions(), gameController.getModel().getLeaderboard());
         view.addView(menuView);
@@ -84,8 +84,8 @@ public class StateFactory {
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
 
-        menu.addButton(new CommandP(), viewFactory.createMenuButtonView("Resume Game (P)", "#1da50b", controller.getView().getGraphics()));
-        menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
+        menu.addButton(new CommandP(controller), viewFactory.createMenuButtonView("Resume Game (P)", "#1da50b", controller.getView().getGraphics()));
+        menu.addButton(new CommandQ(controller), viewFactory.createMenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
 
         pauseView.addView(menu.getView());
         pauseView.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));
@@ -114,8 +114,8 @@ public class StateFactory {
         );
         MenuController menu = new MenuController(gameDimensions, menuView);
 
-        menu.addButton(new CommandP(), viewFactory.createMenuButtonView("Play Again (P)", "#1da50b", controller.getView().getGraphics()));
-        menu.addButton(new CommandQ(), viewFactory.createMenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
+        menu.addButton(new CommandP(controller), viewFactory.createMenuButtonView("Play Again (P)", "#1da50b", controller.getView().getGraphics()));
+        menu.addButton(new CommandQ(controller), viewFactory.createMenuButtonView("Give Up (Q)", "#a30d0d", controller.getView().getGraphics()));
 
         gameOverView.addView(menu.getView());
         gameOverView.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));

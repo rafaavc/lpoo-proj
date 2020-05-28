@@ -76,8 +76,8 @@ public class GameController {
         } else {
             key = view.readInput();
         }
-        Command cmd = transformer.toCommand(key);
-        return cmd.execute(this);
+        Command cmd = transformer.toCommand(this, key);
+        return cmd.execute();
     }
 
     public GameState getState() {
