@@ -18,7 +18,7 @@ public class BallHit {
         return ballHit;
     }
 
-    public void setBallHit(BallHit ballHit){
+    public void setBallHit(BallHit ballHit) {
         if (this.ballHit == null) this.ballHit = ballHit;
         else this.ballHit.setBallHit(ballHit);
     }

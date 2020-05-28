@@ -8,10 +8,12 @@ import java.util.PriorityQueue;
 
 public class GameModel {
     private final Dimensions dimensions;
+    private final BackgroundModel backgroundModel;
     private PriorityQueue<Pair<String, Integer>> leaderboard;
 
-    public GameModel(Dimensions dimensions) {
+    public GameModel(Dimensions dimensions, BackgroundModel backgroundModel) {
         this.dimensions = dimensions;
+        this.backgroundModel = backgroundModel;
     }
 
     public Dimensions getDimensions() {
@@ -33,5 +35,9 @@ public class GameModel {
     public boolean isInsideGame(Position position, Dimensions dimension) {
         return position.getDiscreteX() >= dimension.getDiscreteX()/2 && position.getDiscreteX() <= dimensions.getDiscreteX() - dimension.getDiscreteX()/2
                 && position.getDiscreteY() >= 0 && position.getDiscreteY() <= dimensions.getDiscreteY() - dimension.getDiscreteY()/2;
+    }
+
+    public BackgroundModel getBackgroundModel() {
+        return backgroundModel;
     }
 }

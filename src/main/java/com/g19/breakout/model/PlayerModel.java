@@ -6,6 +6,7 @@ import com.g19.breakout.elements.Position;
 public class PlayerModel extends ElementModel {
     private int points;
     private String name;
+
     public PlayerModel(Position position) {
         super(position, new Dimensions(10, 1));
         points = 0;
@@ -26,9 +27,5 @@ public class PlayerModel extends ElementModel {
 
     public int getPoints() {
         return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 }

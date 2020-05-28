@@ -2,12 +2,14 @@ package com.g19.breakout.view;
 
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
+import com.g19.breakout.view.graphics.Graphics;
 
-public class MenuView extends SuperView<MenuButtonView> implements View {
+public class MenuView extends SuperView<MenuButtonView> {
     private final Dimensions dimensions;
     private final Position position;
 
-    public MenuView(Dimensions dimensions, Position position) {
+    public MenuView(Graphics graphics, Dimensions dimensions, Position position) {
+        super(graphics, new Position(0, 0));
         this.dimensions = dimensions;
         this.position = position;
     }
@@ -26,9 +28,5 @@ public class MenuView extends SuperView<MenuButtonView> implements View {
             views.get(i).setDimensions(new Dimensions(buttonWidth, dimensions.getDiscreteY()));
             views.get(i).setPosition(new Position(i*buttonWidth + position.getDiscreteX(), position.getDiscreteY()));
         }
-    }
-
-    public void draw() {
-        drawViews();
     }
 }

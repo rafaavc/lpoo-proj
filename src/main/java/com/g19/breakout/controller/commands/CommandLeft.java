@@ -2,10 +2,13 @@ package com.g19.breakout.controller.commands;
 
 import com.g19.breakout.controller.GameController;
 
-public class CommandLeft implements Command {
+public class CommandLeft extends Command {
+    public CommandLeft(GameController controller) {
+        super(controller);
+    }
 
     @Override
-    public boolean execute(GameController controller) {
+    public boolean execute() {
         return controller.getState().commandLeft();
     }
 }

@@ -11,6 +11,6 @@ public class BallHitBottom extends BallHit {
 
     public void updateDirection() {
         ball.setDirection(new Direction(0, 0));
-        if (ballHit != null) ballHit.updateDirection();
+        super.updateDirection();
     }
 }

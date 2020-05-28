@@ -71,7 +71,7 @@ public class PlayingGameState extends GameState {
     }
 
     public void moveElement(Position position, ElementModel element) {
-        if (collisionChecker.isInsideArena(position, element.getDimensions())) {
+        if (arena.isInsideArena(position, element.getDimensions())) {
             element.setPosition(position);
         }
     }
