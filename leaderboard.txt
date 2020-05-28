@@ -12,21 +12,23 @@ textinput
 248
 testsAreLife
 228
+teste
+218
 heyhye
 100
 testing
 50
 hekasld
 50
-aposkdpaoksd
-10
 Tests
 10
 Rafael
 10
-mais um teste!!
+aposkdpaoksd
 10
 teste
 10
 Test
+10
+mais um teste!!
 10

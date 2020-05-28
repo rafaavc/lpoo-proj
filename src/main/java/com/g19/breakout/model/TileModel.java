@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileModel extends ElementModel {
-    int life;
+    int life, horizontalIndex;
 
-    public TileModel(Position position, Dimensions dim, int life) {
+    public TileModel(Position position, Dimensions dim, int life, int horizontalIndex) {
         super(position, dim);
         this.life = life;
+        this.horizontalIndex = horizontalIndex;
     }
 
     static public List<TileModel> createTileArray(int nHorizontal, int nVertical, ArenaModel arena) {
@@ -36,7 +37,7 @@ public class TileModel extends ElementModel {
             for (int j = 0; j < nVertical; j++) {
                 Position pos = new Position(margin + tileWidth/2. + i*horizontalFreeSpaceEach, margin/2. + j*verticalFreeSpaceEach);
                 Dimensions dim = new Dimensions(tileWidth, tileHeight);
-                tiles.add(new TileModel(pos, dim, 2 + nVertical - j));
+                tiles.add(new TileModel(pos, dim, 2 + nVertical - j, i));
             }
         }
         return tiles;
@@ -46,6 +47,10 @@ public class TileModel extends ElementModel {
     public boolean hit() {
         life--;
         return life == 0;
+    }
+
+    public int getHorizontalIndex() {
+        return horizontalIndex;
     }
 
     public int getLife() {
