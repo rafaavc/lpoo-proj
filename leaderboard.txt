@@ -3,3 +3,4 @@ heyhye;100
 hekasld;50
 Rafael;10
 teste;10
+xamas;10
