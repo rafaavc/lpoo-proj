@@ -1,7 +1,11 @@
 package com.g19.breakout.elements;
 
 public class Chronometer {
-    long lastTime;
+    private long lastTime = -1;
+
+    public long getLastTime() {
+        return lastTime;
+    }
 
     public void start() {
         lastTime = System.currentTimeMillis();

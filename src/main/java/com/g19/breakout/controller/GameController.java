@@ -39,21 +39,28 @@ public class GameController {
 
     public void start(Transformer transformer, FileManager fileManager) throws IOException, InterruptedException {
         int frameDuration = 1000 / FPS;
+        int counter = 1;
         do {
             chrono.start();
 
             view.draw();
+            if (counter % 20 == 0) model.getBackgroundModel().generateParticles();
             state.update(frameDuration);
 
-            long sleepAmount = 1000 / FPS - chrono.end();
-            if (sleepAmount < 0) sleepAmount = 0;
-
-            Thread.sleep(sleepAmount);
+            waitForNextFrame(frameDuration);
+            counter++;
         }
         while ( getNextCommand(transformer) );
 
         view.exit();
         fileManager.writeLeaderboard(model.getLeaderboard());
+    }
+
+    public void waitForNextFrame(int frameDuration) throws InterruptedException {
+        long sleepAmount = frameDuration - chrono.end();
+        if (sleepAmount < 0) sleepAmount = 0;
+
+        Thread.sleep(sleepAmount);
     }
 
     public void moveElement(Position position, ElementModel element) {
@@ -69,8 +76,8 @@ public class GameController {
         } else {
             key = view.readInput();
         }
-        Command cmd = transformer.toCommand(key);
-        return cmd.execute(this);
+        Command cmd = transformer.toCommand(this, key);
+        return cmd.execute();
     }
 
     public GameState getState() {

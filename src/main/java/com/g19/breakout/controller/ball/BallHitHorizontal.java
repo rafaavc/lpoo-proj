@@ -8,8 +8,9 @@ public class BallHitHorizontal extends BallHit {
         super(ball);
     }
 
+    @Override
     public void updateDirection() {
         ball.setDirection(ball.getDirection().hitHorizontal());
-        if (ballHit != null) ballHit.updateDirection();
+        super.updateDirection();
     }
 }

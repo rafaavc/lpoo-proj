@@ -6,6 +6,7 @@ import com.g19.breakout.controller.Transformer;
 import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Dimensions;
+import com.g19.breakout.model.BackgroundModel;
 import com.g19.breakout.model.GameModel;
 import com.g19.breakout.model.factory.BasicModelFactory;
 import com.g19.breakout.view.GameView;
@@ -17,12 +18,17 @@ import java.io.IOException;
 
 public class Game {
     public static void main(String[] args) throws IOException, InterruptedException {
-        GameModel model = new GameModel(new Dimensions(120, 50));
-        Graphics graphics = new LanternaAdapter(model.getDimensions());
-        GameView view = new GameView(graphics);
+        //model
+        Dimensions gameDimensions = new Dimensions(120, 50);
+        BackgroundModel backgroundModel = new BackgroundModel(gameDimensions);
+        GameModel model = new GameModel(gameDimensions, backgroundModel);
 
+        //view
+        Graphics graphics = new LanternaAdapter(gameDimensions);
+        GameView view = new GameView(graphics, new BasicViewFactory().createBackgroundView(graphics, gameDimensions, backgroundModel));
+
+        //controller
         GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), new BasicViewFactory(), new BasicModelFactory(), 60);
-
         controller.start(new Transformer(), new FileManager());
     }
 }

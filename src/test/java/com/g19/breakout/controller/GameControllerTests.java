@@ -33,7 +33,7 @@ public class GameControllerTests {
     GameController gameController;
 
     @BeforeEach
-    public void setup(){
+    public void setup() throws IOException{
         Mockito.doNothing().when(view).setView(any(View.class));
         MainMenuGameState mainMenuGameState = Mockito.mock(MainMenuGameState.class);
         Mockito.when(stateFactory.createMainMenuGameState(any(GameController.class))).thenReturn(mainMenuGameState);

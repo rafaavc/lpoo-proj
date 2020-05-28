@@ -16,12 +16,13 @@ public class GameOverGameState extends MenuGameState {
         this.stateFactory = stateFactory;
         this.readingText = true;
         this.textReader = new StringBuilder();
+        playerModel.setName("_");
     }
 
     @Override
     public void update(int elapsedTime) {
-        if (textReader.length() != playerModel.getName().length()) {
-            playerModel.setName(textReader.toString());
+        if (readingText && textReader.length() != playerModel.getName().length()-1) {
+            playerModel.setName(textReader.toString() + "_");
         }
     }
 
@@ -29,9 +30,11 @@ public class GameOverGameState extends MenuGameState {
     public boolean commandENTER() {
         if (!readingText) return super.commandENTER();
 
-        if (textReader.length() < 4) return true;
-
         readingText = false;
+        playerModel.setName("");
+
+        if (textReader.length() == 0) return true;
+
         playerModel.setName(textReader.toString());
         controller.getModel().addScore(new Pair<>(playerModel.getName(), playerModel.getPoints()));
 

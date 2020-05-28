@@ -28,6 +28,6 @@ public abstract class MenuGameState extends GameState {
 
     @Override
     public boolean commandENTER() {
-        return menu.getCommand(playerModel.getPosition()).execute(controller);
+        return menu.getCommand(playerModel.getPosition()).execute();
     }
 }

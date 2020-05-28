@@ -11,7 +11,6 @@ public abstract class GameState {
     public GameState(GameController controller) {
         this.controller = controller;
         readingText = false;
-        textReader = null;
     }
 
     public void update(int elapsedTime) {}

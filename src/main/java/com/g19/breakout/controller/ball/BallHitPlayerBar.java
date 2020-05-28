@@ -15,10 +15,11 @@ public class BallHitPlayerBar extends BallHit {
         this.playerBar = playerBar;
     }
 
+    @Override
     public void updateDirection() {
         Direction direction = this.calculateNewDirection();
         ball.setDirection(direction);
-        if (ballHit != null) ballHit.updateDirection();
+        super.updateDirection();
     }
 
     private Direction calculateNewDirection(){

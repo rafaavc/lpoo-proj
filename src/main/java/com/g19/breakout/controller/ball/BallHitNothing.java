@@ -8,7 +8,8 @@ public class BallHitNothing extends BallHit {
         super(ball);
     }
 
+    @Override
     public void updateDirection() {
-        if (ballHit != null) ballHit.updateDirection();
+        super.updateDirection();
     }
 }

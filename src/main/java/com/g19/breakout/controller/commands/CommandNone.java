@@ -1,11 +1,13 @@
 package com.g19.breakout.controller.commands;
 
-import com.g19.breakout.controller.GameController;
+public class CommandNone extends Command {
 
-public class CommandNone implements Command {
+    public CommandNone() {
+        super(null);
+    }
 
     @Override
-    public boolean execute(GameController controller) {
+    public boolean execute() {
         return true;
     }
 }
