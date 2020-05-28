@@ -47,6 +47,7 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
     - [The problem in context](#the-problem-in-context-5)
     - [The pattern](#the-pattern-5)
     - [Implementation](#implementation-5)
+      - [Consequences](#consequences-5)
   - [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
     - [Large Class](#large-class)
     - [Big Switch Cases](#big-switch-cases)
@@ -252,9 +253,18 @@ We used the **State pattern** to solve that problem by having a interface and on
 
 ### Implementation
 
+<img src="MenuStatePattern.png" height="300">
+
 Those classes can be found here:
 - [States](../src/main/java/com/g19/breakout/controller/state)
 - [GameController](../src/main/java/com/g19/breakout/controller/GameController.java)
+
+
+#### Consequences
+
+This way we the controller only has an abastract object that has different subclasses and that way it doesn't need to know which is the current game screen, so, it has one less job.
+
+Furthermore, the state knows how to handle any command and can update itself, and can set the controller state to the next one.
 
 ---
 
