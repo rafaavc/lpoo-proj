@@ -26,8 +26,6 @@ public class GameOverView extends SuperView<View> {
         graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 13), "Insert your name, press ENTER when you're done.", "#ffffff", backgroundColor);
         graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 14), "If you press enter without writing anything, the score won't be saved.", "#ffffff", backgroundColor);
 
-        String inputDecorator = playerModel.getNameInputFinished() ? "" : "_";
-        String textInput = playerModel.getName().equals("") ? inputDecorator : playerModel.getName() + inputDecorator;
-        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 16), textInput, "#ffffff", backgroundColor);
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 16), playerModel.getName(), "#ffffff", backgroundColor);
     }
 }
