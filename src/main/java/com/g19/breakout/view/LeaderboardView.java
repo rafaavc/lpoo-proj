@@ -29,15 +29,18 @@ public class LeaderboardView extends SuperView<View> {
     }
 
     public void drawSelf() {
-        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 10), "Leaderboard", "#ffffff", backgroundColor);
+        graphics.drawCenteredString(new Position(gameDimensions.getDiscreteX()/2., 6), "Leaderboard", "#ffffff", backgroundColor);
 
-        int i = 0;
+        int counter = 0;
         for(Pair<String, Integer> p : leaderboard) {
-            if (i >= 10) break;
-            graphics.drawString(new Position(gameDimensions.getDiscreteX() / 4., 13+(2*i)), p.fst, "#ffffff", backgroundColor);
+            if (counter >= 13) break;
+            graphics.drawString(new Position(gameDimensions.getDiscreteX() / 4., 10+(2*counter)), p.fst, "#ffffff", backgroundColor);
+            String place = (counter+1) + ". ";
+            graphics.drawString(new Position(gameDimensions.getDiscreteX() / 4. - place.length(), 10+(2*counter)), place, "#ffffff", backgroundColor);
+
             String n = Integer.toString(p.snd);
-            graphics.drawString(new Position(3*gameDimensions.getDiscreteX() / 4. - n.length(), 13+(2*i)), n, "#ffffff", backgroundColor);
-            i++;
+            graphics.drawString(new Position(3*gameDimensions.getDiscreteX() / 4. - n.length(), 10+(2*counter)), n, "#ffffff", backgroundColor);
+            counter++;
         }
     }
 }
