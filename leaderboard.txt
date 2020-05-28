@@ -30,5 +30,3 @@ teste
 10
 Test
 10
-mais um teste!!
-10
