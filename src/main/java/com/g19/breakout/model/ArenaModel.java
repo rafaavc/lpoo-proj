@@ -47,7 +47,7 @@ public class ArenaModel {
 
     public boolean isInsideArena(Position position, Dimensions dimension) {
         return position.getDiscreteX() >= dimension.getDiscreteX()/2 && position.getDiscreteX() <= getWidth() - dimension.getDiscreteX()/2
-                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= getHeight() - dimension.getDiscreteY()/2;
+                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= getHeight() - dimension.getDiscreteY();
     }
 
     public int getHeight() {
