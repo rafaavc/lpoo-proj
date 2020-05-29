@@ -30,17 +30,17 @@ public class StateTests {
 
         Mockito.doNothing().when(controller).moveElement(any(Position.class), any(ElementModel.class));
 
-        assertTrue(mainMenuGameState.commandLeft());
-        assertTrue(mainMenuGameState.commandRight());
+        mainMenuGameState.commandLeft();
+        mainMenuGameState.commandRight();
         Mockito.verify(controller, Mockito.times(2)).moveElement(any(Position.class), any(ElementModel.class));
 
-        assertFalse(mainMenuGameState.commandQ());
+        mainMenuGameState.commandQ();
 
         PlayingGameState playingGameState = Mockito.mock(PlayingGameState.class);
 
         Mockito.when(stateFactory.createPlayingGameState(any(GameController.class))).thenReturn(playingGameState);
         Mockito.doNothing().when(controller).setState(any(GameState.class));
-        assertTrue(mainMenuGameState.commandP());
+        mainMenuGameState.commandP();
         Mockito.verify(controller, Mockito.times(1)).setState(any(GameState.class));
     }
 
@@ -61,8 +61,8 @@ public class StateTests {
 
         Mockito.doNothing().when(controller).setState(any(GameState.class));
 
-        assertTrue(pauseGameState.commandP());
-        assertTrue(pauseGameState.commandQ());
+        pauseGameState.commandP();
+        pauseGameState.commandQ();
         Mockito.verify(controller, Mockito.times(2)).setState(any(GameState.class));
     }
 

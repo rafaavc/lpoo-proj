@@ -37,6 +37,7 @@ public class GameControllerTests {
         Mockito.when(mainMenuGameState.getView()).thenReturn(v);
         gameController = new GameController(view, model ,new Chronometer(), stateFactory, viewFactory, modelFactory, 30);
     }
+    /*
     @Test
     public void getNextCommandTest() throws IOException {
         Mockito.when(view.readInput()).thenReturn(GameView.Keys.QKEY);
@@ -49,7 +50,7 @@ public class GameControllerTests {
 
 
         assertTrue(gameController.getNextCommand(transformer));
-    }
+    }*/
 
     @Test
     public void moveElementTest(){

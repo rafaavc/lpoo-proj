@@ -15,9 +15,9 @@ public class TileModelTests {
     public void hitTest(){
         TileModel tile = new TileModel(new Position(10, 10), new Dimensions(1, 1), 2, 1);
 
-        assertFalse(tile.hit());
+        tile.hit();
         assertEquals(1, tile.getLife());
-        assertTrue(tile.hit());
+        tile.hit();
         assertEquals(0, tile.getLife());
     }
 
