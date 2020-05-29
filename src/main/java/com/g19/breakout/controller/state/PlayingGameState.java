@@ -10,6 +10,7 @@ import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
+import com.g19.breakout.view.View;
 
 import java.util.List;
 
@@ -106,7 +107,7 @@ public class PlayingGameState extends GameState {
         return true;
     }
 
-    public ArenaView getView() {
+    public View getView() {
         return view;
     }
 

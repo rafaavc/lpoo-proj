@@ -11,4 +11,14 @@ public abstract class GameState implements State {
         this.controller = controller;
         readingText = false;
     }
+
+    @Override
+    public StringBuilder getTextReader() {
+        return textReader;
+    }
+
+    @Override
+    public boolean isReadingText() {
+        return readingText;
+    }
 }

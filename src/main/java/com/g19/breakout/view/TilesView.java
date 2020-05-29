@@ -23,7 +23,7 @@ public class TilesView extends ElementView implements View {
 
     public void draw() {
         for (TileModel tile : tiles) {
-            Color c = tileColors.get(tile.getHorizontalIndex()%9);
+            Color c = tileColors.get(tile.getHorizontalIndex()%tileColors.size());
 
             for (int i = 0; i < 6 - tile.getLife(); i++) {
                 c = c.darker();
