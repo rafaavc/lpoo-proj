@@ -46,12 +46,11 @@ public class ViewTests {
          Mockito.verify(graphics, Mockito.times(n)).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
      }
 
-     @Test
-    public void LeaderboardViewTests(){
+     @Property
+    public void LeaderboardViewTests(@ForAll String name, @ForAll @Positive int score){
         Comparator<Pair<String, Integer>> cmp = (p1, p2) -> p2.snd - p1.snd;
          PriorityQueue<Pair<String, Integer>> pq = new PriorityQueue<>(cmp);
-         pq.add(new Pair<>("NoOne", 10));
-         pq.add(new Pair<>("Another", 100));
+         pq.add(new Pair<>(name, score));
 
          Dimensions dimensions = new Dimensions(100, 120);
          Graphics graphics = Mockito.mock(LanternaAdapter.class);
