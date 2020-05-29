@@ -13,7 +13,7 @@ public class TileModelTests {
 
     @Test
     public void hitTest(){
-        TileModel tile = new TileModel(new Position(10, 10), new Dimensions(1, 1), 2);
+        TileModel tile = new TileModel(new Position(10, 10), new Dimensions(1, 1), 2, 1);
 
         assertFalse(tile.hit());
         assertEquals(1, tile.getLife());

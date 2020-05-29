@@ -1,39 +1,71 @@
 package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.ball.*;
+import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CollisionChecker {
     private final ArenaModel arena;
+    private final Chronometer chrono;
 
-    public CollisionChecker(ArenaModel arena) {
+    public CollisionChecker(ArenaModel arena, Chronometer chrono) {
         this.arena = arena;
+        this.chrono = chrono;
     }
 
-    public BallHit checkBallCollisions(Position position, Dimensions dimensions) {
-        BallModel ball = arena.getBall();
-        BallHit ballHit = new BallHit(ball);
+    public void tileWasHit(TileModel tile) {
+        tile.hit();
+        int points = 10;
 
-        if (position.getDiscreteY() == -1) ballHit.setBallHit(new BallHitHorizontal(ball));
-        if (position.getDiscreteY() == arena.getHeight() - dimensions.getDiscreteY() + 1) ballHit.setBallHit(new BallHitBottom(ball));
-        if (checkHitPlayer(position)) ballHit.setBallHit(new BallHitPlayerBar(ball, arena.getPlayer()));
+        if (chrono.getLastTime() != -1) {
+            double elapsed = chrono.end() / 1000.;  // seconds
 
-        TileModel tile = checkHitTile(position);
-        if (tile != null) {
-            ballHit.setBallHit(checkHitTopOrSideTile(tile));
-            tile.hit();
-            arena.getPlayer().addPoints(10);
+            if (elapsed < 1) {   // if less than 1 second
+                double mult = 1 - elapsed; // multiplier - the lesser the time elapsed sice last hit, the more points you get
+                points = (int) (mult*20) + points;
+            }
         }
 
-        if (position.getDiscreteX() == dimensions.getDiscreteX()/2. - 1 ||
-                position.getDiscreteX() == arena.getWidth() - dimensions.getDiscreteX()/2. + 1) ballHit.setBallHit(new BallHitVertical(ball));
+        arena.getPlayer().addPoints(points);
+        chrono.start();
+    }
 
-        return ballHit;
+    public List<BallHit> checkBallCollisions(Position position, Dimensions dimensions) {
+        BallModel ball = arena.getBall();
+
+        List<BallHit> ballHits = checkBallHitArenaWalls(position, dimensions);
+
+        if (arena.checkHitPlayer(position, arena.getPlayer())) ballHits.add(new BallHitPlayerBar(ball, arena.getPlayer()));
+
+        TileModel tile = arena.checkHitTile(position);
+
+        if (tile != null) {
+            ballHits.add(checkHitTopOrSideTile(tile));
+            tileWasHit(tile);
+        }
+
+        return ballHits;
+    }
+
+    public List<BallHit> checkBallHitArenaWalls(Position position, Dimensions dimensions) {
+        BallModel ball = arena.getBall();
+        List<BallHit> ballHits = new ArrayList<BallHit>();
+
+        if (position.getDiscreteY() <= -1) ballHits.add(new BallHitHorizontal(ball));
+        if (position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1) ballHits.add(new BallHitBottom(ball));
+
+        if (position.getDiscreteX() <= dimensions.getDiscreteX()/2. - 1 ||
+                position.getDiscreteX() >= arena.getWidth() - dimensions.getDiscreteX()/2. + 1) ballHits.add(new BallHitVertical(ball));
+
+        return ballHits;
     }
 
     protected BallHit checkHitTopOrSideTile(TileModel tile) {
@@ -45,35 +77,5 @@ public class CollisionChecker {
         if (prevPos.getDiscreteX() + ballHWidth == tilePos.getDiscreteX() - tileHWidth ||
                 prevPos.getDiscreteX() - ballHWidth == tilePos.getDiscreteX() + tileHWidth) return new BallHitVertical(arena.getBall());
         return new BallHitHorizontal(arena.getBall());
-    }
-
-    protected TileModel checkHitTile(Position position) {
-        for (TileModel tile : arena.getTiles()) {
-            Position tilePos = tile.getPosition();
-            int tileHeight = tile.getDimensions().getDiscreteY();
-            int ballHeight = arena.getBall().getDimensions().getDiscreteY();
-
-            boolean isInsideY = position.getY() + ballHeight > tilePos.getY() && position.getY() < tilePos.getY() + tileHeight;
-
-            if (isInsideY) {
-                int ballHWidth = arena.getBall().getDimensions().getDiscreteX()/2;
-                int tileHWidth = tile.getDimensions().getDiscreteX()/2;
-                if (position.getDiscreteX() + ballHWidth > tilePos.getDiscreteX() - tileHWidth &&
-                        position.getDiscreteX() - ballHWidth < tilePos.getDiscreteX() + tileHWidth)  return tile;
-            }
-        }
-        return null;
-    }
-
-    protected boolean checkHitPlayer(Position position) {
-        PlayerModel player = arena.getPlayer();
-        return position.getDiscreteY() == player.getPosition().getDiscreteY() &&
-                position.getDiscreteX() >= player.getPosition().getDiscreteX() - player.getDimensions().getDiscreteX()/2 &&
-                position.getDiscreteX() <= player.getPosition().getDiscreteX() + player.getDimensions().getDiscreteX()/2;
-    }
-
-    public boolean isInsideArena(Position position, Dimensions dimension) {
-        return position.getDiscreteX() >= dimension.getDiscreteX()/2 && position.getDiscreteX() <= arena.getWidth() - dimension.getDiscreteX()/2
-                && position.getDiscreteY() >= 0 && position.getDiscreteY() <= arena.getHeight() - dimension.getDiscreteY()/2;
     }
 }

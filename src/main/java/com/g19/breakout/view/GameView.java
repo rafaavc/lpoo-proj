@@ -6,17 +6,20 @@ import java.io.IOException;
 
 public class GameView {
     private final Graphics graphics;
+    private final BackgroundView backgroundView;
     private View view;
 
     public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE, PKEY, QKEY, LKEY, ENTER};
 
-    public GameView(Graphics graphics) {
+    public GameView(Graphics graphics, BackgroundView backgroundView) {
         this.graphics = graphics;
+        this.backgroundView = backgroundView;
     }
 
     public void draw() throws IOException {
         graphics.startDrawing();
 
+        backgroundView.draw();
         view.draw();
 
         graphics.stopDrawing();
@@ -28,6 +31,10 @@ public class GameView {
 
     public Keys readInput() throws IOException {
         return graphics.readInput();
+    }
+
+    public Keys readTextInput(StringBuilder sb) throws IOException {
+        return graphics.readTextInput(sb);
     }
 
     public Graphics getGraphics() {

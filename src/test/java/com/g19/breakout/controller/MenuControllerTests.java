@@ -26,11 +26,12 @@ public class MenuControllerTests {
 
         assertEquals(CommandNone.class, menuController.getCommand(new Position(50, 30)).getClass());
 
-        CommandRight commandRight = new CommandRight();
+        GameController gameController = Mockito.mock(GameController.class);
+        CommandRight commandRight = new CommandRight(gameController);
         menuController.addButton(commandRight, menuButtonView);
         assertEquals(commandRight, menuController.getCommand(new Position(50, 30)));
 
-        CommandLeft commandLeft = new CommandLeft();
+        CommandLeft commandLeft = new CommandLeft(gameController);
         menuController.addButton(commandLeft, menuButtonView);
         assertEquals(commandRight, menuController.getCommand(new Position(30, 30)));
         assertEquals(commandLeft, menuController.getCommand(new Position(70, 30)));

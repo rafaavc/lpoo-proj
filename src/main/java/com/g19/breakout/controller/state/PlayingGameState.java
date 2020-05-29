@@ -11,6 +11,8 @@ import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
 
+import java.util.List;
+
 public class PlayingGameState extends GameState {
     private final ArenaModel arena;
     private final ArenaView view;
@@ -29,6 +31,7 @@ public class PlayingGameState extends GameState {
     public void update(int elapsedTime) {
         updateBall(elapsedTime);
         updateTiles();
+        if (arena.getBall().getDirection().equals(new Direction(0, 0))) gameOver();
     }
 
     protected void updateTiles() {
@@ -60,19 +63,26 @@ public class PlayingGameState extends GameState {
     }
 
     public boolean updateBallDirection(BallModel ball, Position nextBallPosition){
-        BallHit ballHit = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
+        List<BallHit> ballHits = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
         Direction ballDirection = ball.getDirection();
-        ballHit.updateDirection();
+
+        for (BallHit ballHit: ballHits)
+            ballHit.updateDirection();
+
         Direction newBallDirection = ball.getDirection();
 
         return !ballDirection.equals(newBallDirection);
     }
 
     public void moveElement(Position position, ElementModel element) {
-        if (collisionChecker.isInsideArena(position, element.getDimensions())) {
+        if (arena.isInsideArena(position, element.getDimensions())) {
             element.setPosition(position);
         }
+    }
+
+    public void gameOver() {
+        controller.setState(stateFactory.createGameOverGameState(controller));
     }
 
     @Override

@@ -33,7 +33,7 @@ public class GameControllerTests {
     GameController gameController;
 
     @BeforeEach
-    public void setup(){
+    public void setup() throws IOException{
         Mockito.doNothing().when(view).setView(any(View.class));
         MainMenuGameState mainMenuGameState = Mockito.mock(MainMenuGameState.class);
         Mockito.when(stateFactory.createMainMenuGameState(any(GameController.class))).thenReturn(mainMenuGameState);
@@ -45,10 +45,10 @@ public class GameControllerTests {
         Mockito.when(view.readInput()).thenReturn(GameView.Keys.QKEY);
 
         CommandQ commandQ = Mockito.mock(CommandQ.class);
-        Mockito.when(commandQ.execute(any(GameController.class))).thenReturn(true);
+        Mockito.when(commandQ.execute()).thenReturn(true);
 
         Transformer transformer = Mockito.mock(Transformer.class);
-        Mockito.when(transformer.toCommand(GameView.Keys.QKEY)).thenReturn(commandQ);
+        Mockito.when(transformer.toCommand(gameController, GameView.Keys.QKEY)).thenReturn(commandQ);
 
 
         assertTrue(gameController.getNextCommand(transformer));

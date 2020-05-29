@@ -7,18 +7,19 @@ import com.g19.breakout.model.PlayerModel;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-public class BallHitPlayerBar extends BallHit {
+public class BallHitPlayerBar implements BallHit {
     private final PlayerModel playerBar;
+    private final BallModel ball;
+
 
     public BallHitPlayerBar(BallModel ball, PlayerModel playerBar) {
-        super(ball);
+        this.ball = ball;
         this.playerBar = playerBar;
     }
 
     public void updateDirection() {
         Direction direction = this.calculateNewDirection();
         ball.setDirection(direction);
-        if (ballHit != null) ballHit.updateDirection();
     }
 
     private Direction calculateNewDirection(){

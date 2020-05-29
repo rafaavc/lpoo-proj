@@ -8,6 +8,9 @@ import com.g19.breakout.model.PlayerModel;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BallHitTests {
@@ -31,15 +34,6 @@ public class BallHitTests {
 
         ballHitHorizontal.updateDirection();
         assertEquals(ball.getDirection(), new Direction(0, 1));
-    }
-
-    @Test
-    public void testBallHitNothing(){
-        BallModel ball = new BallModel(new Position(1,1),1);
-        BallHitNothing ballHitNothing = new BallHitNothing(ball);
-
-        ballHitNothing.updateDirection();
-        assertEquals(ball.getDirection(), new Direction(0, -1));
     }
 
     @Test
@@ -72,12 +66,16 @@ public class BallHitTests {
     public void testMultipleBallHit(){
         BallModel ball = new BallModel(new Position(1,1), 1);
         ball.setDirection(new Direction(1, -1));
+        List<BallHit> ballHits = new ArrayList<>();
         BallHitVertical ballHitVertical = new BallHitVertical(ball);
 
         BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball);
-        ballHitHorizontal.setBallHit(ballHitVertical);
+        ballHits.add(ballHitVertical);
+        ballHits.add(ballHitHorizontal);
 
-        ballHitHorizontal.updateDirection();
+        for (BallHit ballHit: ballHits)
+            ballHit.updateDirection();
+
         assertEquals(new Direction(-1,1 ), ball.getDirection());
     }
 }
