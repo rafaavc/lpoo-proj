@@ -63,7 +63,7 @@ public class StateFactory {
 
         TilesController tilesController = new TilesController(arena.getTiles(), new Chronometer());
 
-        return new PlayingGameState(arenaView, gameController, new BallController(new CollisionChecker(arena, tilesController)), tilesController, this);
+        return new PlayingGameState(arenaView, gameController, new BallController(new BallCollisionChecker(arena, tilesController)), tilesController, this);
     }
 
     public PauseGameState createPauseGameState(GameController controller) {

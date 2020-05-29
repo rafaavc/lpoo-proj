@@ -4,7 +4,6 @@ import com.g19.breakout.controller.commands.ballhit.BallHit;
 import com.g19.breakout.controller.commands.ballhit.BallHitBottom;
 import com.g19.breakout.controller.commands.ballhit.BallHitHorizontal;
 import com.g19.breakout.controller.commands.ballhit.BallHitVertical;
-import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.utilities.Dimensions;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -36,14 +35,14 @@ public class CollisionCheckerTests {
     @Mock
     TilesController tilesController;
 
-    CollisionChecker collisionChecker;
+    BallCollisionChecker collisionChecker;
 
 
     @BeforeEach
     @BeforeProperty
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        collisionChecker = new CollisionChecker(arena, tilesController);
+        collisionChecker = new BallCollisionChecker(arena, tilesController);
         Mockito.when(arena.getBall()).thenReturn(ball);
         Mockito.when(arena.getWidth()).thenReturn(100);
         Mockito.when(arena.getHeight()).thenReturn(120);
@@ -69,7 +68,7 @@ public class CollisionCheckerTests {
 
     @Test
     public void checkBallCollisionsTest(){
-        CollisionChecker collisionCheckerSpy = Mockito.spy(collisionChecker);
+        BallCollisionChecker collisionCheckerSpy = Mockito.spy(collisionChecker);
         Mockito.when(arena.checkHitTile(any(Position.class))).thenReturn(new TileModel(new Position(10, 10), new Dimensions(5, 2), 10, 0));
 
         collisionCheckerSpy.checkBallCollisions(new Position(10, 10), new Dimensions(1, 1));

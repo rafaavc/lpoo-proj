@@ -1,11 +1,8 @@
 package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.BallController;
-import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.TilesController;
-import com.g19.breakout.controller.commands.ballhit.BallHit;
-import com.g19.breakout.controller.commands.ballhit.BallHitHorizontal;
 import com.g19.breakout.model.utilities.Dimensions;
 import com.g19.breakout.model.utilities.Direction;
 import com.g19.breakout.model.utilities.Position;
@@ -18,9 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

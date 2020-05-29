@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CollisionChecker {
+public class BallCollisionChecker {
     private final ArenaModel arena;
     private final TilesController tilesController;
 
-    public CollisionChecker(ArenaModel arena, TilesController tilesController) {
+    public BallCollisionChecker(ArenaModel arena, TilesController tilesController) {
         this.arena = arena;
         this.tilesController = tilesController;
     }

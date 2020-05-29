@@ -7,10 +7,10 @@ import com.g19.breakout.model.utilities.Position;
 import java.util.List;
 
 public class BallController {
-    private final CollisionChecker collisionChecker;
+    private final BallCollisionChecker collisionChecker;
     private final BallModel ball;
 
-    public BallController(CollisionChecker collisionChecker) {
+    public BallController(BallCollisionChecker collisionChecker) {
         this.ball = collisionChecker.getArena().getBall();
         this.collisionChecker = collisionChecker;
     }

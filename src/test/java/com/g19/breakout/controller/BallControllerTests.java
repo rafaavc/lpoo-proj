@@ -1,7 +1,5 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.BallController;
-import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.controller.commands.ballhit.BallHit;
 import com.g19.breakout.controller.commands.ballhit.BallHitHorizontal;
 import com.g19.breakout.model.ArenaModel;
@@ -24,7 +22,7 @@ import static org.mockito.Mockito.times;
 
 public class BallControllerTests {
     @Mock
-    CollisionChecker collisionChecker;
+    BallCollisionChecker collisionChecker;
 
     @Mock
     ArenaModel arena;

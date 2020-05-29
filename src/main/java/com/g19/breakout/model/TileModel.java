@@ -43,10 +43,8 @@ public class TileModel extends ElementModel {
         return tiles;
     }
 
-    // returns true if hit killed the tile
-    public boolean hit() {
+    public void hit() {
         life--;
-        return life == 0;
     }
 
     public int getHorizontalIndex() {
