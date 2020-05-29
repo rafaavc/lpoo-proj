@@ -9,5 +9,5 @@ public abstract class BallHit {
         this.ball = ball;
     }
 
-    abstract void updateDirection();
+    public abstract void updateDirection();
 }
