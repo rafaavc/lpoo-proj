@@ -6,13 +6,14 @@ import com.g19.breakout.controller.state.*;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
+import com.g19.breakout.view.GameOverView;
+import com.g19.breakout.view.LeaderboardView;
 import com.g19.breakout.view.MainMenuView;
 import com.g19.breakout.view.PauseView;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 public class StateTests {
@@ -66,4 +67,44 @@ public class StateTests {
         Mockito.verify(controller, Mockito.times(2)).setState(any(GameState.class));
     }
 
+    @Test
+    public void LeaderboardGameStateTest(){
+        GameController gameController = Mockito.mock(GameController.class);
+        LeaderboardView leaderboardView = Mockito.mock(LeaderboardView.class);
+        MenuController menuController = Mockito.mock(MenuController.class);
+        PlayerModel playerModel = new PlayerModel(new Position(10, 10));
+        StateFactory stateFactory = Mockito.mock(StateFactory.class);
+        LeaderboardGameState leaderboardGameState = new LeaderboardGameState(gameController, leaderboardView, menuController, playerModel, stateFactory);
+
+        Mockito.when(stateFactory.createMainMenuGameState(gameController)).thenReturn(Mockito.mock(MainMenuGameState.class));
+        Mockito.doNothing().when(gameController).setState(any(GameState.class));
+
+        leaderboardGameState.commandQ();
+        Mockito.verify(gameController, Mockito.times(1)).setState(any(MainMenuGameState.class));
+    }
+
+    @Test
+    public  void GameOverGameStateTest(){
+        GameController gameController = Mockito.mock(GameController.class);
+        GameOverView gameOverView = Mockito.mock(GameOverView.class);
+        MenuController menuController = Mockito.mock(MenuController.class);
+        PlayerModel playerModel = new PlayerModel(new Position(10, 10));
+        StateFactory stateFactory = Mockito.mock(StateFactory.class);
+        Mockito.when(stateFactory.createMainMenuGameState(gameController)).thenReturn(Mockito.mock(MainMenuGameState.class));
+        Mockito.doNothing().when(gameController).setState(any(GameState.class));
+
+        GameOverGameState gameOverGameState = new GameOverGameState(playerModel, gameOverView, gameController, menuController, stateFactory);
+
+
+        Mockito.when(stateFactory.createPlayingGameState(gameController)).thenReturn(Mockito.mock(PlayingGameState.class));
+        Mockito.when(stateFactory.createMainMenuGameState(gameController)).thenReturn(Mockito.mock(MainMenuGameState.class));
+        Mockito.doNothing().when(gameController).setState(any(GameState.class));
+
+        gameOverGameState.commandQ();
+        Mockito.verify(gameController, Mockito.times(1)).setState(any(MainMenuGameState.class));
+
+        gameOverGameState.commandP();
+        Mockito.verify(gameController, Mockito.times(1)).setState(any(PlayingGameState.class));
+
+    }
 }

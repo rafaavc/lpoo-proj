@@ -31,8 +31,8 @@ public class ArenaModelTests {
         Position position = new Position(x, y);
         assert(x >= 0 || !arena.isInsideArena(position, newDimensions));
         assert(y >= 0 || !arena.isInsideArena(position, newDimensions));
-        assert(x < arena.getWidth() || !arena.isInsideArena(position, newDimensions));
-        assert(y < arena.getHeight() || !arena.isInsideArena(position, newDimensions));
+        assert(x <= arena.getWidth() || !arena.isInsideArena(position, newDimensions));
+        assert(y <= arena.getHeight() || !arena.isInsideArena(position, newDimensions));
     }
 
     @Test
