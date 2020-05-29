@@ -1,4 +1,4 @@
-package com.g19.breakout;
+package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.BallController;
 import com.g19.breakout.controller.CollisionChecker;

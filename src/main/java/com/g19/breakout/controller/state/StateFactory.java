@@ -60,7 +60,10 @@ public class StateFactory {
     public PlayingGameState createPlayingGameState(GameController gameController) {
         ArenaModel arena = gameController.getModelFactory().createArenaModel(gameController.getModel().getDimensions());
         ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getView().getGraphics());
-        return new PlayingGameState(arenaView, gameController, new BallController(new CollisionChecker(arena, new Chronometer())), this);
+
+        TilesController tilesController = new TilesController(arena.getTiles(), new Chronometer());
+
+        return new PlayingGameState(arenaView, gameController, new BallController(new CollisionChecker(arena, tilesController)), tilesController, this);
     }
 
     public PauseGameState createPauseGameState(GameController controller) {

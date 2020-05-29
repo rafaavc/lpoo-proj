@@ -2,6 +2,7 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.BallController;
 import com.g19.breakout.controller.GameController;
+import com.g19.breakout.controller.TilesController;
 import com.g19.breakout.model.utilities.Direction;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -15,26 +16,25 @@ public class PlayingGameState extends GameState {
     private final ArenaView view;
     private final StateFactory stateFactory;
     private final BallController ballController;
+    private final TilesController tilesController;
 
-    public PlayingGameState(ArenaView view, GameController controller, BallController ballController, StateFactory stateFactory) {
+    public PlayingGameState(ArenaView view, GameController controller, BallController ballController, TilesController tilesController, StateFactory stateFactory) {
         super(controller);
         this.arena = view.getArena();
         this.view = view;
         this.stateFactory = stateFactory;
         this.ballController = ballController;
+        this.tilesController = tilesController;
     }
 
     @Override
     public void update(int elapsedTime) {
         moveElement(ballController.update(elapsedTime), arena.getBall());
-        updateTiles();
+
+        tilesController.update();
+
         if (arena.getBall().getDirection().equals(new Direction(0, 0))) gameOver();
     }
-
-    protected void updateTiles() {
-        arena.getTiles().removeIf(t -> t.getLife() == 0);
-    }
-
 
     public void moveElement(Position position, ElementModel element) {
         if (arena.isInsideArena(position, element.getDimensions())) {

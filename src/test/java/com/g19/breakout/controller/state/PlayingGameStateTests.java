@@ -3,6 +3,7 @@ package com.g19.breakout.controller.state;
 import com.g19.breakout.controller.BallController;
 import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.controller.GameController;
+import com.g19.breakout.controller.TilesController;
 import com.g19.breakout.controller.commands.ballhit.BallHit;
 import com.g19.breakout.controller.commands.ballhit.BallHitHorizontal;
 import com.g19.breakout.model.utilities.Dimensions;
@@ -42,13 +43,16 @@ public class PlayingGameStateTests {
     @Mock
     BallController ballController;
 
+    @Mock
+    TilesController tilesController;
+
     PlayingGameState playingGameState;
 
     @BeforeEach
     public void setup(){
         MockitoAnnotations.initMocks(this);
         Mockito.when(view.getArena()).thenReturn(arena);
-        playingGameState = new PlayingGameState(view, controller, ballController, stateFactory);
+        playingGameState = new PlayingGameState(view, controller, ballController, tilesController, stateFactory);
     }
 
     @Test
@@ -65,6 +69,7 @@ public class PlayingGameStateTests {
         Mockito.verify(ballController, times(1)).update(1000);
         Mockito.verify(playingGameStateSpy, times(1)).moveElement(new Position(10, 9), ball);
         Mockito.verify(playingGameStateSpy, times(0)).gameOver();
+        Mockito.verify(tilesController, times(1)).update();
 
         ball.setDirection(new Direction(0, 0));
         playingGameStateSpy.update(100);

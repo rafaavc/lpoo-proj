@@ -13,28 +13,11 @@ import java.util.List;
 
 public class CollisionChecker {
     private final ArenaModel arena;
-    private final Chronometer chrono;
+    private final TilesController tilesController;
 
-    public CollisionChecker(ArenaModel arena, Chronometer chrono) {
+    public CollisionChecker(ArenaModel arena, TilesController tilesController) {
         this.arena = arena;
-        this.chrono = chrono;
-    }
-
-    public void tileWasHit(TileModel tile) {
-        tile.hit();
-        int points = 10;
-
-        if (chrono.getLastTime() != -1) {
-            double elapsed = chrono.end() / 1000.;  // seconds
-
-            if (elapsed < 1) {   // if less than 1 second
-                double mult = 1 - elapsed; // multiplier - the lesser the time elapsed sice last hit, the more points you get
-                points = (int) (mult*20) + points;
-            }
-        }
-
-        arena.getPlayer().addPoints(points);
-        chrono.start();
+        this.tilesController = tilesController;
     }
 
     public List<BallHit> checkBallCollisions(Position position, Dimensions dimensions) {
@@ -48,7 +31,7 @@ public class CollisionChecker {
 
         if (tile != null) {
             ballHits.add(checkHitTopOrSideTile(tile));
-            tileWasHit(tile);
+            tilesController.tileWasHit(tile, arena.getPlayer());
         }
 
         return ballHits;
