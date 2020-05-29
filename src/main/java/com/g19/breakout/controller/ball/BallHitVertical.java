@@ -2,11 +2,9 @@ package com.g19.breakout.controller.ball;
 
 import com.g19.breakout.model.BallModel;
 
-public class BallHitVertical implements BallHit {
-    private final BallModel ball;
-
+public class BallHitVertical extends BallHit {
     public BallHitVertical(BallModel ball) {
-        this.ball = ball;
+        super(ball);
     }
 
     public void updateDirection() {

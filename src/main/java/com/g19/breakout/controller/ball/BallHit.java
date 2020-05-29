@@ -2,6 +2,12 @@ package com.g19.breakout.controller.ball;
 
 import com.g19.breakout.model.BallModel;
 
-public interface BallHit {
-    public void updateDirection();
+public abstract class BallHit {
+    protected final BallModel ball;
+
+    public BallHit(BallModel ball) {
+        this.ball = ball;
+    }
+
+    abstract void updateDirection();
 }

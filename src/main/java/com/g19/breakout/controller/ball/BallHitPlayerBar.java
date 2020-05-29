@@ -7,13 +7,11 @@ import com.g19.breakout.model.PlayerModel;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-public class BallHitPlayerBar implements BallHit {
+public class BallHitPlayerBar extends BallHit {
     private final PlayerModel playerBar;
-    private final BallModel ball;
-
 
     public BallHitPlayerBar(BallModel ball, PlayerModel playerBar) {
-        this.ball = ball;
+        super(ball);
         this.playerBar = playerBar;
     }
 
