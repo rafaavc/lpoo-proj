@@ -1,7 +1,7 @@
 package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.commands.Command;
-import com.g19.breakout.controller.state.GameState;
+import com.g19.breakout.controller.state.State;
 import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Position;
@@ -20,7 +20,7 @@ public class GameController {
     private final Chronometer chrono;
     private final ViewFactory viewFactory;
     private final ModelFactory modelFactory;
-    private GameState state;
+    private State state;
 
     public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) throws IOException {
         this.chrono = chrono;
@@ -80,11 +80,11 @@ public class GameController {
         return cmd.execute();
     }
 
-    public GameState getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(GameState state) {
+    public void setState(State state) {
         this.state = state;
         view.setView(state.getView());
     }

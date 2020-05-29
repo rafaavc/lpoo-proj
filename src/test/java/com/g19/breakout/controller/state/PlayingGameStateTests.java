@@ -2,8 +2,8 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.controller.GameController;
+import com.g19.breakout.controller.ball.BallHit;
 import com.g19.breakout.controller.ball.BallHitHorizontal;
-import com.g19.breakout.controller.ball.BallHitNothing;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -13,6 +13,9 @@ import com.g19.breakout.view.ArenaView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,8 +40,10 @@ public class PlayingGameStateTests {
          Mockito.when(arena.getBall()).thenReturn(ball);
 
          BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball);
+         List<BallHit> ballHits = new ArrayList<BallHit>();
+         ballHits.add(ballHitHorizontal);
 
-         Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(ballHitHorizontal);
+         Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(ballHits);
 
          assertTrue(playingGameState.updateBallDirection(ball, new Position(11, 10)));
     }
@@ -48,7 +53,7 @@ public class PlayingGameStateTests {
         BallModel ball = new BallModel(new Position(10, 10), 1);
         Mockito.when(arena.getBall()).thenReturn(ball);
 
-        Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(new BallHitNothing(ball));
+        Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(new ArrayList<BallHit>());
 
         assertEquals(new Position(10, 9), playingGameState.updateBallPosition(1));
 
