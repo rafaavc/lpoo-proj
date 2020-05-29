@@ -3,6 +3,7 @@ package com.g19.breakout.view;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.BackgroundModel;
+import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 import com.sun.tools.javac.util.Pair;
@@ -62,4 +63,39 @@ public class ViewTests {
 
         Mockito.verify(graphics, Mockito.times(3*pq.size())).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
      }
+
+     @Test
+    public void GameOverViewTests(){
+         BackgroundModel model = Mockito.mock(BackgroundModel.class);
+         Graphics graphics = Mockito.mock(LanternaAdapter.class);
+         Dimensions dimensions = new Dimensions(100, 120);
+         PlayerModel playerModel = Mockito.mock(PlayerModel.class);
+         Mockito.when(playerModel.getName()).thenReturn("Name");
+         Mockito.when(playerModel.getPoints()).thenReturn(100);
+
+         GameOverView gameOverView = new GameOverView(graphics, dimensions, playerModel, "#000000");
+
+         Mockito.doNothing().when(graphics).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
+         gameOverView.drawSelf();
+
+         Mockito.verify(graphics, Mockito.times(5)).drawCenteredString(any(Position.class), any(String.class), any(String.class), any(String.class));
+     }
+
+    @Test
+    public void MainMenuViewTests(){
+        BackgroundModel model = Mockito.mock(BackgroundModel.class);
+        Graphics graphics = Mockito.mock(LanternaAdapter.class);
+        Dimensions dimensions = new Dimensions(100, 120);
+        PlayerModel playerModel = Mockito.mock(PlayerModel.class);
+        Mockito.when(playerModel.getName()).thenReturn("Name");
+        Mockito.when(playerModel.getPoints()).thenReturn(100);
+
+        Position position = new Position(10, 10);
+        MainMenuView mainMenuView = new MainMenuView(graphics, dimensions, "#000000");
+
+        Mockito.doNothing().when(graphics).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
+        mainMenuView.drawSelf();
+
+        Mockito.verify(graphics, Mockito.times(2)).drawCenteredString(any(Position.class), any(String.class), any(String.class), any(String.class));
+    }
 }
