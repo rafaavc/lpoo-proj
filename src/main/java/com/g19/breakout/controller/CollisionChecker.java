@@ -56,7 +56,7 @@ public class CollisionChecker {
 
     public List<BallHit> checkBallHitArenaWalls(Position position, Dimensions dimensions) {
         BallModel ball = arena.getBall();
-        List<BallHit> ballHits = new ArrayList<BallHit>();
+        List<BallHit> ballHits = new ArrayList<>();
 
         if (position.getDiscreteY() <= -1) ballHits.add(new BallHitHorizontal(ball));
         if (position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1) ballHits.add(new BallHitBottom(ball));
@@ -68,13 +68,18 @@ public class CollisionChecker {
     }
 
     protected BallHit checkHitTopOrSideTile(TileModel tile) {
-        Position prevPos = arena.getBall().getPosition();
         Position tilePos = tile.getPosition();
+        Position prevPos = arena.getBall().getPosition();
+
         int ballHWidth = arena.getBall().getDimensions().getDiscreteX()/2;
         int tileHWidth = tile.getDimensions().getDiscreteX()/2;
 
         if (prevPos.getDiscreteX() + ballHWidth == tilePos.getDiscreteX() - tileHWidth ||
                 prevPos.getDiscreteX() - ballHWidth == tilePos.getDiscreteX() + tileHWidth) return new BallHitVertical(arena.getBall());
         return new BallHitHorizontal(arena.getBall());
+    }
+
+    public ArenaModel getArena() {
+        return arena;
     }
 }

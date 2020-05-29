@@ -1,36 +1,32 @@
 package com.g19.breakout.controller.state;
 
+import com.g19.breakout.controller.BallController;
 import com.g19.breakout.controller.GameController;
-import com.g19.breakout.controller.commands.ballhit.BallHit;
-import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.model.utilities.Direction;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
-import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.ArenaView;
 import com.g19.breakout.view.View;
 
-import java.util.List;
-
 public class PlayingGameState extends GameState {
     private final ArenaModel arena;
     private final ArenaView view;
     private final StateFactory stateFactory;
-    private final CollisionChecker collisionChecker;
+    private final BallController ballController;
 
-    public PlayingGameState(ArenaModel arena, ArenaView view, GameController controller, CollisionChecker collisionChecker, StateFactory stateFactory) {
+    public PlayingGameState(ArenaView view, GameController controller, BallController ballController, StateFactory stateFactory) {
         super(controller);
-        this.arena = arena;
+        this.arena = view.getArena();
         this.view = view;
         this.stateFactory = stateFactory;
-        this.collisionChecker = collisionChecker;
+        this.ballController = ballController;
     }
 
     @Override
     public void update(int elapsedTime) {
-        updateBall(elapsedTime);
+        moveElement(ballController.update(elapsedTime), arena.getBall());
         updateTiles();
         if (arena.getBall().getDirection().equals(new Direction(0, 0))) gameOver();
     }
@@ -39,37 +35,6 @@ public class PlayingGameState extends GameState {
         arena.getTiles().removeIf(t -> t.getLife() == 0);
     }
 
-    protected void updateBall(int elapsedTime /*milliseconds*/) {
-        BallModel ball = arena.getBall();
-
-        double velocity = ball.getVelocity()*elapsedTime/1000;
-        Position nextBallPosition = updateBallPosition(velocity);
-
-        moveElement(nextBallPosition, ball);
-    }
-
-    protected Position updateBallPosition(double velocity) {
-        BallModel ball = arena.getBall();
-
-        Position nextBallPosition = ball.getDirection().getNextPosition(
-                ball.getPosition(),
-                velocity);
-
-        if (updateBallDirection(ball, nextBallPosition))
-            nextBallPosition = ball.getDirection().getNextPosition(
-                    ball.getPosition(),
-                    velocity);
-
-        return nextBallPosition;
-    }
-
-    public boolean updateBallDirection(BallModel ball, Position nextBallPosition){
-        List<BallHit> ballHits = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
-
-        ballHits.forEach(BallHit::execute);
-
-        return ballHits.size() > 0;
-    }
 
     public void moveElement(Position position, ElementModel element) {
         if (arena.isInsideArena(position, element.getDimensions())) {

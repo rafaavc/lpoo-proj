@@ -6,7 +6,7 @@ import com.g19.breakout.model.utilities.Position;
 
 public class BallModel extends ElementModel {
     private Direction direction;
-    private double velocity;
+    private final double velocity;
 
 
     public BallModel(Position position, double startVelocity) {
