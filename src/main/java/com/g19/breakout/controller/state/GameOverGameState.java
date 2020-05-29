@@ -15,9 +15,7 @@ public class GameOverGameState extends MenuGameState {
         super(controller, playerModel, menu);
         this.view = view;
         this.stateFactory = stateFactory;
-        this.readingText = true;
-        this.textReader = new StringBuilder();
-        playerModel.setName("_");
+        startReadingPlayerName();
     }
 
     @Override
@@ -27,31 +25,38 @@ public class GameOverGameState extends MenuGameState {
         }
     }
 
-    @Override
-    public boolean commandENTER() {
-        if (!readingText) return super.commandENTER();
+    public void startReadingPlayerName() {
+        this.readingText = true;
+        this.textReader = new StringBuilder();
+        playerModel.setName("_");
+    }
 
+    public void stopReadingPlayerName() {
         readingText = false;
-        playerModel.setName("");
-
-        if (textReader.length() == 0) return true;
-
         playerModel.setName(textReader.toString());
+
+        if (textReader.length() == 0) return;
+
         controller.getModel().addScore(new Pair<>(playerModel.getName(), playerModel.getPoints()));
-
-        return true;
     }
 
     @Override
-    public boolean commandP() {
+    public void commandEnter() {
+        if (readingText) {
+            stopReadingPlayerName();
+        } else {
+            super.commandEnter();
+        }
+    }
+
+    @Override
+    public void commandP() {
         controller.setState(stateFactory.createPlayingGameState(controller));
-        return true;
     }
 
     @Override
-    public boolean commandQ() {
+    public void commandQ() {
         controller.setState(stateFactory.createMainMenuGameState(controller));
-        return true;
     }
 
     @Override

@@ -2,10 +2,6 @@ Rafael
 1491
 Xavier
 1390
-Demonstration
-480
-Demo
-438
 Joseph Miller
 400
 Deni Karataev
@@ -18,19 +14,17 @@ Karen
 228
 João
 218
+Zeferino
+188
 Kyle
 100
 Isabela
 50
 Alex
 50
+Josefino
+10
 Daenerys
 10
-Luís
-10
-Alice
-10
 Otávio
-10
-Josefino
 10

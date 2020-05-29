@@ -3,8 +3,7 @@ package com.g19.breakout.controller;
 import com.g19.breakout.controller.commands.Command;
 import com.g19.breakout.controller.state.State;
 import com.g19.breakout.controller.state.StateFactory;
-import com.g19.breakout.elements.Chronometer;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.GameModel;
 import com.g19.breakout.model.factory.ModelFactory;
@@ -21,6 +20,7 @@ public class GameController {
     private final ViewFactory viewFactory;
     private final ModelFactory modelFactory;
     private State state;
+    private boolean gameIsRunning;
 
     public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) throws IOException {
         this.chrono = chrono;
@@ -29,6 +29,7 @@ public class GameController {
         this.viewFactory = viewFactory;
         this.modelFactory = modelFactory;
         this.FPS = FPS;
+        this.gameIsRunning = true;
         setState(stateFactory.createMainMenuGameState(this));
         setLeaderboard(new FileManager());
     }
@@ -48,9 +49,11 @@ public class GameController {
             state.update(frameDuration);
 
             waitForNextFrame(frameDuration);
+
+            getNextCommand(transformer);
             counter++;
         }
-        while ( getNextCommand(transformer) );
+        while ( gameIsRunning );
 
         view.exit();
         fileManager.writeLeaderboard(model.getLeaderboard());
@@ -69,7 +72,7 @@ public class GameController {
         }
     }
 
-    public boolean getNextCommand(Transformer transformer) throws IOException {
+    public void getNextCommand(Transformer transformer) throws IOException {
         GameView.Keys key;
         if (state.isReadingText()) {
             key = view.readTextInput(state.getTextReader());
@@ -77,7 +80,11 @@ public class GameController {
             key = view.readInput();
         }
         Command cmd = transformer.toCommand(this, key);
-        return cmd.execute();
+        cmd.execute();
+    }
+
+    public void exit() {
+        gameIsRunning = false;
     }
 
     public State getState() {

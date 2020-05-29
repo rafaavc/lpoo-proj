@@ -17,9 +17,8 @@ public class LeaderboardGameState extends MenuGameState {
     }
 
     @Override
-    public boolean commandQ() {
+    public void commandQ() {
         controller.setState(stateFactory.createMainMenuGameState(controller));
-        return true;
     }
 
     @Override

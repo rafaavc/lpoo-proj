@@ -11,17 +11,17 @@ public interface State {
 
     default boolean isReadingText() { return false; }
 
-    default boolean commandLeft() { return true; }
+    default void commandLeft() {  }
 
-    default boolean commandRight() { return true; }
+    default void commandRight() {  }
 
-    default boolean commandP() { return true; }
+    default void commandP() {  }
 
-    default boolean commandQ() { return true; }
+    default void commandQ() {  }
 
-    default boolean commandL() { return true; }
+    default void commandL() {  }
 
-    default boolean commandENTER() { return true; }
+    default void commandEnter() {  }
 
     View getView();
 }

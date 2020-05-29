@@ -1,9 +1,8 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.ball.*;
-import com.g19.breakout.elements.Chronometer;
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.controller.commands.ballhit.*;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.TileModel;
@@ -12,30 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CollisionChecker {
+public class BallCollisionChecker {
     private final ArenaModel arena;
-    private final Chronometer chrono;
+    private final TilesController tilesController;
 
-    public CollisionChecker(ArenaModel arena, Chronometer chrono) {
+    public BallCollisionChecker(ArenaModel arena, TilesController tilesController) {
         this.arena = arena;
-        this.chrono = chrono;
-    }
-
-    public void tileWasHit(TileModel tile) {
-        tile.hit();
-        int points = 10;
-
-        if (chrono.getLastTime() != -1) {
-            double elapsed = chrono.end() / 1000.;  // seconds
-
-            if (elapsed < 1) {   // if less than 1 second
-                double mult = 1 - elapsed; // multiplier - the lesser the time elapsed sice last hit, the more points you get
-                points = (int) (mult*20) + points;
-            }
-        }
-
-        arena.getPlayer().addPoints(points);
-        chrono.start();
+        this.tilesController = tilesController;
     }
 
     public List<BallHit> checkBallCollisions(Position position, Dimensions dimensions) {
@@ -49,7 +31,7 @@ public class CollisionChecker {
 
         if (tile != null) {
             ballHits.add(checkHitTopOrSideTile(tile));
-            tileWasHit(tile);
+            tilesController.tileWasHit(tile, arena.getPlayer());
         }
 
         return ballHits;
@@ -57,7 +39,7 @@ public class CollisionChecker {
 
     public List<BallHit> checkBallHitArenaWalls(Position position, Dimensions dimensions) {
         BallModel ball = arena.getBall();
-        List<BallHit> ballHits = new ArrayList<BallHit>();
+        List<BallHit> ballHits = new ArrayList<>();
 
         if (position.getDiscreteY() <= -1) ballHits.add(new BallHitHorizontal(ball));
         if (position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1) ballHits.add(new BallHitBottom(ball));
@@ -69,13 +51,18 @@ public class CollisionChecker {
     }
 
     protected BallHit checkHitTopOrSideTile(TileModel tile) {
-        Position prevPos = arena.getBall().getPosition();
         Position tilePos = tile.getPosition();
+        Position prevPos = arena.getBall().getPosition();
+
         int ballHWidth = arena.getBall().getDimensions().getDiscreteX()/2;
         int tileHWidth = tile.getDimensions().getDiscreteX()/2;
 
         if (prevPos.getDiscreteX() + ballHWidth == tilePos.getDiscreteX() - tileHWidth ||
                 prevPos.getDiscreteX() - ballHWidth == tilePos.getDiscreteX() + tileHWidth) return new BallHitVertical(arena.getBall());
         return new BallHitHorizontal(arena.getBall());
+    }
+
+    public ArenaModel getArena() {
+        return arena;
     }
 }

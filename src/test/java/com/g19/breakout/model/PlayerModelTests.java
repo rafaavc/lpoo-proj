@@ -1,6 +1,6 @@
 package com.g19.breakout.model;
 
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

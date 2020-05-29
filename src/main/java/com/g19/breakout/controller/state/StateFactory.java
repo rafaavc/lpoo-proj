@@ -1,14 +1,11 @@
 package com.g19.breakout.controller.state;
 
-import com.g19.breakout.controller.CollisionChecker;
-import com.g19.breakout.controller.GameController;
-import com.g19.breakout.controller.MenuController;
-import com.g19.breakout.controller.commands.CommandL;
-import com.g19.breakout.controller.commands.CommandP;
-import com.g19.breakout.controller.commands.CommandQ;
-import com.g19.breakout.elements.Chronometer;
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.controller.*;
+import com.g19.breakout.controller.commands.input.CommandL;
+import com.g19.breakout.controller.commands.input.CommandP;
+import com.g19.breakout.controller.commands.input.CommandQ;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.*;
@@ -63,7 +60,10 @@ public class StateFactory {
     public PlayingGameState createPlayingGameState(GameController gameController) {
         ArenaModel arena = gameController.getModelFactory().createArenaModel(gameController.getModel().getDimensions());
         ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getView().getGraphics());
-        return new PlayingGameState(arena, arenaView, gameController, new CollisionChecker(arena, new Chronometer()), this);
+
+        TilesController tilesController = new TilesController(arena.getTiles(), new Chronometer());
+
+        return new PlayingGameState(arenaView, gameController, new BallController(new BallCollisionChecker(arena, tilesController)), tilesController, this);
     }
 
     public PauseGameState createPauseGameState(GameController controller) {
