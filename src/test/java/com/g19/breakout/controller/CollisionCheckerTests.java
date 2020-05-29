@@ -100,11 +100,13 @@ public class CollisionCheckerTests {
         Dimensions dimensions = new Dimensions(dx, dy);
         List<BallHit> ballHits = collisionChecker.checkBallHitArenaWalls(position, dimensions);
 
-        assert(position.getDiscreteY() <= -1 || !(BallHitHorizontal.class == ballHits.get(0).getClass()));
+        if (ballHits.size() > 0) {
+            assert (position.getDiscreteY() <= -1 || !(BallHitHorizontal.class == ballHits.get(0).getClass()));
 
-        assert(position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1 || !(BallHitBottom.class == ballHits.get(0).getClass()));
+            assert (position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1 || !(BallHitBottom.class == ballHits.get(0).getClass()));
 
-        assert((position.getDiscreteX() <= dimensions.getDiscreteX()/2. - 1 ||
-                position.getDiscreteX() >= arena.getWidth() - dimensions.getDiscreteX()/2. + 1) || !(BallHitVertical.class == ballHits.get(0).getClass()));
+            assert ((position.getDiscreteX() <= dimensions.getDiscreteX() / 2. - 1 ||
+                    position.getDiscreteX() >= arena.getWidth() - dimensions.getDiscreteX() / 2. + 1) || !(BallHitVertical.class == ballHits.get(0).getClass()));
+        }
     }
 }
