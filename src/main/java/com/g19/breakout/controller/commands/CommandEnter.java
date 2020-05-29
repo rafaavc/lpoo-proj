@@ -3,7 +3,7 @@ package com.g19.breakout.controller.commands;
 
 import com.g19.breakout.controller.GameController;
 
-public class CommandEnter extends Command {
+public class CommandEnter extends GameCommand {
     public CommandEnter(GameController controller) {
         super(controller);
     }

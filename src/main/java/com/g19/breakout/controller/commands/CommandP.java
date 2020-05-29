@@ -2,7 +2,7 @@ package com.g19.breakout.controller.commands;
 
 import com.g19.breakout.controller.GameController;
 
-public class CommandP extends Command {
+public class CommandP extends GameCommand {
     public CommandP(GameController controller) {
         super(controller);
     }
