@@ -1,4 +1,4 @@
-package com.g19.breakout.controller.commands;
+package com.g19.breakout.controller.commands.input;
 
 public class CommandNone extends GameCommand {
 

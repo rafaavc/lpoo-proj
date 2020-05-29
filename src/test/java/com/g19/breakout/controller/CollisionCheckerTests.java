@@ -1,12 +1,14 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.ball.*;
+import com.g19.breakout.controller.commands.ballhit.BallHit;
+import com.g19.breakout.controller.commands.ballhit.BallHitBottom;
+import com.g19.breakout.controller.commands.ballhit.BallHitHorizontal;
+import com.g19.breakout.controller.commands.ballhit.BallHitVertical;
 import com.g19.breakout.elements.Chronometer;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.TileModel;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -16,12 +18,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 
 public class CollisionCheckerTests {

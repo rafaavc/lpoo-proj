@@ -1,4 +1,4 @@
-package com.g19.breakout.controller.ball;
+package com.g19.breakout.controller.commands.ballhit;
 
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.model.BallModel;
@@ -15,9 +15,10 @@ public class BallHitPlayerBar extends BallHit {
         this.playerBar = playerBar;
     }
 
-    public void updateDirection() {
+    public boolean execute() {
         Direction direction = this.calculateNewDirection();
         ball.setDirection(direction);
+        return true;
     }
 
     private Direction calculateNewDirection(){

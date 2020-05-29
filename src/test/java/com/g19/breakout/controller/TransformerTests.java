@@ -1,6 +1,10 @@
 package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.commands.*;
+import com.g19.breakout.controller.commands.input.CommandExit;
+import com.g19.breakout.controller.commands.input.CommandLeft;
+import com.g19.breakout.controller.commands.input.CommandNone;
+import com.g19.breakout.controller.commands.input.CommandRight;
 import com.g19.breakout.view.GameView;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

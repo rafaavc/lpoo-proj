@@ -1,8 +1,6 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.Game;
-import com.g19.breakout.controller.commands.CommandQ;
-import com.g19.breakout.controller.state.GameState;
+import com.g19.breakout.controller.commands.input.CommandQ;
 import com.g19.breakout.controller.state.MainMenuGameState;
 import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.elements.Chronometer;

@@ -1,7 +1,7 @@
 package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
-import com.g19.breakout.controller.ball.BallHit;
+import com.g19.breakout.controller.commands.ballhit.BallHit;
 import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;
@@ -66,7 +66,7 @@ public class PlayingGameState extends GameState {
     public boolean updateBallDirection(BallModel ball, Position nextBallPosition){
         List<BallHit> ballHits = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
-        ballHits.forEach(BallHit::updateDirection);
+        ballHits.forEach(BallHit::execute);
 
         return ballHits.size() > 0;
     }

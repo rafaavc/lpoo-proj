@@ -1,5 +1,6 @@
 package com.g19.breakout.controller.ball;
 
+import com.g19.breakout.controller.commands.ballhit.*;
 import com.g19.breakout.elements.Dimensions;
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.elements.Position;

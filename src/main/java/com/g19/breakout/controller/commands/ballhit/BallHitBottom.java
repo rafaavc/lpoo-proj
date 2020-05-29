@@ -1,4 +1,4 @@
-package com.g19.breakout.controller.ball;
+package com.g19.breakout.controller.commands.ballhit;
 
 import com.g19.breakout.elements.Direction;
 import com.g19.breakout.model.BallModel;
@@ -8,7 +8,8 @@ public class BallHitBottom extends BallHit {
         super(ball);
     }
 
-    public void updateDirection() {
+    public boolean execute() {
         ball.setDirection(new Direction(0, 0));
+        return true;
     }
 }
