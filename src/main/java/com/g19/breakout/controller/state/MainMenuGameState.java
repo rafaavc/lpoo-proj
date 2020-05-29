@@ -17,20 +17,18 @@ public class MainMenuGameState extends MenuGameState {
     }
 
     @Override
-    public boolean commandQ() {
-        return false;
+    public void commandQ() {
+        controller.exit();
     }
 
     @Override
-    public boolean commandL() {
+    public void commandL() {
         controller.setState(stateFactory.createLeaderboardState(controller));
-        return true;
     }
 
     @Override
-    public boolean commandP() {
+    public void commandP() {
         controller.setState(stateFactory.createPlayingGameState(controller));
-        return true;
     }
 
     public View getView() {

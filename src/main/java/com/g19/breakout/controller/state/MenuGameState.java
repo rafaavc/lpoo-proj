@@ -15,19 +15,17 @@ public abstract class MenuGameState extends GameState {
     }
 
     @Override
-    public boolean commandLeft() {
+    public void commandLeft() {
         controller.moveElement(playerModel.getPosition().left(), playerModel);
-        return true;
     }
 
     @Override
-    public boolean commandRight() {
+    public void commandRight() {
         controller.moveElement(playerModel.getPosition().right(), playerModel);
-        return true;
     }
 
     @Override
-    public boolean commandENTER() {
-        return menu.getCommand(playerModel.getPosition()).execute();
+    public void commandEnter() {
+        menu.getCommand(playerModel.getPosition()).execute();
     }
 }

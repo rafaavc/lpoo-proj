@@ -20,15 +20,13 @@ public class PauseGameState extends MenuGameState {
     }
 
     @Override
-    public boolean commandP() {
+    public void commandP() {
         controller.setState(playingGameState);
-        return true;
     }
 
     @Override
-    public boolean commandQ() {
+    public void commandQ() {
         controller.setState(stateFactory.createMainMenuGameState(controller));
-        return true;
     }
 
     public View getView() {

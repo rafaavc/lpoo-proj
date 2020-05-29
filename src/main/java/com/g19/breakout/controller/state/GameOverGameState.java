@@ -28,30 +28,26 @@ public class GameOverGameState extends MenuGameState {
     }
 
     @Override
-    public boolean commandENTER() {
-        if (!readingText) return super.commandENTER();
+    public void commandEnter() {
+        if (!readingText) super.commandEnter();
 
         readingText = false;
         playerModel.setName("");
 
-        if (textReader.length() == 0) return true;
+        if (textReader.length() == 0) return;
 
         playerModel.setName(textReader.toString());
         controller.getModel().addScore(new Pair<>(playerModel.getName(), playerModel.getPoints()));
-
-        return true;
     }
 
     @Override
-    public boolean commandP() {
+    public void commandP() {
         controller.setState(stateFactory.createPlayingGameState(controller));
-        return true;
     }
 
     @Override
-    public boolean commandQ() {
+    public void commandQ() {
         controller.setState(stateFactory.createMainMenuGameState(controller));
-        return true;
     }
 
     @Override

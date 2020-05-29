@@ -7,7 +7,5 @@ public class CommandNone extends GameCommand {
     }
 
     @Override
-    public boolean execute() {
-        return true;
-    }
+    public void execute() {}
 }

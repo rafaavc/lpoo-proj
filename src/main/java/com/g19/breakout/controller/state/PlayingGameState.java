@@ -47,24 +47,21 @@ public class PlayingGameState extends GameState {
     }
 
     @Override
-    public boolean commandLeft() {
+    public void commandLeft() {
         // maybe change to where the playerbar is moved based on velocity, the longer the key is pressed the faster it moves
         PlayerModel playerBar = arena.getPlayer();
         moveElement(playerBar.getPosition().left(), playerBar);
-        return true;
     }
 
     @Override
-    public boolean commandRight() {
+    public void commandRight() {
         PlayerModel playerBar = arena.getPlayer();
         moveElement(playerBar.getPosition().right(), playerBar);
-        return true;
     }
 
     @Override
-    public boolean commandP() {
+    public void commandP() {
         controller.setState(this.stateFactory.createPauseGameState(controller));
-        return true;
     }
 
     public View getView() {

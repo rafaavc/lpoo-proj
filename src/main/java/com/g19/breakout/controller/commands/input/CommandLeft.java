@@ -8,7 +8,7 @@ public class CommandLeft extends GameCommand {
     }
 
     @Override
-    public boolean execute() {
-        return controller.getState().commandLeft();
+    public void execute() {
+        controller.getState().commandLeft();
     }
 }

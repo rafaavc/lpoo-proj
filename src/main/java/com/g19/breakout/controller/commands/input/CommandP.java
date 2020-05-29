@@ -8,7 +8,7 @@ public class CommandP extends GameCommand {
     }
 
     @Override
-    public boolean execute() {
-        return controller.getState().commandP();
+    public void execute() {
+        controller.getState().commandP();
     }
 }

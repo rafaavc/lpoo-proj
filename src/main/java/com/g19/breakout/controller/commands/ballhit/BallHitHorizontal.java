@@ -7,8 +7,7 @@ public class BallHitHorizontal extends BallHit {
         super(ball);
     }
 
-    public boolean execute() {
+    public void execute() {
         ball.setDirection(ball.getDirection().hitHorizontal());
-        return true;
     }
 }
