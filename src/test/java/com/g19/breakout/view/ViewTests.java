@@ -66,7 +66,6 @@ public class ViewTests {
 
      @Test
     public void GameOverViewTests(){
-         BackgroundModel model = Mockito.mock(BackgroundModel.class);
          Graphics graphics = Mockito.mock(LanternaAdapter.class);
          Dimensions dimensions = new Dimensions(100, 120);
          PlayerModel playerModel = Mockito.mock(PlayerModel.class);
@@ -83,7 +82,22 @@ public class ViewTests {
 
     @Test
     public void MainMenuViewTests(){
-        BackgroundModel model = Mockito.mock(BackgroundModel.class);
+        Graphics graphics = Mockito.mock(LanternaAdapter.class);
+        Dimensions dimensions = new Dimensions(100, 120);
+        PlayerModel playerModel = Mockito.mock(PlayerModel.class);
+        Mockito.when(playerModel.getName()).thenReturn("Name");
+        Mockito.when(playerModel.getPoints()).thenReturn(100);
+
+        MainMenuView mainMenuView = new MainMenuView(graphics, dimensions, "#000000");
+
+        Mockito.doNothing().when(graphics).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
+        mainMenuView.drawSelf();
+
+        Mockito.verify(graphics, Mockito.times(2)).drawCenteredString(any(Position.class), any(String.class), any(String.class), any(String.class));
+    }
+
+    @Test
+    public void MenuButtonViewTests(){
         Graphics graphics = Mockito.mock(LanternaAdapter.class);
         Dimensions dimensions = new Dimensions(100, 120);
         PlayerModel playerModel = Mockito.mock(PlayerModel.class);
@@ -91,11 +105,15 @@ public class ViewTests {
         Mockito.when(playerModel.getPoints()).thenReturn(100);
 
         Position position = new Position(10, 10);
-        MainMenuView mainMenuView = new MainMenuView(graphics, dimensions, "#000000");
+        MenuButtonView menuButtonView = new MenuButtonView("Any", "#ff0000", graphics);
+        menuButtonView.setPosition(position);
+        menuButtonView.setDimensions(dimensions);
 
         Mockito.doNothing().when(graphics).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
-        mainMenuView.drawSelf();
+        Mockito.doNothing().when(graphics).drawRectangle(any(Position.class), any(Dimensions.class), any(Character.class), any(String.class));
+        menuButtonView.draw();
 
-        Mockito.verify(graphics, Mockito.times(2)).drawCenteredString(any(Position.class), any(String.class), any(String.class), any(String.class));
+        Mockito.verify(graphics, Mockito.times(1)).drawCenteredString(any(Position.class), any(String.class), any(String.class), any(String.class));
+        Mockito.verify(graphics, Mockito.times(1)).drawRectangle(any(Position.class), any(Dimensions.class), any(Character.class), any(String.class));
     }
 }
