@@ -4,6 +4,7 @@ import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.GameOverView;
+import com.g19.breakout.view.View;
 import com.sun.tools.javac.util.Pair;
 
 public class GameOverGameState extends MenuGameState {
@@ -53,7 +54,8 @@ public class GameOverGameState extends MenuGameState {
         return true;
     }
 
-    public GameOverView getView() {
+    @Override
+    public View getView() {
         return view;
     }
 }
