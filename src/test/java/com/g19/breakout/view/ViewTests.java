@@ -1,9 +1,9 @@
 package com.g19.breakout.view;
 
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
 import com.g19.breakout.model.BackgroundModel;
 import com.g19.breakout.model.PlayerModel;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 import com.sun.tools.javac.util.Pair;
@@ -130,7 +130,6 @@ public class ViewTests {
     @Property
     public void ScoreboardViewTests(@ForAll @Positive int score){
         Graphics graphics = Mockito.mock(LanternaAdapter.class);
-        Dimensions dimensions = new Dimensions(100, 120);
         PlayerModel playerModel = Mockito.mock(PlayerModel.class);
         Mockito.when(playerModel.getPoints()).thenReturn(score);
 

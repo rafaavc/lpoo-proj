@@ -1,4 +1,4 @@
-package com.g19.breakout.elements;
+package com.g19.breakout.controller;
 
 public class Chronometer {
     private long lastTime = -1;

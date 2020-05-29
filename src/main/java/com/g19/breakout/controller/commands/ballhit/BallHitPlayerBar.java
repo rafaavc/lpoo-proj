@@ -1,25 +1,24 @@
-package com.g19.breakout.controller.ball;
+package com.g19.breakout.controller.commands.ballhit;
 
-import com.g19.breakout.elements.Direction;
+import com.g19.breakout.model.utilities.Direction;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-public class BallHitPlayerBar implements BallHit {
+public class BallHitPlayerBar extends BallHit {
     private final PlayerModel playerBar;
-    private final BallModel ball;
-
 
     public BallHitPlayerBar(BallModel ball, PlayerModel playerBar) {
-        this.ball = ball;
+        super(ball);
         this.playerBar = playerBar;
     }
 
-    public void updateDirection() {
+    public boolean execute() {
         Direction direction = this.calculateNewDirection();
         ball.setDirection(direction);
+        return true;
     }
 
     private Direction calculateNewDirection(){

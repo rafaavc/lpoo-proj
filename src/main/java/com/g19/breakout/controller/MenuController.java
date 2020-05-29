@@ -1,9 +1,9 @@
 package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.commands.Command;
-import com.g19.breakout.controller.commands.CommandNone;
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.controller.commands.input.CommandNone;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.view.MenuButtonView;
 import com.g19.breakout.view.MenuView;
 import com.g19.breakout.view.View;

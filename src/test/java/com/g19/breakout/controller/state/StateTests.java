@@ -2,8 +2,7 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
-import com.g19.breakout.controller.state.*;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.GameOverView;

@@ -1,8 +1,9 @@
 package com.g19.breakout.controller.ball;
 
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Direction;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.controller.commands.ballhit.*;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Direction;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ public class BallHitTests {
         BallModel ball = new BallModel(new Position(1, 1), 1);
         BallHitBottom ballHitBottom = new BallHitBottom(ball);
 
-        ballHitBottom.updateDirection();
+        ballHitBottom.execute();
         assertEquals(ball.getDirection(), new Direction(0, 0));
     }
 
@@ -32,7 +33,7 @@ public class BallHitTests {
         Direction direction = Mockito.mock(Direction.class);
         Mockito.when(direction.hitHorizontal()).thenReturn(new Direction(0, 1));
 
-        ballHitHorizontal.updateDirection();
+        ballHitHorizontal.execute();
         assertEquals(ball.getDirection(), new Direction(0, 1));
     }
 
@@ -48,7 +49,7 @@ public class BallHitTests {
 
         BallHitPlayerBar ballHitPlayerBar = new BallHitPlayerBar(ball, playerBar);
 
-        ballHitPlayerBar.updateDirection();
+        ballHitPlayerBar.execute();
         assertEquals(new Direction(0, -1), ball.getDirection());
     }
 
@@ -58,7 +59,7 @@ public class BallHitTests {
         ball.setDirection(new Direction(1, 1));
         BallHitVertical ballHitVertical = new BallHitVertical(ball);
 
-        ballHitVertical.updateDirection();
+        ballHitVertical.execute();
         assertEquals(new Direction(-1, 1), ball.getDirection());
     }
 
@@ -74,7 +75,7 @@ public class BallHitTests {
         ballHits.add(ballHitHorizontal);
 
         for (BallHit ballHit: ballHits)
-            ballHit.updateDirection();
+            ballHit.execute();
 
         assertEquals(new Direction(-1,1 ), ball.getDirection());
     }

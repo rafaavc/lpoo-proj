@@ -2,10 +2,10 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.CollisionChecker;
 import com.g19.breakout.controller.GameController;
-import com.g19.breakout.controller.ball.BallHit;
-import com.g19.breakout.controller.ball.BallHitHorizontal;
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.controller.commands.ballhit.BallHit;
+import com.g19.breakout.controller.commands.ballhit.BallHitHorizontal;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;

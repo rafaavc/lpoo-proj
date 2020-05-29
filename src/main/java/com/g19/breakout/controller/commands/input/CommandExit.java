@@ -1,10 +1,10 @@
-package com.g19.breakout.controller.commands;
+package com.g19.breakout.controller.commands.input;
 
 
 import com.g19.breakout.controller.GameController;
 
-public class CommandEXIT extends Command {
-    public CommandEXIT(GameController controller) {
+public class CommandExit extends GameCommand {
+    public CommandExit(GameController controller) {
         super(controller);
     }
 

@@ -1,10 +1,11 @@
 package com.g19.breakout.model;
 
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.factory.BasicModelFactory;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.lifecycle.BeforeProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,13 +27,13 @@ public class ArenaModelTests {
     }
 
     @Property
-    public void isInsideArenaTest(@ForAll int x, @ForAll int y){
-        Dimensions newDimensions = new Dimensions(1, 1);
+    public void isInsideArenaTest(@ForAll int x, @ForAll int y, @ForAll @IntRange(min = 1) int dx, @ForAll @IntRange(min = 1) int dy){
+        Dimensions newDimensions = new Dimensions(dx, dy);
         Position position = new Position(x, y);
-        assert(x >= 0 || !arena.isInsideArena(position, newDimensions));
+        assert(x >= newDimensions.getDiscreteX()/2 || !arena.isInsideArena(position, newDimensions));
         assert(y >= 0 || !arena.isInsideArena(position, newDimensions));
-        assert(x <= arena.getWidth() || !arena.isInsideArena(position, newDimensions));
-        assert(y <= arena.getHeight() || !arena.isInsideArena(position, newDimensions));
+        assert(x <= arena.getWidth() - newDimensions.getDiscreteX()/2 || !arena.isInsideArena(position, newDimensions));
+        assert(y <= arena.getHeight() - newDimensions.getDiscreteY() || !arena.isInsideArena(position, newDimensions));
     }
 
     @Test

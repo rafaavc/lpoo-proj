@@ -1,8 +1,8 @@
-package com.g19.breakout.controller.commands;
+package com.g19.breakout.controller.commands.input;
 
 import com.g19.breakout.controller.GameController;
 
-public class CommandL extends Command {
+public class CommandL extends GameCommand {
     public CommandL(GameController controller) {
         super(controller);
     }

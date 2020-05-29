@@ -1,10 +1,10 @@
-package com.g19.breakout.controller.commands;
+package com.g19.breakout.controller.commands.input;
 
 
 import com.g19.breakout.controller.GameController;
 
-public class CommandENTER extends Command {
-    public CommandENTER(GameController controller) {
+public class CommandEnter extends GameCommand {
+    public CommandEnter(GameController controller) {
         super(controller);
     }
 
