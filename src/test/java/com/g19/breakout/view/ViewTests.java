@@ -116,4 +116,20 @@ public class ViewTests {
         Mockito.verify(graphics, Mockito.times(1)).drawCenteredString(any(Position.class), any(String.class), any(String.class), any(String.class));
         Mockito.verify(graphics, Mockito.times(1)).drawRectangle(any(Position.class), any(Dimensions.class), any(Character.class), any(String.class));
     }
+
+    @Test
+    public void PauseViewTests(){
+        Graphics graphics = Mockito.mock(LanternaAdapter.class);
+        Dimensions dimensions = new Dimensions(100, 120);
+        PlayerModel playerModel = Mockito.mock(PlayerModel.class);
+        Mockito.when(playerModel.getName()).thenReturn("Name");
+        Mockito.when(playerModel.getPoints()).thenReturn(100);
+
+        PauseView pauseView = new PauseView(graphics, dimensions, "#000000");
+
+        Mockito.doNothing().when(graphics).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
+        pauseView.drawSelf();
+
+        Mockito.verify(graphics, Mockito.times(1)).drawCenteredString(any(Position.class), any(String.class), any(String.class), any(String.class));
+    }
 }
