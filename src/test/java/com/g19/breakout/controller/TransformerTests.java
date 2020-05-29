@@ -15,7 +15,7 @@ public class TransformerTests {
         GameController gameController = Mockito.mock(GameController.class);
 
         Command command = transformer.toCommand(gameController, GameView.Keys.EOF);
-        assertEquals(CommandEXIT.class, command.getClass());
+        assertEquals(CommandExit.class, command.getClass());
         command = transformer.toCommand(gameController, GameView.Keys.ARROWRIGHT);
         assertEquals(CommandRight.class, command.getClass());
         command = transformer.toCommand(gameController, GameView.Keys.ARROWLEFT);

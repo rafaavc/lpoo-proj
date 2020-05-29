@@ -12,7 +12,7 @@ public class Transformer {
             case ARROWRIGHT:
                 return new CommandRight(controller);
             case EOF:
-                return new CommandEXIT(controller);
+                return new CommandExit(controller);
             case PKEY:
                 return new CommandP(controller);
             case QKEY:
@@ -20,7 +20,7 @@ public class Transformer {
             case LKEY:
                 return new CommandL(controller);
             case ENTER:
-                return new CommandENTER(controller);
+                return new CommandEnter(controller);
             case NONE:
             default:
                 return new CommandNone();
