@@ -4,6 +4,7 @@ import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.PauseView;
+import com.g19.breakout.view.View;
 
 
 public class PauseGameState extends MenuGameState {
@@ -30,7 +31,7 @@ public class PauseGameState extends MenuGameState {
         return true;
     }
 
-    public PauseView getView() {
+    public View getView() {
         return view;
     }
 }
