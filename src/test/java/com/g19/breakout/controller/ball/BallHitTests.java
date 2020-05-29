@@ -1,9 +1,9 @@
 package com.g19.breakout.controller.ball;
 
 import com.g19.breakout.controller.commands.ballhit.*;
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Direction;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Direction;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
 import org.junit.jupiter.api.Test;

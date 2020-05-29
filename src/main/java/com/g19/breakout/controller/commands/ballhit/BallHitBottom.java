@@ -1,6 +1,6 @@
 package com.g19.breakout.controller.commands.ballhit;
 
-import com.g19.breakout.elements.Direction;
+import com.g19.breakout.model.utilities.Direction;
 import com.g19.breakout.model.BallModel;
 
 public class BallHitBottom extends BallHit {

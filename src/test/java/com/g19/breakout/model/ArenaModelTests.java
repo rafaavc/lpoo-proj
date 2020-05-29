@@ -1,7 +1,7 @@
 package com.g19.breakout.model;
 
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.factory.BasicModelFactory;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;

@@ -1,8 +1,8 @@
 package com.g19.breakout.model;
 
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Direction;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Direction;
+import com.g19.breakout.model.utilities.Position;
 
 public class BallModel extends ElementModel {
     private Direction direction;

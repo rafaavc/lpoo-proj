@@ -1,22 +1,12 @@
 package com.g19.breakout.view;
 
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
-import com.g19.breakout.model.ArenaModel;
-import com.g19.breakout.model.BallModel;
-import com.g19.breakout.model.PlayerModel;
-import com.g19.breakout.model.TileModel;
 import com.g19.breakout.view.factory.ViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
-
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class ArenaViewTests {

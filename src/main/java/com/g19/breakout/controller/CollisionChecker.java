@@ -1,9 +1,8 @@
 package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.commands.ballhit.*;
-import com.g19.breakout.elements.Chronometer;
-import com.g19.breakout.elements.Dimensions;
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Dimensions;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.TileModel;

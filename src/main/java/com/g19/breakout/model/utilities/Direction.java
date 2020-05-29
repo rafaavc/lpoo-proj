@@ -1,4 +1,4 @@
-package com.g19.breakout.elements;
+package com.g19.breakout.model.utilities;
 
 import java.util.Objects;
 

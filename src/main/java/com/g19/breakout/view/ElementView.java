@@ -1,6 +1,6 @@
 package com.g19.breakout.view;
 
-import com.g19.breakout.elements.Position;
+import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.view.graphics.Graphics;
 
@@ -16,8 +16,6 @@ public abstract class ElementView {
         updateStringRep(model);
     }
 
-    // Maybe in the future this could be an observer that is
-    // notified when the size of the ball changes and then updates the stringRep
     void updateStringRep(ElementModel model) {
         StringBuilder strBuffer = new StringBuilder();
         for (int i = 0; i < model.getDimensions().getDiscreteX(); i++) {
