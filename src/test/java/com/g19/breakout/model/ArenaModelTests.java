@@ -40,9 +40,9 @@ public class ArenaModelTests {
 
         Position position = new Position(this.dimensions.getDiscreteX() / 2., 11);
         List<TileModel> tiles = new ArrayList<>();
-        TileModel expectedTile = new TileModel(new Position(this.dimensions.getDiscreteX()/2., 8), new Dimensions(10, 4), 5);
+        TileModel expectedTile = new TileModel(new Position(this.dimensions.getDiscreteX()/2., 8), new Dimensions(10, 4), 5, 1);
         tiles.add(expectedTile);
-        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2. + 20, 8), new Dimensions(10, 4), 5));
+        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2. + 20, 8), new Dimensions(10, 4), 5, 1));
         arena.setTiles(tiles);
 
         TileModel actualTile = arena.checkHitTile(position);

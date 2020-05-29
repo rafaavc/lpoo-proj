@@ -98,13 +98,13 @@ public class CollisionCheckerTests {
     public void checkBallHitArenaWallsTest(@ForAll int x, @ForAll int y, @ForAll @IntRange(min = 1) int dx, @ForAll @IntRange(min = 1) int dy) {
         Position position = new Position(x, y);
         Dimensions dimensions = new Dimensions(dx, dy);
-        BallHit ballHit = collisionChecker.checkBallHitArenaWalls(position, dimensions);
+        List<BallHit> ballHits = collisionChecker.checkBallHitArenaWalls(position, dimensions);
 
-        assert(position.getDiscreteY() <= -1 || !(BallHitHorizontal.class == ballHit.getBallHit().getClass()));
+        assert(position.getDiscreteY() <= -1 || !(BallHitHorizontal.class == ballHits.get(0).getClass()));
 
-        assert(position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1 || !(BallHitBottom.class == ballHit.getBallHit().getClass()));
+        assert(position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1 || !(BallHitBottom.class == ballHits.get(0).getClass()));
 
         assert((position.getDiscreteX() <= dimensions.getDiscreteX()/2. - 1 ||
-                position.getDiscreteX() >= arena.getWidth() - dimensions.getDiscreteX()/2. + 1) || !(BallHitVertical.class == ballHit.getBallHit().getClass()));
+                position.getDiscreteX() >= arena.getWidth() - dimensions.getDiscreteX()/2. + 1) || !(BallHitVertical.class == ballHits.get(0).getClass()));
     }
 }

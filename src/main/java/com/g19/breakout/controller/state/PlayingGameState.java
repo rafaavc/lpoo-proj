@@ -66,7 +66,7 @@ public class PlayingGameState extends GameState {
         List<BallHit> ballHits = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
         Direction ballDirection = ball.getDirection();
-        
+
         for (BallHit ballHit: ballHits)
             ballHit.updateDirection();
 
