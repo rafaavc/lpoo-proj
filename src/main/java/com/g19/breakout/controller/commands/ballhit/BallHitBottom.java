@@ -8,8 +8,7 @@ public class BallHitBottom extends BallHit {
         super(ball);
     }
 
-    public boolean execute() {
+    public void execute() {
         ball.setDirection(new Direction(0, 0));
-        return true;
     }
 }

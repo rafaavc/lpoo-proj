@@ -15,10 +15,9 @@ public class BallHitPlayerBar extends BallHit {
         this.playerBar = playerBar;
     }
 
-    public boolean execute() {
+    public void execute() {
         Direction direction = this.calculateNewDirection();
         ball.setDirection(direction);
-        return true;
     }
 
     private Direction calculateNewDirection(){

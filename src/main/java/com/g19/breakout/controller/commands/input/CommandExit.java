@@ -9,7 +9,7 @@ public class CommandExit extends GameCommand {
     }
 
     @Override
-    public boolean execute() {
-        return false;
+    public void execute() {
+        controller.exit();
     }
 }

@@ -9,7 +9,7 @@ public class CommandEnter extends GameCommand {
     }
 
     @Override
-    public boolean execute() {
-        return controller.getState().commandENTER();
+    public void execute() {
+        controller.getState().commandEnter();
     }
 }
