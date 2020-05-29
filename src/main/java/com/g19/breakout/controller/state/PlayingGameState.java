@@ -45,7 +45,7 @@ public class PlayingGameState extends GameState {
         double velocity = ball.getVelocity()*elapsedTime/1000;
         Position nextBallPosition = updateBallPosition(velocity);
 
-        moveElement(nextBallPosition, this.arena.getBall());
+        moveElement(nextBallPosition, ball);
     }
 
     protected Position updateBallPosition(double velocity) {
@@ -66,14 +66,9 @@ public class PlayingGameState extends GameState {
     public boolean updateBallDirection(BallModel ball, Position nextBallPosition){
         List<BallHit> ballHits = collisionChecker.checkBallCollisions(nextBallPosition, ball.getDimensions());
 
-        Direction ballDirection = ball.getDirection();
+        ballHits.forEach(BallHit::updateDirection);
 
-        for (BallHit ballHit: ballHits)
-            ballHit.updateDirection();
-
-        Direction newBallDirection = ball.getDirection();
-
-        return !ballDirection.equals(newBallDirection);
+        return ballHits.size() > 0;
     }
 
     public void moveElement(Position position, ElementModel element) {
