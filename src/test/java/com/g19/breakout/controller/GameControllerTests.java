@@ -37,7 +37,7 @@ public class GameControllerTests {
         Mockito.doNothing().when(view).setView(any(View.class));
         Mockito.when(stateFactory.createMainMenuGameState(any(GameController.class))).thenReturn(mainMenuGameState);
         Mockito.when(mainMenuGameState.getView()).thenReturn(v);
-        gameController = new GameController(view, model ,new Chronometer(), stateFactory, viewFactory, modelFactory, FPS);
+        gameController = new GameController(view, model ,new Chronometer(), stateFactory, FPS);
     }
 
     @Test
