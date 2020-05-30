@@ -16,8 +16,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 public class GameControllerTests {
@@ -27,30 +26,31 @@ public class GameControllerTests {
     StateFactory stateFactory = Mockito.mock(StateFactory.class);
     ViewFactory viewFactory = Mockito.mock(ViewFactory.class);
     ModelFactory modelFactory = Mockito.mock(ModelFactory.class);
+    MainMenuGameState mainMenuGameState = Mockito.mock(MainMenuGameState.class);
     GameController gameController;
 
     @BeforeEach
     public void setup() throws IOException{
         Mockito.doNothing().when(view).setView(any(View.class));
-        MainMenuGameState mainMenuGameState = Mockito.mock(MainMenuGameState.class);
         Mockito.when(stateFactory.createMainMenuGameState(any(GameController.class))).thenReturn(mainMenuGameState);
         Mockito.when(mainMenuGameState.getView()).thenReturn(v);
         gameController = new GameController(view, model ,new Chronometer(), stateFactory, viewFactory, modelFactory, 30);
     }
-    /*
+
     @Test
     public void getNextCommandTest() throws IOException {
         Mockito.when(view.readInput()).thenReturn(GameView.Keys.QKEY);
 
-        CommandQ commandQ = Mockito.mock(CommandQ.class);
-        Mockito.when(commandQ.execute()).thenReturn(true);
+        CommandQ commandQ = new CommandQ(gameController);
 
         Transformer transformer = Mockito.mock(Transformer.class);
         Mockito.when(transformer.toCommand(gameController, GameView.Keys.QKEY)).thenReturn(commandQ);
 
-
-        assertTrue(gameController.getNextCommand(transformer));
-    }*/
+        gameController.getNextCommand(transformer);
+        Mockito.verify(view, Mockito.times(1)).readInput();
+        Mockito.verify(transformer, Mockito.times(1)).toCommand(gameController, GameView.Keys.QKEY);
+        Mockito.verify(mainMenuGameState, Mockito.times(1)).commandQ();
+    }
 
     @Test
     public void moveElementTest(){

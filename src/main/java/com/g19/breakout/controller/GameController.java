@@ -20,7 +20,7 @@ public class GameController {
     private final ViewFactory viewFactory;
     private final ModelFactory modelFactory;
     private State state;
-    private boolean gameIsRunning;
+    protected boolean gameIsRunning;
 
     public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) throws IOException {
         this.chrono = chrono;
