@@ -16,7 +16,7 @@ public class GameController {
     private final GameModel model;
     private final Chronometer chrono;
     private State state;
-    private boolean gameIsRunning;
+    protected boolean gameIsRunning;
 
     public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, int FPS) throws IOException {
         this.chrono = chrono;

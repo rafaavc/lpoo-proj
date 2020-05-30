@@ -78,11 +78,11 @@ public class PlayingGameStateTests {
 
         Mockito.when(arena.isInsideArena(any(Position.class), any(Dimensions.class))).thenReturn(true);
 
-        assertTrue(playingGameState.commandLeft());
+        playingGameState.commandLeft();
         assertEquals(new Position(29, 10), arena.getPlayer().getPosition());
 
 
-        assertTrue(playingGameState.commandRight());
+        playingGameState.commandRight();
         assertEquals(new Position(30, 10), arena.getPlayer().getPosition());
 
         Mockito.doNothing().when(controller).setState(any(GameState.class));
@@ -91,7 +91,7 @@ public class PlayingGameStateTests {
 
         PlayingGameState playingGameStateSpy = Mockito.spy(playingGameState);
 
-        assertTrue(playingGameStateSpy.commandP());
+        playingGameStateSpy.commandP();
         Mockito.verify(playingGameStateSpy, times(1)).commandP();
     }
 }
