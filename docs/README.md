@@ -8,50 +8,54 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 ## Quickly jump between topics
 
-- [LPOO_19 - Breakout](#lpoo_19---breakout)
-  - [Quickly jump between topics](#quickly-jump-between-topics)
-  - [Implemented features](#implemented-features)
-    - [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
-    - [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
-    - [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
-  - [Planned Features](#planned-features)
-  - [Design](#design)
-    - [*We want to work in the different components without affecting one another and improve modularity*](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-      - [The problem in context](#the-problem-in-context)
-      - [The pattern](#the-pattern)
-      - [Implementation](#implementation)
-      - [Consequences](#consequences)
-    - [*We shouldn't need to interact directly with Lanterna to draw objects in the View*](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-      - [The problem in context](#the-problem-in-context-1)
-      - [The pattern](#the-pattern-1)
-      - [Implementation](#implementation-1)
-      - [Consequences](#consequences-1)
-    - [*We want to be able to inject the classes that the ArenaView needs to create*](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-      - [The problem in context](#the-problem-in-context-2)
-      - [The pattern](#the-pattern-2)
-      - [Implementation](#implementation-2)
-      - [Consequences](#consequences-2)
-    - [*We want to convert enum types to Commands in a simple and clean way*](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
-      - [The problem in context](#the-problem-in-context-3)
-      - [The pattern](#the-pattern-3)
-      - [Implementation](#implementation-3)
-      - [Consequences](#consequences-3)
-    - [*We want our ArenaController to not have to worry about which command was given nor which object the ball hit*](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-      - [The problem in context](#the-problem-in-context-4)
-      - [The pattern](#the-pattern-4)
-      - [Implementation](#implementation-4)
-      - [Consequences](#consequences-4)
-    - [*We need to create states to change between menus*](#we-need-to-create-states-to-change-between-menus)
-    - [The problem in context](#the-problem-in-context-5)
-    - [The pattern](#the-pattern-5)
-    - [Implementation](#implementation-5)
-      - [Consequences](#consequences-5)
-  - [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
-    - [Large Class](#large-class)
-    - [Big Switch Cases](#big-switch-cases)
-    - [Lazy Class](#lazy-class)
-  - [Testing](#testing)
-  - [Self-evaluation](#self-evaluation)
+* [Quickly jump between topics](#quickly-jump-between-topics)
+* [Implemented features](#implemented-features)
+    * [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
+    * [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
+    * [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
+* [Planned Features](#planned-features)
+    * [Other features that could have been implemented](#other-features-that-could-have-been-implemented)
+* [Design](#design)
+    * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
+        * [The problem in context](#the-problem-in-context)
+        * [The pattern](#the-pattern)
+        * [Implementation](#implementation)
+        * [Consequences](#consequences)
+    * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
+        * [The problem in context](#the-problem-in-context-1)
+        * [The pattern](#the-pattern-1)
+        * [Implementation](#implementation-1)
+        * [Consequences](#consequences-1)
+    * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
+        * [The problem in context](#the-problem-in-context-2)
+        * [The pattern](#the-pattern-2)
+        * [Implementation](#implementation-2)
+        * [Consequences](#consequences-2)
+    * [<em>We want to convert enum types to Commands in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
+        * [The problem in context](#the-problem-in-context-3)
+        * [The pattern](#the-pattern-3)
+        * [Implementation](#implementation-3)
+        * [Consequences](#consequences-3)
+    * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
+        * [The problem in context](#the-problem-in-context-4)
+        * [The pattern](#the-pattern-4)
+        * [Implementation](#implementation-4)
+        * [Consequences](#consequences-4)
+    * [<em>We want to create states to change between menus</em>](#we-want-to-create-states-to-change-between-menus)
+        * [The problem in context](#the-problem-in-context-5)
+        * [The pattern](#the-pattern-5)
+        * [Implementation](#implementation-5)
+        * [Consequences](#consequences-5)
+    * [<em>We want to be able to group views and group the grouped views into other views</em>](#we-want-to-be-able-to-group-views-and-group-the-grouped-views-into-other-views)
+        * [The problem in context](#the-problem-in-context-6)
+        * [The pattern](#the-pattern-6)
+        * [Implementation](#implementation-6)
+        * [Consequences](#consequences-6)
+* [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
+    * [Big Switch Cases](#big-switch-cases)
+* [Testing](#testing)
+* [Self-evaluation](#self-evaluation)
+
 
 
 ## Implemented features
@@ -79,19 +83,20 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 ## Planned Features
 
 - [x] Draw the arena
-- [x] Add the players bar
+- [x] Add the player's bar
 - [x] Move the bar
 - [x] Draw the ball
 - [x] Move the ball 
-- [x] Add ball colisions and bounces
+- [x] Add ball collisions and bounces
 - [x] Draw the tiles
-- [x] Add colisions with tiles
+- [x] Add collisions with tiles
 - [x] Add scoreboard
 - [x] Add menus
 - [x] Add leaderboard
-- [x] Add scores to leaderboard after ending game
+- [x] Add scores to leaderboard
 
-(these are just more ideas that may not be implemented)
+#### Other features that could have been implemented
+
 - [ ] Add player lives
 - [ ] Add shots coming from above to hurt the player
 - [ ] Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
@@ -99,7 +104,7 @@ The tile grid is being generated and drawn and the collisions of the ball with t
 
 ## Design
 
-In this section we expose some of the problems we had to face and the design patterns we used to solve them.
+In this section we expose some of the problems we had to face and the design patterns (or not) we used to solve them.
 
 ---
 
@@ -190,7 +195,7 @@ By using this design pattern:
 We wan't to maintain the MVC structure while the controller gets information about the view. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes.
 
 #### The pattern
-- Factory pattern - at the moment for converting enum types to Commands and BallHits 
+- Factory pattern - at the moment to convert GameView.Keys enum type to Commands
 
 #### Implementation
 
@@ -239,11 +244,11 @@ The same can be said to the BallHit abstract class, where it saves some attribut
 
 ---
 
-### *We need to create states to change between menus*
+### *We want to create states to change between menus*
 
 ### The problem in context
 
-We have some menus and we need them to implemente the same functions and change between them, one at a time.
+We have some menus and we need them to implement the same functions and change between them, one at a time.
 
 ### The pattern
 
@@ -259,32 +264,42 @@ Those classes can be found here:
 - [States](../src/main/java/com/g19/breakout/controller/state)
 - [GameController](../src/main/java/com/g19/breakout/controller/GameController.java)
 
-
 #### Consequences
 
-This way we the controller only has an abastract object that has different subclasses and that way it doesn't need to know which is the current game screen, so, it has one less job.
+This way we the controller only has an abstract object that has different subclasses and that way it doesn't need to know which is the current game screen, so, it has one less job.
 
 Furthermore, the state knows how to handle any command and can update itself, and can set the controller state to the next one.
 
 ---
 
+### *We want to be able to group views and group the grouped views into other views*
+
+### The problem in context
+
+For example, we have MenuButtonViews. We want to have also a MenuView, that groups the MenuButtonViews. However, we also want to have the MenuStateView, which groups the MenuView with other Views of the state.
+
+### The pattern
+
+To answer these requirements, we used the *Composite Pattern*. 
+
+### Implementation
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfbDCgdy6ZOODX3q86eHpDVQoLWoRwzOpV7dbiaruVwtS8jk7E&usqp=CAU" width="200" height="200"/>
+
+## Consequences
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfbDCgdy6ZOODX3q86eHpDVQoLWoRwzOpV7dbiaruVwtS8jk7E&usqp=CAU" width="200" height="200"/>
+
+
+---
+
 ## Known code smells and refactoring sugestions
-
-### Large Class
-
-Our class ArenaModel it's a little bigger than all the other classes and it violates the Single Responsability Principle since it creates the arena and checks all the hits that occur in it. Maybe we can create another class to create the Arena reducing the ArenaModel's size.
 
 ### Big Switch Cases
 
 In the Transformer class we have 2 methods and both of them have switch cases, and the one on the toBallHit() method its 22 lines long.
 
 Even though we know that is a code smell, we think that there's no better way to do what this methods do without those switches.
-
-### Lazy Class
-
-The PlayerBarModel class is at the moment a lazy class. To fix this, we'll add more functionality to it like keeping the player score and the lives he has left.
-
-The PlayerBarView and the BallView are also lazy classes. Maybe we'll need to delete them and substitute them for the ElementView class, if we don't find any other uses to put in them.
 
 ## Testing
 
