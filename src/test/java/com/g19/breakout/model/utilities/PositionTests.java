@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PositionTests {
-    Position initial = new Position(10, 5);
+    private final Position initial = new Position(10, 5);
     @Test
     public void positionLeft(){
         Position test = initial.left();

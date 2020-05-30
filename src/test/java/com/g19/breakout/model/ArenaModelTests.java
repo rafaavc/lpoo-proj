@@ -17,8 +17,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArenaModelTests {
-    ArenaModel arena;
-    Dimensions dimensions = new Dimensions(100, 120);
+    private ArenaModel arena;
+    private final Dimensions dimensions = new Dimensions(100, 120);
 
     @BeforeEach
     @BeforeProperty

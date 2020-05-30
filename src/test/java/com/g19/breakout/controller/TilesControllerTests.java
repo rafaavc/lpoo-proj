@@ -17,14 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 
 public class TilesControllerTests {
-    TilesController tilesController;
-    List<TileModel> tiles;
+    private TilesController tilesController;
+    private List<TileModel> tiles;
 
-    @Mock
-    Chronometer chrono;
-
-    @Mock
-    PlayerModel playerModel;
+    @Mock private Chronometer chrono;
+    @Mock private PlayerModel playerModel;
 
     @BeforeEach
     public void setup() {

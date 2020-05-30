@@ -24,7 +24,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
 public class ViewTests {
-
     @Provide
     Arbitrary<Integer> Between0And500() {
         return Arbitraries.integers().filter(n -> n > 0 && n < 500);

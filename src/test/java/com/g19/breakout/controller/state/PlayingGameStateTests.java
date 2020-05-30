@@ -22,25 +22,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 
 public class PlayingGameStateTests {
-    @Mock
-    ArenaModel arena;
+    @Mock private ArenaModel arena;
+    @Mock private ArenaView view;
+    @Mock private GameController controller;
+    @Mock private StateFactory stateFactory;
+    @Mock private BallController ballController;
+    @Mock private TilesController tilesController;
 
-    @Mock
-    ArenaView view;
-
-    @Mock
-    GameController controller;
-
-    @Mock
-    StateFactory stateFactory;
-
-    @Mock
-    BallController ballController;
-
-    @Mock
-    TilesController tilesController;
-
-    PlayingGameState playingGameState;
+    private PlayingGameState playingGameState;
 
     @BeforeEach
     public void setup(){

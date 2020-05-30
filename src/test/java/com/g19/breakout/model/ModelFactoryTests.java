@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModelFactoryTests {
-    BasicModelFactory basicModelFactory = new BasicModelFactory();
+    private final BasicModelFactory basicModelFactory = new BasicModelFactory();
     @Test
     public void createPlayerModelTest(){
         Dimensions dimensions = new Dimensions(10, 10);
