@@ -27,7 +27,7 @@ public class GameOverGameState extends TextInputGameState {
     }
 
     public void startReadingPlayerName() {
-        textReader.startReadingText();
+        textReader.startReadingText(20);
         playerModel.setName("_");
     }
 
