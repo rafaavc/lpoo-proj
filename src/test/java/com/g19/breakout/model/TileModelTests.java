@@ -24,7 +24,9 @@ public class TileModelTests {
     @Test
     public void createTileArrayTest(){
         ArenaModel arena = Mockito.mock(ArenaModel.class);
-        Mockito.when(arena.getWidth()).thenReturn(50);
+        Dimensions dimensions = Mockito.mock(Dimensions.class);
+        Mockito.when(dimensions.getDiscreteX()).thenReturn(50);
+        Mockito.when(arena.getDimensions()).thenReturn(dimensions);
 
         List<TileModel> tiles = TileModel.createTileArray(5, 5, arena);
         assertEquals(25, tiles.size());

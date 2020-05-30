@@ -29,6 +29,7 @@ public class CollisionCheckerTests {
     @Mock private ArenaModel arena;
     @Mock private BallModel ball;
     @Mock private TilesController tilesController;
+    @Mock private Dimensions dimensions;
 
     private BallCollisionChecker collisionChecker;
 
@@ -39,8 +40,9 @@ public class CollisionCheckerTests {
         MockitoAnnotations.initMocks(this);
         collisionChecker = new BallCollisionChecker(arena, tilesController);
         Mockito.when(arena.getBall()).thenReturn(ball);
-        Mockito.when(arena.getWidth()).thenReturn(100);
-        Mockito.when(arena.getHeight()).thenReturn(120);
+        Mockito.when(dimensions.getDiscreteX()).thenReturn(100);
+        Mockito.when(dimensions.getDiscreteY()).thenReturn(120);
+        Mockito.when(arena.getDimensions()).thenReturn(dimensions);
         Mockito.when(ball.getDimensions()).thenReturn(new Dimensions(2, 1));
         Mockito.when(ball.getPosition()).thenReturn(new Position(10, 10));
     }
@@ -86,9 +88,9 @@ public class CollisionCheckerTests {
 
         assert(position.getDiscreteY() <= -1 || ballHits.stream().noneMatch((l) -> l.getClass() == BallHitHorizontal.class));
 
-        assert(position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1 || ballHits.stream().noneMatch((l) -> l.getClass() == BallHitBottom.class));
+        assert(position.getDiscreteY() >= arena.getDimensions().getDiscreteY() - dimensions.getDiscreteY() + 1 || ballHits.stream().noneMatch((l) -> l.getClass() == BallHitBottom.class));
 
         assert((position.getDiscreteX() <= dimensions.getDiscreteX()/2. - 1 ||
-                position.getDiscreteX() >= arena.getWidth() - dimensions.getDiscreteX()/2. + 1) || ballHits.stream().noneMatch((l) -> l.getClass() == BallHitVertical.class));
+                position.getDiscreteX() >= arena.getDimensions().getDiscreteX() - dimensions.getDiscreteX()/2. + 1) || ballHits.stream().noneMatch((l) -> l.getClass() == BallHitVertical.class));
     }
 }
