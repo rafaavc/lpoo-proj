@@ -20,15 +20,14 @@ public class Game {
     public static void main(String[] args) throws IOException, InterruptedException {
         //model
         Dimensions gameDimensions = new Dimensions(120, 50);
-        BackgroundModel backgroundModel = new BackgroundModel(gameDimensions);
-        GameModel model = new GameModel(gameDimensions, backgroundModel);
+        GameModel model = new BasicModelFactory().createGameModel(gameDimensions);
 
         //view
         Graphics graphics = new LanternaAdapter(gameDimensions);
-        GameView view = new GameView(graphics, new BasicViewFactory().createBackgroundView(graphics, gameDimensions, backgroundModel));
+        GameView view = new BasicViewFactory().createGameView(graphics, model);
 
         //controller
-        GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), new BasicViewFactory(), new BasicModelFactory(), 60);
+        GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), 60);
         controller.start(new Transformer(), new FileManager());
     }
 }

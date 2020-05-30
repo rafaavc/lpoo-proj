@@ -19,8 +19,8 @@ public class BasicViewFactory implements ViewFactory {
     public MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions) {
         return new MainMenuView(graphics, gameDimensions, backgroundColor);
     }
-    public BackgroundView createBackgroundView(Graphics graphics, Dimensions gameDimensions, BackgroundModel backgroundModel) {
-        return new BackgroundView(graphics, gameDimensions, backgroundModel, backgroundColor);
+    public BackgroundView createBackgroundView(Graphics graphics, GameModel model) {
+        return new BackgroundView(graphics, model, backgroundColor);
     }
     public LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions, PriorityQueue<Pair<String, Integer>> lb) {
         return new LeaderboardView(graphics, gameDimensions, lb, backgroundColor);
@@ -55,5 +55,9 @@ public class BasicViewFactory implements ViewFactory {
         view.addView(createScoreboardView(arena.getPlayer(), graphics));
 
         return view;
+    }
+
+    public GameView createGameView(Graphics graphics, GameModel model) {
+        return new GameView(graphics, this, model);
     }
 }

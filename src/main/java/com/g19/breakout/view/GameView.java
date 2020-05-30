@@ -1,5 +1,7 @@
 package com.g19.breakout.view;
 
+import com.g19.breakout.model.GameModel;
+import com.g19.breakout.view.factory.ViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 
 import java.io.IOException;
@@ -7,13 +9,15 @@ import java.io.IOException;
 public class GameView {
     private final Graphics graphics;
     private final BackgroundView backgroundView;
+    private final ViewFactory viewFactory;
     private View view;
 
     public enum Keys {ARROWLEFT, ARROWRIGHT, EOF, NONE, PKEY, QKEY, LKEY, ENTER};
 
-    public GameView(Graphics graphics, BackgroundView backgroundView) {
+    public GameView(Graphics graphics, ViewFactory factory, GameModel model) {
         this.graphics = graphics;
-        this.backgroundView = backgroundView;
+        this.viewFactory = factory;
+        this.backgroundView = factory.createBackgroundView(graphics, model);
     }
 
     public void draw() throws IOException {
@@ -39,6 +43,10 @@ public class GameView {
 
     public Graphics getGraphics() {
         return graphics;
+    }
+
+    public ViewFactory getViewFactory() {
+        return viewFactory;
     }
 
     public void exit() throws IOException {

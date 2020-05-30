@@ -26,8 +26,8 @@ public class GameOverGameState extends MenuGameState {
     }
 
     public void startReadingPlayerName() {
-        this.readingText = true;
-        this.textReader = new StringBuilder();
+        readingText = true;
+        textReader = new StringBuilder();
         playerModel.setName("_");
     }
 
@@ -35,7 +35,7 @@ public class GameOverGameState extends MenuGameState {
         readingText = false;
         playerModel.setName(textReader.toString());
 
-        if (textReader.length() == 0) return;
+        if (playerModel.getName().length() == 0) return;
 
         controller.getModel().addScore(new Pair<>(playerModel.getName(), playerModel.getPoints()));
     }
