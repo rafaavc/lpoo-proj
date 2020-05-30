@@ -3,6 +3,7 @@ package com.g19.breakout.controller;
 import com.g19.breakout.controller.commands.input.CommandQ;
 import com.g19.breakout.controller.state.MainMenuGameState;
 import com.g19.breakout.controller.state.StateFactory;
+import com.g19.breakout.model.BackgroundModel;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.GameModel;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.util.PriorityQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,6 +29,7 @@ public class GameControllerTests {
     ViewFactory viewFactory = Mockito.mock(ViewFactory.class);
     ModelFactory modelFactory = Mockito.mock(ModelFactory.class);
     MainMenuGameState mainMenuGameState = Mockito.mock(MainMenuGameState.class);
+    int FPS = 30;
     GameController gameController;
 
     @BeforeEach
@@ -34,7 +37,7 @@ public class GameControllerTests {
         Mockito.doNothing().when(view).setView(any(View.class));
         Mockito.when(stateFactory.createMainMenuGameState(any(GameController.class))).thenReturn(mainMenuGameState);
         Mockito.when(mainMenuGameState.getView()).thenReturn(v);
-        gameController = new GameController(view, model ,new Chronometer(), stateFactory, viewFactory, modelFactory, 30);
+        gameController = new GameController(view, model ,new Chronometer(), stateFactory, viewFactory, modelFactory, FPS);
     }
 
     @Test
@@ -61,5 +64,28 @@ public class GameControllerTests {
         gameController.moveElement(position.right(), ball);
 
         assertEquals(position.right(), ball.getPosition());
+    }
+
+    @Test
+    public void frameTimeTest() throws IOException, InterruptedException {
+        Mockito.doNothing().when(view).draw();
+        Mockito.doNothing().when(mainMenuGameState).update(any(Integer.class));
+        GameController gameControllerSpy = Mockito.spy(gameController);
+        Mockito.doNothing().when(gameControllerSpy).getNextCommand(any(Transformer.class));
+        Mockito.doNothing().when(view).exit();
+        FileManager fileManager = Mockito.mock(FileManager.class);
+        Mockito.doNothing().when(fileManager).writeLeaderboard(any(PriorityQueue.class));
+
+        BackgroundModel bgModel = Mockito.mock(BackgroundModel.class);
+        Mockito.doNothing().when(bgModel).generateParticles();
+        Mockito.when(model.getBackgroundModel()).thenReturn(bgModel);
+
+        gameControllerSpy.gameIsRunning = false;
+        long initial_time = System.currentTimeMillis();
+        gameControllerSpy.start(new Transformer(), fileManager);
+        long elapsed_time = System.currentTimeMillis() - initial_time;
+        long expected_time = 1000/FPS;
+        assertTrue(elapsed_time >= expected_time);
+        assertTrue(elapsed_time <= expected_time + 5);
     }
 }
