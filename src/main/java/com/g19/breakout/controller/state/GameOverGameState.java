@@ -2,17 +2,18 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
+import com.g19.breakout.controller.TextReader;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.view.GameOverView;
 import com.g19.breakout.view.View;
 import com.sun.tools.javac.util.Pair;
 
-public class GameOverGameState extends MenuGameState {
+public class GameOverGameState extends TextInputGameState {
     private final GameOverView view;
     private final StateFactory stateFactory;
 
-    public GameOverGameState(PlayerModel playerModel, GameOverView view, GameController controller, MenuController menu, StateFactory stateFactory) {
-        super(controller, playerModel, menu);
+    public GameOverGameState(PlayerModel playerModel, GameOverView view, GameController controller, MenuController menu, StateFactory stateFactory, TextReader textReader) {
+        super(controller, playerModel, menu, textReader);
         this.view = view;
         this.stateFactory = stateFactory;
         startReadingPlayerName();
@@ -20,20 +21,18 @@ public class GameOverGameState extends MenuGameState {
 
     @Override
     public void update(int elapsedTime) {
-        if (readingText && textReader.length() != playerModel.getName().length()-1) {
-            playerModel.setName(textReader.toString() + "_");
+        if (textReader.isReadingText() && textReader.getStringBuilder().length() != playerModel.getName().length()-1) {
+            playerModel.setName(textReader.getStringBuilder().toString() + "_");
         }
     }
 
     public void startReadingPlayerName() {
-        readingText = true;
-        textReader = new StringBuilder();
+        textReader.startReadingText();
         playerModel.setName("_");
     }
 
     public void stopReadingPlayerName() {
-        readingText = false;
-        playerModel.setName(textReader.toString());
+        playerModel.setName(textReader.stopReadingText());
 
         if (playerModel.getName().length() == 0) return;
 
@@ -42,7 +41,7 @@ public class GameOverGameState extends MenuGameState {
 
     @Override
     public void commandEnter() {
-        if (readingText) {
+        if (textReader.isReadingText()) {
             stopReadingPlayerName();
         } else {
             super.commandEnter();

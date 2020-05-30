@@ -120,6 +120,6 @@ public class StateFactory {
         gameOverView.addView(menu.getView());
         gameOverView.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));
 
-        return new GameOverGameState(playerModel, gameOverView, controller, menu, this);
+        return new GameOverGameState(playerModel, gameOverView, controller, menu, this, new TextReader());
     }
 }

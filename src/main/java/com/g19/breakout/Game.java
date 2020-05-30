@@ -19,15 +19,15 @@ import java.io.IOException;
 public class Game {
     public static void main(String[] args) throws IOException, InterruptedException {
         //model
-        Dimensions gameDimensions = new Dimensions(120, 50);
-        GameModel model = new BasicModelFactory().createGameModel(gameDimensions);
+        GameModel model = new BasicModelFactory().createGameModel(new Dimensions(120, 50));
 
         //view
-        Graphics graphics = new LanternaAdapter(gameDimensions);
+        Graphics graphics = new LanternaAdapter(model.getDimensions());
         GameView view = new BasicViewFactory().createGameView(graphics, model);
 
         //controller
         GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), 60);
+
         controller.start(new Transformer(), new FileManager());
     }
 }

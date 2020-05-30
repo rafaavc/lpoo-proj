@@ -73,7 +73,7 @@ public class GameController {
     public void getNextCommand(Transformer transformer) throws IOException {
         GameView.Keys key;
         if (state.isReadingText()) {
-            key = view.readTextInput(state.getTextReader());
+            key = view.readTextInput(state.getTextReader().getStringBuilder());
         } else {
             key = view.readInput();
         }
