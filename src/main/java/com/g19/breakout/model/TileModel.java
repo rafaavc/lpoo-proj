@@ -18,14 +18,14 @@ public class TileModel extends ElementModel {
     static public List<TileModel> createTileArray(int nHorizontal, int nVertical, ArenaModel arena) {
         int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, marginBetweenTiles, margin, tileHeight;
 
-        horizontalFreeSpace = arena.getWidth();
+        horizontalFreeSpace = arena.getDimensions().getDiscreteX();
         horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;
         verticalFreeSpaceEach = 5;
         marginBetweenTiles = 4;
         tileWidth = horizontalFreeSpaceEach-marginBetweenTiles;
         tileHeight = verticalFreeSpaceEach-(marginBetweenTiles/2);
 
-        margin = (arena.getWidth() - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;
+        margin = (arena.getDimensions().getDiscreteX() - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;
 
         if (tileWidth%2 != 0) {
             tileWidth--;

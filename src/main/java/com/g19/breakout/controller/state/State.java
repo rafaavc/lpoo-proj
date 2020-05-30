@@ -1,11 +1,12 @@
 package com.g19.breakout.controller.state;
 
+import com.g19.breakout.controller.TextReader;
 import com.g19.breakout.view.View;
 
 public interface State {
     default void update(int elapsedTime) {}
 
-    default StringBuilder getTextReader() {
+    default TextReader getTextReader() {
         return null;
     }
 

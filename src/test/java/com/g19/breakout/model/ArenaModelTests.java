@@ -17,8 +17,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArenaModelTests {
-    ArenaModel arena;
-    Dimensions dimensions = new Dimensions(100, 120);
+    private ArenaModel arena;
+    private final Dimensions dimensions = new Dimensions(100, 120);
 
     @BeforeEach
     @BeforeProperty
@@ -32,8 +32,8 @@ public class ArenaModelTests {
         Position position = new Position(x, y);
         assert(x >= newDimensions.getDiscreteX()/2 || !arena.isInsideArena(position, newDimensions));
         assert(y >= 0 || !arena.isInsideArena(position, newDimensions));
-        assert(x <= arena.getWidth() - newDimensions.getDiscreteX()/2 || !arena.isInsideArena(position, newDimensions));
-        assert(y <= arena.getHeight() - newDimensions.getDiscreteY() || !arena.isInsideArena(position, newDimensions));
+        assert(x <= arena.getDimensions().getDiscreteX() - newDimensions.getDiscreteX()/2 || !arena.isInsideArena(position, newDimensions));
+        assert(y <= arena.getDimensions().getDiscreteY() - newDimensions.getDiscreteY() || !arena.isInsideArena(position, newDimensions));
     }
 
     @Test
@@ -77,8 +77,8 @@ public class ArenaModelTests {
 
     @Test
     public void testWidthHeight() {
-        assertEquals(arena.getHeight(), this.dimensions.getDiscreteY() - 6);
-        assertEquals(arena.getWidth(), this.dimensions.getDiscreteX());
+        assertEquals(arena.getDimensions().getDiscreteY(), this.dimensions.getDiscreteY() - 6);
+        assertEquals(arena.getDimensions().getDiscreteX(), this.dimensions.getDiscreteX());
     }
 
     @Test

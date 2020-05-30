@@ -6,9 +6,7 @@ import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.GameModel;
-import com.g19.breakout.model.factory.ModelFactory;
 import com.g19.breakout.view.GameView;
-import com.g19.breakout.view.factory.ViewFactory;
 
 import java.io.IOException;
 
@@ -17,17 +15,13 @@ public class GameController {
     private final GameView view;
     private final GameModel model;
     private final Chronometer chrono;
-    private final ViewFactory viewFactory;
-    private final ModelFactory modelFactory;
     private State state;
     protected boolean gameIsRunning;
 
-    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, ViewFactory viewFactory, ModelFactory modelFactory, int FPS) throws IOException {
+    public GameController(GameView view, GameModel model, Chronometer chrono, StateFactory stateFactory, int FPS) throws IOException {
         this.chrono = chrono;
         this.view = view;
         this.model = model;
-        this.viewFactory = viewFactory;
-        this.modelFactory = modelFactory;
         this.FPS = FPS;
         this.gameIsRunning = true;
         setState(stateFactory.createMainMenuGameState(this));
@@ -45,18 +39,22 @@ public class GameController {
             chrono.start();
 
             view.draw();
-            if (counter % 20 == 0) model.getBackgroundModel().generateParticles();
-            state.update(frameDuration);
-
-            waitForNextFrame(frameDuration);
+            update(frameDuration, counter);
 
             getNextCommand(transformer);
+
+            waitForNextFrame(frameDuration);
             counter++;
         }
         while ( gameIsRunning );
 
         view.exit();
         fileManager.writeLeaderboard(model.getLeaderboard());
+    }
+
+    public void update(int frameDuration, int counter) {
+        if (counter % 20 == 0) model.getBackgroundModel().generateParticles();
+        state.update(frameDuration);
     }
 
     public void waitForNextFrame(int frameDuration) throws InterruptedException {
@@ -75,7 +73,7 @@ public class GameController {
     public void getNextCommand(Transformer transformer) throws IOException {
         GameView.Keys key;
         if (state.isReadingText()) {
-            key = view.readTextInput(state.getTextReader());
+            key = view.readTextInput(state.getTextReader().getStringBuilder());
         } else {
             key = view.readInput();
         }
@@ -102,13 +100,5 @@ public class GameController {
 
     public GameView getView() {
         return view;
-    }
-
-    public ViewFactory getViewFactory() {
-        return viewFactory;
-    }
-
-    public ModelFactory getModelFactory() {
-        return modelFactory;
     }
 }

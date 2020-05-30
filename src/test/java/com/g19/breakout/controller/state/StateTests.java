@@ -2,6 +2,7 @@ package com.g19.breakout.controller.state;
 
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
+import com.g19.breakout.controller.TextReader;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
@@ -92,7 +93,7 @@ public class StateTests {
         Mockito.when(stateFactory.createMainMenuGameState(gameController)).thenReturn(Mockito.mock(MainMenuGameState.class));
         Mockito.doNothing().when(gameController).setState(any(GameState.class));
 
-        GameOverGameState gameOverGameState = new GameOverGameState(playerModel, gameOverView, gameController, menuController, stateFactory);
+        GameOverGameState gameOverGameState = new GameOverGameState(playerModel, gameOverView, gameController, menuController, stateFactory, new TextReader());
 
 
         Mockito.when(stateFactory.createPlayingGameState(gameController)).thenReturn(Mockito.mock(PlayingGameState.class));

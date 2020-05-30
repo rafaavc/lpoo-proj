@@ -13,7 +13,9 @@ import com.g19.breakout.view.View;
 import com.g19.breakout.view.factory.ViewFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
 import java.util.PriorityQueue;
@@ -22,22 +24,22 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 public class GameControllerTests {
-    GameView view = Mockito.mock(GameView.class);
-    View v = Mockito.mock(View.class);
-    GameModel model = Mockito.mock(GameModel.class);
-    StateFactory stateFactory = Mockito.mock(StateFactory.class);
-    ViewFactory viewFactory = Mockito.mock(ViewFactory.class);
-    ModelFactory modelFactory = Mockito.mock(ModelFactory.class);
-    MainMenuGameState mainMenuGameState = Mockito.mock(MainMenuGameState.class);
+    @Mock private GameView view;
+    @Mock private View v;
+    @Mock private GameModel model;
+    @Mock private StateFactory stateFactory;
+    @Mock private MainMenuGameState mainMenuGameState;
+
     int FPS = 30;
-    GameController gameController;
+    private GameController gameController;
 
     @BeforeEach
     public void setup() throws IOException{
+        MockitoAnnotations.initMocks(this);
         Mockito.doNothing().when(view).setView(any(View.class));
         Mockito.when(stateFactory.createMainMenuGameState(any(GameController.class))).thenReturn(mainMenuGameState);
         Mockito.when(mainMenuGameState.getView()).thenReturn(v);
-        gameController = new GameController(view, model ,new Chronometer(), stateFactory, viewFactory, modelFactory, FPS);
+        gameController = new GameController(view, model ,new Chronometer(), stateFactory, FPS);
     }
 
     @Test

@@ -42,10 +42,10 @@ public class BallCollisionChecker {
         List<BallHit> ballHits = new ArrayList<>();
 
         if (position.getDiscreteY() <= -1) ballHits.add(new BallHitHorizontal(ball));
-        if (position.getDiscreteY() >= arena.getHeight() - dimensions.getDiscreteY() + 1) ballHits.add(new BallHitBottom(ball));
+        if (position.getDiscreteY() >= arena.getDimensions().getDiscreteY() - dimensions.getDiscreteY() + 1) ballHits.add(new BallHitBottom(ball));
 
         if (position.getDiscreteX() <= dimensions.getDiscreteX()/2. - 1 ||
-                position.getDiscreteX() >= arena.getWidth() - dimensions.getDiscreteX()/2. + 1) ballHits.add(new BallHitVertical(ball));
+                position.getDiscreteX() >= arena.getDimensions().getDiscreteX() - dimensions.getDiscreteX()/2. + 1) ballHits.add(new BallHitVertical(ball));
 
         return ballHits;
     }

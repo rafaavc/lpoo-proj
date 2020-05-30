@@ -14,8 +14,8 @@ import com.g19.breakout.view.factory.ViewFactory;
 public class StateFactory {
     public MainMenuGameState createMainMenuGameState(GameController controller) {
         Dimensions gameDimensions = controller.getModel().getDimensions();
-        ViewFactory viewFactory = controller.getViewFactory();
-        PlayerModel playerModel = controller.getModelFactory().createPlayerModel(
+        ViewFactory viewFactory = controller.getView().getViewFactory();
+        PlayerModel playerModel = controller.getModel().getModelFactory().createPlayerModel(
                 new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY() - 4));
 
         MenuView menuView = viewFactory.createMenuView(
@@ -38,8 +38,8 @@ public class StateFactory {
 
     public LeaderboardGameState createLeaderboardState(GameController gameController) {
         Dimensions gameDimensions = gameController.getModel().getDimensions();
-        ViewFactory viewFactory = gameController.getViewFactory();
-        PlayerModel playerModel = gameController.getModelFactory().createPlayerModel(
+        ViewFactory viewFactory = gameController.getView().getViewFactory();
+        PlayerModel playerModel = gameController.getModel().getModelFactory().createPlayerModel(
                 new Position(gameDimensions.getDiscreteX()/2., gameDimensions.getDiscreteY() - 4));
 
         MenuView menuView = viewFactory.createMenuView(
@@ -58,8 +58,8 @@ public class StateFactory {
     }
 
     public PlayingGameState createPlayingGameState(GameController gameController) {
-        ArenaModel arena = gameController.getModelFactory().createArenaModel(gameController.getModel().getDimensions());
-        ArenaView arenaView = gameController.getViewFactory().createArenaView(arena, gameController.getView().getGraphics());
+        ArenaModel arena = gameController.getModel().getModelFactory().createArenaModel(gameController.getModel().getDimensions());
+        ArenaView arenaView = gameController.getView().getViewFactory().createArenaView(arena, gameController.getView().getGraphics());
 
         TilesController tilesController = new TilesController(arena.getTiles(), new Chronometer());
 
@@ -70,10 +70,10 @@ public class StateFactory {
         Dimensions gameDimensions = controller.getModel().getDimensions();
 
         PlayingGameState playingGameState = (PlayingGameState) controller.getState();
-        ViewFactory viewFactory = controller.getViewFactory();
+        ViewFactory viewFactory = controller.getView().getViewFactory();
 
         Position playerPosition = new Position(playingGameState.getArena().getPlayer().getPosition().getDiscreteX(), gameDimensions.getDiscreteY() - 4);
-        PlayerModel playerModel = controller.getModelFactory().createPlayerModel(playerPosition);
+        PlayerModel playerModel = controller.getModel().getModelFactory().createPlayerModel(playerPosition);
 
         PauseView pauseView = viewFactory.createPauseView(controller.getView().getGraphics(), gameDimensions);
 
@@ -97,7 +97,7 @@ public class StateFactory {
         Dimensions gameDimensions = controller.getModel().getDimensions();
 
         PlayingGameState playingGameState = (PlayingGameState) controller.getState();
-        ViewFactory viewFactory = controller.getViewFactory();
+        ViewFactory viewFactory = controller.getView().getViewFactory();
 
 
         PlayerModel playerModel = playingGameState.getArena().getPlayer();
@@ -120,6 +120,6 @@ public class StateFactory {
         gameOverView.addView(menu.getView());
         gameOverView.addView(viewFactory.createPlayerView(playerModel, controller.getView().getGraphics()));
 
-        return new GameOverGameState(playerModel, gameOverView, controller, menu, this);
+        return new GameOverGameState(playerModel, gameOverView, controller, menu, this, new TextReader());
     }
 }

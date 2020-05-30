@@ -4,20 +4,23 @@ import com.g19.breakout.view.factory.ViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 import org.junit.jupiter.api.BeforeEach;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 public class ArenaViewTests {
-    private Graphics graphics;
+    @Mock private Graphics graphics;
+    @Mock private ViewFactory factory;
+
     private ArenaView view;
-    private ViewFactory factory;
+
 
     @BeforeEach
     public void setup() {
-        graphics = Mockito.mock(LanternaAdapter.class);
-        factory = Mockito.mock(ViewFactory.class);
+        MockitoAnnotations.initMocks(this);
     }
 
     /*@Test

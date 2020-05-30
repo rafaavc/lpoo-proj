@@ -6,7 +6,9 @@ import com.g19.breakout.model.BallModel;
 import com.g19.breakout.view.graphics.Graphics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
 
@@ -16,14 +18,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class ElementViewTests {
-    private BallModel model;
+    @Mock private BallModel model;
+    @Mock private Graphics graphics;
+
     private ElementView view;
-    private Graphics graphics;
 
     @BeforeEach
-    public void setup() throws IOException {
-        model = Mockito.mock(BallModel.class);
-        graphics = Mockito.mock(Graphics.class);
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
 
         Mockito.when(model.getDimensions()).thenReturn(new Dimensions(10, 2));
         Mockito.when(model.getPosition()).thenReturn(new Position(20, 20));

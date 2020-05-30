@@ -23,5 +23,6 @@ public interface ViewFactory {
     GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel);
     MenuView createMenuView(Graphics graphics, Dimensions dimensions, Position position);
     MenuButtonView createMenuButtonView(String text, String color, Graphics graphics);
-    BackgroundView createBackgroundView(Graphics graphics, Dimensions gameDimensions, BackgroundModel backgroundModel);
+    BackgroundView createBackgroundView(Graphics graphics, GameModel gameModel);
+    GameView createGameView(Graphics graphics, GameModel model);
 }

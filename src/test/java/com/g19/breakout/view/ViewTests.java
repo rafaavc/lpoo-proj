@@ -1,13 +1,16 @@
 package com.g19.breakout.view;
 
 import com.g19.breakout.model.BackgroundModel;
+import com.g19.breakout.model.GameModel;
 import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.utilities.Dimensions;
 import com.g19.breakout.model.utilities.Position;
+import com.g19.breakout.view.factory.BasicViewFactory;
 import com.g19.breakout.view.graphics.Graphics;
 import com.g19.breakout.view.graphics.LanternaAdapter;
 import com.sun.tools.javac.util.Pair;
 import net.jqwik.api.*;
+import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.constraints.Positive;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -21,17 +24,20 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
 public class ViewTests {
-
     @Provide
     Arbitrary<Integer> Between0And500() {
         return Arbitraries.integers().filter(n -> n > 0 && n < 500);
     }
-     @Property
+
+    @Property
     public void BackgroundViewTests(@ForAll("Between0And500") int n){
          BackgroundModel model = Mockito.mock(BackgroundModel.class);
          Graphics graphics = Mockito.mock(LanternaAdapter.class);
          Dimensions dimensions = new Dimensions(100, 120);
-         BackgroundView backgroundView = new BackgroundView(graphics, dimensions, model, "#000000");
+         GameModel gameModel = Mockito.mock(GameModel.class);
+         Mockito.when(gameModel.getBackgroundModel()).thenReturn(model);
+         Mockito.when(gameModel.getDimensions()).thenReturn(dimensions);
+         BackgroundView backgroundView = new BackgroundView(graphics, gameModel, "#000000");
 
          List<Position> particles = new ArrayList<>();
          for (int i = 0; i < n; i++){

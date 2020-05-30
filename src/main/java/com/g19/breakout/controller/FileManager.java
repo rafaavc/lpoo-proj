@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
 public class FileManager {
 
     public List<String> getFileContent(String filePath) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(new File("leaderboard.txt")));
+        BufferedReader br = new BufferedReader(new FileReader(new File(filePath)));
 
         List<String> lines = new ArrayList<>();
         for (String line; (line = br.readLine()) != null; )

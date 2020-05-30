@@ -15,11 +15,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 
 public class MenuControllerTests {
-    MenuView menuView = Mockito.mock(MenuView.class);
-    MenuController menuController = new MenuController(new Dimensions(100, 50), menuView);
-
     @Test
     public void menuControllerTest(){
+        MenuView menuView = Mockito.mock(MenuView.class);
+        MenuController menuController = new MenuController(new Dimensions(100, 50), menuView);
+
         doNothing().when(menuView).addView(any(MenuButtonView.class));
         MenuButtonView menuButtonView = Mockito.mock(MenuButtonView.class);
 

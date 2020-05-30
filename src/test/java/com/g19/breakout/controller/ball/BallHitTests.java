@@ -6,6 +6,7 @@ import com.g19.breakout.model.utilities.Direction;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.BallModel;
 import com.g19.breakout.model.PlayerModel;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -15,10 +16,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BallHitTests {
+    private BallModel ball;
+
+    @BeforeEach
+    public void setup() {
+        ball = new BallModel(new Position(1, 1), 1);
+    }
 
     @Test
     public void testBallHitBottom(){
-        BallModel ball = new BallModel(new Position(1, 1), 1);
         BallHitBottom ballHitBottom = new BallHitBottom(ball);
 
         ballHitBottom.execute();
@@ -27,7 +33,6 @@ public class BallHitTests {
 
     @Test
     public void testBallHitHorizontal(){
-        BallModel ball = new BallModel(new Position(1, 1), 1);
         BallHitHorizontal ballHitHorizontal = new BallHitHorizontal(ball);
 
         Direction direction = Mockito.mock(Direction.class);
@@ -39,7 +44,6 @@ public class BallHitTests {
 
     @Test
     public void testBallHitPlayerBar(){
-        BallModel ball = new BallModel(new Position(1,1), 1);
         ball.setDirection(new Direction(0, 1));
 
         PlayerModel playerBar = Mockito.mock(PlayerModel.class);
@@ -55,7 +59,6 @@ public class BallHitTests {
 
     @Test
     public void testBallHitVertical(){
-        BallModel ball = new BallModel(new Position(1, 1), 1);
         ball.setDirection(new Direction(1, 1));
         BallHitVertical ballHitVertical = new BallHitVertical(ball);
 
@@ -65,7 +68,6 @@ public class BallHitTests {
 
     @Test
     public void testMultipleBallHit(){
-        BallModel ball = new BallModel(new Position(1,1), 1);
         ball.setDirection(new Direction(1, -1));
         List<BallHit> ballHits = new ArrayList<>();
         BallHitVertical ballHitVertical = new BallHitVertical(ball);

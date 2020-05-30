@@ -1,12 +1,11 @@
-package com.g19.breakout.elements;
+package com.g19.breakout.model.utilities;
 
-import com.g19.breakout.model.utilities.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PositionTests {
-    Position initial = new Position(10, 5);
+    private final Position initial = new Position(10, 5);
     @Test
     public void positionLeft(){
         Position test = initial.left();

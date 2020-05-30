@@ -21,13 +21,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 
 public class BallControllerTests {
-    @Mock
-    BallCollisionChecker collisionChecker;
+    @Mock private BallCollisionChecker collisionChecker;
+    @Mock private ArenaModel arena;
 
-    @Mock
-    ArenaModel arena;
-
-    BallController ballController;
+    private BallController ballController;
 
 
     @BeforeEach
