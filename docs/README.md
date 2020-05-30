@@ -9,12 +9,14 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 ## Quickly jump between topics
 
 * [Quickly jump between topics](#quickly-jump-between-topics)
-* [Implemented features](#implemented-features)
+* [Features](#features)
     * [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
     * [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
     * [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
-* [Planned Features](#planned-features)
-    * [Other features that could have been implemented](#other-features-that-could-have-been-implemented)
+    * [Scoreboard](#scoreboard)
+    * [Menus](#menus)
+    * [Leaderboard](#leaderboard)
+    * [Other features that could be implemented (not implemented)](#other-features-that-could-be-implemented-not-implemented)
 * [Design](#design)
     * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
         * [The problem in context](#the-problem-in-context)
@@ -57,8 +59,7 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 * [Self-evaluation](#self-evaluation)
 
 
-
-## Implemented features
+## Features
 
 All of these features are evident in the [gif above](#lpoo_19---breakout).
 
@@ -79,27 +80,23 @@ If the ball hits either the top of the screen, the sides of the screen, the play
 
 The tile grid is being generated and drawn and the collisions of the ball with the tiles are being checked. The color of the tiles depends on the amount of health they have. When a tile reaches 0 health it is removed.
 
+### Scoreboard
 
-## Planned Features
+The scoreboard is on the top of the screen while the game is playing. It displays the user's points. If the time between collisions with tiles is less than one second, the lesser the time more points one collision will give to the player.
 
-- [x] Draw the arena
-- [x] Add the player's bar
-- [x] Move the bar
-- [x] Draw the ball
-- [x] Move the ball 
-- [x] Add ball collisions and bounces
-- [x] Draw the tiles
-- [x] Add collisions with tiles
-- [x] Add scoreboard
-- [x] Add menus
-- [x] Add leaderboard
-- [x] Add scores to leaderboard
+### Menus
 
-#### Other features that could have been implemented
+Implemented the main menu, pause menu, game over menu and leaderboard menu. The implementation of the menus was made using States, each state representing a menu (or the game).
 
-- [ ] Add player lives
-- [ ] Add shots coming from above to hurt the player
-- [ ] Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
+### Leaderboard
+
+Implemented the leaderboard, whose score list is read from a file, and to which the new scores are added at the end of a game.
+
+### Other features that could be implemented (not implemented)
+
+- Add player lives
+- Add shots coming from above to hurt the player
+- Add special powers (for example: make the ball bigger for a few seconds, make the player bar bigger, increase/decrease the ball velocity)
 
 
 ## Design
@@ -286,12 +283,10 @@ To answer these requirements, we used the *Composite Pattern*.
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfbDCgdy6ZOODX3q86eHpDVQoLWoRwzOpV7dbiaruVwtS8jk7E&usqp=CAU" width="200" height="200"/>
 
-## Consequences
+### Consequences
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfbDCgdy6ZOODX3q86eHpDVQoLWoRwzOpV7dbiaruVwtS8jk7E&usqp=CAU" width="200" height="200"/>
 
-
----
 
 ## Known code smells and refactoring sugestions
 
