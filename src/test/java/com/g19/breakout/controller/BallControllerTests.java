@@ -25,6 +25,7 @@ public class BallControllerTests {
     @Mock private ArenaModel arena;
 
     private BallController ballController;
+    private BallModel ball;
 
 
     @BeforeEach
@@ -33,7 +34,7 @@ public class BallControllerTests {
         Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(new ArrayList<>());
         Mockito.when(collisionChecker.getArena()).thenReturn(arena);
 
-        BallModel ball = new BallModel(new Position(10, 10), 1);
+        ball = new BallModel(new Position(10, 10), 1);
         Mockito.when(arena.getBall()).thenReturn(ball);
 
         ballController = new BallController(collisionChecker);
@@ -43,8 +44,12 @@ public class BallControllerTests {
     public void updateTest() {
 
         BallController ballControllerSpy = Mockito.spy(ballController);
+        List<BallHit> ballHits = new ArrayList<>();
+        ballHits.add(new BallHitHorizontal(ball));
+        Mockito.when(collisionChecker.checkBallCollisions(any(Position.class), any(Dimensions.class))).thenReturn(ballHits);
 
-        assertEquals(ballControllerSpy.update(1000), new Position(10, 9));
+
+        assertEquals(ballControllerSpy.update(1000), new Position(10, 11));
         Mockito.verify(ballControllerSpy, times(1)).updateBallDirection(new Position(10, 9));
     }
 

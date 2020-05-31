@@ -3,6 +3,7 @@ package com.g19.breakout.controller.state;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.MenuController;
 import com.g19.breakout.controller.TextReader;
+import com.g19.breakout.model.GameModel;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ElementModel;
 import com.g19.breakout.model.PlayerModel;
@@ -10,6 +11,9 @@ import com.g19.breakout.view.GameOverView;
 import com.g19.breakout.view.LeaderboardView;
 import com.g19.breakout.view.MainMenuView;
 import com.g19.breakout.view.PauseView;
+import com.sun.tools.javac.util.Pair;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -106,5 +110,38 @@ public class StateTests {
         gameOverGameState.commandP();
         Mockito.verify(gameController, Mockito.times(1)).setState(any(PlayingGameState.class));
 
+    }
+
+    @Property
+    public void writingNameTest(@ForAll String string){
+        StringBuilder stringBuilder = new StringBuilder(string);
+        GameController gameController = Mockito.mock(GameController.class);
+        GameOverView gameOverView = Mockito.mock(GameOverView.class);
+        MenuController menuController = Mockito.mock(MenuController.class);
+        PlayerModel playerModel = new PlayerModel(new Position(10, 10));
+        StateFactory stateFactory = Mockito.mock(StateFactory.class);
+        TextReader textReader = Mockito.mock(TextReader.class);
+        GameModel gameModel = Mockito.mock(GameModel.class);
+
+        Mockito.when(stateFactory.createMainMenuGameState(gameController)).thenReturn(Mockito.mock(MainMenuGameState.class));
+        Mockito.doNothing().when(gameController).setState(any(GameState.class));
+        Mockito.doNothing().when(textReader).startReadingText(20);
+        Mockito.when(textReader.isReadingText()).thenReturn(true);
+        Mockito.when(textReader.getStringBuilder()).thenReturn(stringBuilder);
+        Mockito.when(gameController.getModel()).thenReturn(gameModel);
+        Mockito.doNothing().when(gameModel).addScore(any(Pair.class));
+        Mockito.when(textReader.stopReadingText()).thenReturn(string);
+
+        GameOverGameState gameOverGameState = new GameOverGameState(playerModel, gameOverView, gameController, menuController, stateFactory, textReader);
+
+        gameOverGameState.startReadingPlayerName();
+        assertEquals("_", playerModel.getName());
+
+        gameOverGameState.update(10);
+        String expected = string + "_";
+        assertEquals(expected, playerModel.getName());
+
+        gameOverGameState.commandEnter();
+        assertEquals(string, playerModel.getName());
     }
 }

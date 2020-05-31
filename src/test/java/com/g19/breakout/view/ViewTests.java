@@ -24,13 +24,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
 public class ViewTests {
+
     @Provide
-    Arbitrary<Integer> Between0And500() {
-        return Arbitraries.integers().filter(n -> n > 0 && n < 500);
+    Arbitrary<Integer> Between0And200() {
+        return Arbitraries.integers().filter(n -> n > 0 && n < 200);
     }
 
     @Property
-    public void BackgroundViewTests(@ForAll("Between0And500") int n){
+    public void BackgroundViewTests(@ForAll("Between0And200") int n){
          BackgroundModel model = Mockito.mock(BackgroundModel.class);
          Graphics graphics = Mockito.mock(LanternaAdapter.class);
          Dimensions dimensions = new Dimensions(100, 120);
@@ -57,6 +58,23 @@ public class ViewTests {
     public void LeaderboardViewTests(@ForAll String name, @ForAll @Positive int score){
         Comparator<Pair<String, Integer>> cmp = (p1, p2) -> p2.snd - p1.snd;
          PriorityQueue<Pair<String, Integer>> pq = new PriorityQueue<>(cmp);
+         //adding 16 scores to make sure it only draws 13
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
+         pq.add(new Pair<>(name, score));
          pq.add(new Pair<>(name, score));
 
          Dimensions dimensions = new Dimensions(100, 120);
@@ -67,7 +85,7 @@ public class ViewTests {
         Mockito.doNothing().when(graphics).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
         leaderboardView.drawSelf();
 
-        Mockito.verify(graphics, Mockito.times(3*pq.size())).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
+        Mockito.verify(graphics, Mockito.times(3*Math.min(pq.size(), 13))).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
      }
 
      @Test

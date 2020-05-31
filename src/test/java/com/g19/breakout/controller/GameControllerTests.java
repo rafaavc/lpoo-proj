@@ -88,6 +88,9 @@ public class GameControllerTests {
         long elapsed_time = System.currentTimeMillis() - initial_time;
         long expected_time = 1000/FPS;
         assertTrue(elapsed_time >= expected_time);
-        assertTrue(elapsed_time <= expected_time + 5);
+        assertTrue(elapsed_time <= expected_time + 2);
+        Mockito.verify(view, Mockito.times(1)).draw();
+        Mockito.verify(view, Mockito.times(1)).exit();
+        Mockito.verify(gameControllerSpy, Mockito.times(1)).getNextCommand(any(Transformer.class));
     }
 }

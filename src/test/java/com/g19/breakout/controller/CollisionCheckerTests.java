@@ -1,9 +1,7 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.commands.ballhit.BallHit;
-import com.g19.breakout.controller.commands.ballhit.BallHitBottom;
-import com.g19.breakout.controller.commands.ballhit.BallHitHorizontal;
-import com.g19.breakout.controller.commands.ballhit.BallHitVertical;
+import com.g19.breakout.controller.commands.ballhit.*;
+import com.g19.breakout.model.PlayerModel;
 import com.g19.breakout.model.utilities.Dimensions;
 import com.g19.breakout.model.utilities.Position;
 import com.g19.breakout.model.ArenaModel;
@@ -19,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,10 +64,12 @@ public class CollisionCheckerTests {
 
     @Test
     public void checkBallCollisionsTest(){
-        BallCollisionChecker collisionCheckerSpy = Mockito.spy(collisionChecker);
         Mockito.when(arena.checkHitTile(any(Position.class))).thenReturn(new TileModel(new Position(10, 10), new Dimensions(5, 2), 10, 0));
+        Mockito.when(arena.checkHitPlayer(any(), any())).thenReturn(true);
 
-        collisionCheckerSpy.checkBallCollisions(new Position(10, 10), new Dimensions(1, 1));
+        BallCollisionChecker collisionCheckerSpy = Mockito.spy(collisionChecker);
+
+        assertEquals(BallHitPlayerBar.class, collisionCheckerSpy.checkBallCollisions(new Position(10, 10), new Dimensions(1, 1)).get(0).getClass());
 
         Mockito.verify(arena, times(1)).checkHitPlayer(any(), any());
         Mockito.verify(arena, times(1)).checkHitTile(any());
@@ -83,8 +84,6 @@ public class CollisionCheckerTests {
         Dimensions dimensions = new Dimensions(dx, dy);
 
         List<BallHit> ballHits = collisionChecker.checkBallHitArenaWalls(position, dimensions);
-
-        if (ballHits.isEmpty()) return;
 
         assert(position.getDiscreteY() <= -1 || ballHits.stream().noneMatch((l) -> l.getClass() == BallHitHorizontal.class));
 
