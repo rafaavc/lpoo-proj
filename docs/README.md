@@ -8,7 +8,32 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 ## Quickly jump between topics
 
-***TO BE GENERATED BEFORE DELIVERING***
+* [Quickly jump between topics](#quickly-jump-between-topics)
+* [Features](#features)
+	* [Player Bar](#player-bar)
+	* [Ball](#ball)
+	* [Tiles](#tiles)
+	* [Scoreboard](#scoreboard)
+	* [Menus](#menus)
+	* [Leaderboard](#leaderboard)
+	* [Other features that could be implemented (not implemented)](#other-features-that-could-be-implemented-not-implemented)
+* [Design](#design)
+	* [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
+	* [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
+	* [<em>We want to be able to inject the classes that the View and the Model need to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-view-and-the-model-need-to-create)
+	* [<em>We want to convert enum types to Commands and create States in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-and-create-states-in-a-simple-and-clean-way)
+	* [<em>We want our controllers to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-controllers-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
+	* [<em>We want to implement a state machine to change between menus</em>](#we-want-to-implement-a-state-machine-to-change-between-menus)
+	* [<em>We want to be able to group views and group the grouped views into other views</em>](#we-want-to-be-able-to-group-views-and-group-the-grouped-views-into-other-views)
+* [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
+	* [Long Parameter list](#long-parameter-list)
+	* [Data class](#data-class)
+	* [Middle Man](#middle-man)
+	* [Big Switch Cases](#big-switch-cases)
+	* [Refused Bequest](#refused-bequest)
+	* [Parallel Inheritance Hierarchies](#parallel-inheritance-hierarchies)
+* [Testing](#testing)
+* [Self-evaluation](#self-evaluation)
 
 
 ## Features
