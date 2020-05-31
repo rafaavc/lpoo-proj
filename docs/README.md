@@ -204,7 +204,7 @@ The classes in the diagram can be found in these files:
 - View:
   -  [GameView.Keys](../src/main/java/com/g19/breakout/view/GameView.java#L11)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
-- [Commands](../src/main/java/com/g19/breakout/controller/commands)
+- [GameCommands](../src/main/java/com/g19/breakout/controller/commands/input)
 
 
 #### Consequences

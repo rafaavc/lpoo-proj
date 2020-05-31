@@ -6,7 +6,7 @@ import com.g19.breakout.view.GameView;
 
 
 public class Transformer {
-    public Command toCommand(GameController controller, GameView.Keys key){
+    public GameCommand toCommand(GameController controller, GameView.Keys key){
         switch (key){
             case ARROWLEFT:
                 return new CommandLeft(controller);
