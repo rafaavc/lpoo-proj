@@ -1,6 +1,7 @@
 package com.g19.breakout.controller;
 
 import com.g19.breakout.controller.commands.Command;
+import com.g19.breakout.controller.commands.input.GameCommand;
 import com.g19.breakout.controller.state.State;
 import com.g19.breakout.controller.state.StateFactory;
 import com.g19.breakout.model.utilities.Position;
@@ -79,7 +80,7 @@ public class GameController {
         } else {
             key = view.readInput();
         }
-        Command cmd = transformer.toCommand(this, key);
+        GameCommand cmd = transformer.toCommand(this, key);
         cmd.execute();
     }
 
