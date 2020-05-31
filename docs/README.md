@@ -229,9 +229,9 @@ We used the **State pattern** to solve that problem by having a interface and on
 
 ### Implementation
 
-<img src="MenuStatePattern.png" width="700">
+<img src="StatePattern.png" width="500">
 
-<img src="GameState-StateUML.png" width="700">
+<img src="StateMachine.png" width="500">
 
 Those classes can be found here:
 - [States](../src/main/java/com/g19/breakout/controller/state)
