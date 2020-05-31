@@ -36,22 +36,24 @@ public class ArenaModelTests {
         assert(y <= arena.getDimensions().getDiscreteY() - newDimensions.getDiscreteY() || !arena.isInsideArena(position, newDimensions));
     }
 
-    @Test
-    public void checkHitTileTest(){
+    @Property
+    public void checkHitTileTest(@ForAll int x, @ForAll int y){
 
-        Position position = new Position(this.dimensions.getDiscreteX() / 2., 11);
+        Position position = new Position(x, y);
         List<TileModel> tiles = new ArrayList<>();
         TileModel expectedTile = new TileModel(new Position(this.dimensions.getDiscreteX()/2., 8), new Dimensions(10, 4), 5, 1);
         tiles.add(expectedTile);
-        tiles.add(new TileModel(new Position(this.dimensions.getDiscreteX()/2. + 20, 8), new Dimensions(10, 4), 5, 1));
         arena.setTiles(tiles);
 
         TileModel actualTile = arena.checkHitTile(position);
 
-
-        assertEquals(expectedTile.getLife(), actualTile.getLife());
-        assertEquals(expectedTile.getDimensions(), actualTile.getDimensions());
-        assertEquals(expectedTile.getPosition(), actualTile.getPosition());
+        assert(x >= this.dimensions.getDiscreteX()/2. - 1 || actualTile == null);
+        assert(x <= this.dimensions.getDiscreteX()/2. + 11 || actualTile == null);
+        assert(y >= 8 || actualTile == null);
+        assert(y <= 12 || actualTile == null);
+        assert(actualTile == null || expectedTile.getLife() == actualTile.getLife());
+        assert(actualTile == null || expectedTile.getDimensions() == actualTile.getDimensions());
+        assert(actualTile == null || expectedTile.getPosition() == actualTile.getPosition());
     }
 
     @Test
