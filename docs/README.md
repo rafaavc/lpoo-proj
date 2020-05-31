@@ -171,7 +171,7 @@ We used the **factory pattern** to solve this problem, creating a StateFactory (
 
 *Implementation for the controller commands received from the view*
 
-<img src="FactoryPatternForCommands.png" height="300">
+<img src="FactoryPatternForCommandsAndStates.png" height="450">
 
 The classes in the diagram can be found in these files:
 - View:

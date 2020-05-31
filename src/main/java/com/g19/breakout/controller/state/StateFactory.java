@@ -12,7 +12,7 @@ import com.g19.breakout.view.*;
 import com.g19.breakout.view.factory.ViewFactory;
 
 public class StateFactory {
-    public MainMenuGameState createMainMenuGameState(GameController controller) {
+    public GameState createMainMenuGameState(GameController controller) {
         Dimensions gameDimensions = controller.getModel().getDimensions();
         ViewFactory viewFactory = controller.getView().getViewFactory();
         PlayerModel playerModel = controller.getModel().getModelFactory().createPlayerModel(
@@ -36,7 +36,7 @@ public class StateFactory {
         return new MainMenuGameState(controller, view, menu, playerModel, this);
     }
 
-    public LeaderboardGameState createLeaderboardState(GameController gameController) {
+    public GameState createLeaderboardState(GameController gameController) {
         Dimensions gameDimensions = gameController.getModel().getDimensions();
         ViewFactory viewFactory = gameController.getView().getViewFactory();
         PlayerModel playerModel = gameController.getModel().getModelFactory().createPlayerModel(
@@ -57,7 +57,7 @@ public class StateFactory {
         return new LeaderboardGameState(gameController, view, menu, playerModel, this);
     }
 
-    public PlayingGameState createPlayingGameState(GameController gameController) {
+    public GameState createPlayingGameState(GameController gameController) {
         ArenaModel arena = gameController.getModel().getModelFactory().createArenaModel(gameController.getModel().getDimensions());
         ArenaView arenaView = gameController.getView().getViewFactory().createArenaView(arena, gameController.getView().getGraphics());
 
@@ -66,7 +66,7 @@ public class StateFactory {
         return new PlayingGameState(arenaView, gameController, new BallController(new BallCollisionChecker(arena, tilesController)), tilesController, this);
     }
 
-    public PauseGameState createPauseGameState(GameController controller) {
+    public GameState createPauseGameState(GameController controller) {
         Dimensions gameDimensions = controller.getModel().getDimensions();
 
         PlayingGameState playingGameState = (PlayingGameState) controller.getState();
@@ -93,7 +93,7 @@ public class StateFactory {
         return new PauseGameState(playingGameState, playerModel, pauseView, controller, menu, this);
     }
 
-    public GameOverGameState createGameOverGameState(GameController controller) {
+    public GameState createGameOverGameState(GameController controller) {
         Dimensions gameDimensions = controller.getModel().getDimensions();
 
         PlayingGameState playingGameState = (PlayingGameState) controller.getState();
