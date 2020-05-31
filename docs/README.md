@@ -10,49 +10,21 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 * [Quickly jump between topics](#quickly-jump-between-topics)
 * [Features](#features)
-    * [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
-    * [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
-    * [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
+    * [Player Bar](#player-bar)
+    * [Ball](#ball)
+    * [Tiles](#tiles)
     * [Scoreboard](#scoreboard)
     * [Menus](#menus)
     * [Leaderboard](#leaderboard)
     * [Other features that could be implemented (not implemented)](#other-features-that-could-be-implemented-not-implemented)
 * [Design](#design)
     * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-        * [The problem in context](#the-problem-in-context)
-        * [The pattern](#the-pattern)
-        * [Implementation](#implementation)
-        * [Consequences](#consequences)
     * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-        * [The problem in context](#the-problem-in-context-1)
-        * [The pattern](#the-pattern-1)
-        * [Implementation](#implementation-1)
-        * [Consequences](#consequences-1)
     * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-        * [The problem in context](#the-problem-in-context-2)
-        * [The pattern](#the-pattern-2)
-        * [Implementation](#implementation-2)
-        * [Consequences](#consequences-2)
     * [<em>We want to convert enum types to Commands in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
-        * [The problem in context](#the-problem-in-context-3)
-        * [The pattern](#the-pattern-3)
-        * [Implementation](#implementation-3)
-        * [Consequences](#consequences-3)
     * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-        * [The problem in context](#the-problem-in-context-4)
-        * [The pattern](#the-pattern-4)
-        * [Implementation](#implementation-4)
-        * [Consequences](#consequences-4)
     * [<em>We want to create states to change between menus</em>](#we-want-to-create-states-to-change-between-menus)
-        * [The problem in context](#the-problem-in-context-5)
-        * [The pattern](#the-pattern-5)
-        * [Implementation](#implementation-5)
-        * [Consequences](#consequences-5)
     * [<em>We want to be able to group views and group the grouped views into other views</em>](#we-want-to-be-able-to-group-views-and-group-the-grouped-views-into-other-views)
-        * [The problem in context](#the-problem-in-context-6)
-        * [The pattern](#the-pattern-6)
-        * [Implementation](#implementation-6)
-        * [Consequences](#consequences-6)
 * [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
     * [Big Switch Cases](#big-switch-cases)
 * [Testing](#testing)
@@ -63,12 +35,12 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 All of these features are evident in the [gif above](#lpoo_19---breakout).
 
-### Drawing and moving the player's bar 
+### Player Bar 
 
 The player's bar is being drawn close to the bottom of the screen and in the middle of width of the screen.<br/>
 It can be moved left or right by pressing the left or right arrows on the keyboard.
 
-### Drawing and moving ball with collisions and bounces
+### Ball
 
 The game's ball is being drawn and starts close in the middle of the width of the screen and a bit above the players bar.
 
@@ -76,7 +48,7 @@ The ball will move with time. In the begin it will move right up. The ball chang
 
 If the ball hits either the top of the screen, the sides of the screen, the player bar or the tiles it will bounce from that surface in the correct angle. However, if the ball hits the bottom of the screen, the game is over.
 
-### Drawing and checking collisions with tiles
+### Tiles
 
 The tile grid is being generated and drawn and the collisions of the ball with the tiles are being checked. The color of the tiles depends on the amount of health they have. When a tile reaches 0 health it is removed.
 
@@ -142,14 +114,9 @@ We applied the **Adapter pattern**. This will enable us to have separate classes
 <img src="AdapterPatternGraphics.png" height="200"/>
 
 The classes can be found in these files:
-- View:
-  - [View Interface](../src/main/java/com/g19/breakout/view/View.java)
-  - [ElementView](../src/main/java/com/g19/breakout/view/ElementView.java)
-  - [PlayerView](../src/main/java/com/g19/breakout/view/PlayerView.java)
+- [View](../src/main/java/com/g19/breakout/view)
 - [Graphics](../src/main/java/com/g19/breakout/view/graphics/Graphics.java)
 - [LanternaAdapter](../src/main/java/com/g19/breakout/view/graphics/LanternaAdapter.java)
-
-This files are an example of the pattern, it is used in every [view](../src/main/java/com/g19/breakout/view/View.java) implementation.
 
 #### Consequences
 The use of the Adapter pattern in the current design allows for the following benefits:
@@ -158,41 +125,47 @@ The use of the Adapter pattern in the current design allows for the following be
 
 ---
 
-### *We want to be able to inject the classes that the ArenaView needs to create*
+### *We want to be able to inject the classes that the View and the Model need to create*
 
 #### The problem in context
-The ArenaView was instantiating objects like BallView, PlayerBarView, etc in its constructor. This made it impossible to inject these same classes into ArenaView and violated the Single Responsibility principle for this class (it was creating and drawing the classes). We need something that allows us to solve these issues. 
+The ArenaView was instantiating objects like BallView, PlayerBarView, etc in its constructor. This made it impossible to inject these same classes into ArenaView and violated the Single Responsibility principle for this class (it was creating and drawing the classes). We need something that allows us to solve these issues.<br/>
+Like with the ArenaView, the ArenaModel was instantiating other models, with the same drawbacks. 
 
 #### The pattern
-To solve this problem, we applied the **Abstract Factory** pattern. With this pattern we can use other classes to create the views.
+To solve this problem, we applied the **Abstract Factory** pattern. With this pattern we can use a class to create the views and another to create the models.
 
 #### Implementation
 <img src="AbstractFactoryPattern.png" height="170"/>
 
 The classes in the diagram can be found in these files:
-- [StateFactory](../src/main/java/com/g19/breakout/controller/state/StateFactory.java)
+- [GameView](../src/main/java/com/g19/breakout/view/GameView.java)
 - [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
 - [ViewFactory](../src/main/java/com/g19/breakout/view/factory/ViewFactory.java)
-- [BasicViewFactory](../src/main/java/com/g19/breakout/view/factory/BasicViewFactory.java)
+- [BasicViewFactory](../src/main/java/com/g19/breakout/view/factory/BasicViewFactory.java)<br/><br/>
+- [GameModel](../src/main/java/com/g19/breakout/model/GameModel.java)
+- [ArenaModel](../src/main/java/com/g19/breakout/model/ArenaModel.java)
+- [ModelFactory](../src/main/java/com/g19/breakout/model/factory/ModelFactory.java)
+- [BasicModelFactory](../src/main/java/com/g19/breakout/model/factory/BasicModelFactory.java)
 
 #### Consequences
 
 By using this design pattern:
-- We can inject the factory into the ArenaView, therefore there's the possibility of injecting the BallView, PlayerBarView, etc in the tests (which we do).
-- We remove the responsibility of creating those classes from the ArenaView.
-- If we want we can create more implementations of the ViewFactory interface to create the views differently.
-- In the future, if we want to have alternate versions of the views we only need to create a new factory for them and 'abstractify' the views.
+- We can inject the factories into the classes that need to have other classes created, therefore there's the possibility of injecting the classes we want to inject.
+- We remove the responsibility of instantiating classes from the classes whose responsibility isn't to do that.
+- If we want we can create more implementations of the ViewFactory/ModelFactory interface to create the views/models differently.
+- In the future, if we want to have alternate versions of the views we only need to implement a new factory for them and 'abstractify' the views (the same for the models).
 
 ---
 
-### *We want to convert enum types to Commands in a simple and clean way*
+### *We want to convert enum types to Commands and create States in a simple and clean way*
 
 #### The problem in context
 
-We wan't to maintain the MVC structure while the controller gets information about the view. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes.
+We wan't to maintain the MVC structure while the controller gets information about the view. We need the controller to know which key was pressed, and that's received by the view, but we want the controller to change that info into classes.<br/>
+We also want the states to be able to create other states, however without having to instantiate them (delegating that responsibility to other class).
 
 #### The pattern
-- Factory pattern - at the moment to convert GameView.Keys enum type to Commands
+We used the **factory pattern** to solve this problem, creating a StateFactory (for the states) and a Transformer (for the commands).
 
 #### Implementation
 
@@ -205,17 +178,18 @@ The classes in the diagram can be found in these files:
   -  [GameView.Keys](../src/main/java/com/g19/breakout/view/GameView.java#L11)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
 - [GameCommands](../src/main/java/com/g19/breakout/controller/commands/input)
-
+- [States](../src/main/java/com/g19/breakout/controller/state)
 
 #### Consequences
 
 By using this design pattern in this case:
 - The controller will easily convert the info received from the view and the model into classes used by it.
 - Neither the view or the model will mess the MVC desing pattern already implemented.
+- The states can create the next state without having to instantiate and configure it.
 
 ---
 
-### *We want our ArenaController to not have to worry about which command was given nor which object the ball hit*
+### *We want our controllers to not have to worry about which command was given nor which object the ball hit*
 
 #### The problem in context
 
@@ -229,19 +203,21 @@ We want the ArenaController to execute a command, and update the ball's directio
 <img src="CommandPattern.png" height="300">
 
 Those classes can be found here:
-- [ArenaController](../src/main/java/com/g19/breakout/controller/ArenaController.java#L60)
-- [BallHits](../src/main/java/com/g19/breakout/controller/ball)
-- [Commands](../src/main/java/com/g19/breakout/controller/commands)
+- [GameController](../src/main/java/com/g19/breakout/controller/GameController)
+- [BallController](../src/main/java/com/g19/breakout/controller/BallController)
+- [BallHits](../src/main/java/com/g19/breakout/controller/commands/ballhit)
+- [GameCommands](../src/main/java/com/g19/breakout/controller/commands/input)
+- [Command](../src/main/java/com/g19/breakout/controller/commands/Command.java)
 
 #### Consequences
 
-By using this patter the ArenaController doesn't need to know which type of command it has, it know it has a command and tells it to execute and, depending on the class implementation of the command it will execute in a diferent way.
+By using this pattern the ArenaController doesn't need to know which type of command it has, it know it has a command and tells it to execute and, depending on the class implementation of the command it will execute in a diferent way.
 
 The same can be said to the BallHit abstract class, where it saves some attributes and has a constructor for all of its subclasses and has an abstract method to update the ball's direction.
 
 ---
 
-### *We want to create states to change between menus*
+### *We want to implement a state machine to change between menus*
 
 ### The problem in context
 
@@ -283,9 +259,17 @@ To answer these requirements, we used the *Composite Pattern*.
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfbDCgdy6ZOODX3q86eHpDVQoLWoRwzOpV7dbiaruVwtS8jk7E&usqp=CAU" width="200" height="200"/>
 
+The classes in the diagrams can be found here:
+- [View](../src/main/java/com/g19/breakout/view/View.java)
+- [SuperView](../src/main/java/com/g19/breakout/view/SuperView.java)
+- [MenuButtonView](../src/main/java/com/g19/breakout/view/MenuButtonView.java)
+- [MenuView](../src/main/java/com/g19/breakout/view/MenuView.java)
+- [All views](../src/main/java/com/g19/breakout/view)
+
 ### Consequences
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfbDCgdy6ZOODX3q86eHpDVQoLWoRwzOpV7dbiaruVwtS8jk7E&usqp=CAU" width="200" height="200"/>
+- We can group various views in any way we want, while being able to group view groups with other views, because both of them implement the View interface.
+- After grouping the views, we can draw all of them with a single call to the SuperView draw() function.
 
 
 ## Known code smells and refactoring sugestions
