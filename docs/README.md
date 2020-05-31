@@ -8,27 +8,7 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 ## Quickly jump between topics
 
-* [Quickly jump between topics](#quickly-jump-between-topics)
-* [Features](#features)
-    * [Player Bar](#player-bar)
-    * [Ball](#ball)
-    * [Tiles](#tiles)
-    * [Scoreboard](#scoreboard)
-    * [Menus](#menus)
-    * [Leaderboard](#leaderboard)
-    * [Other features that could be implemented (not implemented)](#other-features-that-could-be-implemented-not-implemented)
-* [Design](#design)
-    * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-    * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-    * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-    * [<em>We want to convert enum types to Commands in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
-    * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-    * [<em>We want to create states to change between menus</em>](#we-want-to-create-states-to-change-between-menus)
-    * [<em>We want to be able to group views and group the grouped views into other views</em>](#we-want-to-be-able-to-group-views-and-group-the-grouped-views-into-other-views)
-* [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
-    * [Big Switch Cases](#big-switch-cases)
-* [Testing](#testing)
-* [Self-evaluation](#self-evaluation)
+***TO BE GENERATED BEFORE DELIVERING***
 
 
 ## Features
@@ -274,11 +254,27 @@ The classes in the diagrams can be found here:
 
 ## Known code smells and refactoring sugestions
 
+### Long Parameter list
+
+Some classes, like GameOverView, GameOverGameState, LeaderboardGameState, MainMenuGameState, PauseGameState and PlayingGameState take 5 to 6 arguments in their constructors, which is above the 3 to 4 maximum recommended amount.
+
+The best solution for this problem, in these cases, would be to "Introduce a Parameter Class". In some cases, the constructors share some of the arguments, so one parameter class could be enough for those. In other cases, the parameter class may not be suitable because the arguments are too unique.
+
+### Data class
+
+Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example the PlayerModel class. It isn't a pure data class, because it has some a function that allows to add points, but it only holds the player's points and name, and lacks more spefific functionality. 
+
+However, as it is part of the MVC, we keep it this way. In the future, to improve on this point, this class could probably gain more functionality, as more features related to the player could be added.
+
+### Middle Man
+
+The classes that extend the GameCommand abstract class can be seen as a middle man, as they delegate their functionality to the state class of the GameController. However, this smell is the result of using the Command Pattern joined with the State Pattern, and there seems to be no other way to do it. 
+
+The existance of this "middle man" allows the controller to execute a given command without even knowing what it will do, and the command to execute its function without having to care about which is the current state in the controller.
+
 ### Big Switch Cases
 
-In the Transformer class we have 2 methods and both of them have switch cases, and the one on the toBallHit() method its 22 lines long.
-
-Even though we know that is a code smell, we think that there's no better way to do what this methods do without those switches.
+In the Transformer class we have one method with switch cases. Even though we know that is a code smell, we think that there's no better way to do what this method does without those switches.
 
 ## Testing
 
