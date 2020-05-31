@@ -64,7 +64,13 @@ public class PlayingGameStateTests {
 
         ball.setDirection(new Direction(0, 0));
         playingGameStateSpy.update(100);
-        Mockito.verify(playingGameStateSpy, times(1)).gameOver(anyBoolean());
+        Mockito.verify(playingGameStateSpy, times(1)).gameOver(true);
+
+
+        Mockito.when(tiles.isEmpty()).thenReturn(true);
+        playingGameStateSpy.update(100);
+        Mockito.verify(playingGameStateSpy, times(1)).gameOver(false);
+
     }
 
 
