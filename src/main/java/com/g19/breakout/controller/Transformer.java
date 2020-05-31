@@ -1,6 +1,5 @@
 package com.g19.breakout.controller;
 
-import com.g19.breakout.controller.commands.*;
 import com.g19.breakout.controller.commands.input.*;
 import com.g19.breakout.view.GameView;
 

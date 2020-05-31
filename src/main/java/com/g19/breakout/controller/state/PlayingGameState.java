@@ -32,8 +32,8 @@ public class PlayingGameState extends GameState {
         moveElement(ballController.update(elapsedTime), arena.getBall());
 
         tilesController.update();
-
-        if (arena.getBall().getDirection().equals(new Direction(0, 0))) gameOver();
+        if (arena.getBall().getDirection().equals(new Direction(0, 0))) gameOver(true);
+        if (arena.getTiles().isEmpty()) gameOver(false);
     }
 
     public void moveElement(Position position, ElementModel element) {
@@ -42,8 +42,8 @@ public class PlayingGameState extends GameState {
         }
     }
 
-    public void gameOver() {
-        controller.setState(stateFactory.createGameOverGameState(controller));
+    public void gameOver(boolean lost) {
+        controller.setState(stateFactory.createGameOverGameState(controller, lost));
     }
 
     @Override

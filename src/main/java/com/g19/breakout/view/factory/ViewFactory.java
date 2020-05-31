@@ -20,7 +20,7 @@ public interface ViewFactory {
     MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions);
     LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions, PriorityQueue<Pair<String, Integer>> lb);
     PauseView createPauseView(Graphics graphics, Dimensions gameDimensions);
-    GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel);
+    GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel, boolean lost);
     MenuView createMenuView(Graphics graphics, Dimensions dimensions, Position position);
     MenuButtonView createMenuButtonView(String text, String color, Graphics graphics);
     BackgroundView createBackgroundView(Graphics graphics, GameModel gameModel);
