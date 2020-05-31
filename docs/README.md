@@ -257,7 +257,7 @@ To answer these requirements, we used the *Composite Pattern*.
 
 ### Implementation
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfbDCgdy6ZOODX3q86eHpDVQoLWoRwzOpV7dbiaruVwtS8jk7E&usqp=CAU" width="200" height="200"/>
+<img src="CompositePattern.png" width="500"/>
 
 The classes in the diagrams can be found here:
 - [View](../src/main/java/com/g19/breakout/view/View.java)
