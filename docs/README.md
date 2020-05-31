@@ -8,7 +8,6 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 ## Quickly jump between topics
 
-* [Quickly jump between topics](#quickly-jump-between-topics)
 * [Features](#features)
 	* [Player Bar](#player-bar)
 	* [Ball](#ball)
