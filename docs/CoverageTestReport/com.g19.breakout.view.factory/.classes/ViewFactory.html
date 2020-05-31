@@ -23,22 +23,13 @@
 <h1>Coverage Summary for Class: ViewFactory (com.g19.breakout.view.factory)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
 </tr>
-  <tr>
-    <td class="name">ViewFactory$MockitoMock$1064090506</td>
-  </tr>
-  <tr>
-    <td class="name">ViewFactory$MockitoMock$1064090506$auxiliary$F2wbiRCH</td>
-  </tr>
-  <tr>
-    <td class="name">ViewFactory$MockitoMock$1064090506$auxiliary$L4bYdDyS</td>
-  </tr>
 <tr>
-  <td class="name"><strong>total</strong></td>
+  <td class="name">ViewFactory</td>
 </tr>
+
 </table>
 
 <br/>
@@ -47,29 +38,38 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.view.factory;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.g19.breakout.model.ArenaModel;
-<i>4</i>&nbsp;import com.g19.breakout.model.BallModel;
-<i>5</i>&nbsp;import com.g19.breakout.model.PlayerModel;
-<i>6</i>&nbsp;import com.g19.breakout.model.TileModel;
-<i>7</i>&nbsp;import com.g19.breakout.view.ArenaView;
-<i>8</i>&nbsp;import com.g19.breakout.view.BallView;
-<i>9</i>&nbsp;import com.g19.breakout.view.PlayerView;
-<i>10</i>&nbsp;import com.g19.breakout.view.TilesView;
-<i>11</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
+<i>3</i>&nbsp;import com.g19.breakout.model.utilities.Dimensions;
+<i>4</i>&nbsp;import com.g19.breakout.model.utilities.Position;
+<i>5</i>&nbsp;import com.g19.breakout.model.*;
+<i>6</i>&nbsp;import com.g19.breakout.view.*;
+<i>7</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
+<i>8</i>&nbsp;import com.sun.tools.javac.util.Pair;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;import java.util.PriorityQueue;
 <i>12</i>&nbsp;
 <i>13</i>&nbsp;
 <i>14</i>&nbsp;public interface ViewFactory {
 <i>15</i>&nbsp;    BallView createBallView(BallModel ball, Graphics graphics);
-<i>16</i>&nbsp;    PlayerBarView createPlayerBarView(PlayerBarModel playerBar, Graphics graphics);
-<i>17</i>&nbsp;    TilesView createTilesView(TileModel tile, Graphics graphics);
-<i>18</i>&nbsp;    ArenaView createArenaView(ArenaModel arena, Graphics graphics);
-<i>19</i>&nbsp;}
+<i>16</i>&nbsp;    PlayerView createPlayerView(PlayerModel playerBar, Graphics graphics);
+<i>17</i>&nbsp;    TilesView createTilesView(List&lt;TileModel&gt; tiles, Graphics graphics);
+<i>18</i>&nbsp;    ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics);
+<i>19</i>&nbsp;    ArenaView createArenaView(ArenaModel arena, Graphics graphics);
+<i>20</i>&nbsp;    MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions);
+<i>21</i>&nbsp;    LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions, PriorityQueue&lt;Pair&lt;String, Integer&gt;&gt; lb);
+<i>22</i>&nbsp;    PauseView createPauseView(Graphics graphics, Dimensions gameDimensions);
+<i>23</i>&nbsp;    GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel, boolean lost);
+<i>24</i>&nbsp;    MenuView createMenuView(Graphics graphics, Dimensions dimensions, Position position);
+<i>25</i>&nbsp;    MenuButtonView createMenuButtonView(String text, String color, Graphics graphics);
+<i>26</i>&nbsp;    BackgroundView createBackgroundView(Graphics graphics, GameModel gameModel);
+<i>27</i>&nbsp;    GameView createGameView(Graphics graphics, GameModel model);
+<i>28</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-05-03 15:57</div>
+    <div style="float:right;">generated on 2020-05-31 22:22</div>
 </div>
 </body>
 </html>

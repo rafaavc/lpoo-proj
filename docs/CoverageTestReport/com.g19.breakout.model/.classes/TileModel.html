@@ -39,61 +39,67 @@
   <td class="name">TileModel</td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    80%
   </span>
   <span class="absValue">
-    (3/ 3)
+    (4/ 5)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    88%
   </span>
   <span class="absValue">
-    (6/ 6)
+    (22/ 25)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535</td>
+    <td class="name">TileModel$MockitoMock$1667803497</td>
   </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535$auxiliary$3B7EtFIY</td>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$11qcJR49</td>
   </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535$auxiliary$CDgxxueJ</td>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$Amwj8ovX</td>
   </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535$auxiliary$EcFfLfwP</td>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$FI7kIfND</td>
   </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535$auxiliary$LqW2cKMh</td>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$KbNNNIZN</td>
   </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535$auxiliary$SKJQfdYj</td>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$mEzS3O6b</td>
   </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535$auxiliary$w4f6SFDl</td>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$o1Lv60ZX</td>
   </tr>
   <tr>
-    <td class="name">TileModel$MockitoMock$376500535$auxiliary$X5vZXVWM</td>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$OmCniEWQ</td>
+  </tr>
+  <tr>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$RX5FDPzP</td>
+  </tr>
+  <tr>
+    <td class="name">TileModel$MockitoMock$1667803497$auxiliary$YSoMbL1K</td>
   </tr>
 <tr>
   <td class="name"><strong>total</strong></td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    80%
   </span>
   <span class="absValue">
-    (3/ 3)
+    (4/ 5)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    88%
   </span>
   <span class="absValue">
-    (6/ 6)
+    (22/ 25)
   </span>
 </td>
 </tr>
@@ -105,33 +111,67 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.model;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.g19.breakout.elements.Dimensions;
-<i>4</i>&nbsp;import com.g19.breakout.elements.Position;
+<i>3</i>&nbsp;import com.g19.breakout.model.utilities.Dimensions;
+<i>4</i>&nbsp;import com.g19.breakout.model.utilities.Position;
 <i>5</i>&nbsp;
-<i>6</i>&nbsp;public class TileModel extends ElementModel {
-<i>7</i>&nbsp;    int life;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;import java.util.List;
 <i>8</i>&nbsp;
-<i>9</i>&nbsp;    public TileModel(Position position, Dimensions dim, int life) {
-<b class="fc"><i>10</i>&nbsp;        super(position, dim);</b>
-<b class="fc"><i>11</i>&nbsp;        this.life = life;</b>
-<b class="fc"><i>12</i>&nbsp;    }</b>
-<i>13</i>&nbsp;
-<i>14</i>&nbsp;    // returns true if hit killed the tile
-<i>15</i>&nbsp;    public boolean hit() {
-<b class="fc"><i>16</i>&nbsp;        life--;</b>
-<b class="fc"><i>17</i>&nbsp;        return life == 0;</b>
-<i>18</i>&nbsp;    }
-<i>19</i>&nbsp;
-<i>20</i>&nbsp;    public int getLife() {
-<b class="fc"><i>21</i>&nbsp;        return life;</b>
-<i>22</i>&nbsp;    }
-<i>23</i>&nbsp;}
+<i>9</i>&nbsp;public class TileModel extends ElementModel {
+<i>10</i>&nbsp;    int life, horizontalIndex;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    public TileModel(Position position, Dimensions dim, int life, int horizontalIndex) {
+<b class="fc"><i>13</i>&nbsp;        super(position, dim);</b>
+<b class="fc"><i>14</i>&nbsp;        this.life = life;</b>
+<b class="fc"><i>15</i>&nbsp;        this.horizontalIndex = horizontalIndex;</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    static public List&lt;TileModel&gt; createTileArray(int nHorizontal, int nVertical, ArenaModel arena) {
+<i>19</i>&nbsp;        int horizontalFreeSpace, horizontalFreeSpaceEach, verticalFreeSpaceEach, tileWidth, marginBetweenTiles, margin, tileHeight;
+<i>20</i>&nbsp;
+<b class="fc"><i>21</i>&nbsp;        horizontalFreeSpace = arena.getDimensions().getDiscreteX();</b>
+<b class="fc"><i>22</i>&nbsp;        horizontalFreeSpaceEach = horizontalFreeSpace/nHorizontal;</b>
+<b class="fc"><i>23</i>&nbsp;        verticalFreeSpaceEach = 5;</b>
+<b class="fc"><i>24</i>&nbsp;        marginBetweenTiles = 4;</b>
+<b class="fc"><i>25</i>&nbsp;        tileWidth = horizontalFreeSpaceEach-marginBetweenTiles;</b>
+<b class="fc"><i>26</i>&nbsp;        tileHeight = verticalFreeSpaceEach-(marginBetweenTiles/2);</b>
+<i>27</i>&nbsp;
+<b class="fc"><i>28</i>&nbsp;        margin = (arena.getDimensions().getDiscreteX() - horizontalFreeSpaceEach*nHorizontal + marginBetweenTiles)/2;</b>
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;        if (tileWidth%2 != 0) {</b>
+<b class="nc"><i>31</i>&nbsp;            tileWidth--;</b>
+<b class="nc"><i>32</i>&nbsp;            margin++;</b>
+<i>33</i>&nbsp;        }
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        List&lt;TileModel&gt; tiles = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>36</i>&nbsp;        for (int i = 0; i &lt; nHorizontal; i++) {</b>
+<b class="fc"><i>37</i>&nbsp;            for (int j = 0; j &lt; nVertical; j++) {</b>
+<b class="fc"><i>38</i>&nbsp;                Position pos = new Position(margin + tileWidth/2. + i*horizontalFreeSpaceEach, margin/2. + j*verticalFreeSpaceEach);</b>
+<b class="fc"><i>39</i>&nbsp;                Dimensions dim = new Dimensions(tileWidth, tileHeight);</b>
+<b class="fc"><i>40</i>&nbsp;                tiles.add(new TileModel(pos, dim, 2 + nVertical - j, i));</b>
+<i>41</i>&nbsp;            }
+<i>42</i>&nbsp;        }
+<b class="fc"><i>43</i>&nbsp;        return tiles;</b>
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public void hit() {
+<b class="fc"><i>47</i>&nbsp;        life--;</b>
+<b class="fc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    public int getHorizontalIndex() {
+<b class="nc"><i>51</i>&nbsp;        return horizontalIndex;</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public int getLife() {
+<b class="fc"><i>55</i>&nbsp;        return life;</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-05-03 15:57</div>
+    <div style="float:right;">generated on 2020-05-31 22:22</div>
 </div>
 </body>
 </html>

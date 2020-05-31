@@ -61,7 +61,7 @@
     0%
   </span>
   <span class="absValue">
-    (0/ 5)
+    (0/ 6)
   </span>
 </td>
 </tr>
@@ -74,35 +74,43 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.g19.breakout.controller.ArenaController;
-<i>4</i>&nbsp;import com.g19.breakout.controller.Transformer;
-<i>5</i>&nbsp;import com.g19.breakout.controller.Chronometer;
-<i>6</i>&nbsp;import com.g19.breakout.elements.Dimensions;
-<i>7</i>&nbsp;import com.g19.breakout.view.factory.BasicViewFactory;
-<i>8</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
-<i>9</i>&nbsp;import com.g19.breakout.view.graphics.LanternaAdapter;
-<i>10</i>&nbsp;import com.g19.breakout.model.ArenaModel;
-<i>11</i>&nbsp;import com.g19.breakout.view.ArenaView;
-<i>12</i>&nbsp;
-<i>13</i>&nbsp;import java.io.IOException;
-<i>14</i>&nbsp;
-<b class="nc"><i>15</i>&nbsp;public class Game {</b>
-<i>16</i>&nbsp;    public static void main(String[] args) throws IOException {
-<b class="nc"><i>17</i>&nbsp;        ArenaModel arena = new ArenaModel(new Dimensions(120, 50));</b>
+<i>3</i>&nbsp;import com.g19.breakout.controller.FileManager;
+<i>4</i>&nbsp;import com.g19.breakout.controller.GameController;
+<i>5</i>&nbsp;import com.g19.breakout.controller.Transformer;
+<i>6</i>&nbsp;import com.g19.breakout.controller.state.StateFactory;
+<i>7</i>&nbsp;import com.g19.breakout.controller.Chronometer;
+<i>8</i>&nbsp;import com.g19.breakout.model.utilities.Dimensions;
+<i>9</i>&nbsp;import com.g19.breakout.model.BackgroundModel;
+<i>10</i>&nbsp;import com.g19.breakout.model.GameModel;
+<i>11</i>&nbsp;import com.g19.breakout.model.factory.BasicModelFactory;
+<i>12</i>&nbsp;import com.g19.breakout.view.GameView;
+<i>13</i>&nbsp;import com.g19.breakout.view.factory.BasicViewFactory;
+<i>14</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
+<i>15</i>&nbsp;import com.g19.breakout.view.graphics.LanternaAdapter;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import java.io.IOException;
 <i>18</i>&nbsp;
-<b class="nc"><i>19</i>&nbsp;        ArenaView view = new BasicViewFactory().createArenaView(arena, new LanternaAdapter(arena.getDimensions()));</b>
-<i>20</i>&nbsp;
-<b class="nc"><i>21</i>&nbsp;        ArenaController controller = new ArenaController(arena, view);</b>
-<i>22</i>&nbsp;
-<b class="nc"><i>23</i>&nbsp;        controller.start(new Transformer(), new Chronometer());</b>
-<i>24</i>&nbsp;    }
-<i>25</i>&nbsp;}
+<b class="nc"><i>19</i>&nbsp;public class Game {</b>
+<i>20</i>&nbsp;    public static void main(String[] args) throws IOException, InterruptedException {
+<i>21</i>&nbsp;        //model
+<b class="nc"><i>22</i>&nbsp;        GameModel model = new BasicModelFactory().createGameModel(new Dimensions(120, 50));</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;        //view
+<b class="nc"><i>25</i>&nbsp;        Graphics graphics = new LanternaAdapter(model.getDimensions());</b>
+<b class="nc"><i>26</i>&nbsp;        GameView view = new BasicViewFactory().createGameView(graphics, model);</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;        //controller
+<b class="nc"><i>29</i>&nbsp;        GameController controller = new GameController(view, model, new Chronometer(), new StateFactory(), 60);</b>
+<i>30</i>&nbsp;
+<b class="nc"><i>31</i>&nbsp;        controller.start(new Transformer(), new FileManager());</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-05-03 15:57</div>
+    <div style="float:right;">generated on 2020-05-31 22:22</div>
 </div>
 </body>
 </html>

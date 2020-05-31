@@ -1,0 +1,179 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BallCollisionChecker</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BallCollisionChecker (com.g19.breakout.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BallCollisionChecker</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.3%
+  </span>
+  <span class="absValue">
+    (26/ 27)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">BallCollisionChecker$MockitoMock$1705402850</td>
+  </tr>
+  <tr>
+    <td class="name">BallCollisionChecker$MockitoMock$1705402850$auxiliary$8uWj3c7F</td>
+  </tr>
+  <tr>
+    <td class="name">BallCollisionChecker$MockitoMock$1705402850$auxiliary$aCTdSQu1</td>
+  </tr>
+  <tr>
+    <td class="name">BallCollisionChecker$MockitoMock$1705402850$auxiliary$K7R8e39T</td>
+  </tr>
+  <tr>
+    <td class="name">BallCollisionChecker$MockitoMock$1705402850$auxiliary$n2lmk5KQ</td>
+  </tr>
+  <tr>
+    <td class="name">BallCollisionChecker$MockitoMock$1705402850$auxiliary$r3sRU73K</td>
+  </tr>
+  <tr>
+    <td class="name">BallCollisionChecker$MockitoMock$1705402850$auxiliary$XOR8QOCj</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.3%
+  </span>
+  <span class="absValue">
+    (26/ 27)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.controller.commands.ballhit.*;
+<i>4</i>&nbsp;import com.g19.breakout.model.utilities.Dimensions;
+<i>5</i>&nbsp;import com.g19.breakout.model.utilities.Position;
+<i>6</i>&nbsp;import com.g19.breakout.model.ArenaModel;
+<i>7</i>&nbsp;import com.g19.breakout.model.BallModel;
+<i>8</i>&nbsp;import com.g19.breakout.model.TileModel;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.ArrayList;
+<i>11</i>&nbsp;import java.util.List;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class BallCollisionChecker {
+<i>15</i>&nbsp;    private final ArenaModel arena;
+<i>16</i>&nbsp;    private final TilesController tilesController;
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;    public BallCollisionChecker(ArenaModel arena, TilesController tilesController) {</b>
+<b class="fc"><i>19</i>&nbsp;        this.arena = arena;</b>
+<b class="fc"><i>20</i>&nbsp;        this.tilesController = tilesController;</b>
+<b class="fc"><i>21</i>&nbsp;    }</b>
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    public List&lt;BallHit&gt; checkBallCollisions(Position position, Dimensions dimensions) {
+<b class="fc"><i>24</i>&nbsp;        BallModel ball = arena.getBall();</b>
+<i>25</i>&nbsp;
+<b class="fc"><i>26</i>&nbsp;        List&lt;BallHit&gt; ballHits = checkBallHitArenaWalls(position, dimensions);</b>
+<i>27</i>&nbsp;
+<b class="fc"><i>28</i>&nbsp;        if (arena.checkHitPlayer(position, arena.getPlayer())) ballHits.add(new BallHitPlayerBar(ball, arena.getPlayer()));</b>
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;        TileModel tile = arena.checkHitTile(position);</b>
+<i>31</i>&nbsp;
+<b class="fc"><i>32</i>&nbsp;        if (tile != null) {</b>
+<b class="fc"><i>33</i>&nbsp;            ballHits.add(checkHitTopOrSideTile(tile));</b>
+<b class="fc"><i>34</i>&nbsp;            tilesController.tileWasHit(tile, arena.getPlayer());</b>
+<i>35</i>&nbsp;        }
+<i>36</i>&nbsp;
+<b class="fc"><i>37</i>&nbsp;        return ballHits;</b>
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public List&lt;BallHit&gt; checkBallHitArenaWalls(Position position, Dimensions dimensions) {
+<b class="fc"><i>41</i>&nbsp;        BallModel ball = arena.getBall();</b>
+<b class="fc"><i>42</i>&nbsp;        List&lt;BallHit&gt; ballHits = new ArrayList&lt;&gt;();</b>
+<i>43</i>&nbsp;
+<b class="fc"><i>44</i>&nbsp;        if (position.getDiscreteY() &lt;= -1) ballHits.add(new BallHitHorizontal(ball));</b>
+<b class="fc"><i>45</i>&nbsp;        if (position.getDiscreteY() &gt;= arena.getDimensions().getDiscreteY() - dimensions.getDiscreteY() + 1) ballHits.add(new BallHitBottom(ball));</b>
+<i>46</i>&nbsp;
+<b class="fc"><i>47</i>&nbsp;        if (position.getDiscreteX() &lt;= dimensions.getDiscreteX()/2. - 1 ||</b>
+<b class="fc"><i>48</i>&nbsp;                position.getDiscreteX() &gt;= arena.getDimensions().getDiscreteX() - dimensions.getDiscreteX()/2. + 1) ballHits.add(new BallHitVertical(ball));</b>
+<i>49</i>&nbsp;
+<b class="fc"><i>50</i>&nbsp;        return ballHits;</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    protected BallHit checkHitTopOrSideTile(TileModel tile) {
+<b class="fc"><i>54</i>&nbsp;        Position tilePos = tile.getPosition();</b>
+<b class="fc"><i>55</i>&nbsp;        Position prevPos = arena.getBall().getPosition();</b>
+<i>56</i>&nbsp;
+<b class="fc"><i>57</i>&nbsp;        int ballHWidth = arena.getBall().getDimensions().getDiscreteX()/2;</b>
+<b class="fc"><i>58</i>&nbsp;        int tileHWidth = tile.getDimensions().getDiscreteX()/2;</b>
+<i>59</i>&nbsp;
+<b class="fc"><i>60</i>&nbsp;        if (prevPos.getDiscreteX() + ballHWidth == tilePos.getDiscreteX() - tileHWidth ||</b>
+<b class="fc"><i>61</i>&nbsp;                prevPos.getDiscreteX() - ballHWidth == tilePos.getDiscreteX() + tileHWidth) return new BallHitVertical(arena.getBall());</b>
+<b class="fc"><i>62</i>&nbsp;        return new BallHitHorizontal(arena.getBall());</b>
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    public ArenaModel getArena() {
+<b class="nc"><i>66</i>&nbsp;        return arena;</b>
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 22:22</div>
+</div>
+</body>
+</html>

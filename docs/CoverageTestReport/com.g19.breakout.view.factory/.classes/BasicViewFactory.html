@@ -53,7 +53,7 @@
     0%
   </span>
   <span class="absValue">
-    (0/ 5)
+    (0/ 14)
   </span>
 </td>
 <td class="coverageStat">
@@ -61,7 +61,7 @@
     0%
   </span>
   <span class="absValue">
-    (0/ 5)
+    (0/ 23)
   </span>
 </td>
 </tr>
@@ -74,36 +74,79 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.view.factory;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.g19.breakout.model.ArenaModel;
-<i>4</i>&nbsp;import com.g19.breakout.model.BallModel;
-<i>5</i>&nbsp;import com.g19.breakout.model.PlayerModel;
-<i>6</i>&nbsp;import com.g19.breakout.model.TileModel;
-<i>7</i>&nbsp;import com.g19.breakout.view.ArenaView;
-<i>8</i>&nbsp;import com.g19.breakout.view.BallView;
-<i>9</i>&nbsp;import com.g19.breakout.view.PlayerView;
-<i>10</i>&nbsp;import com.g19.breakout.view.TilesView;
-<i>11</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
+<i>3</i>&nbsp;import com.g19.breakout.model.utilities.Dimensions;
+<i>4</i>&nbsp;import com.g19.breakout.model.utilities.Position;
+<i>5</i>&nbsp;import com.g19.breakout.model.*;
+<i>6</i>&nbsp;import com.g19.breakout.view.*;
+<i>7</i>&nbsp;import com.g19.breakout.view.graphics.Graphics;
+<i>8</i>&nbsp;import com.sun.tools.javac.util.Pair;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;import java.util.PriorityQueue;
 <i>12</i>&nbsp;
 <b class="nc"><i>13</i>&nbsp;public class BasicViewFactory implements ViewFactory {</b>
-<i>14</i>&nbsp;    public BallView createBallView(BallModel ball, Graphics graphics) {
-<b class="nc"><i>15</i>&nbsp;        return new BallView(ball, graphics, &quot;#0000ff&quot;, &#39;█&#39;);</b>
-<i>16</i>&nbsp;    }
-<i>17</i>&nbsp;    public PlayerBarView createPlayerBarView(PlayerBarModel playerBar, Graphics graphics) {
-<b class="nc"><i>18</i>&nbsp;        return new PlayerBarView(playerBar, graphics, &quot;#ffffff&quot;, &#39;█&#39;);</b>
-<i>19</i>&nbsp;    }
-<i>20</i>&nbsp;    public TilesView createTilesView(TileModel tile, Graphics graphics) {
-<b class="nc"><i>21</i>&nbsp;        return new TilesView(tile, graphics, &quot;#ff0000&quot;, &#39;█&#39;);</b>
-<i>22</i>&nbsp;    }
-<i>23</i>&nbsp;    public ArenaView createArenaView(ArenaModel arena, Graphics graphics) {
-<b class="nc"><i>24</i>&nbsp;        return new ArenaView(arena, graphics, this);</b>
-<i>25</i>&nbsp;    }
-<i>26</i>&nbsp;}
+<b class="nc"><i>14</i>&nbsp;    private final String backgroundColor = &quot;#0f0f0f&quot;;</b>
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    public PauseView createPauseView(Graphics graphics, Dimensions gameDimensions) {
+<b class="nc"><i>17</i>&nbsp;        return new PauseView(graphics, gameDimensions, backgroundColor);</b>
+<i>18</i>&nbsp;    }
+<i>19</i>&nbsp;    public MainMenuView createMainMenuView(Graphics graphics, Dimensions gameDimensions) {
+<b class="nc"><i>20</i>&nbsp;        return new MainMenuView(graphics, gameDimensions, backgroundColor);</b>
+<i>21</i>&nbsp;    }
+<i>22</i>&nbsp;    public BackgroundView createBackgroundView(Graphics graphics, GameModel model) {
+<b class="nc"><i>23</i>&nbsp;        return new BackgroundView(graphics, model, backgroundColor);</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;    public LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions, PriorityQueue&lt;Pair&lt;String, Integer&gt;&gt; lb) {
+<b class="nc"><i>26</i>&nbsp;        return new LeaderboardView(graphics, gameDimensions, lb, backgroundColor);</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;    public GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel, boolean lost) {
+<i>29</i>&nbsp;        String phrase;
+<b class="nc"><i>30</i>&nbsp;        if (lost) {</b>
+<b class="nc"><i>31</i>&nbsp;            phrase = &quot;Game Over&quot;;</b>
+<i>32</i>&nbsp;        } else {
+<b class="nc"><i>33</i>&nbsp;            phrase = &quot;You beat the game! Let&#39;s see where you are in the leaderboard&quot;;</b>
+<i>34</i>&nbsp;        }
+<b class="nc"><i>35</i>&nbsp;        return new GameOverView(graphics, gameDimensions, playerModel, backgroundColor, phrase);</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;    public MenuView createMenuView(Graphics graphics, Dimensions dimensions, Position position) {
+<b class="nc"><i>38</i>&nbsp;        return new MenuView(graphics, dimensions, position);</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;    public MenuButtonView createMenuButtonView(String text, String color, Graphics graphics) {
+<b class="nc"><i>41</i>&nbsp;        return new MenuButtonView(text, color, graphics);</b>
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;    public BallView createBallView(BallModel ball, Graphics graphics) {
+<b class="nc"><i>44</i>&nbsp;        return new BallView(ball, graphics, &quot;#0000ff&quot;, &#39;█&#39;);</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;    public PlayerView createPlayerView(PlayerModel playerBar, Graphics graphics) {
+<b class="nc"><i>47</i>&nbsp;        return new PlayerView(playerBar, graphics, &quot;#ffffff&quot;, &#39;█&#39;);</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;    public TilesView createTilesView(List&lt;TileModel&gt; tiles, Graphics graphics) {
+<b class="nc"><i>50</i>&nbsp;        return new TilesView(tiles, graphics, &quot;#ff0000&quot;, &#39;█&#39;);</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;    public ScoreboardView createScoreboardView(PlayerModel player, Graphics graphics) {
+<b class="nc"><i>53</i>&nbsp;        return new ScoreboardView(graphics, player);</b>
+<i>54</i>&nbsp;    }
+<i>55</i>&nbsp;    public ArenaView createArenaView(ArenaModel arena, Graphics graphics) {
+<b class="nc"><i>56</i>&nbsp;        ArenaView view = new ArenaView(graphics, arena);</b>
+<i>57</i>&nbsp;
+<b class="nc"><i>58</i>&nbsp;        view.addView(createBallView(arena.getBall(), graphics));</b>
+<b class="nc"><i>59</i>&nbsp;        view.addView(createPlayerView(arena.getPlayer(), graphics));</b>
+<b class="nc"><i>60</i>&nbsp;        view.addView(createTilesView(arena.getTiles(), graphics));</b>
+<b class="nc"><i>61</i>&nbsp;        view.addView(createScoreboardView(arena.getPlayer(), graphics));</b>
+<i>62</i>&nbsp;
+<b class="nc"><i>63</i>&nbsp;        return view;</b>
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    public GameView createGameView(Graphics graphics, GameModel model) {
+<b class="nc"><i>67</i>&nbsp;        return new GameView(graphics, this, model);</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-05-03 15:57</div>
+    <div style="float:right;">generated on 2020-05-31 22:22</div>
 </div>
 </body>
 </html>

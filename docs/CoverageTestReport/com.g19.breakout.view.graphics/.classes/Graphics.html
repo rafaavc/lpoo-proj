@@ -28,13 +28,13 @@
   <th class="name">Class</th>
 </tr>
   <tr>
-    <td class="name">Graphics$MockitoMock$374769069</td>
+    <td class="name">Graphics$MockitoMock$604665743</td>
   </tr>
   <tr>
-    <td class="name">Graphics$MockitoMock$374769069$auxiliary$R1Fr6xsR</td>
+    <td class="name">Graphics$MockitoMock$604665743$auxiliary$hmhIEPuS</td>
   </tr>
   <tr>
-    <td class="name">Graphics$MockitoMock$374769069$auxiliary$Vnx7B3GJ</td>
+    <td class="name">Graphics$MockitoMock$604665743$auxiliary$JvGxb9Wq</td>
   </tr>
 <tr>
   <td class="name"><strong>total</strong></td>
@@ -47,9 +47,9 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.view.graphics;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.g19.breakout.elements.Position;
-<i>4</i>&nbsp;import com.g19.breakout.model.ElementModel;
-<i>5</i>&nbsp;import com.g19.breakout.view.ArenaView;
+<i>3</i>&nbsp;import com.g19.breakout.model.utilities.Dimensions;
+<i>4</i>&nbsp;import com.g19.breakout.model.utilities.Position;
+<i>5</i>&nbsp;import com.g19.breakout.view.GameView;
 <i>6</i>&nbsp;
 <i>7</i>&nbsp;import java.io.IOException;
 <i>8</i>&nbsp;
@@ -58,16 +58,21 @@
 <i>11</i>&nbsp;    void stopDrawing() throws IOException;
 <i>12</i>&nbsp;    void drawString(Position pos, String text, String foreColor);
 <i>13</i>&nbsp;    void drawCenteredString(Position pos, String text, String foreColor);
-<i>14</i>&nbsp;    void drawRectangle(Position leftUpperCorner, Position size, char fill, String backColor);
-<i>15</i>&nbsp;    ArenaView.Keys readInput() throws IOException;
-<i>16</i>&nbsp;}
-<i>17</i>&nbsp;
+<i>14</i>&nbsp;    void drawString(Position pos, String text, String foreColor, String backColor);
+<i>15</i>&nbsp;    void drawCenteredString(Position pos, String text, String foreColor, String backColor);
+<i>16</i>&nbsp;    void drawRectangle(Position leftUpperCorner, Dimensions size, char fill, String backColor);
+<i>17</i>&nbsp;    void exit() throws IOException;
+<i>18</i>&nbsp;    Position setOffset(Position offset);
+<i>19</i>&nbsp;    GameView.Keys readInput() throws IOException;
+<i>20</i>&nbsp;    GameView.Keys readTextInput(StringBuilder sb) throws IOException;
+<i>21</i>&nbsp;}
+<i>22</i>&nbsp;
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-05-03 15:57</div>
+    <div style="float:right;">generated on 2020-05-31 22:22</div>
 </div>
 </body>
 </html>

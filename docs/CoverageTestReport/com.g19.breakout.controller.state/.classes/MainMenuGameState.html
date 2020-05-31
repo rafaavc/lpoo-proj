@@ -1,0 +1,166 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MainMenuGameState</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g19.breakout.controller.state</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MainMenuGameState (com.g19.breakout.controller.state)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainMenuGameState</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (8/ 11)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$31vuj2BV</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$AlLmoBFz</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$Cy5XmrIn</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$hLGWiHMA</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$IMWsoerQ</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$KLWedQP8</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$OyK8Z7FG</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$WDJnxdOH</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$xfIbga65</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$yeVRqWU9</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$ysFrSU92</td>
+  </tr>
+  <tr>
+    <td class="name">MainMenuGameState$MockitoMock$107785673$auxiliary$zCNCUunS</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (8/ 11)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g19.breakout.controller.state;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g19.breakout.controller.GameController;
+<i>4</i>&nbsp;import com.g19.breakout.controller.MenuController;
+<i>5</i>&nbsp;import com.g19.breakout.model.PlayerModel;
+<i>6</i>&nbsp;import com.g19.breakout.view.MainMenuView;
+<i>7</i>&nbsp;import com.g19.breakout.view.View;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public class MainMenuGameState extends MenuGameState {
+<i>10</i>&nbsp;    private final MainMenuView mainMenuView;
+<i>11</i>&nbsp;    private final StateFactory stateFactory;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    public MainMenuGameState(GameController controller, MainMenuView mainMenuView, MenuController menu, PlayerModel playerModel, StateFactory stateFactory) {
+<b class="fc"><i>14</i>&nbsp;        super(controller, playerModel, menu);</b>
+<b class="fc"><i>15</i>&nbsp;        this.mainMenuView = mainMenuView;</b>
+<b class="fc"><i>16</i>&nbsp;        this.stateFactory = stateFactory;</b>
+<b class="fc"><i>17</i>&nbsp;    }</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    @Override
+<i>20</i>&nbsp;    public void commandQ() {
+<b class="fc"><i>21</i>&nbsp;        controller.exit();</b>
+<b class="fc"><i>22</i>&nbsp;    }</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @Override
+<i>25</i>&nbsp;    public void commandL() {
+<b class="nc"><i>26</i>&nbsp;        controller.setState(stateFactory.createLeaderboardState(controller));</b>
+<b class="nc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Override
+<i>30</i>&nbsp;    public void commandP() {
+<b class="fc"><i>31</i>&nbsp;        controller.setState(stateFactory.createPlayingGameState(controller));</b>
+<b class="fc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public View getView() {
+<b class="nc"><i>35</i>&nbsp;        return mainMenuView;</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 22:22</div>
+</div>
+</body>
+</html>
