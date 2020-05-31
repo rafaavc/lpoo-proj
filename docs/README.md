@@ -8,80 +8,7 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 ## Quickly jump between topics
 
-<<<<<<< HEAD
-- [LPOO_19 - Breakout](#lpoo_19---breakout)
-  - [Quickly jump between topics](#quickly-jump-between-topics)
-  - [Features](#features)
-    - [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
-    - [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
-    - [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
-    - [Scoreboard](#scoreboard)
-    - [Menus](#menus)
-    - [Leaderboard](#leaderboard)
-    - [Other features that could be implemented (not implemented)](#other-features-that-could-be-implemented-not-implemented)
-  - [Design](#design)
-    - [*We want to work in the different components without affecting one another and improve modularity*](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-      - [The problem in context](#the-problem-in-context)
-      - [The pattern](#the-pattern)
-      - [Implementation](#implementation)
-      - [Consequences](#consequences)
-    - [*We shouldn't need to interact directly with Lanterna to draw objects in the View*](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-      - [The problem in context](#the-problem-in-context-1)
-      - [The pattern](#the-pattern-1)
-      - [Implementation](#implementation-1)
-      - [Consequences](#consequences-1)
-    - [*We want to be able to inject the classes that the ArenaView needs to create*](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-      - [The problem in context](#the-problem-in-context-2)
-      - [The pattern](#the-pattern-2)
-      - [Implementation](#implementation-2)
-      - [Consequences](#consequences-2)
-    - [*We want to convert enum types to Commands in a simple and clean way*](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
-      - [The problem in context](#the-problem-in-context-3)
-      - [The pattern](#the-pattern-3)
-      - [Implementation](#implementation-3)
-      - [Consequences](#consequences-3)
-    - [*We want our ArenaController to not have to worry about which command was given nor which object the ball hit*](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-      - [The problem in context](#the-problem-in-context-4)
-      - [The pattern](#the-pattern-4)
-      - [Implementation](#implementation-4)
-      - [Consequences](#consequences-4)
-    - [*We want to create states to change between menus*](#we-want-to-create-states-to-change-between-menus)
-    - [The problem in context](#the-problem-in-context-5)
-    - [The pattern](#the-pattern-5)
-    - [Implementation](#implementation-5)
-      - [Consequences](#consequences-5)
-    - [*We want to be able to group views and group the grouped views into other views*](#we-want-to-be-able-to-group-views-and-group-the-grouped-views-into-other-views)
-    - [The problem in context](#the-problem-in-context-6)
-    - [The pattern](#the-pattern-6)
-    - [Implementation](#implementation-6)
-    - [Consequences](#consequences-6)
-  - [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
-    - [Big Switch Cases](#big-switch-cases)
-  - [Testing](#testing)
-  - [Self-evaluation](#self-evaluation)
-=======
-* [Quickly jump between topics](#quickly-jump-between-topics)
-* [Features](#features)
-    * [Player Bar](#player-bar)
-    * [Ball](#ball)
-    * [Tiles](#tiles)
-    * [Scoreboard](#scoreboard)
-    * [Menus](#menus)
-    * [Leaderboard](#leaderboard)
-    * [Other features that could be implemented (not implemented)](#other-features-that-could-be-implemented-not-implemented)
-* [Design](#design)
-    * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-    * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-    * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-    * [<em>We want to convert enum types to Commands in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
-    * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-    * [<em>We want to create states to change between menus</em>](#we-want-to-create-states-to-change-between-menus)
-    * [<em>We want to be able to group views and group the grouped views into other views</em>](#we-want-to-be-able-to-group-views-and-group-the-grouped-views-into-other-views)
-* [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
-    * [Big Switch Cases](#big-switch-cases)
-* [Testing](#testing)
-* [Self-evaluation](#self-evaluation)
->>>>>>> master
+***TO BE GENERATED BEFORE DELIVERING***
 
 
 ## Features
@@ -152,16 +79,17 @@ The classes can be found in these packages:
 - Helps keeping the 1st SOLID principle.
 - Shuns circular dependencies since the model doesn't need to know the existance of the view nor the controller and the view doesn't use the controller.
 - Improves the separation of tasks.
+- Allows to edit the way something is displayed without having to think about the logic and the modulation and vice-versa.
 
 ---
 
 ### *We shouldn't need to interact directly with Lanterna to draw objects in the View*
 
 #### The problem in context
-The view shouldn't be interacting with the graphics directly. We don't want to have to worry about the specifics of the graphics library being used at the moment while writing the view of each component, therefore we needed to reccur to abstraction. This is also helpful if we want to have the possibility of changing the graphics library easily, while not having to worry about it in the view.
+The view shouldn't be interacting with the graphics directly. We don't want to have to worry about the specifics of the graphics library being used at the moment while writing the view of each component, therefore we needed to reccur to abstraction. This is also helpful if we want to have the possibility of changing the graphics library easily, while not having to worry about it in the view itself.
 
 #### The pattern
-We applied the **Adapter pattern**. This will enable us to have separate classes to deal with the graphics library used, while not having to worry about it while coding other features.
+We applied the **Adapter Pattern**. This will enable us to have separate classes to deal with the graphics library used, while not having to worry about it while coding other features.
 
 #### Implementation
 <img src="AdapterPatternGraphics.png" height="150"/>
@@ -174,7 +102,7 @@ The classes can be found in these files:
 #### Consequences
 The use of the Adapter pattern in the current design allows for the following benefits:
 - If we need to use another graphics we just need to create and use another adapter.
-- Neither the model nor the view need to be changed in order to implement a new graphics.
+- Neither the model, the view nor the controller need to be changed in order to implement new graphics.
 
 ---
 
@@ -218,7 +146,7 @@ We wan't to maintain the MVC structure while the controller gets information abo
 We also want the states to be able to create other states, however without having to instantiate them (delegating that responsibility to other class).
 
 #### The pattern
-We used the **factory pattern** to solve this problem, creating a StateFactory (for the states) and a Transformer (for the commands).
+We used the **Factory Method** to solve this problem, creating a StateFactory (for the states) and a Transformer (for the commands).
 
 #### Implementation
 
@@ -236,8 +164,8 @@ The classes in the diagram can be found in these files:
 #### Consequences
 
 By using this design pattern in this case:
-- The controller will easily convert the info received from the view and the model into classes used by it.
-- Neither the view or the model will mess the MVC desing pattern already implemented.
+- The controller will easily convert the keys received from the view into classes that it can use.
+- Neither the view nor the controller will ruin the MVC architectural pattern already implemented.
 - The states can create the next state without having to instantiate and configure it.
 
 ---
@@ -246,10 +174,10 @@ By using this design pattern in this case:
 
 #### The problem in context
 
-We want the ArenaController to execute a command, and update the ball's direction according to which Command and BallHit the transformer has returned, respectively
+We want the ArenaController to execute a command, and update the ball's direction according to which Command and BallHit the transformer has returned, respectively, and we don't want the controller to know the exactly command and/or ballHit it's using.
 
 #### The pattern
-- Command pattern (for the Commands comming from the keyboard input and for the BallHits)
+To solve this problem, we implemented the **Command pattern** (for the Commands comming from the keyboard input and for the BallHits).
 
 #### Implementation
 
@@ -264,9 +192,10 @@ Those classes can be found here:
 
 #### Consequences
 
-By using this pattern the ArenaController doesn't need to know which type of command it has, it know it has a command and tells it to execute and, depending on the class implementation of the command it will execute in a diferent way.
-
-The same can be said to the BallHit abstract class, where it saves some attributes and has a constructor for all of its subclasses and has an abstract method to update the ball's direction.
+By using the pattern:
+- The controller doesn't need to know which type of command it has, it knows it is a command and tells it to execute and, depending on the implementation of the command it will execute in a given action. The controller only depends on the abstraction, and the abstraction is all it needs to know.
+- The same can be said to the BallHit abstract class. The BallController doesn't need to know what the ball hit, nor how to change its direction to accomodate the collision. It only depends on the BallHit abstraction that provides a function that will execute the hit's consequences on the BallModel.
+- This also allows the Commands and BallHits to be queued and could be used to implement a history feature that cound 'undo' the action that was executed.
 
 ---
 
@@ -278,7 +207,7 @@ We have some menus and we need them to implement the same functions and change b
 
 ### The pattern
 
-We used the **State pattern** to solve that problem by having a interface and one class for each menu that implement that interface and that can easily change between them.
+We used the **State Pattern** to solve that problem by having an interface for the state and one class for each state that implements that interface and that can easily manipulate the controller to change states.
 
 ### Implementation
 
@@ -292,9 +221,10 @@ Those classes can be found here:
 
 #### Consequences
 
-This way we the controller only has an abstract object that has different subclasses and that way it doesn't need to know which is the current game screen, so, it has one less job.
-
-Furthermore, the state knows how to handle any command and can update itself, and can set the controller state to the next one.
+By using the state pattern:
+- The controller only depends on an abstract object that may have many many different subclasses. The controller doesn't need to know what is the state, independently of the state, it will always do things the same way.
+- Because the commands' execution is delegated to the state, the controller also doesn't need to worry about command execution.
+- The state knows how to handle any command, can update itself and the controller, and can create (by using the state factory) the next state and set it on the controller.
 
 ---
 
@@ -327,11 +257,40 @@ The classes in the diagrams can be found here:
 
 ## Known code smells and refactoring sugestions
 
+### Long Parameter list
+
+Some classes, like [GameOverView](../src/main/java/com/g19/breakout/view/GameOverView.java), [GameOverGameState](../src/main/java/com/g19/breakout/controller/state/GameOverGameState.java), [LeaderboardGameState](../src/main/java/com/g19/breakout/controller/state/LeaderboardGameState.java), [MainMenuGameState](../src/main/java/com/g19/breakout/controller/state/MainMenuGameState.java), [PauseGameState](../src/main/java/com/g19/breakout/controller/state/PauseGameState.java) and [PlayingGameState](../src/main/java/com/g19/breakout/controller/state/PlayingGameState.java) take 5 to 6 arguments in their constructors, which is above the 3 to 4 maximum recommended amount.
+
+The best solution for this problem, in these cases, would be to "Introduce a Parameter Class". In some cases, the constructors share some of the arguments, so one parameter class could be enough for those. In other cases, the parameter class may not be suitable because the arguments are too unique.
+
+### Data class
+
+Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example, the [PlayerModel](../src/main/java/com/g19/breakout/model/PlayerModel.java) class. It isn't a pure data class, because it has a function that allows to add points, but it only holds the player's points and name, and lacks more specific functionality. 
+
+However, as it is part of the MVC, we keep it this way. In the future, to improve on this point, this class could probably gain more functionality, as more features related to the player could be added.
+
+### Middle Man
+
+The classes that extend the [GameCommand](../src/main/java/com/g19/breakout/controller/commands/input/GameCommand.java) abstract class can be seen as a middle man, as they delegate their functionality to the state class of the GameController. However, this smell is the result of using the Command Pattern joined with the State Pattern, and there seems to be no other way to do it. 
+
+The existance of this "middle man" allows the controller to execute a given command without even knowing what it will do, and the command to execute its function without having to care about which is the current state in the controller.
+
 ### Big Switch Cases
 
-In the Transformer class we have 2 methods and both of them have switch cases, and the one on the toBallHit() method its 22 lines long.
+In the [Transformer](../src/main/java/com/g19/breakout/controller/Transformer.java) class we have one method with switch cases. Even though we know that is a code smell, we think that there's no better way to do what this method does without those switches.
 
-Even though we know that is a code smell, we think that there's no better way to do what this methods do without those switches.
+### Refused Bequest
+
+Some of the [States](../src/main/java/com/g19/breakout/controller/state) don't use all of the [State](../src/main/java/com/g19/breakout/controller/state/State.java) interface methods. In general they implement the command methods they need and leave the rest to the interface default (empty method), for example, when we are in the [PlayingGameState](../src/main/java/com/g19/breakout/controller/state/PlayingGameState.java) and press Q nothing will happen.
+
+Even though we know that's not a good practice, in this case its the way we found so that the [GameController](../src/main/java/com/g19/breakout/controller/GameController.java) doesn't need to know which specific state the game's in.
+
+### Parallel Inheritance Hierarchies
+
+In both the [Controller](../src/main/java/com/g19/breakout/controller) and in the [View](../src/main/java/com/g19/breakout/view), any time we want to add a new menu we need to add a subclass for [MenuGameState](../src/main/java/com/g19/breakout/controller/state/MenuGameState.java) and another one for [SuperView](../src/main/java/com/g19/breakout/view/SuperView.java).
+
+On our project we used this so that we don't have a [View](../src/main/java/com/g19/breakout/view) class that needs to know how to draw every [State](../src/main/java/com/g19/breakout/controller/state) on the terminal. This way we maintain the MVC and don't violate the 1st SOLID principle.
+
 
 ## Testing
 
