@@ -24,13 +24,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
 public class ViewTests {
+
     @Provide
-    Arbitrary<Integer> Between0And500() {
-        return Arbitraries.integers().filter(n -> n > 0 && n < 500);
+    Arbitrary<Integer> Between0And200() {
+        return Arbitraries.integers().filter(n -> n > 0 && n < 200);
     }
 
     @Property
-    public void BackgroundViewTests(@ForAll("Between0And500") int n){
+    public void BackgroundViewTests(@ForAll("Between0And200") int n){
          BackgroundModel model = Mockito.mock(BackgroundModel.class);
          Graphics graphics = Mockito.mock(LanternaAdapter.class);
          Dimensions dimensions = new Dimensions(100, 120);

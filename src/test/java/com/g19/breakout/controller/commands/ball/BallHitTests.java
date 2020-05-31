@@ -1,4 +1,4 @@
-package com.g19.breakout.controller.ball;
+package com.g19.breakout.controller.commands.ball;
 
 import com.g19.breakout.controller.commands.ballhit.*;
 import com.g19.breakout.model.utilities.Dimensions;
