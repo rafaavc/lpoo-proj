@@ -135,7 +135,7 @@ Like with the ArenaView, the ArenaModel was instantiating other models, with the
 To solve this problem, we applied the **Abstract Factory** pattern. With this pattern we can use a class to create the views and another to create the models.
 
 #### Implementation
-<img src="AbstractFactoryPattern.png" height="400"/>
+<img src="AbstractFactoryPattern.png" height="450"/>
 
 The classes in the diagram can be found in these files:
 - [GameView](../src/main/java/com/g19/breakout/view/GameView.java)
@@ -171,7 +171,7 @@ We used the **factory pattern** to solve this problem, creating a StateFactory (
 
 *Implementation for the controller commands received from the view*
 
-<img src="FactoryPatternForCommandsAndStates.png" height="450">
+<img src="FactoryPatternForCommandsAndStates.png" height="500">
 
 The classes in the diagram can be found in these files:
 - View:
@@ -200,7 +200,7 @@ We want the ArenaController to execute a command, and update the ball's directio
 
 #### Implementation
 
-<img src="CommandPattern.png" height="300">
+<img src="CommandPattern.png" height="350">
 
 Those classes can be found here:
 - [GameController](../src/main/java/com/g19/breakout/controller/GameController)
@@ -257,7 +257,7 @@ To answer these requirements, we used the *Composite Pattern*.
 
 ### Implementation
 
-<img src="CompositePattern.png" width="500"/>
+<img src="CompositePattern.png" width="650"/>
 
 The classes in the diagrams can be found here:
 - [View](../src/main/java/com/g19/breakout/view/View.java)
