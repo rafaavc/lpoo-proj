@@ -173,7 +173,7 @@ By using this design pattern in this case:
 
 #### The problem in context
 
-We want the ArenaController to execute a command, and update the ball's direction according to which Command and BallHit the transformer has returned, respectively
+We want the ArenaController to execute a command, and update the ball's direction according to which Command and BallHit the transformer has returned, respectively, and we don't want the controller to know the exactly command and/or ballHit it's using.
 
 #### The pattern
 - Command pattern (for the Commands comming from the keyboard input and for the BallHits)
@@ -256,25 +256,38 @@ The classes in the diagrams can be found here:
 
 ### Long Parameter list
 
-Some classes, like GameOverView, GameOverGameState, LeaderboardGameState, MainMenuGameState, PauseGameState and PlayingGameState take 5 to 6 arguments in their constructors, which is above the 3 to 4 maximum recommended amount.
+Some classes, like [GameOverView](../src/main/java/com/g19/breakout/view/GameOverView.java), [GameOverGameState](../src/main/java/com/g19/breakout/controller/state/GameOverGameState.java), [LeaderboardGameState](../src/main/java/com/g19/breakout/controller/state/LeaderboardGameState.java), [MainMenuGameState](../src/main/java/com/g19/breakout/controller/state/MainMenuGameState.java), [PauseGameState](../src/main/java/com/g19/breakout/controller/state/PauseGameState.java) and [PlayingGameState](../src/main/java/com/g19/breakout/controller/state/PlayingGameState.java) take 5 to 6 arguments in their constructors, which is above the 3 to 4 maximum recommended amount.
 
 The best solution for this problem, in these cases, would be to "Introduce a Parameter Class". In some cases, the constructors share some of the arguments, so one parameter class could be enough for those. In other cases, the parameter class may not be suitable because the arguments are too unique.
 
 ### Data class
 
-Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example the PlayerModel class. It isn't a pure data class, because it has some a function that allows to add points, but it only holds the player's points and name, and lacks more spefific functionality. 
+Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example the [PlayerModel](../src/main/java/com/g19/breakout/model/PlayerModel.java) class. It isn't a pure data class, because it has some a function that allows to add points, but it only holds the player's points and name, and lacks more spefific functionality. 
 
 However, as it is part of the MVC, we keep it this way. In the future, to improve on this point, this class could probably gain more functionality, as more features related to the player could be added.
 
 ### Middle Man
 
-The classes that extend the GameCommand abstract class can be seen as a middle man, as they delegate their functionality to the state class of the GameController. However, this smell is the result of using the Command Pattern joined with the State Pattern, and there seems to be no other way to do it. 
+The classes that extend the [GameCommand](../src/main/java/com/g19/breakout/controller/commands/input/GameCommand.java) abstract class can be seen as a middle man, as they delegate their functionality to the state class of the GameController. However, this smell is the result of using the Command Pattern joined with the State Pattern, and there seems to be no other way to do it. 
 
 The existance of this "middle man" allows the controller to execute a given command without even knowing what it will do, and the command to execute its function without having to care about which is the current state in the controller.
 
 ### Big Switch Cases
 
-In the Transformer class we have one method with switch cases. Even though we know that is a code smell, we think that there's no better way to do what this method does without those switches.
+In the [Transformer](../src/main/java/com/g19/breakout/controller/Transformer.java) class we have one method with switch cases. Even though we know that is a code smell, we think that there's no better way to do what this method does without those switches.
+
+### Refused Bequest
+
+Some of the [States](../src/main/java/com/g19/breakout/controller/state) don't use all of the [State](../src/main/java/com/g19/breakout/controller/state/State.java) interface methods. In general they implement the command methods they need and leave the rest to the interface default (empty method), for example, when we are in the [PlayingGameState](../src/main/java/com/g19/breakout/controller/state/PlayingGameState.java) and press Q nothing will happen.
+
+Even though we know that's not a good practice, in this case its the way we found so that the [GameController](../src/main/java/com/g19/breakout/controller/GameController.java) doesn't need to know which specific state the game's in.
+
+### Parallel Inheritance Hierarchies
+
+In both the [Controller](../src/main/java/com/g19/breakout/controller) and in the [View](../src/main/java/com/g19/breakout/view), any time we want to add a new menu we need to add a subclass for [MenuGameState](../src/main/java/com/g19/breakout/controller/state/MenuGameState.java) and another one for [SuperView](../src/main/java/com/g19/breakout/view/SuperView.java).
+
+On our project we used this so that we don't have a [View](../src/main/java/com/g19/breakout/view) class that needs to know how to draw every [State](../src/main/java/com/g19/breakout/controller/state) on the terminal. This way we maintain the MVC and don't violate the 1st SOLID principle.
+
 
 ## Testing
 
