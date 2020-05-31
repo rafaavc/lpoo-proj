@@ -141,8 +141,7 @@ The classes in the diagram can be found in these files:
 - [GameView](../src/main/java/com/g19/breakout/view/GameView.java)
 - [ArenaView](../src/main/java/com/g19/breakout/view/ArenaView.java)
 - [ViewFactory](../src/main/java/com/g19/breakout/view/factory/ViewFactory.java)
-- [BasicViewFactory](../src/main/java/com/g19/breakout/view/factory/BasicViewFactory.java)
-
+- [BasicViewFactory](../src/main/java/com/g19/breakout/view/factory/BasicViewFactory.java)<br/><br/>
 - [GameModel](../src/main/java/com/g19/breakout/model/GameModel.java)
 - [ArenaModel](../src/main/java/com/g19/breakout/model/ArenaModel.java)
 - [ModelFactory](../src/main/java/com/g19/breakout/model/factory/ModelFactory.java)
@@ -179,7 +178,6 @@ The classes in the diagram can be found in these files:
   -  [GameView.Keys](../src/main/java/com/g19/breakout/view/GameView.java#L11)
 - [Transfomer](../src/main/java/com/g19/breakout/controller/Transformer.java)
 - [GameCommands](../src/main/java/com/g19/breakout/controller/commands/input)
-
 - [States](../src/main/java/com/g19/breakout/controller/state)
 
 #### Consequences
@@ -266,7 +264,6 @@ The classes in the diagrams can be found here:
 - [SuperView](../src/main/java/com/g19/breakout/view/SuperView.java)
 - [MenuButtonView](../src/main/java/com/g19/breakout/view/MenuButtonView.java)
 - [MenuView](../src/main/java/com/g19/breakout/view/MenuView.java)
-
 - [All views](../src/main/java/com/g19/breakout/view)
 
 ### Consequences
