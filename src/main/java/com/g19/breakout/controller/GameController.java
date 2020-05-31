@@ -78,7 +78,7 @@ public class GameController {
         } else {
             key = view.readInput();
         }
-        GameCommand cmd = transformer.toCommand(this, key);
+        Command cmd = transformer.toCommand(this, key);
         cmd.execute();
     }
 
