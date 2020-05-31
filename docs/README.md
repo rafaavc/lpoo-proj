@@ -10,49 +10,21 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 * [Quickly jump between topics](#quickly-jump-between-topics)
 * [Features](#features)
-    * [Drawing and moving the player's bar](#drawing-and-moving-the-players-bar)
-    * [Drawing and moving ball with collisions and bounces](#drawing-and-moving-ball-with-collisions-and-bounces)
-    * [Drawing and checking collisions with tiles](#drawing-and-checking-collisions-with-tiles)
+    * [Player Bar](#player-bar)
+    * [Ball](#ball)
+    * [Tiles](#tiles)
     * [Scoreboard](#scoreboard)
     * [Menus](#menus)
     * [Leaderboard](#leaderboard)
     * [Other features that could be implemented (not implemented)](#other-features-that-could-be-implemented-not-implemented)
 * [Design](#design)
     * [<em>We want to work in the different components without affecting one another and improve modularity</em>](#we-want-to-work-in-the-different-components-without-affecting-one-another-and-improve-modularity)
-        * [The problem in context](#the-problem-in-context)
-        * [The pattern](#the-pattern)
-        * [Implementation](#implementation)
-        * [Consequences](#consequences)
     * [<em>We shouldn't need to interact directly with Lanterna to draw objects in the View</em>](#we-shouldnt-need-to-interact-directly-with-lanterna-to-draw-objects-in-the-view)
-        * [The problem in context](#the-problem-in-context-1)
-        * [The pattern](#the-pattern-1)
-        * [Implementation](#implementation-1)
-        * [Consequences](#consequences-1)
     * [<em>We want to be able to inject the classes that the ArenaView needs to create</em>](#we-want-to-be-able-to-inject-the-classes-that-the-arenaview-needs-to-create)
-        * [The problem in context](#the-problem-in-context-2)
-        * [The pattern](#the-pattern-2)
-        * [Implementation](#implementation-2)
-        * [Consequences](#consequences-2)
     * [<em>We want to convert enum types to Commands in a simple and clean way</em>](#we-want-to-convert-enum-types-to-commands-in-a-simple-and-clean-way)
-        * [The problem in context](#the-problem-in-context-3)
-        * [The pattern](#the-pattern-3)
-        * [Implementation](#implementation-3)
-        * [Consequences](#consequences-3)
     * [<em>We want our ArenaController to not have to worry about which command was given nor which object the ball hit</em>](#we-want-our-arenacontroller-to-not-have-to-worry-about-which-command-was-given-nor-which-object-the-ball-hit)
-        * [The problem in context](#the-problem-in-context-4)
-        * [The pattern](#the-pattern-4)
-        * [Implementation](#implementation-4)
-        * [Consequences](#consequences-4)
     * [<em>We want to create states to change between menus</em>](#we-want-to-create-states-to-change-between-menus)
-        * [The problem in context](#the-problem-in-context-5)
-        * [The pattern](#the-pattern-5)
-        * [Implementation](#implementation-5)
-        * [Consequences](#consequences-5)
     * [<em>We want to be able to group views and group the grouped views into other views</em>](#we-want-to-be-able-to-group-views-and-group-the-grouped-views-into-other-views)
-        * [The problem in context](#the-problem-in-context-6)
-        * [The pattern](#the-pattern-6)
-        * [Implementation](#implementation-6)
-        * [Consequences](#consequences-6)
 * [Known code smells and refactoring sugestions](#known-code-smells-and-refactoring-sugestions)
     * [Big Switch Cases](#big-switch-cases)
 * [Testing](#testing)
@@ -63,12 +35,12 @@ This project was developed by Rafael Cristino (@rafaavc, up201806680@fe.up.pt) a
 
 All of these features are evident in the [gif above](#lpoo_19---breakout).
 
-### Drawing and moving the player's bar 
+### Player Bar 
 
 The player's bar is being drawn close to the bottom of the screen and in the middle of width of the screen.<br/>
 It can be moved left or right by pressing the left or right arrows on the keyboard.
 
-### Drawing and moving ball with collisions and bounces
+### Ball
 
 The game's ball is being drawn and starts close in the middle of the width of the screen and a bit above the players bar.
 
@@ -76,7 +48,7 @@ The ball will move with time. In the begin it will move right up. The ball chang
 
 If the ball hits either the top of the screen, the sides of the screen, the player bar or the tiles it will bounce from that surface in the correct angle. However, if the ball hits the bottom of the screen, the game is over.
 
-### Drawing and checking collisions with tiles
+### Tiles
 
 The tile grid is being generated and drawn and the collisions of the ball with the tiles are being checked. The color of the tiles depends on the amount of health they have. When a tile reaches 0 health it is removed.
 
