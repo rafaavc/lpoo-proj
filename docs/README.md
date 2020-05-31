@@ -79,16 +79,17 @@ The classes can be found in these packages:
 - Helps keeping the 1st SOLID principle.
 - Shuns circular dependencies since the model doesn't need to know the existance of the view nor the controller and the view doesn't use the controller.
 - Improves the separation of tasks.
+- Allows to edit the way something is displayed without having to think about the logic and the modulation and vice-versa.
 
 ---
 
 ### *We shouldn't need to interact directly with Lanterna to draw objects in the View*
 
 #### The problem in context
-The view shouldn't be interacting with the graphics directly. We don't want to have to worry about the specifics of the graphics library being used at the moment while writing the view of each component, therefore we needed to reccur to abstraction. This is also helpful if we want to have the possibility of changing the graphics library easily, while not having to worry about it in the view.
+The view shouldn't be interacting with the graphics directly. We don't want to have to worry about the specifics of the graphics library being used at the moment while writing the view of each component, therefore we needed to reccur to abstraction. This is also helpful if we want to have the possibility of changing the graphics library easily, while not having to worry about it in the view itself.
 
 #### The pattern
-We applied the **Adapter pattern**. This will enable us to have separate classes to deal with the graphics library used, while not having to worry about it while coding other features.
+We applied the **Adapter Pattern**. This will enable us to have separate classes to deal with the graphics library used, while not having to worry about it while coding other features.
 
 #### Implementation
 <img src="AdapterPatternGraphics.png" height="150"/>
@@ -101,7 +102,7 @@ The classes can be found in these files:
 #### Consequences
 The use of the Adapter pattern in the current design allows for the following benefits:
 - If we need to use another graphics we just need to create and use another adapter.
-- Neither the model nor the view need to be changed in order to implement a new graphics.
+- Neither the model, the view nor the controller need to be changed in order to implement new graphics.
 
 ---
 
@@ -145,7 +146,7 @@ We wan't to maintain the MVC structure while the controller gets information abo
 We also want the states to be able to create other states, however without having to instantiate them (delegating that responsibility to other class).
 
 #### The pattern
-We used the **factory pattern** to solve this problem, creating a StateFactory (for the states) and a Transformer (for the commands).
+We used the **Factory Method** to solve this problem, creating a StateFactory (for the states) and a Transformer (for the commands).
 
 #### Implementation
 
@@ -163,8 +164,8 @@ The classes in the diagram can be found in these files:
 #### Consequences
 
 By using this design pattern in this case:
-- The controller will easily convert the info received from the view and the model into classes used by it.
-- Neither the view or the model will mess the MVC desing pattern already implemented.
+- The controller will easily convert the keys received from the view into classes that it can use.
+- Neither the view nor the controller will ruin the MVC architectural pattern already implemented.
 - The states can create the next state without having to instantiate and configure it.
 
 ---
@@ -176,7 +177,7 @@ By using this design pattern in this case:
 We want the ArenaController to execute a command, and update the ball's direction according to which Command and BallHit the transformer has returned, respectively, and we don't want the controller to know the exactly command and/or ballHit it's using.
 
 #### The pattern
-- Command pattern (for the Commands comming from the keyboard input and for the BallHits)
+To solve this problem, we implemented the **Command pattern** (for the Commands comming from the keyboard input and for the BallHits).
 
 #### Implementation
 
@@ -191,9 +192,10 @@ Those classes can be found here:
 
 #### Consequences
 
-By using this pattern the ArenaController doesn't need to know which type of command it has, it know it has a command and tells it to execute and, depending on the class implementation of the command it will execute in a diferent way.
-
-The same can be said to the BallHit abstract class, where it saves some attributes and has a constructor for all of its subclasses and has an abstract method to update the ball's direction.
+By using the pattern:
+- The controller doesn't need to know which type of command it has, it knows it is a command and tells it to execute and, depending on the implementation of the command it will execute in a given action. The controller only depends on the abstraction, and the abstraction is all it needs to know.
+- The same can be said to the BallHit abstract class. The BallController doesn't need to know what the ball hit, nor how to change its direction to accomodate the collision. It only depends on the BallHit abstraction that provides a function that will execute the hit's consequences on the BallModel.
+- This also allows the Commands and BallHits to be queued and could be used to implement a history feature that cound 'undo' the action that was executed.
 
 ---
 
@@ -205,7 +207,7 @@ We have some menus and we need them to implement the same functions and change b
 
 ### The pattern
 
-We used the **State pattern** to solve that problem by having a interface and one class for each menu that implement that interface and that can easily change between them.
+We used the **State Pattern** to solve that problem by having an interface for the state and one class for each state that implements that interface and that can easily manipulate the controller to change states.
 
 ### Implementation
 
@@ -219,9 +221,10 @@ Those classes can be found here:
 
 #### Consequences
 
-This way we the controller only has an abstract object that has different subclasses and that way it doesn't need to know which is the current game screen, so, it has one less job.
-
-Furthermore, the state knows how to handle any command and can update itself, and can set the controller state to the next one.
+By using the state pattern:
+- The controller only depends on an abstract object that may have many many different subclasses. The controller doesn't need to know what is the state, independently of the state, it will always do things the same way.
+- Because the commands' execution is delegated to the state, the controller also doesn't need to worry about command execution.
+- The state knows how to handle any command, can update itself and the controller, and can create (by using the state factory) the next state and set it on the controller.
 
 ---
 
@@ -262,7 +265,11 @@ The best solution for this problem, in these cases, would be to "Introduce a Par
 
 ### Data class
 
+<<<<<<< HEAD
 Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example the [PlayerModel](../src/main/java/com/g19/breakout/model/PlayerModel.java) class. It isn't a pure data class, because it has some a function that allows to add points, but it only holds the player's points and name, and lacks more spefific functionality. 
+=======
+Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example, the PlayerModel class. It isn't a pure data class, because it has a function that allows to add points, but it only holds the player's points and name, and lacks more specific functionality. 
+>>>>>>> 88d48e65030e3e2d2fa156032d71ccd170f62192
 
 However, as it is part of the MVC, we keep it this way. In the future, to improve on this point, this class could probably gain more functionality, as more features related to the player could be added.
 
