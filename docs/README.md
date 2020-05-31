@@ -111,7 +111,7 @@ The view shouldn't be interacting with the graphics directly. We don't want to h
 We applied the **Adapter pattern**. This will enable us to have separate classes to deal with the graphics library used, while not having to worry about it while coding other features.
 
 #### Implementation
-<img src="AdapterPatternGraphics.png" height="200"/>
+<img src="AdapterPatternGraphics.png" height="150"/>
 
 The classes can be found in these files:
 - [View](../src/main/java/com/g19/breakout/view)
@@ -135,7 +135,7 @@ Like with the ArenaView, the ArenaModel was instantiating other models, with the
 To solve this problem, we applied the **Abstract Factory** pattern. With this pattern we can use a class to create the views and another to create the models.
 
 #### Implementation
-<img src="AbstractFactoryPattern.png" height="170"/>
+<img src="AbstractFactoryPattern.png" height="400"/>
 
 The classes in the diagram can be found in these files:
 - [GameView](../src/main/java/com/g19/breakout/view/GameView.java)
