@@ -265,11 +265,7 @@ The best solution for this problem, in these cases, would be to "Introduce a Par
 
 ### Data class
 
-<<<<<<< HEAD
 Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example the [PlayerModel](../src/main/java/com/g19/breakout/model/PlayerModel.java) class. It isn't a pure data class, because it has some a function that allows to add points, but it only holds the player's points and name, and lacks more spefific functionality. 
-=======
-Due to the MVC specificity, sometimes we may end up with classes that are classified as data classes in the model part of the code. For example, the PlayerModel class. It isn't a pure data class, because it has a function that allows to add points, but it only holds the player's points and name, and lacks more specific functionality. 
->>>>>>> 88d48e65030e3e2d2fa156032d71ccd170f62192
 
 However, as it is part of the MVC, we keep it this way. In the future, to improve on this point, this class could probably gain more functionality, as more features related to the player could be added.
 
