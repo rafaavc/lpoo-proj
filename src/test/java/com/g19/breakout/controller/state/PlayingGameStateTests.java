@@ -3,6 +3,7 @@ package com.g19.breakout.controller.state;
 import com.g19.breakout.controller.BallController;
 import com.g19.breakout.controller.GameController;
 import com.g19.breakout.controller.TilesController;
+import com.g19.breakout.model.TileModel;
 import com.g19.breakout.model.utilities.Dimensions;
 import com.g19.breakout.model.utilities.Direction;
 import com.g19.breakout.model.utilities.Position;
@@ -16,9 +17,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.times;
 
 public class PlayingGameStateTests {
@@ -40,10 +45,13 @@ public class PlayingGameStateTests {
 
     @Test
     public void updateTest(){
-
-
         BallModel ball = new BallModel(new Position(10, 10), 1);
         Mockito.when(arena.getBall()).thenReturn(ball);
+
+        List<TileModel> tiles = Mockito.mock(ArrayList.class);
+        Mockito.when(tiles.isEmpty()).thenReturn(false);
+
+        Mockito.when(arena.getTiles()).thenReturn(tiles);
         Mockito.when(ballController.update(1000)).thenReturn(new Position(10, 9));
 
         PlayingGameState playingGameStateSpy = Mockito.spy(playingGameState);
@@ -51,12 +59,12 @@ public class PlayingGameStateTests {
 
         Mockito.verify(ballController, times(1)).update(1000);
         Mockito.verify(playingGameStateSpy, times(1)).moveElement(new Position(10, 9), ball);
-        Mockito.verify(playingGameStateSpy, times(0)).gameOver();
+        Mockito.verify(playingGameStateSpy, times(0)).gameOver(anyBoolean());
         Mockito.verify(tilesController, times(1)).update();
 
         ball.setDirection(new Direction(0, 0));
         playingGameStateSpy.update(100);
-        Mockito.verify(playingGameStateSpy, times(1)).gameOver();
+        Mockito.verify(playingGameStateSpy, times(1)).gameOver(anyBoolean());
     }
 
 

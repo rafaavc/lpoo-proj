@@ -25,8 +25,14 @@ public class BasicViewFactory implements ViewFactory {
     public LeaderboardView createLeaderboardView(Graphics graphics, Dimensions gameDimensions, PriorityQueue<Pair<String, Integer>> lb) {
         return new LeaderboardView(graphics, gameDimensions, lb, backgroundColor);
     }
-    public GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel) {
-        return new GameOverView(graphics, gameDimensions, playerModel, backgroundColor);
+    public GameOverView createGameOverView(Graphics graphics, Dimensions gameDimensions, PlayerModel playerModel, boolean lost) {
+        String phrase;
+        if (lost) {
+            phrase = "Game Over";
+        } else {
+            phrase = "You beat the game! Let's see where you are in the leaderboard";
+        }
+        return new GameOverView(graphics, gameDimensions, playerModel, backgroundColor, phrase);
     }
     public MenuView createMenuView(Graphics graphics, Dimensions dimensions, Position position) {
         return new MenuView(graphics, dimensions, position);

@@ -93,7 +93,7 @@ public class StateFactory {
         return new PauseGameState(playingGameState, playerModel, pauseView, controller, menu, this);
     }
 
-    public GameState createGameOverGameState(GameController controller) {
+    public GameState createGameOverGameState(GameController controller, boolean lost) {
         Dimensions gameDimensions = controller.getModel().getDimensions();
 
         PlayingGameState playingGameState = (PlayingGameState) controller.getState();
@@ -105,7 +105,7 @@ public class StateFactory {
         playerModel.setPosition(playerPosition);
 
 
-        GameOverView gameOverView = viewFactory.createGameOverView(controller.getView().getGraphics(), gameDimensions, playerModel);
+        GameOverView gameOverView = viewFactory.createGameOverView(controller.getView().getGraphics(), gameDimensions, playerModel, lost);
 
         MenuView menuView = viewFactory.createMenuView(
                 controller.getView().getGraphics(),

@@ -78,7 +78,7 @@ public class ViewTests {
          Mockito.when(playerModel.getName()).thenReturn("Name");
          Mockito.when(playerModel.getPoints()).thenReturn(100);
 
-         GameOverView gameOverView = new GameOverView(graphics, dimensions, playerModel, "#000000");
+         GameOverView gameOverView = new GameOverView(graphics, dimensions, playerModel, "#000000", "");
 
          Mockito.doNothing().when(graphics).drawString(any(Position.class), any(String.class), any(String.class), any(String.class));
          gameOverView.drawSelf();
